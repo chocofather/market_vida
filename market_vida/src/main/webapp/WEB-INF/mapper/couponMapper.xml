@@ -5,19 +5,19 @@
   
   <mapper namespace="kr.co.vida.dto">
   	<select id="selectAll" resultType="cdto">
-  		SELECT coupon_no , coupon_name , coupon_dc , coupon_period , coupon_detail
+  		SELECT coupon_code , coupon_name , coupon_dc , coupon_period , coupon_detail , coupon_no
   		FROM coupon
   	</select>
   	
   	<select id="selectOne" parameterType="int" resultType="cdto">
-  		SELECT coupon_no , coupon_name , coupon_dc , coupon_period , coupon_detail
+  		SELECT coupon_code , coupon_name , coupon_dc , coupon_period , coupon_detail , coupon_no
   		FROM coupon
   		WHERE coupon_no = #{coupon_no}
   	</select>
   	
   	<insert id="insertOne" parameterType="cdto">
   		INSERT INTO coupon
-  		VALUES (#{coupon_no} , #{coupon_name} , #{coupon_dc} , #{coupon_period} , #{coupon_detail})
+  		VALUES (#{coupon_code} , #{coupon_name} , #{coupon_dc} , #{coupon_period} , #{coupon_detail} , coupon_no_seq.nextval)
   	</insert>
   
   	<delete id="deleteOne" parameterType="int">
