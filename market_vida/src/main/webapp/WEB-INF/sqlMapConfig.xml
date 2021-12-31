@@ -4,5 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  
+  	<typeAliases>
+  		<typeAlias type="kr.co.vida.dto.CouponDTO" alias="cdto"/>
+  		<typeAlias type="kr.co.vida.dto.CouponBoxDTO" alias="cbdto"/>
+  	</typeAliases>
   </configuration>
