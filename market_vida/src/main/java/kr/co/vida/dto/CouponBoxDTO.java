@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class CouponBoxDTO {
 	private int couponbox_no;
 	private int crew_no;
-	private String coupon_no;
+	private String coupon_code;
 	private int status;
+	private int coupon_no;
 }
