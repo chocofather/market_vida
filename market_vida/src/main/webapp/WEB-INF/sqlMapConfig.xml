@@ -7,5 +7,6 @@
   	<typeAliases>
   		<typeAlias type="kr.co.vida.dto.CouponDTO" alias="cdto"/>
   		<typeAlias type="kr.co.vida.dto.CouponBoxDTO" alias="cbdto"/>
+  		<typeAlias type="kr.co.vida.dto.NoticeDTO" alias="ndto" />
   	</typeAliases>
   </configuration>
