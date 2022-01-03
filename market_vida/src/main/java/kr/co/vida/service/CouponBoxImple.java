@@ -20,51 +20,35 @@ public class CouponBoxImple implements VidaService {
 	}
 
 	@Override
-	public List<CouponDTO> getCouponList() {
+	public List selectAllList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CouponDTO getCouponOne(int no) {
+	public Object selectOne(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addCouponOne(CouponDTO cdto) {
+	public void insertOne(Object dto) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void deleteCoupon(int no) {
+	public void updateOne(Object dto) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public List<CouponBoxDTO> getCouponBoxList() {
+	public void dropOne(int no) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
-	@Override
-	public CouponBoxDTO getCouponBoxOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addCouponBoxOne(CouponBoxDTO cbdto) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void modifyCouponBox(CouponBoxDTO cbdto) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }
