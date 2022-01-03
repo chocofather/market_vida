@@ -5,6 +5,8 @@
 
 <bean id="main" class="kr.co.vida.control.MainController"></bean>
 <bean id="login" class="kr.co.vida.control.LoginController"></bean>
+<bean id="join" class="kr.co.vida.control.JoinController"></bean>
+
 
 <bean id="dao" class="kr.co.vida.dao.CrewDAO"></bean>
 

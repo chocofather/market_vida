@@ -1,5 +1,7 @@
 package kr.co.vida.control;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,5 +10,11 @@ public class MainController {
 	@RequestMapping("main.do")
 	public String main() {
 		return "main";
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main.do";
 	}
 }
