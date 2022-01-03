@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.Dao;
-import kr.co.vida.dto.CouponBoxDTO;
 import kr.co.vida.dto.CouponDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service("CouponService")
-public class CouponImple implements VidaService {
+public class CouponImple implements VidaService<CouponDTO> {
 
 	Dao<CouponDTO> dao;
 
@@ -20,35 +19,33 @@ public class CouponImple implements VidaService {
 	}
 
 	@Override
-	public List selectAllList() {
+	public List<CouponDTO> selectAllList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object selectOne(int no) {
+	public CouponDTO selectOne(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertOne(Object dto) {
+	public void insertOne(CouponDTO dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void updateOne(Object dto) {
+	public void updateOne(CouponDTO dto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void dropOne(int no) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
+	}
 
 }
