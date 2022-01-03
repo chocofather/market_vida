@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.co.vida.coupon">
+  	<select id="selectAll" resultType="cdto">
+  		SELECT coupon_code , coupon_name , coupon_dc , coupon_period , coupon_detail , coupon_no
+  		FROM coupon
+  	</select>
+  	
+  	<select id="selectOne" parameterType="int" resultType="cdto">
+  		SELECT coupon_code , coupon_name , coupon_dc , coupon_period , coupon_detail , coupon_no
+  		FROM coupon
+  		WHERE coupon_no = #{coupon_no}
+  	</select>
+  	
+  	<insert id="insertOne" parameterType="cdto">
+  		INSERT INTO coupon
+  		VALUES (#{coupon_code} , #{coupon_name} , #{coupon_dc} , #{coupon_period} , #{coupon_detail} , coupon_no_seq.nextval)
+  	</insert>
+  
+  	<delete id="deleteOne" parameterType="int">
+  		DELETE FROM coupon
+  		WHERE coupon_no = #{coupon_no}
+  	</delete>
+  
+  </mapper>
