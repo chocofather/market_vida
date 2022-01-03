@@ -18,7 +18,7 @@ public class GoodsListController {
 	@RequestMapping("/")
 	public ModelAndView test() {
 		
-		return new ModelAndView("goodsList/shTest", "dto", dao.getImgOne(1));
+		return null;
 		
 	}
 

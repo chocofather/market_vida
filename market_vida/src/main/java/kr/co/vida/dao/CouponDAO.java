@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.CouponBoxDTO;
 import kr.co.vida.dto.CouponDTO;
+import kr.co.vida.dto.ImgDTO;
 
 @Repository
 public class CouponDAO implements Dao<CouponDTO> {
@@ -20,51 +21,36 @@ public class CouponDAO implements Dao<CouponDTO> {
 	}
 
 	@Override
-	public List<CouponDTO> getCouponList() {
+	public List<CouponDTO> getListAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CouponDTO getCouponOne(int no) {
+	public CouponDTO getOne(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addCouponOne(CouponDTO cdto) {
+	public void addOne(CouponDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteCoupon(int no) {
+	public void modifyOne(CouponDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<CouponBoxDTO> getCouponBoxList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CouponBoxDTO getCouponBoxOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addCouponBoxOne(CouponBoxDTO cbdto) {
+	public void deleteOne(int no) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void modifyCouponBox(CouponBoxDTO cbdto) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 
 }

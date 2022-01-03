@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import kr.co.vida.dto.CouponBoxDTO;
+import kr.co.vida.dto.CouponDTO;
 import kr.co.vida.dto.ImgDTO;
 
 @Repository
@@ -17,32 +19,36 @@ public class ImgDAO implements Dao<ImgDTO> {
 	private SqlSession ss;
 
 	@Override
-	public List<ImgDTO> getImgAll() {
+	public List<ImgDTO> getListAll() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ImgDTO getImgOne(int imgNo) {
-		return ss.selectOne("kr.co.vida.dao.getImgOne", imgNo);
+	public ImgDTO getOne(int no) {
+		return null;
 	}
 
 	@Override
-	public void updateImg(ImgDTO imgDto) {
+	public void addOne(ImgDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void modifyImg(ImgDTO imgDto) {
+	public void modifyOne(ImgDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int imgNo) {
+	public void deleteOne(int no) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
 
 
 }
