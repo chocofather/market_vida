@@ -1,11 +1,11 @@
-package kr.co.vida.dao;
+package kr.co.vida.service;
 
 import java.util.List;
 
+import kr.co.vida.dto.CouponBoxDTO;
+import kr.co.vida.dto.CouponDTO;
 
-import kr.co.vida.dto.ImgDTO;
-
-public interface Dao<T> {
+public interface VidaService {
 	public List<CouponDTO> getCouponList();
 	public CouponDTO getCouponOne(int no);
 	public void addCouponOne(CouponDTO cdto);
@@ -15,12 +15,4 @@ public interface Dao<T> {
 	public CouponBoxDTO getCouponBoxOne(int no);
 	public void addCouponBoxOne(CouponBoxDTO cbdto);
 	public void modifyCouponBox(CouponBoxDTO cbdto);
-  
-	public List<ImgDTO> getImgAll();
-	public ImgDTO getImgOne(int imgNo);
-	public void updateImg(ImgDTO imgDto);
-	public void modifyImg(ImgDTO imgDto);
-	public void delete(int imgNo);
-	
-
 }

@@ -11,14 +11,13 @@ import org.springframework.stereotype.Repository;
 import kr.co.vida.dto.ImgDTO;
 
 @Repository
-public class ImgDAO implements Dao {
+public class ImgDAO implements Dao<ImgDTO> {
 	
 	@Autowired
 	private SqlSession ss;
 
 	@Override
 	public List<ImgDTO> getImgAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -45,6 +44,5 @@ public class ImgDAO implements Dao {
 		
 	}
 
-	
 
 }
