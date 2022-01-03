@@ -2,6 +2,7 @@ package kr.co.vida.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.Dao;
@@ -11,7 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service("CouponBoxService")
 public class CouponBoxImple implements VidaService<CouponBoxDTO> {
-
+	
+	@Autowired
 	Dao<CouponBoxDTO> dao;
 
 	public void setDao(Dao<CouponBoxDTO> dao) {
@@ -20,8 +22,7 @@ public class CouponBoxImple implements VidaService<CouponBoxDTO> {
 
 	@Override
 	public List<CouponBoxDTO> selectAllList() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getListAll();
 	}
 
 	@Override
