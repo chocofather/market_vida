@@ -15,4 +15,8 @@
   		FROM image
   		WHERE img_no = #{img_no}
   	</select>
+  	<select id="getImgAll" resultType="idto">
+  		SELECT img_no, goods_no, img_name, img_status
+  		FROM image
+  	</select>
   </mapper>

@@ -7,43 +7,31 @@ import kr.co.vida.dto.NoticeDTO;
 public class NoticDAO implements Dao<NoticeDTO>{
 
 	@Override
-	public List<NoticeDTO> selectAll(int startNo, int endNo) {
+	public List<NoticeDTO> getListAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void InsertOne(NoticeDTO dto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public NoticeDTO selectOne(int bno) {
+	public NoticeDTO getOne(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateOne(NoticeDTO dto) {
+	public void addOne(NoticeDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteOne(int bno) {
+	public void modifyOne(NoticeDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void raiseHits(int bno) {
+	public void deleteOne(int no) {
 		// TODO Auto-generated method stub
 		
 	}

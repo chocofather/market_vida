@@ -19,48 +19,34 @@ public class CouponDAO implements Dao<CouponDTO> {
 	}
 
 	@Override
+	public List<CouponDTO> getListAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CouponDTO getOne(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addOne(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modifyOne(CouponDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void deleteOne(int no) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public List<CouponDTO> selectAll(int startNo, int endNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void InsertOne(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public CouponDTO selectOne(int bno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void updateOne(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void raiseHits(int bno) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 
 }
