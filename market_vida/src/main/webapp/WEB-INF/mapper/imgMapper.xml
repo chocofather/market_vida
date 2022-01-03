@@ -18,5 +18,6 @@
   	<select id="getImgAll" resultType="idto">
   		SELECT img_no, goods_no, img_name, img_status
   		FROM image
+  		WHERE img_status = 0;
   	</select>
   </mapper>

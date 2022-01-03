@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.ImgDTO;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
+@Slf4j
 public class ImgDAO implements Dao<ImgDTO> {
 	
 	@Autowired
@@ -16,6 +18,7 @@ public class ImgDAO implements Dao<ImgDTO> {
 
 	@Override
 	public List<ImgDTO> getListAll() {
+		log.info("ss========>",ss);
 		return ss.selectList("kr.co.vida.dao.getImgAll");
 	}
 
