@@ -4,12 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import kr.co.vida.dto.CouponBoxDTO;
-import kr.co.vida.dto.CouponDTO;
 import kr.co.vida.dto.ImgDTO;
 
 @Repository
@@ -20,30 +16,27 @@ public class ImgDAO implements Dao<ImgDTO> {
 
 	@Override
 	public List<ImgDTO> getListAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return ss.selectList("kr.co.vida.dao.getImgAll");
 	}
 
 	@Override
 	public ImgDTO getOne(int no) {
-		return null;
+		return ss.selectOne("kr.co.vida.dao.getImgOne", no);
 	}
 
 	@Override
 	public void addOne(ImgDTO dto) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void modifyOne(ImgDTO dto) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteOne(int no) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
