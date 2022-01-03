@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.dto.CouponBoxDTO;
 import kr.co.vida.service.VidaService;
@@ -24,8 +25,7 @@ public class CouponBoxController {
 
 	@RequestMapping("myCoupon")
 	public String myCoupon(Model model) {
-		model.addAttribute("list",service.selectAllList());
-		return "mypage/myCoupon";
+		model.addAttribute("list", service.selectAllList());
+		return "/mypage/myCoupon";
 	}
-
 }

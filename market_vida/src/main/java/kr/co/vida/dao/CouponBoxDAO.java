@@ -6,11 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.vida.dto.CouponDTO;
+import kr.co.vida.dto.CouponBoxDTO;
 
 @Repository
-public class CouponDAO implements Dao<CouponDTO> {
-	
+public class CouponBoxDAO implements Dao<CouponBoxDTO>{
+
 	@Autowired
 	private SqlSession ss;
 
@@ -19,24 +19,24 @@ public class CouponDAO implements Dao<CouponDTO> {
 	}
 
 	@Override
-	public List<CouponDTO> getListAll() {
-		return null;
+	public List<CouponBoxDTO> getListAll() {
+		return ss.selectList("kr.co.vida.couponbox.selectBoxAll");
 	}
 
 	@Override
-	public CouponDTO getOne(int no) {
+	public CouponBoxDTO getOne(int no) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addOne(CouponDTO dto) {
+	public void addOne(CouponBoxDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void modifyOne(CouponDTO dto) {
+	public void modifyOne(CouponBoxDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -46,8 +46,7 @@ public class CouponDAO implements Dao<CouponDTO> {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
+	
+	
+	
 }
