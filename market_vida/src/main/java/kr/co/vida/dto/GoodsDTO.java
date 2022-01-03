@@ -1,5 +1,10 @@
 package kr.co.vida.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class GoodsDTO {
 	
 	private int goods_no;
