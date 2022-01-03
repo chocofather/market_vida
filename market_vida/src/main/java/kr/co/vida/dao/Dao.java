@@ -15,4 +15,6 @@ public interface Dao {
 	public CouponBoxDTO getCouponBoxOne(int no);
 	public void addCouponBoxOne(CouponBoxDTO cbdto);
 	public void modifyCouponBox(CouponBoxDTO cbdto);
+	
+	
 }

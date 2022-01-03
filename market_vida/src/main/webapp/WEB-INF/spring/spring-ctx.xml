@@ -7,9 +7,10 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-
+<context:annotation-config />
+<!-- 
 	<context:component-scan base-package="kr.co.vida.*" />
-	
+
 	<mvc:annotation-driven />
 	
 	<mvc:default-servlet-handler/>
@@ -30,7 +31,7 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="factory"></constructor-arg>
 	</bean>
-	
+-->		
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/views/" suffix=".jsp"/>
 	</mvc:view-resolvers>
