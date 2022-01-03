@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImgDTO {
-	
-	private int imgNo;
-	private int goodsNo;
-	private String imgName;
-	private int imgStatus;
-	
+
+	private int img_no;
+	private int goods_no;
+	private String img_name;
+	private int img_status;
 
 }

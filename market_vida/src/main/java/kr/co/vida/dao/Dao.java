@@ -14,4 +14,6 @@ public interface Dao<T> {
 	public void deleteOne(int bno);
 	public int getTotal();
 	public void raiseHits(int bno);
+	
 }
+
