@@ -5,19 +5,19 @@
   
  <mapper namespace="kr.co.vida.dto">
  	<select id="selectAll" resultType="cbdto">
- 		SELECT couponbox_no , crew_no , coupon_no , status
+ 		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no
  		FROM coupon_box
  	</select>
  	
  	<select id="selectOne" parameterType="int" resultType="cbdto">
- 		SELECT couponbox_no , crew_no , coupon_no , status
+ 		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no
  		FROM coupon_box
  		WHERE couponbox_no = #{couponbox_no}
  	</select>
  	
  	<insert id="insertOne" parameterType="cbdto">
- 		INSERT INTO coupon_box (couponbox_no , coupon_no , status)
- 		VALUES (couponbox_no_seq.nextval, #{coupon_no} , 1 )
+ 		INSERT INTO coupon_box (couponbox_no , coupon_code , status)
+ 		VALUES (couponbox_no_seq.nextval, #{coupon_code} , 1 )
  		WHERE crew_no = #{crew_no}
  	</insert>
  	
