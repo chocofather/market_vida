@@ -17,8 +17,9 @@ public class CrewDTO {
 	 String crew_Email;
 	 String crew_Phone;
 	 String grade;
-	String crew_Gender;
+	 String crew_Gender;
 	 int crew_Point;
+	 
 	public int getCrew_no() {
 		return crew_no;
 	}
