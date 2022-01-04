@@ -21,10 +21,11 @@
 			</tr>
 			<c:forEach var="dto" items="${list}">
 				<tr>
-					<td>${dto.bno}</td>
-					<td>${dto.writer}</td>
-					<td><a href="detail?bno=${dto.bno}">${dto.title}</a></td>
-					<td>${dto.regdate}</td>
+					<td>${dto.noticeNo}</td>
+					<td>${dto.noticeCategory}</td>
+					<td>${dto.crewId}</td>
+					<td><a href="detail?bno=${dto.noticeNo}">${dto.noticeTitle}</a></td>
+					<td>${dto.noticeDate}</td>
 				</tr>
 			</c:forEach>
 		</table>
