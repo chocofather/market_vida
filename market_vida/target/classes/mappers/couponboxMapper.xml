@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="kr.co.vida">
- 	<select id="selectAll" resultType="cbdto">
- 		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no
+ <mapper namespace="kr.co.vida.couponbox">
+ 	<select id="selectBoxAll" resultType="cbdto" >
+ 		SELECT couponbox_no, crew_no, coupon_code, status, coupon_no
  		FROM coupon_box
  	</select>
  	

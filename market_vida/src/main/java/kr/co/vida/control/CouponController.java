@@ -5,27 +5,28 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.vida.dto.CouponBoxDTO;
+import kr.co.vida.dto.CouponDTO;
 import kr.co.vida.service.VidaService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class CouponBoxController {
+public class CouponController {
 
 	@Autowired
-	@Qualifier("CouponBoxService")
-	VidaService<CouponBoxDTO> service;
+	@Qualifier("CouponService")
+	VidaService<CouponDTO> service;
 
-	public void setService(VidaService<CouponBoxDTO> service) {
+	public void setService(VidaService<CouponDTO> service) {
 		this.service = service;
 	}
-
-	@RequestMapping("/mypage/myCoupon")
-	public String myCoupon(Model model) {
+	
+	@RequestMapping("/admin/couponList")
+	public String couponList(Model model) {
 		model.addAttribute("list", service.selectAllList());
-		return "/mypage/myCoupon";
+		return "/admin/couponList";
 	}
+	
+
 }
