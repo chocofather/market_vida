@@ -6,33 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.Dao;
-import kr.co.vida.dto.ImgDTO;
+import kr.co.vida.dto.GoodsDTO;
 
-@Service("ImgListImple")
-public class ImgListImple implements VidaService<ImgDTO>{
+@Service("GoodsImple")
+public class GoodsImple implements VidaService<GoodsDTO> {
 	
 	@Autowired
-	Dao<ImgDTO> dao;
-	
+	Dao<GoodsDTO> dao;
 
 	@Override
-	public List<ImgDTO> selectAllList() {
-		return dao.getListAll();
-	}
-
-	@Override
-	public ImgDTO selectOne(int no) {
+	public List<GoodsDTO> selectAllList() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertOne(ImgDTO dto) {
+	public GoodsDTO selectOne(int no) {
+		return dao.getOne(no);
+	}
+
+	@Override
+	public void insertOne(GoodsDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateOne(ImgDTO dto) {
+	public void updateOne(GoodsDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}

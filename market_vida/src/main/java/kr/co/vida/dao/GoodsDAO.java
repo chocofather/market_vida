@@ -6,46 +6,42 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.vida.dto.ImgDTO;
+import kr.co.vida.dto.GoodsDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @Slf4j
-public class ImgDAO implements Dao<ImgDTO> {
+public class GoodsDAO implements Dao<GoodsDTO> {
 	
 	@Autowired
 	private SqlSession ss;
 
 	@Override
-	public List<ImgDTO> getListAll() {
-		log.info("ss========>",ss);
+	public List<GoodsDTO> getListAll() {
+		return null;
+	}
+
+	@Override
+	public GoodsDTO getOne(int no) {
+		return ss.selectOne("kr.co.vida.getOne", no);
+	}
+
+	@Override
+	public void addOne(GoodsDTO dto) {
+		// TODO Auto-generated method stub
 		
-		return ss.selectList("kr.co.vida.getMainImg");
 	}
 
 	@Override
-	public ImgDTO getOne(int no) {
-		return ss.selectOne("kr.co.vida.getImgOne", no);
-	}
-
-	@Override
-	public void addOne(ImgDTO dto) {
-		
-	}
-
-	@Override
-	public void modifyOne(ImgDTO dto) {
+	public void modifyOne(GoodsDTO dto) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteOne(int no) {
-
+		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
 
 }
