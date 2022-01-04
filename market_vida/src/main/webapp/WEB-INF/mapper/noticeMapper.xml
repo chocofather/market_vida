@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.co.vida">
+  	<select id="selectAll" parameterType="se" resultType="ndto">
+  		SELECT notice_no, notice_category, notice_title, crew_id, notice_date, notice_content, notice_hits, crew_no
+  		FROM notice_board 
+  	</select>
+  	
+  	<select id="selectOne" parameterType="int" resultType="ndto">
+  		SELECT notice_no, notice_category, notice_title, crew_id, notice_date, notice_content, notice_hits, crew_no
+  		FROM notice_board 
+  		WHERE notice_no =#{notice_no}
+  	</select>
+  	
+  	<insert id="insertOne" parameterType="ndto">
+  		INSERT INTO notice_board
+  		VALUES (notice_board_no_seq.nextval, #{notice_category}, #{notice_title}, #{crew_id}, sysdate, #{notice_content}, 0, crew_no)
+  	</insert>
+  	
+  	<update id="updateOne" parameterType="ndto">
+  		UPDATE notice_board
+  		SET notice_category = #{notice_category}, notice_title = #{notice_title}, notice_content =#{notice_content}
+  		WHERE notice_no = #{notice_no}
+  	</update>
+  	
+  	<delete id="deleteOne" parameterType="int">
+  		DELETE FROM notice_board
+  		WHERE notice_no = #{notice_no}
+  	</delete>
+  	
+
+  </mapper>

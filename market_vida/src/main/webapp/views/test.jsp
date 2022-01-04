@@ -8,5 +8,9 @@
 </head>
 <body>
 	<h1>test.jsp111</h1>
+	
+	<ul>
+		<li><a href="noticeBoard">공지사항</a></li>
+	</ul>
 </body>
 </html>
