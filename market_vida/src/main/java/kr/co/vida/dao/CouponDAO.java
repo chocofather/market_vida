@@ -20,7 +20,7 @@ public class CouponDAO implements Dao<CouponDTO> {
 
 	@Override
 	public List<CouponDTO> getListAll() {
-		return null;
+		return ss.selectList("kr.co.vida.coupon.selectAll");
 	}
 
 	@Override

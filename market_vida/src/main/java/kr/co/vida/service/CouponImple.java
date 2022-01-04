@@ -22,8 +22,7 @@ public class CouponImple implements VidaService<CouponDTO> {
 
 	@Override
 	public List<CouponDTO> selectAllList() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getListAll();
 	}
 
 	@Override
