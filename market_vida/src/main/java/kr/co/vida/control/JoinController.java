@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kr.co.vida.dao.CDao;
+import kr.co.vida.dao.CRDao;
 import kr.co.vida.dao.CrewDAO;
 import kr.co.vida.dto.CrewDTO;
 
 @Controller
 public class JoinController {
 	@Autowired
-	CDao cdao;
+	CRDao cdao;
 	
 	@RequestMapping("join.do")
 	public String join() {

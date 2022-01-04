@@ -10,16 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CrewDTO {
-	 int crew_no;
-	 String crew_Id;
-	 String crew_Pw;
-	 String crew_Name;
-	 String crew_Email;
-	 String crew_Phone;
-	 String grade;
-	 String crew_Gender;
-	 int crew_Point;
-	 
+	 private int crew_no;
+	 private String crew_Id;
+	 private String crew_Pw;
+	 private String crew_Name;
+	 private String crew_Email;
+	 private String crew_Phone;
+	 private String grade;
+	 private String crew_Gender;
+	 private int crew_Point;
 	public int getCrew_no() {
 		return crew_no;
 	}
@@ -74,6 +73,6 @@ public class CrewDTO {
 	public void setCrew_Point(int crew_Point) {
 		this.crew_Point = crew_Point;
 	}
-	
-	
+	 
+
 }

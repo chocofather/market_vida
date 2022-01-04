@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import kr.co.vida.dto.CrewDTO;
 
-public class CrewDAO implements CDao{
+public class CrewDAO implements CRDao{
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "mydb.cax7alvdqjnf.ap-northeast-2.rds.amazonaws.com:1521:orcl";
