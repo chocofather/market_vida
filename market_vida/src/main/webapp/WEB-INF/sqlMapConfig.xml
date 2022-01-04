@@ -7,10 +7,7 @@
   	<typeAliases>
   		<typeAlias type="kr.co.vida.dto.CouponDTO" alias="cdto"/>
   		<typeAlias type="kr.co.vida.dto.CouponBoxDTO" alias="cbdto"/>
-<<<<<<< HEAD
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="idto"/>
-=======
   		<typeAlias type="kr.co.vida.dto.NoticeDTO" alias="ndto"/>
->>>>>>> refs/heads/dajeong
   	</typeAliases>
   </configuration>
