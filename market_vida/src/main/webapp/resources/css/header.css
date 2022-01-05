@@ -1,0 +1,208 @@
+@charset "UTF-8";
+* {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* nav,
+        main div,
+        aside,
+        section,
+        footer {
+            border: solid 1px black;
+            margin: 5px;
+            font-size: 24px;
+            text-align: center;
+        } */
+
+        main {
+            display: flex;
+        }
+
+        aside,
+        section {
+            flex-grow: 1;
+            height: 800px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header ul {
+            list-style: none;
+        }
+
+        header ul li {
+            float: right;
+            margin-right: 10px;
+        }
+
+        header ul li:nth-child(3) a {
+            color: #006f00;
+            font-weight: 600;
+        }
+
+        header ul li:nth-child(1n+2)::after {
+            content: "";
+            float: right;
+            width: 1px;
+            height: 13px;
+            margin-top: 8px;
+            margin-left: 5px;
+            background-color: #d1d0d0;
+        }
+
+        header ul li a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #333;
+        }
+
+        header div {
+            margin: 0 auto;
+            width: 400px;
+        }
+
+        header div img {
+            width: 100%;
+        }
+
+        nav {
+            position: sticky;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: stretch;
+            top: 0;
+            z-index: 300;
+            height: 50px;
+            padding-left: 10px;
+            background-color: #fafafa;
+        }
+
+        nav ul {
+            list-style: none;
+            justify-content: space-evenly;
+        }
+
+        nav ul li {
+            float: left;
+            margin-right: 50px;
+            padding-bottom: 5px;
+            height: 100%;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            height: 100%;
+            color: #333;
+            display: block;
+            line-height: 50px;
+        }
+
+        nav ul li:nth-child(1n+2):hover a {
+            text-decoration: underline;
+            text-underline-position: under;
+            color: #006f00;
+        }
+
+        .search,
+        .location,
+        .cart {
+            padding-top: 10px;
+        }
+
+        input[type=text] {
+            padding-left: 10px;
+            border: 1px solid #f7f7f6;
+            border-radius: 18px;
+            background-color: #f0f0f0;
+            font-weight: 400;
+            font-size: 12px;
+            width: 200px;
+            height: 30px;
+            color: #666;
+            outline: none;
+        }
+
+        input[type=text]:focus {
+            background-color: #fff;
+            color: #006f00;
+        }
+
+        input[type=image] {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 12px;
+            right: 270px;
+        }
+
+        a,
+        i {
+            color: #333;
+        }
+
+        i:hover {
+            color: #006f00;
+        }
+
+        .sub_menu {
+            margin: 5px;
+            margin-left: 70px;
+            z-index: 200;
+            width: 220px;
+            display: none;
+        }
+
+        .sub_menu ul li:hover a {
+            color: #006f00;
+            background-color: #f7f7f7;
+        }
+
+        .sub_menu ul,
+        li {
+            list-style: none;
+        }
+
+        .sub_menu ul li {
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+        }
+
+        .sub_menu ul {
+            border: 1px solid#ddd;
+            height: 440px;
+            overflow: hidden;
+            position: absolute;
+            background-color: #fff;
+        }
+        
+        .sub_menu a {
+            width: 220px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            height: 100%;
+            display: block;
+        }
+
+        .inner li {
+            position: relative;
+        }
+
+        .inner li ul {
+            position: absolute;
+            left: 220px;
+            top: -40px;
+            display: none;
+        }
