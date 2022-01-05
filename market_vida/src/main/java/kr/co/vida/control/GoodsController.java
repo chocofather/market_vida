@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.vida.dao.SubCatDAO;
 import kr.co.vida.dto.GoodsDTO;
 import kr.co.vida.dto.ImgDTO;
+import kr.co.vida.dto.SubCatDTO;
+import kr.co.vida.service.SubCatImple;
 import kr.co.vida.service.VidaService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,23 +28,16 @@ public class GoodsController {
 	VidaService<ImgDTO> svcImg;
 	
 	@Autowired
-	@Qualifier("GoodsImple")
-	VidaService<GoodsDTO> svcGoods;
+	SubCatDAO subDao;
+
 
 	@RequestMapping("/goodsList")
 	public String test(Model model) {
-		log.info("service======>", svcGoods);
-				
-//		ArrayList<ImgDTO> imgDto = (ArrayList<ImgDTO>) svcImg.selectAllList();
-//		ArrayList<GoodsDTO> goodsDto = new ArrayList<GoodsDTO>();
-//		for (ImgDTO dto : imgDto) {
-//			goodsDto.add(svcGoods.selectOne(dto.getGoods_no()));
-//		}
-//		
+	//	public String test(Model model, @RequestParam("main_cat_code")int main_cat_code) {
+	//	메인과 결합 후 사용
 		
+		model.addAttribute("subDto", subDao.getListAll(100));
 		model.addAttribute("imgDto", svcImg.selectAllList());
-	//	model.addAttribute("goodsDto", goodsDto);
-		
 		
 		return "/goods/goodsList";
 

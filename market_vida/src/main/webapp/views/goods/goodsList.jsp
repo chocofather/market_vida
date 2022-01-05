@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style type="text/css">
 
 	.goodsBody {
@@ -13,16 +14,25 @@
 		margin: 0 auto;
 	}
 	
-	.categoryList {
-	    padding: 30px;
-    	width: 100%;
+	.categoryBox {
+		display: flex;
     	border: 1px solid silver;
+    	padding: 20px;
 	}
 	
-	.categoryList td {
+	.categoryList, .categoryList a  {
+		list-style: none;
+		text-decoration: none;
+		color: black;
+	}
+	
+	.categoryList li {
+		float: left;
+		width: 200px;
 		padding: 10px;
+		
 	}
-	
+
 	.sortGoods {
 		width: 1000px;
 		margin-top: 35px;
@@ -62,8 +72,8 @@
 	}
 	
 	.imgBox_list img {
-		width: 300px;
-		height: 350px;
+		width: 320px;
+		height: 360px;
 	}
 	
 	.imgBox_list span {
@@ -75,6 +85,7 @@
 	
 	.imgBox_list #goods_price {
 		text-decoration-line: line-through;
+		color: grey;
 	}
 	
 	.imgBox_list #discount_rate {
@@ -85,27 +96,31 @@
 	
 	
 </style>
+<script type="text/javascript">
+	$("#totalGoodsList").click(function(){
+		$.ajax({
+			type:"POST",
+			url:"goodsList?main_cat_code="+${subDto.sub_cat_name},
+			data:
+		})
+	})
+
+</script>
 </head>
 <body>
 	
 	<div class="goodsBody">
+	
+	<!-- 카테고리 박스 -->
 	<div class="categoryBox">
-		<table class="categoryList">
-			<tr>
-				<td>전체보기</td>
-				<td>고구마·감자·당근</td>
-				<td>시금치·쌈채소·나물</td>
-				<td>브로콜리·파프리카·양배추</td>
-			</tr>
-			<tr>
-				<td>양파·대파·마늘·배추</td>
-				<td>오이·호박·고추</td>
-				<td>냉동·이색·간편채소</td>
-				<td>콩나물·버섯</td>
-			</tr>
-		</table>
-		
+		<ul class="categoryList">
+			<li><a href="#" id="totalGoodsList">전체보기</a></li>
+			<c:forEach var="subDto" items="${subDto }">
+			<li><a href="#" id="subCatGoodsList">${subDto.sub_cat_name }</a></li>
+			</c:forEach>		
+		</ul>
 	</div>
+	<!-- 상품 정렬 -->
 	<div class="sortGoods">
 		<div class="countGoods">
 			<p>총${count }개</p>
@@ -121,7 +136,7 @@
 			</ul>
 		</div>
 	</div>
-	
+	<!-- 상품 리스트-->
 		<ul class="imgBox">
 			<c:forEach var="imgDto" items="${imgDto }">
 			<li class="imgBox_list">
@@ -131,12 +146,12 @@
 					
 					<c:choose>
 						<c:when test="${imgDto.discount_rate>0 }">
-							<span><span id="discount_rate">${imgDto.discount_rate }% &nbsp; </span> ${Math.round(imgDto.goods_price-(imgDto.goods_price*(imgDto.discount_rate/100))) } </span>
+							<span><span id="discount_rate">${imgDto.discount_rate }% &nbsp; </span> ${Math.round(imgDto.goods_price-(imgDto.goods_price*(imgDto.discount_rate/100))) }원 </span>
 							<span id="goods_price">${imgDto.goods_price } </span>
 							
 						</c:when>
 						<c:when test="${imgDto.discount_rate==0 }">
-							<span id="goods_price_woDC">${imgDto.goods_price } </span>
+							<span id="goods_price_woDC">${imgDto.goods_price }원 </span>
 						</c:when>
 					</c:choose>
 				</a>
