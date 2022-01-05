@@ -15,6 +15,12 @@
   		WHERE coupon_no = #{coupon_no}
   	</select>
   	
+  	<update id="updateOne" parameterType="cdto">
+  		UPDATE coupon
+  		SET coupon_name = #{coupon_name} , coupon_dc = #{coupon_dc} , coupon_period = #{coupon_period} , coupon_detail = #{coupon_detail}
+  		WHERE coupon_no = #{coupon_no} 
+  	</update>
+  	
   	<insert id="insertOne" parameterType="cdto">
   		INSERT INTO coupon
   		VALUES (#{coupon_code} , #{coupon_name} , #{coupon_dc} , #{coupon_period} , #{coupon_detail} , coupon_no_seq.nextval)

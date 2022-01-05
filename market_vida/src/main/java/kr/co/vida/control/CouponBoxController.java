@@ -1,11 +1,15 @@
 package kr.co.vida.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.dto.CouponBoxDTO;
 import kr.co.vida.service.VidaService;
@@ -28,4 +32,17 @@ public class CouponBoxController {
 		model.addAttribute("list", service.selectAllList());
 		return "/mypage/myCoupon";
 	}
+	
+	@GetMapping("/payments")
+	public String paymentsForm() {
+		return "/admin/couponPaymentsForm";
+	}
+
+	@PostMapping("/payments")
+	public String paymentsFormOk(@ModelAttribute("dto") CouponBoxDTO dto, HttpServletRequest req) {
+		service.insertOne(dto);
+		return "redirect:/admin/couponList";
+	}
+	
+	
 }

@@ -25,26 +25,22 @@ public class CouponDAO implements Dao<CouponDTO> {
 
 	@Override
 	public CouponDTO getOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("kr.co.vida.coupon.selectOne",no);
 	}
 
 	@Override
 	public void addOne(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		
+		ss.insert("kr.co.vida.coupon.insertOne",dto);
 	}
 
 	@Override
 	public void modifyOne(CouponDTO dto) {
-		// TODO Auto-generated method stub
-		
+		ss.update("kr.co.vida.coupon.updateOne",dto);
 	}
 
 	@Override
 	public void deleteOne(int no) {
-		// TODO Auto-generated method stub
-		
+		ss.delete("kr.co.vida.coupon.deleteOne",no);
 	}
 
 

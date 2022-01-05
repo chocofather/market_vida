@@ -27,26 +27,22 @@ public class CouponImple implements VidaService<CouponDTO> {
 
 	@Override
 	public CouponDTO selectOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getOne(no);
 	}
 
 	@Override
 	public void insertOne(CouponDTO dto) {
-		// TODO Auto-generated method stub
-
+		dao.addOne(dto);
 	}
 
 	@Override
 	public void updateOne(CouponDTO dto) {
-		// TODO Auto-generated method stub
-
+		dao.modifyOne(dto);
 	}
 
 	@Override
 	public void dropOne(int no) {
-		// TODO Auto-generated method stub
-
+		dao.deleteOne(no);
 	}
 
 }
