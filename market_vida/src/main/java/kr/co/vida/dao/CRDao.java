@@ -3,6 +3,7 @@ package kr.co.vida.dao;
 import kr.co.vida.dto.CrewDTO;
 
 public interface CRDao {
-	public boolean isExists(String id, String pwd);
-	public boolean insertOne(CrewDTO dto);
+	public String loginCheck(CrewDTO crdto);
+	
+	public void insertcrew(CrewDTO dto);
 }

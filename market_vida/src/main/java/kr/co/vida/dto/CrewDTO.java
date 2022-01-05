@@ -11,49 +11,57 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CrewDTO {
 	 private int crew_no;
-	 private String crew_Id;
-	 private String crew_Pw;
-	 private String crew_Name;
-	 private String crew_Email;
-	 private String crew_Phone;
+	 private String crew_id;
+	 private String crew_pw;
+	 private String crew_name;
+	 private String crew_email;
+	 private String crew_phone;
 	 private String grade;
-	 private String crew_Gender;
-	 private int crew_Point;
+	 private String crew_gender;
+	 private String crew_birth;
+	 public String getCrew_birth() {
+		return crew_birth;
+	}
+	public void setCrew_birth(String crew_birth) {
+		this.crew_birth = crew_birth;
+	}
+
+	private int crew_point;
 	public int getCrew_no() {
 		return crew_no;
 	}
 	public void setCrew_no(int crew_no) {
 		this.crew_no = crew_no;
 	}
-	public String getCrew_Id() {
-		return crew_Id;
+	public String getCrew_id() {
+		return crew_id;
 	}
-	public void setCrew_Id(String crew_Id) {
-		this.crew_Id = crew_Id;
+	public void setCrew_id(String crew_id) {
+		this.crew_id = crew_id;
 	}
-	public String getCrew_Pw() {
-		return crew_Pw;
+	public String getCrew_pw() {
+		return crew_pw;
 	}
-	public void setCrew_Pw(String crew_Pw) {
-		this.crew_Pw = crew_Pw;
+	public void setCrew_pw(String crew_pw) {
+		this.crew_pw = crew_pw;
 	}
-	public String getCrew_Name() {
-		return crew_Name;
+	public String getCrew_name() {
+		return crew_name;
 	}
-	public void setCrew_Name(String crew_Name) {
-		this.crew_Name = crew_Name;
+	public void setCrew_name(String crew_name) {
+		this.crew_name = crew_name;
 	}
-	public String getCrew_Email() {
-		return crew_Email;
+	public String getCrew_email() {
+		return crew_email;
 	}
-	public void setCrew_Email(String crew_Email) {
-		this.crew_Email = crew_Email;
+	public void setCrew_email(String crew_email) {
+		this.crew_email = crew_email;
 	}
-	public String getCrew_Phone() {
-		return crew_Phone;
+	public String getCrew_phone() {
+		return crew_phone;
 	}
-	public void setCrew_Phone(String crew_Phone) {
-		this.crew_Phone = crew_Phone;
+	public void setCrew_phone(String crew_phone) {
+		this.crew_phone = crew_phone;
 	}
 	public String getGrade() {
 		return grade;
@@ -61,18 +69,23 @@ public class CrewDTO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public String getCrew_Gender() {
-		return crew_Gender;
+	public String getCrew_gender() {
+		return crew_gender;
 	}
-	public void setCrew_Gender(String crew_Gender) {
-		this.crew_Gender = crew_Gender;
+	public void setCrew_gender(String crew_gender) {
+		this.crew_gender = crew_gender;
 	}
-	public int getCrew_Point() {
-		return crew_Point;
+	public int getCrew_point() {
+		return crew_point;
 	}
-	public void setCrew_Point(int crew_Point) {
-		this.crew_Point = crew_Point;
+	public void setCrew_point(int crew_point) {
+		this.crew_point = crew_point;
 	}
-	 
+    
+	@Override
+	public String toString() {
+	return "MemberDTO [crew_no=" + crew_no + ", crew_id=" + crew_id + ", crew_pw=" + crew_pw + ", crew_name=" + crew_name + ", crew_email=" + crew_email + 
+			", crew_phone=" + crew_phone + ", grade=" + grade + ", crew_gender=" + crew_gender + ", crew_birth=" + crew_birth + "crew_point=" + crew_point +"]";
+	}
 
 }

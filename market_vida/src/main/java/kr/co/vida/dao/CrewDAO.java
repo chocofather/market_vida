@@ -6,72 +6,39 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import kr.co.vida.dto.CrewDTO;
 
+@Repository
 public class CrewDAO implements CRDao{
 
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "mydb.cax7alvdqjnf.ap-northeast-2.rds.amazonaws.com:1521:orcl";
-	String user = "scott";
-	String password = "tigertiger1";
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	StringBuffer sb = new StringBuffer();
+	@Autowired
+	private SqlSession ss;
+
 	
-	public CrewDAO() {
-		
-		try {
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, password);
-		} catch (SQLException e) {
-			System.out.println("db 연결 실패");
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버로딩 실패");
-			e.printStackTrace();
-		}
-	}
-	
-	@Override
-	public boolean isExists(String id, String pwd) {
-		sb.setLength(0);
-		sb.append("SELECT * ");
-		sb.append("FROM CREW ");
-		sb.append("WHERE CREW_ID = ? and CREW_pw = ? ");
-		
-		boolean result = false;
-		
-		try {
-			pstmt = conn.prepareStatement(sb.toString());
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			
-			rs = pstmt.executeQuery();
-			result = rs.next();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return result;
+	public void setSs(SqlSession ss) {
+		this.ss = ss;
 	}
 
+
 	@Override
-	public boolean insertOne(CrewDTO dto) {
-		sb.setLength(0);
-		sb.append("INSERT INTO CREW ");
-		sb.append("VALUES (CREW_NO_SEQ.nextval, ?, ? ,? ,? ,? ,? ,?, ?, ? ) ");
-		
-		try {
-			pstmt = conn.prepareStatement(sb.toString());
-			// pstmt.setString(1, dto.getCrew_Id());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+	public String loginCheck(CrewDTO crdto) {
+			
+		return ss.selectOne("kr.co.vida.mapper.CrewMapper.logincheck",crdto);
 	}
+
+
+	@Override
+	public void insertcrew(CrewDTO dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
 
 }
