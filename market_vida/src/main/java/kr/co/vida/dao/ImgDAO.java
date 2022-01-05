@@ -19,12 +19,16 @@ public class ImgDAO implements Dao<ImgDTO> {
 	@Override
 	public List<ImgDTO> getListAll() {
 		log.info("ss========>",ss);
-		return ss.selectList("kr.co.vida.dao.getImgAll");
+		
+		return ss.selectList("kr.co.vida.getMainImg");
+	}
+	public List<ImgDTO> getListAll(int no) {
+		return ss.selectList("kr.co.vida.getMainImg");
 	}
 
 	@Override
 	public ImgDTO getOne(int no) {
-		return ss.selectOne("kr.co.vida.dao.getImgOne", no);
+		return ss.selectOne("kr.co.vida.getImgOne", no);
 	}
 
 	@Override
