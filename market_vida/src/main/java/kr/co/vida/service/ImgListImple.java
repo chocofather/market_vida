@@ -6,18 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.Dao;
+import kr.co.vida.dao.ImgDAO;
 import kr.co.vida.dto.ImgDTO;
 
 @Service("ImgListImple")
 public class ImgListImple implements VidaService<ImgDTO>{
 	
 	@Autowired
-	Dao<ImgDTO> dao;
+	ImgDAO dao;
 	
 
 	@Override
 	public List<ImgDTO> selectAllList() {
 		return dao.getListAll();
+	}
+	
+	public List<ImgDTO> getListBySubCode(int no) {
+		return dao.getListBySubCode(no);
 	}
 
 	@Override
