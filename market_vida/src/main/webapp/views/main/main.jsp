@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
+<div class="wrap">
 	<jsp:include page="./header.jsp"></jsp:include>
+	<jsp:include page="./slide.jsp"></jsp:include>
 	<h2>main.jsp</h2>
+	
 	<jsp:include page="./footer.jsp"></jsp:include>
 </div>
 </body>

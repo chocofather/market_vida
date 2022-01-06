@@ -9,26 +9,6 @@
             margin: 0 auto;
         }
 
-        /* nav,
-        main div,
-        aside,
-        section,
-        footer {
-            border: solid 1px black;
-            margin: 5px;
-            font-size: 24px;
-            text-align: center;
-        } */
-
-        main {
-            display: flex;
-        }
-
-        aside,
-        section {
-            flex-grow: 1;
-            height: 800px;
-        }
 
         header {
             display: flex;
