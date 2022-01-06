@@ -23,4 +23,14 @@
   		WHERE i.goods_no = g.goods_no
   		AND i.img_status = 0
   	</select>
+  	<select id="getMainImgBySubCode" resultType="imgDto" parameterType="int">
+  		SELECT img_no, goods_no, img_name
+  		FROM image 
+		WHERE img_status=0 
+		AND goods_no IN (SELECT goods_no
+						FROM goods 
+						WHERE sub_cat_code in (SELECT sub_cat_code 
+												FROM sub_category 
+												WHERE main_cat_code = #{main_cat_code}))
+  	</select>
   </mapper>

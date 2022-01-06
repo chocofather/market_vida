@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.SubCatDTO;
 
-@Repository
+@Repository("SubCatDAO")
 public class SubCatDAO implements Dao<SubCatDTO> {
 
 	@Autowired

@@ -16,13 +16,16 @@ public class ImgDAO implements Dao<ImgDTO> {
 	@Autowired
 	private SqlSession ss;
 
-	@Override
-	public List<ImgDTO> getListAll() {
-		log.info("ss========>",ss);
-		
+	public List<ImgDTO> getListAll(int no) {
 		return ss.selectList("kr.co.vida.getMainImg");
 	}
-	public List<ImgDTO> getListAll(int no) {
+	
+	public List<ImgDTO> getListBySubCode(int no) {
+		return ss.selectList("kr.co.vida.getMainImgBySubCode", no);
+	}
+	
+	@Override
+	public List<ImgDTO> getListAll() {
 		return ss.selectList("kr.co.vida.getMainImg");
 	}
 
