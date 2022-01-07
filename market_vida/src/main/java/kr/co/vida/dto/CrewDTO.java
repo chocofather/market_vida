@@ -19,6 +19,7 @@ public class CrewDTO {
 	 private String grade;
 	 private String crew_gender;
 	 private String crew_birth;
+	
 	 public String getCrew_birth() {
 		return crew_birth;
 	}

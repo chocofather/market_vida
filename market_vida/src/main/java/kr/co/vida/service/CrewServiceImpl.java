@@ -14,21 +14,31 @@ public class CrewServiceImpl implements CrewService{
 	@Autowired
 	CrewDAO crdao;
 
-	@Override
-	public String loginCheck(CrewDTO crdto, HttpSession session) {
-		String crew_no = crdao.loginCheck(crdto);
-		if( crew_no != null) {
-			session.setAttribute("crew_id", crdto.getCrew_id());
-			session.setAttribute("name", crdto.getCrew_name());
-		}
-		return crew_no;
+	public void setCrdao(CrewDAO crdao) {
+		this.crdao = crdao;
 	}
 
 	@Override
-	public void logout(HttpSession session) {
-		session.invalidate(); // 세션 초기화
-		
+	public String loginCheck(CrewDTO crdto, HttpSession session){
+		String name = crdao.loginCheck(crdto);
+		if( name != null) {
+			session.setAttribute("crew_id", crdto.getCrew_id());
+			session.setAttribute("name", name);
+		}
+		return name;
 	}
+
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
+	
+	@Override
+	public int idCheck(CrewDTO crdto, HttpSession session) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+
 	
 	
 }

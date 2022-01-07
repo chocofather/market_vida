@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+
 	$(function() {
 		$("#btnLogin").click(function() {
 			userid = $("#userid").val();
@@ -22,13 +23,15 @@
 				return;
 			}
 			//폼 내부의 데이터를 전송할 주소
-			document.form1.action = "${path}/member/login_check.do";
+			document.form1.action = "${path}/crew/login_check.do";
 			document.form1.submit(); //제출
 		});
 	});
+	
 </script>
 </head>
 <body>
+
 	<h2>로그인</h2>
 	<form name="form1" method="post">
 		<table border="1" width="400px">
@@ -52,5 +55,10 @@
 			</tr>
 		</table>
 	</form>
+	
+	 <div>
+	 	<a href="${path}/crew/login.do">로그인</a>
+	 	<a href="${path}/crew/logout.do">로그아웃</a>
+	 </div>
 </body>
 </html>

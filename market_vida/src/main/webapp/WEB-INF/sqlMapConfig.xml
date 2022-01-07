@@ -11,7 +11,4 @@
   	-->
   		<typeAlias type="kr.co.vida.dto.CrewDTO" alias="crdto"/>
   	</typeAliases>
-  	<mappers>
-  		<mapper resource="mapper/CrewMapper.xml" />
-  	</mappers>
   </configuration>

@@ -19,5 +19,10 @@
 			<li><a href="join.do">회원가입</a></li>
 		</ol>
 	</c:if>
+	<br>
+	 <div>
+	 	<a href="${path}/crew/login.do">로그인</a>
+	 	<a href="${path}/crew/logout.do">로그아웃</a>
+	 </div>
 </body>
 </html>

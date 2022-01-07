@@ -18,18 +18,15 @@ public class CrewDAO implements CRDao{
 	@Autowired
 	private SqlSession ss;
 
-	
 	public void setSs(SqlSession ss) {
 		this.ss = ss;
 	}
 
-
 	@Override
-	public String loginCheck(CrewDTO crdto) {
+	public String loginCheck(CrewDTO crdto){
 			
 		return ss.selectOne("kr.co.vida.mapper.CrewMapper.logincheck",crdto);
 	}
-
 
 	@Override
 	public void insertcrew(CrewDTO dto) {
