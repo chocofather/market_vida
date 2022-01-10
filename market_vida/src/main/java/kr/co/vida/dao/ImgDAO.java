@@ -15,23 +15,29 @@ public class ImgDAO implements Dao<ImgDTO> {
 	
 	@Autowired
 	private SqlSession ss;
+	
 
-	public List<ImgDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.getMainImg");
+	public List<ImgDTO> getListBySubCode(int no) {
+		//log.info("list====>"+ss.selectList("kr.co.vida.img.getMainImgBySubCode", no));
+		return ss.selectList("kr.co.vida.img.getMainImgBySubCode", no);
 	}
 	
-	public List<ImgDTO> getListBySubCode(int no) {
-		return ss.selectList("kr.co.vida.getMainImgBySubCode", no);
+	public List<ImgDTO> getListAll(int no) {
+		return ss.selectList("kr.co.vida.img.getMainImg", no);
+	}
+	
+	public List<ImgDTO> getAllImgbyGoods(int no){
+		return ss.selectList("kr.co.vida.img.getGoodsImgs", no);
 	}
 	
 	@Override
 	public List<ImgDTO> getListAll() {
-		return ss.selectList("kr.co.vida.getMainImg");
+		return null;
 	}
 
 	@Override
 	public ImgDTO getOne(int no) {
-		return ss.selectOne("kr.co.vida.getImgOne", no);
+		return null;
 	}
 
 	@Override

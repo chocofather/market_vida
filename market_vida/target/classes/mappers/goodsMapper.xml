@@ -9,6 +9,6 @@
   				origin, goods_info, sub_cat_code, project_status, sales_amt
   		FROM goods
   		WHERE goods_no = #{goods_no}
-
   	</select>
+
   </mapper>
