@@ -9,5 +9,6 @@
   		<typeAlias type="kr.co.vida.dto.CouponBoxDTO" alias="cbdto"/>
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="idto"/>
   		<typeAlias type="kr.co.vida.dto.NoticeDTO" alias="ndto"/>
+  		<typeAlias type="kr.co.vida.dto.StartEnd" alias="se" />
   	</typeAliases>
   </configuration>

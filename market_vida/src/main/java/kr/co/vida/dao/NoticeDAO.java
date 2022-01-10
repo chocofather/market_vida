@@ -10,7 +10,7 @@ import kr.co.vida.dto.NoticeDTO;
 import kr.co.vida.dto.StartEnd;
 
 @Repository
-public class NoticDAO implements Dao<NoticeDTO>{
+public class NoticeDAO implements Dao<NoticeDTO>{
 	
 	@Autowired
 	private SqlSession ss;
@@ -21,38 +21,45 @@ public class NoticDAO implements Dao<NoticeDTO>{
 	
 	@Override
 	public List<NoticeDTO> getListAll() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("ss : " + ss);
+		return ss.selectList("kr.co.vida.board.selectAll");
 	}
 
 	public List<NoticeDTO> getListAll(int startNo, int endNo) {
 		StartEnd se = new StartEnd(startNo, endNo);
 		System.out.println("ss : " + ss);
-		return ss.selectList("kr.co.vida.selectAll", se);
+		return ss.selectList("kr.co.vida.board.selectAll", se);
 	}
 
 	@Override
 	public NoticeDTO getOne(int no) {
-		return ss.selectOne("kr.co.vida.selectOne", no);
+		return ss.selectOne("kr.co.vida.board.selectOne", no);
 	}
 
 	@Override
 	public void addOne(NoticeDTO dto) {
-		ss.insert("kr.co.vida.insertOne", dto);
+		ss.insert("kr.co.vida.board.insertOne", dto);
 		
 	}
 
 	@Override
 	public void modifyOne(NoticeDTO dto) {
-		ss.update("kr.co.jhta.board.updateOne" , dto);
+		ss.update("kr.co.vida.board.updateOne" , dto);
 		
 	}
 
 	@Override
 	public void deleteOne(int no) {
-		ss.delete("kr.co.jhta.board.deleteOne" , no);
+		ss.delete("kr.co.vida.board.deleteOne" , no);
 		
 	}
 
+	public int getTotal() {
+		return ss.selectOne("kr.co.vida.board.getTotal");
+	}
+
+	public void raiseHits(int no) {
+		ss.update("kr.co.vida.board.raiseHits", no);
+	}
 
 }

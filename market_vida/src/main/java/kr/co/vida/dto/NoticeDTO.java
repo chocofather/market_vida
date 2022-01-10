@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NoticeDTO {
 	
-	private int noticNo;
-	private String noticCate;
-	private String noticeTitle;
-	private String crewId;
-	private String noticeDate;
-	private String noticeContent;
-	private int hits;
+	private int notice_no;
+	private String notice_category;
+	private String notice_title;
+	private String crew_id;
+	private String notice_date;
+	private String notice_content;
+	private int notice_hits;
 	
 }
