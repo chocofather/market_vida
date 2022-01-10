@@ -23,7 +23,7 @@
 				return;
 			}
 			//폼 내부의 데이터를 전송할 주소
-			document.form1.action = "${path}/crew/login_check.do";
+			document.form1.action = "${path}/crew /login_check.do";
 			document.form1.submit(); //제출
 		});
 	});
@@ -55,10 +55,5 @@
 			</tr>
 		</table>
 	</form>
-	
-	 <div>
-	 	<a href="${path}/crew/login.do">로그인</a>
-	 	<a href="${path}/crew/logout.do">로그아웃</a>
-	 </div>
 </body>
 </html>

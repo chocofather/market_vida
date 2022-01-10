@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,9 @@ public class CrewDAO implements CRDao{
 	}
 
 	@Override
-	public String loginCheck(CrewDTO crdto){
-			
-		return ss.selectOne("kr.co.vida.mapper.CrewMapper.logincheck",crdto);
+	public int loginCheck(CrewDTO crdto) {
+		return ss.selectOne("kr.co.vida.mapper.CrewMapper.logincheck", crdto);
 	}
-
-	@Override
-	public void insertcrew(CrewDTO dto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-
 	
 
 }
