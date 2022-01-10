@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.vida.crewpoint">
+	<select id="selectPoint" parameterType="int" resultType="cpdto">
+		SELECT point_no , TO_CHAR(accumulate_date, 'YYYY.MM.DD') accumulate_date , point_detail ,TO_CHAR(ex_period, 'YYYY.MM.DD') ex_period , accumulate_point , crew_no , crew_point
+		FROM crew_points
+		WHERE crew_no = #{crew_no}
+		AND ex_period >= SYSDATE
+	</select>
+	
+	<update id="updateOne" parameterType="cpdto">
+		UPDATE crew_points
+		SET crew_point = #{crew_point}
+		WHERE crew_no = #{crew_no}
+	</update>
+	
+</mapper>

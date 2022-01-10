@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.Dao;
 import kr.co.vida.dto.CouponDTO;
+import kr.co.vida.dto.CrewPointsDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -43,6 +44,12 @@ public class CouponImple implements VidaService<CouponDTO> {
 	@Override
 	public void dropOne(int no) {
 		dao.deleteOne(no);
+	}
+
+	@Override
+	public List<CrewPointsDTO> selectAllList(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

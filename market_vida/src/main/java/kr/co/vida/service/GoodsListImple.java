@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import kr.co.vida.dao.Dao;
+import kr.co.vida.dto.CrewPointsDTO;
 import kr.co.vida.dto.ImgDTO;
 
 @Component
@@ -40,6 +41,12 @@ public class GoodsListImple implements VidaService<ImgDTO>{
 	public void dropOne(int no) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<CrewPointsDTO> selectAllList(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

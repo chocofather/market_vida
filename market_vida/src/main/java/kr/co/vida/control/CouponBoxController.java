@@ -29,10 +29,10 @@ public class CouponBoxController {
 
 	@RequestMapping("/mypage/myCoupon")
 	public String myCoupon(Model model) {
-		model.addAttribute("list", service.selectAllList());
+		model.addAttribute("list", service.selectAllList(1));
 		return "/mypage/myCoupon";
 	}
-	
+
 	@GetMapping("/payments")
 	public String paymentsForm() {
 		return "/admin/couponPaymentsForm";
@@ -43,6 +43,5 @@ public class CouponBoxController {
 		service.insertOne(dto);
 		return "redirect:/admin/couponList";
 	}
-	
-	
+
 }

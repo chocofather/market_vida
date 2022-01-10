@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.CouponDTO;
+import kr.co.vida.dto.CrewPointsDTO;
 
 @Repository
 public class CouponDAO implements Dao<CouponDTO> {
@@ -41,6 +42,12 @@ public class CouponDAO implements Dao<CouponDTO> {
 	@Override
 	public void deleteOne(int no) {
 		ss.delete("kr.co.vida.coupon.deleteOne",no);
+	}
+
+	@Override
+	public List<CrewPointsDTO> getListAll(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

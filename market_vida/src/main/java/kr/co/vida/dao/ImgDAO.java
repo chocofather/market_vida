@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.vida.dto.CrewPointsDTO;
 import kr.co.vida.dto.ImgDTO;
 
 @Repository
@@ -38,6 +39,12 @@ public class ImgDAO implements Dao<ImgDTO> {
 	public void deleteOne(int no) {
 
 		
+	}
+
+	@Override
+	public List<CrewPointsDTO> getListAll(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
