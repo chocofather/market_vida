@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="kr.co.vida.dao">
-  	<select id="getImgOne" parameterType="int" resultType="idto" >
+  <mapper namespace="kr.co.vida">
+  	<select id="getImgOne" parameterType="int" resultType="imgDto" >
   		SELECT img_no, goods_no, img_name, img_status
   		<!-- 
 			img_no as imgNo
@@ -15,8 +15,22 @@
   		FROM image
   		WHERE img_no = #{img_no}
   	</select>
-  	<select id="getImgAll" resultType="idto">
-  		SELECT img_no, goods_no, img_name, img_status
-  		FROM image
+  	<select id="getMainImg" resultType="imgDto">
+  		SELECT i.img_no, i.goods_no, i.img_name, i.img_status, g.goods_name, g.qty, 
+  				g.goods_price, g.discount_rate, g.stock, g.package_type, g.origin, 
+  				g.goods_info, g.sub_cat_code, g.project_status
+  		FROM image i, goods g
+  		WHERE i.goods_no = g.goods_no
+  		AND i.img_status = 0
+  	</select>
+  	<select id="getMainImgBySubCode" resultType="imgDto" parameterType="int">
+  		SELECT img_no, goods_no, img_name
+  		FROM image 
+		WHERE img_status=0 
+		AND goods_no IN (SELECT goods_no
+						FROM goods 
+						WHERE sub_cat_code in (SELECT sub_cat_code 
+												FROM sub_category 
+												WHERE main_cat_code = #{main_cat_code}))
   	</select>
   </mapper>

@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.vida.dao.Dao;
+import kr.co.vida.dao.CouponBoxDAO;
 import kr.co.vida.dto.CouponBoxDTO;
-import kr.co.vida.dto.CrewPointsDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -15,11 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CouponBoxImple implements VidaService<CouponBoxDTO> {
 	
 	@Autowired
-	Dao<CouponBoxDTO> dao;
-
-	public void setDao(Dao<CouponBoxDTO> dao) {
-		this.dao = dao;
-	}
+	CouponBoxDAO dao;
+	
 
 	@Override
 	public List<CouponBoxDTO> selectAllList() {
@@ -50,8 +46,7 @@ public class CouponBoxImple implements VidaService<CouponBoxDTO> {
 		
 	}
 
-	@Override
-	public List<CrewPointsDTO> selectAllList(int no) {
+	public List<CouponBoxDTO> selectAllList(int no) {
 		return dao.getListAll(no);
 	}
 
