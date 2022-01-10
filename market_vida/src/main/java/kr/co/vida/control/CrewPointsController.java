@@ -1,14 +1,11 @@
 package kr.co.vida.control;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.vida.dto.CrewPointsDTO;
-import kr.co.vida.service.VidaService;
+import kr.co.vida.service.CrewPointsImple;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,12 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CrewPointsController {
 
 	@Autowired
-	@Qualifier("CrewPointService")
-	VidaService<CrewPointsDTO> service;
+	CrewPointsImple service;
 
-	public void setService(VidaService<CrewPointsDTO> service) {
-		this.service = service;
-	}
 	
 	@RequestMapping("/myMileage")
 	public String myMileage(Model model) {

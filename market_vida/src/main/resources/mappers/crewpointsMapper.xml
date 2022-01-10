@@ -5,7 +5,7 @@
   
 <mapper namespace="kr.co.vida.crewpoint">
 	<select id="selectPoint" parameterType="int" resultType="cpdto">
-		SELECT point_no , TO_CHAR(accumulate_date, 'YYYY.MM.DD') accumulate_date , point_detail ,TO_CHAR(ex_period, 'YYYY.MM.DD') ex_period , accumulate_point , crew_no , crew_point
+		SELECT point_no , TO_CHAR(accumulate_date, 'YYYY.MM.DD') accumulate_date , point_detail ,TO_CHAR(ex_period, 'YYYY.MM.DD') ex_period , accumulate_point , crew_no , crew_point , point_stauts
 		FROM crew_points
 		WHERE crew_no = #{crew_no}
 		AND ex_period >= SYSDATE

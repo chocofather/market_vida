@@ -3,7 +3,6 @@ package kr.co.vida.control;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.vida.dto.CouponBoxDTO;
-import kr.co.vida.service.VidaService;
+import kr.co.vida.service.CouponBoxImple;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,12 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CouponBoxController {
 
 	@Autowired
-	@Qualifier("CouponBoxService")
-	VidaService<CouponBoxDTO> service;
-
-	public void setService(VidaService<CouponBoxDTO> service) {
-		this.service = service;
-	}
+	CouponBoxImple service;
 
 	@RequestMapping("/mypage/myCoupon")
 	public String myCoupon(Model model) {

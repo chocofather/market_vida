@@ -45,7 +45,6 @@ public class CrewPointsDAO implements Dao<CrewPointsDTO> {
 		
 	}
 
-	@Override
 	public List<CrewPointsDTO> getListAll(int no) {
 		return ss.selectList("kr.co.vida.crewpoint.selectPoint" , no);
 	}

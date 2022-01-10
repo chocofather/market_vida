@@ -6,51 +6,46 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.vida.dto.CouponBoxDTO;
+import kr.co.vida.dto.SubCatDTO;
 
-@Repository
-public class CouponBoxDAO implements Dao<CouponBoxDTO>{
+@Repository("SubCatDAO")
+public class SubCatDAO implements Dao<SubCatDTO> {
 
 	@Autowired
-	private SqlSession ss;
-
-	public void setSs(SqlSession ss) {
-		this.ss = ss;
+	SqlSession ss;
+	
+	public List<SubCatDTO> getListAll(int no) {
+		return ss.selectList("kr.co.vida.getListAll", no);
 	}
 
 	@Override
-	public List<CouponBoxDTO> getListAll() {
-		return null;
-	}
-
-	@Override
-	public CouponBoxDTO getOne(int no) {
+	public List<SubCatDTO> getListAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addOne(CouponBoxDTO dto) {
+	public SubCatDTO getOne(int no) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void modifyOne(CouponBoxDTO dto) {
+	public void addOne(SubCatDTO dto) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void modifyOne(SubCatDTO dto) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void deleteOne(int no) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public List<CouponBoxDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.couponbox.selectBoxAll" , no);
-	}
-	
-	
-	
 }

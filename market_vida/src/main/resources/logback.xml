@@ -19,5 +19,15 @@
       </encoder>
    </appender>
 
+<!-- 특정패키지의 info 레벨 이상 로그 찍어  -->
+	<logger name="kr.co.vida" level="info" additivity="false">
+	<!-- 	<appender-ref ref="FILE" /> -->
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+   <root level="warn">
+    <!--   <appender-ref ref="FILE" /> -->
+      <appender-ref ref="STDOUT" />
+   </root>
 
 </configuration> 

@@ -16,4 +16,6 @@ public class CrewPointsDTO {
 	private String ex_period;
 	private int accumulate_point;
 	private int crew_no;
+	private int crew_point;
+	private int point_status;
 }

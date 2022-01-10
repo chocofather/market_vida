@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.vida.dao.Dao;
+import kr.co.vida.dao.CrewPointsDAO;
 import kr.co.vida.dto.CrewPointsDTO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,11 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CrewPointsImple implements VidaService<CrewPointsDTO> {
 
 	@Autowired
-	Dao<CrewPointsDTO> dao;
-
-	public void setDao(Dao<CrewPointsDTO> dao) {
-		this.dao = dao;
-	}
+	CrewPointsDAO dao;
 
 	@Override
 	public List<CrewPointsDTO> selectAllList() {
@@ -50,7 +46,6 @@ public class CrewPointsImple implements VidaService<CrewPointsDTO> {
 		
 	}
 
-	@Override
 	public List<CrewPointsDTO> selectAllList(int no) {
 		return dao.getListAll(no);
 	}
