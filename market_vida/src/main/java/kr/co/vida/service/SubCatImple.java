@@ -10,7 +10,9 @@ import kr.co.vida.dao.Dao;
 import kr.co.vida.dao.SubCatDAO;
 import kr.co.vida.dto.ImgDTO;
 import kr.co.vida.dto.SubCatDTO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service("SubCatImple")
 public class SubCatImple implements VidaService<SubCatDTO>{
 	
@@ -18,6 +20,7 @@ public class SubCatImple implements VidaService<SubCatDTO>{
 	SubCatDAO dao;
 
 	public List<SubCatDTO> getListAll(int no) {
+		// log.info("listAll====>"+dao.getListAll(no));
 		return dao.getListAll(no);
 	}
 	
@@ -50,5 +53,6 @@ public class SubCatImple implements VidaService<SubCatDTO>{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

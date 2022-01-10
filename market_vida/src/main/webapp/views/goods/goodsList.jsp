@@ -98,62 +98,82 @@
 </style>
 <script type="text/javascript">
 
-$(function(){
+ $(function(){
 	
 	$("#subCatGoodsList").on("click", function(){
 		debugger;
         $.ajax({
-            url: "goodsListAjax",
-            type: "POST",
-            dataType: "json",          // ajax 통신으로 받는 타입
-            //contentType: "application/json",  // ajax 통신으로 보내는 타입
+            url: "goodsListAjax?",
+            type: "GET",
+            dataType: "json",          //  ajax 통신으로 받는 타입 
+            contentType: "application/json",  // ajax 통신으로 보내는 타입
             data:{"subCode":$("#sub_cat_code")[0].value},
-            success: function(result){
-            	debugger;
-            	x =('<span name="goods_name">'+result.이름+'</span>'
-                    	'<span name="goods_name">'+result.이름+'</span>'
-                    	'<span name="goods_name">'+result.이름+'</span>')
+            // ajax 통신 성공 시 로직 수행
+            success: function (result) {
+            	console.log(result.imgBySubCode);
+            	console.log(result.imgBySubCode[0].img_name);
+            	//var imgBySubCode = JSON.stringify(result.imgBySubCode);
+            	$(".imgBox_list").empty();   
             	
-                for (var i = 0; i < array.length; i++) {
-
-                	$('.imgBox_list').append('<span name="goods_name">'+result.이름+'</span>');
-				}
+            	var imgList = result.imgBySubCode
+            	for (var i=0; i<imgList.length; i++){
+            		//console.log(imgList[i].img_name);
             	
-            	$('.imgBox_list').html('<span name="goods_name">'+result.이름+'</span>');
+            		var html = "";
+         /*    		$(".imgBox").append(html += '<li class=imgBox_list><a href="goodsDetail?goods_no='+imgList[i].goods_no+'>'
+            							html += '<img src='+imgList[i].img_name+'alt='+imgList[i].img_name+' />'
+            							html += '<span name="goods_name">'+imgList[i].goods_nam+'</span>'
+            							html += '<c:choose><c:when test="'+imgList[i].discount_rate+'>0"  >'
+            							html += '<span><span id="discount_rate">'+imgList[i].discount_rate+'% &nbsp; </span>'+Math.round(imgList[i].goods_price-(imgList[i].goods_price*(imgList[i].discount_rate/100)))+'원 </span>'
+            							html += '<span id="goods_price">'+imgList[i].goods_price +' </span>'
+            							html += '</c:when><c:when test="'+imgList[i].discount_rate+'==0" >'
+            							html += '<span id="goods_price_woDC">'+imgList[i].goods_price+'원 </span></c:when></c:choose></a></li>'); */
+            	}
             	
-            	
-
-                     // ajax 통신 성공 시 로직 수행
-
+            },
+            
+            error: function(){
+            	console.log("error")
             }
 	
-	   })
-		/* $.ajax({
-			type:"POST",
-			url:"goodsListAjax",
-			dataType: "json",
-			data:{"subCode":$("#sub_cat_code")[0].value},
-			success: function(e) {
-				debugger;
-				console.dir($("#subCatGoodsList"));
-				console.dir($("#sub_cat_code")[0].value);
-				console.log("성공")
-				console.log(${imgBySubCod})
+		})
+ 	})
+ })
+	
+	
+/* 	
+	function getSortingImg(result){
+		var goodsList = $('.imgBox_list');
+		console.dir("imgBySubCode");
+		goodsList.empty();
+		
+		for (var i = 0; i < result.length; i++) {
+			var contents = `<a href="goodsDetail?goods_no=${result[i].goods_no}"> 
+								<img src="${result[i].img_name }" alt="${result[i].img_name }" />
+								<span name="goods_name">${result[i].goods_name }</span>
 				
-				
-			},
-			error: function(){
-				console.log("에러")
-			}
-			
-		}) */
-	})
-})
+									<c:choose>
+										<c:when test="${result[i].discount_rate>0 }">
+											<span><span id="discount_rate">${result[i].discount_rate }% &nbsp; </span> ${Math.round(result[i].goods_price-(result[i].goods_price*(result[i].discount_rate/100))) }원 </span>
+											<span id="goods_price">${result[i].goods_price } </span>
+											
+										</c:when>
+										<c:when test="${result[i].discount_rate==0 }">
+											<span id="goods_price_woDC">${result[i].goods_price }원 </span>
+										</c:when>
+									</c:choose>
+							</a>`
+							
+			goodsList[i].innerHTML = contents;	
+		} 
+	}
+	
+ */
 
 </script>
 </head>
 <body>
-	function abc(){
+
 	<div class="goodsBody">
 	
 	<!-- 카테고리 박스 -->
@@ -186,7 +206,7 @@ $(function(){
 		<ul class="imgBox">
 			<c:forEach var="imgDto" items="${imgDto }">
 			<li class="imgBox_list">
-				<a href="goodsDetail?goods_no=${imgDto.goods_no }">
+				<a href="goodsDetail?goods_no=${imgDto.goods_no }"> 
 					<img src="${imgDto.img_name }" alt="${imgDto.img_name }" />
 					<span name="goods_name">${imgDto.goods_name }</span>
 					
@@ -197,7 +217,7 @@ $(function(){
 							
 						</c:when>
 						<c:when test="${imgDto.discount_rate==0 }">
-							<span id="goods_price_woDC">${imgDto.goods_price }원 </span>
+							<span id="goods_price_noDC">${imgDto.goods_price }원 </span>
 						</c:when>
 					</c:choose>
 					
@@ -206,28 +226,7 @@ $(function(){
 			</c:forEach>
 		</ul>
 	
-	
-	
 	</div>
-	
-	
-			<li class="imgBox_list">
-				<a href="goodsDetail?goods_no=${imgDto.goods_no }">
-					<img src="${imgDto.img_name }" alt="${imgDto.img_name }" />
-					<span name="goods_name">${imgDto.goods_name }</span>
-					
-					<c:choose>
-						<c:when test="${imgDto.discount_rate>0 }">
-							<span><span id="discount_rate">${imgDto.discount_rate }% &nbsp; </span> ${Math.round(imgDto.goods_price-(imgDto.goods_price*(imgDto.discount_rate/100))) }원 </span>
-							<span id="goods_price">${imgDto.goods_price } </span>
-							
-						</c:when>
-						<c:when test="${imgDto.discount_rate==0 }">
-							<span id="goods_price_woDC">${imgDto.goods_price }원 </span>
-						</c:when>
-					</c:choose>
-					
-				</a>
-			</li>
+
 </body>
 </html>
