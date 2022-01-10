@@ -10,5 +10,8 @@
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="idto"/>
   		<typeAlias type="kr.co.vida.dto.NoticeDTO" alias="ndto"/>
   		<typeAlias type="kr.co.vida.dto.StartEnd" alias="se" />
+  		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="imgDto"/>
+  		<typeAlias type="kr.co.vida.dto.GoodsDTO" alias="goodsDto"/>
+  		<typeAlias type="kr.co.vida.dto.SubCatDTO" alias="subDto"/>
   	</typeAliases>
   </configuration>
