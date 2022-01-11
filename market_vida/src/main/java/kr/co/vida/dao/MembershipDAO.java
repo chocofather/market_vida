@@ -19,7 +19,7 @@ public class MembershipDAO implements Dao<MembershipDTO>{
 
 	@Override
 	public MembershipDTO getOne(int no) {
-		return ss.selectOne("kr.co., ss);
+		return ss.selectOne("kr.co.vida.getOne", ss);
 	}
 
 	@Override
