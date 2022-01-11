@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.dto.GoodsDTO;
 import kr.co.vida.service.GoodsImple;
@@ -50,6 +49,7 @@ public class GoodsController {
 	@ResponseBody
 	public Map<String, Object> subCatGoodsList(@RequestParam("subCode")int subCode) {
 		log.info("subCode=====>"+subCode);
+		
 		HashMap<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("imgBySubCode", imgService.getListBySubCode(subCode));
 		
@@ -58,6 +58,7 @@ public class GoodsController {
 	
 	@GetMapping("/goodsDetail")
 	public String goodsDetail(@RequestParam("goods_no")int goods_no, Model model) {
+		
 		GoodsDTO goodsDto = goodsService.selectOne(goods_no);
 		
 		model.addAttribute("goodsDto", goodsDto);
