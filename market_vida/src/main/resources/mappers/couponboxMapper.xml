@@ -4,26 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="kr.co.vida.couponbox">
- 	<select id="selectBoxAll" resultType="cbdto" >
- 		SELECT couponbox_no, crew_no, coupon_code, status, coupon_no
+ 	<select id="selectBoxAll" resultType="cbdto" parameterType="int" >
+ 		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no , coupon_name , coupon_dc , TO_CHAR(coupon_period, 'YYYY.MM.DD') coupon_period , coupon_detail
  		FROM coupon_box
- 	</select>
- 	
- 	<select id="selectOne" parameterType="int" resultType="cbdto">
- 		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no
- 		FROM coupon_box
- 		WHERE couponbox_no = #{couponbox_no}
+ 		WHERE crew_no = #{crew_no}
  	</select>
  	
  	<insert id="insertOne" parameterType="cbdto">
- 		INSERT INTO coupon_box (couponbox_no , coupon_code , status)
- 		VALUES (couponbox_no_seq.nextval, #{coupon_code} , 1 )
+ 		INSERT INTO coupon_box
+ 		VALUES (couponbox_no_seq.nextval, #{crew_no} , #{coupon_code} , 1 , #{coupon_no} , #{coupon_name} , #{coupon_dc} , #{coupon_period} , #{coupon_detail} )
  		WHERE crew_no = #{crew_no}
  	</insert>
  	
  	<update id="modifyOne" parameterType="cbdto">
  		UPDATE coupon_box
- 		SET STATUS = 0
+ 		SET status = 0
  	</update>
  	
  </mapper>

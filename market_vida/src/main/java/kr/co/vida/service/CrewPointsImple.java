@@ -5,37 +5,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.vida.dao.CouponBoxDAO;
-import kr.co.vida.dto.CouponBoxDTO;
+import kr.co.vida.dao.CrewPointsDAO;
+import kr.co.vida.dto.CrewPointsDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service("CouponBoxService")
-public class CouponBoxImple implements VidaService<CouponBoxDTO> {
-	
+@Service("CrewPointService")
+public class CrewPointsImple implements VidaService<CrewPointsDTO> {
+
 	@Autowired
-	CouponBoxDAO dao;
-	
+	CrewPointsDAO dao;
 
 	@Override
-	public List<CouponBoxDTO> selectAllList() {
-		return null;
-	}
-
-	@Override
-	public CouponBoxDTO selectOne(int no) {
+	public List<CrewPointsDTO> selectAllList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertOne(CouponBoxDTO dto) {
+	public CrewPointsDTO selectOne(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertOne(CrewPointsDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateOne(CouponBoxDTO dto) {
+	public void updateOne(CrewPointsDTO dto) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -46,8 +46,9 @@ public class CouponBoxImple implements VidaService<CouponBoxDTO> {
 		
 	}
 
-	public List<CouponBoxDTO> selectAllList(int no) {
+	public List<CrewPointsDTO> selectAllList(int no) {
 		return dao.getListAll(no);
 	}
+
 
 }

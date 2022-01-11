@@ -9,8 +9,5 @@ public interface Dao<T> {
 	public void addOne(T dto);
 	public void modifyOne(T dto);
 	public void deleteOne(int no);
-	
-
-	
 
 }

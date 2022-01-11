@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 .container {
 	width: 900px;
 	margin-left: 800px;
@@ -45,7 +44,6 @@ table.type10 td {
 	vertical-align: top;
 	border-bottom: 1px solid;
 }
-
 </style>
 </head>
 <body>
@@ -53,22 +51,20 @@ table.type10 td {
 		<table class="type10">
 			<thead>
 				<tr>
-					<th scope="cols">쿠폰명</th>
-					<th scope="cols">쿠폰번호</th>
-					<th scope="cols">할인</th>
-					<th scope="cols">쿠폰설명</th>
-					<th scope="cols">사용가능기간</th>
+					<th scope="cols">적립일</th>
+					<th scope="cols">내용</th>
+					<th scope="cols">유효기간</th>
+					<th scope="cols">금액</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="dto" items="${list }">
-				<tr>
-					<td>${dto.coupon_name }</td>
-					<td>${dto.coupon_code }</td>
-					<td>${dto.coupon_dc }</td>
-					<td>${dto.coupon_detail }</td>
-					<td>${dto.coupon_period }</td>
-				</tr>
+					<tr>
+						<td>${dto.accumulate_date }</td>
+						<td>${dto.point_detail }</td>
+						<td>${dto.ex_period }</td>
+						<td>${dto.accumulate_point }</td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>

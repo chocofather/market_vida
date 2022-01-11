@@ -3,30 +3,25 @@ package kr.co.vida.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import kr.co.vida.dao.ImgDAO;
+import kr.co.vida.dao.Dao;
 import kr.co.vida.dto.ImgDTO;
 
-@Service("ImgListImple")
-public class ImgListImple implements VidaService<ImgDTO>{
+@Component
+public class GoodsListImple implements VidaService<ImgDTO>{
 	
 	@Autowired
-	ImgDAO dao;
-	
+	Dao<ImgDTO> dao;
 
 	@Override
 	public List<ImgDTO> selectAllList() {
 		return dao.getListAll();
 	}
-	
-	public List<ImgDTO> getListBySubCode(int no) {
-		return dao.getListBySubCode(no);
-	}
 
 	@Override
 	public ImgDTO selectOne(int no) {
-		return null;
+		return dao.getOne(no);
 	}
 
 	@Override
@@ -46,5 +41,6 @@ public class ImgListImple implements VidaService<ImgDTO>{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

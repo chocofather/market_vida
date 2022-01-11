@@ -44,4 +44,5 @@ public class GoodsDAO implements Dao<GoodsDTO> {
 		
 	}
 
+
 }
