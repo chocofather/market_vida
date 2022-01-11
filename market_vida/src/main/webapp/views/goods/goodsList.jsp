@@ -94,14 +94,17 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </style>
     <script type="text/javascript">
       $(function () {
-        $("#subCatGoodsList").on("click", function () {
+        $(".subCatGoodsList").on("click", function (index) {
+        	console.log(index);
+        	console.dir(index);
+        	console.dir($(".subCatGoodsList"));
           debugger;
           $.ajax({
             url: "goodsListAjax?",
             type: "GET",
             dataType: "json", //  ajax 통신으로 받는 타입
             contentType: "application/json", // ajax 통신으로 보내는 타입
-            data: { subCode: $("#sub_cat_code")[0].value },
+            data: { subCode: $(".sub_cat_code")[0].value },
             // ajax 통신 성공 시 로직 수행
             success: function (result) {
               console.log(result.imgBySubCode);
@@ -170,9 +173,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <ul class="categoryList">
           <li><a href="#" id="totalGoodsList">전체보기</a></li>
           <c:forEach var="subDto" items="${subDto }">
-            <input type="hidden" id="sub_cat_code" value="${subDto.sub_cat_code}" />
             <li>
-              <a href="#" id="subCatGoodsList">${subDto.sub_cat_name }</a>
+              <input type="hidden" name="subCode" class="sub_cat_code" value="${subDto.sub_cat_code}" />
+              <a href="#" class="subCatGoodsList">${subDto.sub_cat_name }</a>
             </li>
           </c:forEach>
         </ul>
