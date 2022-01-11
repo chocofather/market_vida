@@ -6,7 +6,7 @@
 <div class="sidebar">
         <div class="side_menu">
             <a href="#">상품 등록</a>
-            <a href="#">등급별 혜택</a>
+            <a href="./benefit">등급별 혜택</a>
             <a href="#">베스트 후기</a>
         </div>
         <div class="side_recent">
