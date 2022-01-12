@@ -15,7 +15,11 @@
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="imgDto"/>
   		<typeAlias type="kr.co.vida.dto.GoodsDTO" alias="goodsDto"/>
   		<typeAlias type="kr.co.vida.dto.SubCatDTO" alias="subDto"/>
+<<<<<<< HEAD
   		<typeAlias type="kr.co.vida.dto.ReviewBoardDTO" alias="rbdto"/>
   		<typeAlias type="kr.co.vida.dto.OrdersDTO" alias="orderdto"/>
+=======
+  		<typeAlias type="kr.co.vida.dto.QnaBoardDTO" alias="qbdto"/>
+>>>>>>> branch 'main' of https://github.com/chocofather/market_vida.git
   	</typeAliases>
   </configuration>

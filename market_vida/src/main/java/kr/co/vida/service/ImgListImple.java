@@ -15,18 +15,27 @@ public class ImgListImple implements VidaService<ImgDTO>{
 	ImgDAO dao;
 	
 
-	@Override
-	public List<ImgDTO> selectAllList() {
-		return dao.getListAll();
+	public List<ImgDTO> selectAllList(int no) {
+		return dao.getListAll(no);
 	}
 	
 	public List<ImgDTO> getListBySubCode(int no) {
 		return dao.getListBySubCode(no);
 	}
+	
+	public List<ImgDTO> getGoodsImgs(int no){
+		return dao.getAllImgbyGoods(no);
+	}
+	
+	@Override
+	public List<ImgDTO> selectAllList() {
+		return null;
+	}
+	
 
 	@Override
 	public ImgDTO selectOne(int no) {
-		return null;
+		return dao.getOne(no);
 	}
 
 	@Override
@@ -45,5 +54,6 @@ public class ImgListImple implements VidaService<ImgDTO>{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

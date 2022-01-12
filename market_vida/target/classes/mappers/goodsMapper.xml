@@ -9,12 +9,15 @@
   				origin, goods_info, sub_cat_code, project_status, sales_amt
   		FROM goods
   		WHERE goods_no = #{goods_no}
-
   	</select>
+<<<<<<< HEAD
   	
   	<insert id="insertOne" parameterType="goodsDto">
   		INSERT INTO goods VALUES (goods_no_seq.nextval , #{goods_name} , #{qty} , 
   		#{goods_price} , #{discount_rate} , #{stock} , #{package_type} , 
   		#{origin} , #{goods_info} , #{sub_cat_code} , #{project_status} , 0 )
   	</insert>
+=======
+
+>>>>>>> branch 'main' of https://github.com/chocofather/market_vida.git
   </mapper>
