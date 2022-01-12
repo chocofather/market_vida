@@ -11,8 +11,11 @@
   		<typeAlias type="kr.co.vida.dto.CrewPointsDTO" alias="cpdto"/>
   		<typeAlias type="kr.co.vida.dto.NoticeDTO" alias="ndto"/>
   		<typeAlias type="kr.co.vida.dto.StartEnd" alias="se" />
+  		<typeAlias type="kr.co.vida.dto.CrewStartEnd" alias="cse"/>
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="imgDto"/>
   		<typeAlias type="kr.co.vida.dto.GoodsDTO" alias="goodsDto"/>
   		<typeAlias type="kr.co.vida.dto.SubCatDTO" alias="subDto"/>
+  		<typeAlias type="kr.co.vida.dto.ReviewBoardDTO" alias="rbdto"/>
+  		<typeAlias type="kr.co.vida.dto.OrdersDTO" alias="orderdto"/>
   	</typeAliases>
   </configuration>

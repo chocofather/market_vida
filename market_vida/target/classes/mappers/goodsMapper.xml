@@ -11,4 +11,10 @@
   		WHERE goods_no = #{goods_no}
 
   	</select>
+  	
+  	<insert id="insertOne" parameterType="goodsDto">
+  		INSERT INTO goods VALUES (goods_no_seq.nextval , #{goods_name} , #{qty} , 
+  		#{goods_price} , #{discount_rate} , #{stock} , #{package_type} , 
+  		#{origin} , #{goods_info} , #{sub_cat_code} , #{project_status} , 0 )
+  	</insert>
   </mapper>

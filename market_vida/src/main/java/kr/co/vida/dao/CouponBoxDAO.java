@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.CouponBoxDTO;
+import kr.co.vida.dto.CrewStartEnd;
+import kr.co.vida.dto.StartEnd;
 
 @Repository
 public class CouponBoxDAO implements Dao<CouponBoxDTO>{
@@ -47,10 +49,14 @@ public class CouponBoxDAO implements Dao<CouponBoxDTO>{
 		
 	}
 
-	public List<CouponBoxDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.couponbox.selectBoxAll" , no);
+	public List<CouponBoxDTO> getListAll(int no , int startNo , int endNo) {
+		
+		CrewStartEnd cse = new CrewStartEnd(no, startNo, endNo);
+		return ss.selectList("kr.co.vida.couponbox.selectBoxAll" , cse);
 	}
 	
-	
+	public int getTotal() {
+		return ss.selectOne("kr.co.vida.couponbox.getTotal");
+	}
 	
 }

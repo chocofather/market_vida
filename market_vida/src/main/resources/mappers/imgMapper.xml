@@ -33,4 +33,8 @@
 												FROM sub_category 
 												WHERE main_cat_code = #{main_cat_code}))
   	</select>
+  	<insert id="insertImgOne" parameterType="imgDto">
+  		INSERT INTO image VALUES (img_no_seq.nextval , #{goods_no} , #{img_name} , #{img_status} )
+  	</insert>
+  	
   </mapper>
