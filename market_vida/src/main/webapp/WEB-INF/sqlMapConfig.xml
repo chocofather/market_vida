@@ -14,5 +14,6 @@
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="imgDto"/>
   		<typeAlias type="kr.co.vida.dto.GoodsDTO" alias="goodsDto"/>
   		<typeAlias type="kr.co.vida.dto.SubCatDTO" alias="subDto"/>
+  		<typeAlias type="kr.co.vida.dto.QnaBoardDTO" alias="qbdto"/>
   	</typeAliases>
   </configuration>
