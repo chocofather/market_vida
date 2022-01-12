@@ -1,59 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/css/login.css" rel="stylesheet" >
 <script>
 
 	$(function() {
-		$("#btnLogin").click(function() {
-			userid = $("#userid").val();
-			var passwd = $("#passwd").val();
-			if (userid == "") {
+		$("#loginBtn").click(function() {
+			var crew_id = $("#crew_id").val();
+			var crew_pw = $("#crew_pw").val();
+			if (crew_id == "") {
 				alert("아이디를 입력하세요");
-				$("#userid").focus(); //입력포커스 이동
-
+				$("#crew_id").focus(); //입력포커스 이동
 				return; //함수 종료
 			}
-			if (passwd == "") {
+			if (crew_pw == "") {
 				alert("비밀번호를 입력하세요");
-				$("#passwd").focus();
+				$("#crew_pw").focus();
 				return;
 			}
 			//폼 내부의 데이터를 전송할 주소
-			document.form1.action = "${path}/crew /login_check.do";
-			document.form1.submit(); //제출
+			document.login_form.action = "${path}/crew /login_check.do";
+			document.login_form.submit(); //제출
 		});
 	});
 	
 </script>
 </head>
 <body>
-
-	<h2>로그인</h2>
-	<form name="form1" method="post">
-		<table border="1" width="400px">
-			<tr>
-				<td>아이디</td>
-				<td><input id="userid" name="userid"></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" id="passwd" name="passwd"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<button type="button" id="btnLogin">로그인</button> <c:if
-						test="${message == 'error'}">
-						<div style="color: red;">아이디 또는 비밀번호가 일치하지 않습니다.</div>
-					</c:if> <c:if test="${message == 'logout'}">
-						<div style="color: red;">로그아웃되었습니다.</div>
-					</c:if>
-				</td>
-			</tr>
-		</table>
+<div id="container">
+	<form name="login_form" id="login_form">
+		<h2>로그인</h2>
+		<input type="text" placeholder="아이디를 입력해주세요" class="crew_id"  name="crew_id" size=20 tabindex="2">
+		<input type="password" placeholder="비밀번호를 입력해주세요" class="crew_pw" name="crew_pw">
+		<div class="login_search">
+			<a class="link" href="">아이디 찾기</a>
+			<span class="bar"></span>
+			<a class="link" href="">비밀번호 찾기</a>
+		</div>
+		<button type="button" class="loginBtn">
+			<span class="loginBtn_txt">로그인</span>		
+		</button>				
 	</form>
+	<button type="button" class="joinBtn">
+		<span class="joinBtn_txt">회원가입</span>	
+	</button>	
+</div>
 </body>
 </html>

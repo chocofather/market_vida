@@ -1,4 +1,4 @@
-package kr.co.vida.control.crew;
+package kr.co.vida.control;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,7 +25,7 @@ public class CrewController {
 	@Autowired
 	CRDao crdao;
 	CrewServiceImpl crewservice;
-	
+	// 로그인
 	@RequestMapping("login.do")
 	public String login() {
 		return "crew/login";
@@ -54,6 +54,7 @@ public class CrewController {
 		mv.addObject("msg","logout");
 		return mv;
 	}
+	// 회원가입
 
 	
 }

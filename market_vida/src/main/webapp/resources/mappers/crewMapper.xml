@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="kr.co.vida.mapper.CrewMapper">
+  <mapper namespace="kr.co.vida.mapper.crewMapper">
   
   <!-- 전체 조회 -->
   <select id="selectAll" resultType="crdto">
@@ -10,7 +10,7 @@
   		FROM crew
   </select>
 	<!-- 아이디 중복검사 -->
-	<select id="idcheck" resultType="_int">
+	<select id="idcheck" resultType="int">
 		select count(*)
   		from crew
   		where crew_id = #{crew_id} 	
@@ -22,7 +22,7 @@
   		where crew_id = #{crew_id} and crew_pw = #{crew_pw} 				
 	</select>
 
-	  <!-- 회원가입 -->
+	<!-- 회원가입 -->
   	<insert id="insertcrew" parameterType="crdto">
   		insert into crew
   		(
