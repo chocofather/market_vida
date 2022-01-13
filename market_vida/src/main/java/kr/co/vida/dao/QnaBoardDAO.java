@@ -24,26 +24,22 @@ public class QnaBoardDAO implements Dao<QnaBoardDTO>{
 
 	@Override
 	public QnaBoardDTO getOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("kr.co.vida.qna.selectOne", no);
 	}
 
 	@Override
 	public void addOne(QnaBoardDTO dto) {
-		// TODO Auto-generated method stub
-		
+		ss.insert("kr.co.vida.qna.insertOne", dto);
 	}
 
 	@Override
 	public void modifyOne(QnaBoardDTO dto) {
-		// TODO Auto-generated method stub
-		
+		ss.update("kr.co.vida.qna.updateOne", dto);
 	}
 
 	@Override
 	public void deleteOne(int no) {
-		// TODO Auto-generated method stub
-		
+		ss.delete("kr.co.vida.qna.deleteOne", no);
 	}
 
 }

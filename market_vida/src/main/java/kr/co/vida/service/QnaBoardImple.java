@@ -24,26 +24,22 @@ public class QnaBoardImple implements VidaService<QnaBoardDTO>{
 
 	@Override
 	public QnaBoardDTO selectOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getOne(no);
 	}
 
 	@Override
 	public void insertOne(QnaBoardDTO dto) {
-		// TODO Auto-generated method stub
-		
+		dao.addOne(dto);
 	}
 
 	@Override
 	public void updateOne(QnaBoardDTO dto) {
-		// TODO Auto-generated method stub
-		
+		dao.modifyOne(dto);
 	}
 
 	@Override
 	public void dropOne(int no) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteOne(no);
 	}
 
 }
