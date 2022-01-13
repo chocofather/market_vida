@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/login.css?v=1.1" rel="stylesheet"  type="text/css">
+<link href="${path}/resources/css/login.css" rel="stylesheet"  type="text/css">
 <script>
 
 	$(function() {
@@ -25,8 +25,8 @@
 				return;
 			}
 			//폼 내부의 데이터를 전송할 주소
-			document.login_form.action = "${path}/crew/logincheck.do";
-			document.login_form.submit(); //제출
+			//document.login_form.action = "${path}/crew/logincheck.do";
+			//document.login_form.submit(); //제출
 		});
 	});
 	
@@ -34,7 +34,7 @@
 </head>
 <body>
 <div id="container">
-	<form name="login_form" id="login_form" action="logincheck.do" method="post">
+	<form name="login_form" id="login_form" action="/crew/login" method="post">
 		<h2>로그인</h2>
 		<input type="text" placeholder="아이디를 입력해주세요" class="crew_id"  name="crew_id" size=20 tabindex="2">
 		<input type="password" placeholder="비밀번호를 입력해주세요" class="crew_pw" name="crew_pw">

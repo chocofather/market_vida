@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="kr.co.vida.mappers.crewMapper">
+  <mapper namespace="kr.co.vida.crew">
   
   <!-- 전체 조회 -->
   <select id="selectAll" resultType="crdto">

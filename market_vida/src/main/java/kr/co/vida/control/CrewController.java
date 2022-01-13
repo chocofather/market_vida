@@ -17,43 +17,43 @@ import kr.co.vida.dto.CrewDTO;
 import kr.co.vida.service.CrewService;
 import kr.co.vida.service.CrewServiceImpl;
 
+@RequestMapping("/crew")
 @Controller
-@RequestMapping("/vida/*")
 public class CrewController {
 
-	private static final Logger logger = LoggerFactory.getLogger(CrewController.class);
 	@Autowired
 	CRDao crdao;
+	@Autowired
 	CrewServiceImpl crewservice;
+	
 	// 로그인
-	@RequestMapping("/login.do")
-	public String login() {
-		return "login";
+	@RequestMapping("/login")
+	public String loginPage() {
+		return "/login";
 	}
 	
-	@RequestMapping("/logincheck.do")
+	@RequestMapping(value= "login", method = RequestMethod.POST)
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto,
 			HttpSession session) {
 		int crew_no = crewservice.loginCheck(crdto,session);
-		ModelAndView mv = new ModelAndView();
-		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mv = new ModelAndView();	
 		if(crew_no > 0) {
-			mav.setViewName("crew/main");
-			mav.addObject("msg","success");
+			mv.setViewName("crew/main");
+			mv.addObject("msg","success");
 		}else {
-			mav.setViewName("crew/login");
-			mav.addObject("msg","failure");
+			mv.setViewName("crew/login");
+			mv.addObject("msg","failure");
 		}
 		return mv;
 	}
-	@RequestMapping("logout.do")
+	@RequestMapping(value ="/logout", method = RequestMethod.GET)
 	public ModelAndView logout(HttpSession session, ModelAndView mv) {
 		crewservice.logout(session);
 		mv.setViewName("crew/login");
 		mv.addObject("msg","logout");
 		return mv;
 	}
+	/*
 	// 회원가입
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public void getRegister() {
@@ -64,4 +64,5 @@ public class CrewController {
 		crewservice.register(crdto);
 		return null;
 	}
+	*/
 }

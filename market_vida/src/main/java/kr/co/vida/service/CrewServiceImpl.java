@@ -5,12 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.CrewDAO;
 import kr.co.vida.dto.CrewDTO;
 
-@Service
+@Service("crewservice")
 public class CrewServiceImpl implements CrewService{
 
 	

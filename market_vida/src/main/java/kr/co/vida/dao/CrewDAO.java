@@ -25,13 +25,12 @@ public class CrewDAO implements CRDao{
 
 	@Override
 	public int loginCheck(CrewDTO crdto) {
-		return ss.selectOne("kr.co.vida.mappers.crewMapper.logincheck", crdto);
+		return ss.selectOne("kr.co.vida.crew.logincheck", crdto);
 	}
 
 	@Override
-	public void register(CrewDTO crdto) {
-		
-		ss.insert("kr.co.vida.mappers.crewMapper.insertcrew",crdto);
+	public void register(CrewDTO crdto) {	
+		ss.insert("kr.co.vida.crew.insertcrew",crdto);
 	}
 	
 
