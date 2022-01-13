@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="kr.co.vida.dto">
+ 	<select id="selectAll" resultType="cbdto">
+ 		SELECT couponbox_no , crew_no , coupon_no , status
+ 		FROM coupon_box
+ 	</select>
+ 	
+ 	<select id="selectOne" parameterType="int" resultType="cbdto">
+ 		SELECT couponbox_no , crew_no , coupon_no , status
+ 		FROM coupon_box
+ 		WHERE couponbox_no = #{couponbox_no}
+ 	</select>
+ 	
+ 	<insert id="insertOne" parameterType="cbdto">
+ 		INSERT INTO coupon_box (couponbox_no , coupon_no , status)
+ 		VALUES (couponbox_no_seq.nextval, #{coupon_no} , 1 )
+ 		WHERE crew_no = #{crew_no}
+ 	</insert>
+ 	
+ 	<update id="modifyOne" parameterType="cbdto">
+ 		UPDATE coupon_box
+ 		SET STATUS = 0
+ 	</update>
+ 	
+ </mapper>
