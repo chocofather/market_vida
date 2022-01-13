@@ -8,6 +8,13 @@
     <title>Insert title here</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
+    
+    :root {
+		--my-color: #006F00;
+		--base-color: #EFEFEF;
+		--font-color: dimgray;
+	}
+    
       .goodsBody {
         width: 1000px;
         margin: 0 auto;
@@ -49,10 +56,33 @@
       .sortBy li:not(:last-child) {
         border-right: 1.5px solid silver;
       }
+      
+      .adminSection {
+      	margin-top: 30px;
+      }
+      
+      .adminSection input[type='button']{
+      	width: 100px;
+      	height: 50px;
+      	border: 2px solid var(--base-color);
+      	border-radius: 5px;
+      	background-color: white;
+      	color: var(--my-color);
+      	font-weight: bold;		
+      }
+      
+      .adminSection input[type='button']:hover{
+      	background-color: var(--my-color);
+    	color: white;
+      }
+      
+      .countGoods p {
+        display: contents;
+      }
 
       .imgBox {
         padding: 0;
-        margin: 0;
+        margin: 20px 0;
         width: 100%;
         list-style: none;
         display: flex;
@@ -97,45 +127,77 @@
 <script type="text/javascript">
   	$(function() {
   		deleteGoods();
+  		checkAllGoods();
+  		updateGoods();
 	});
   	
+  	/* 전체상품 체크 */
+  	function checkAllGoods(){
+  		$('#checkAll').on('click', function(){
+  			$('.goodsChkbox').each(function(i){
+  				$(this)[0].checked = $('#checkAll')[0].checked;
+  			
+  			})
+  		})	
+  	
+  	}
+  	
+  	/* 상품 수정 */
+  	function updateGoods(){
+  		$('#updateGoods').on('click', function(){
+	  		if ($('.goodsChkbox:checked').length==0){
+	  			alert("선택된 상품이 없습니다.")
+	  		}else if($('.goodsChkbox:checked').length>1){
+	  			alert("상품 수정은 1개 상품씩 가능합니다.")
+	  		}else{
+	  			location.href="./updateGoods";
+	  		}
+  		})
+  	}
+  	
+  	
+  	/* 상품 삭제 */
   	function deleteGoods(){
-  		
-  		
-  		
-  		console.log(chkBoxList);
-  		
 		$('#deleteGoods').on('click', function(){
-	  		var chkBoxList = [];
-			
-	  		$("input[name=deletecb]:checked").each(function(item){
-	  			chkBoxList.push($(this).val());
-	  		});
+	  		var checkedList = [];
 	  		
-			if(confirm("정말 삭제하시겠습니까?") == true){
+	  		if ($('.goodsChkbox:checked').length==0){
+	  			alert("선택된 상품이 없습니다.")
+	  		}else{
+	  			
+	  			if(confirm("정말 삭제하시겠습니까?") == true){
 				
-				$.ajax({
-					url: 'deleteGoods',
-					type: 'GET',
-					traditional: true,
-					data: {
-						chkBoxList,chkBoxList
-					},
-					success: function(result){
+	  				$('.goodsChkbox:checked').each(function(i){
+	  					checkedList.push($(this).val()); 
+	  					console.log($(this).val());
+	  					console.log(checkedList);
+	  				});
+	  		
+	  		
+			$.ajax({
+				url: './deleteGoods',
+				type: 'GET',
+				traditional: true,
+				data: {goods_no:checkedList},
+				dataType:"text",
+				success: function(result){
+					if(result=="success"){
 						alert("삭제 완료");
+						location.reload();
 						console.log(result);
-					},
-					error: function(){
-						console.result;
 					}
-				});
+				},
+				error: function(xhr){
+						console.log(xhr.status);
+				}
+			}); 
 				
 			}else{
 				return;
 			}
+	  		}
 			
-		})
-  		
+		});
   	}
 
 
@@ -155,12 +217,15 @@
           </c:forEach>
         </ul>
       </div>
-
-      	<input type="submit" value="삭제" id="deleteGoods"/>
+	  <div class="adminSection">	
+      	<input type="button" value="삭제" id="deleteGoods"/>
+      	<input type="button" value="수정" id="updateGoods"/>
+      </div>
       <!-- 상품 정렬 -->
       <div class="sortGoods">
         <div class="countGoods">
           <p>총 ${fn:length(imgDto) }개 상품</p>
+          <input type="checkbox" name="" id="checkAll" />
         </div>
         <div class="sortBy">
           <ul>
@@ -175,11 +240,10 @@
       </div>
 
       <!-- 상품 리스트-->
-     
       <ul class="imgBox">
         <c:forEach var="imgDto" items="${imgDto }">
           <li class="imgBox_list">
-		  <input type="checkbox" name="deletecb" class="goodsChkbox" value="${imgDto.goods_no }" />        
+			<input type="checkbox" class="goodsChkbox" value="${imgDto.goods_no }" />        
             <a href="goodsDetail?goods_no=${imgDto.goods_no }">
               <img src="${imgDto.img_name }" alt="${imgDto.img_name }" />
               <span>${imgDto.goods_name }</span>

@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.Dao;
+import kr.co.vida.dao.GoodsDAO;
 import kr.co.vida.dto.GoodsDTO;
 
 @Service("GoodsImple")
 public class GoodsImple implements VidaService<GoodsDTO> {
 	
 	@Autowired
-	Dao<GoodsDTO> dao;
+	GoodsDAO dao;
 
 	@Override
 	public List<GoodsDTO> selectAllList() {
@@ -38,8 +39,12 @@ public class GoodsImple implements VidaService<GoodsDTO> {
 
 	@Override
 	public void dropOne(int no) {
-		// TODO Auto-generated method stub
+		dao.deleteOne(no);
 		
+	}
+	
+	public int getTotal(int no) {
+		return dao.getTotal(no);
 	}
 
 }

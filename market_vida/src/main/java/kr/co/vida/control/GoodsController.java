@@ -1,5 +1,10 @@
 package kr.co.vida.control;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.vida.dto.GoodsDTO;
+import kr.co.vida.dto.PageUtil;
 import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.ImgListImple;
@@ -34,9 +41,24 @@ public class GoodsController {
 
 
 	@GetMapping("/goods/goodsList")
-	public String goodsList(@RequestParam("cat_code")int cat_code, Model model) {
-	//	public String goodsList(Model model, @RequestParam("main_cat_code")int main_cat_code) {
-	//	메인과 결합 후 사용
+	public String goodsList(@RequestParam("cat_code")int cat_code, 
+							@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
+							Model model) {
+		
+		// 총 게시물 수
+		int totalNumber = goodsService.getTotal(cat_code);
+		System.out.println(totalNumber);
+		
+		// 현재 페이지의 게시물 수 : 18
+		int countPerPage=18;
+		
+		Map<String, Object> map = PageUtil.getPageData(totalNumber, countPerPage, currentPage);
+		
+		model.addAttribute("map", map);
+		
+		
+		
+		
 		log.info("subCode=====>"+cat_code);
 		
 		// 메인 코드 1개만 구하기
@@ -62,15 +84,20 @@ public class GoodsController {
 		return "/goods/goodsList";
 	}
 	
+	
+	// 상품 삭제
 	@RequestMapping("/goods/deleteGoods")
 	@ResponseBody
-	public String deleteGoods(HttpServletRequest req){
-		String []chkBoxList = req.getParameterValues("deletecb");
-		for (String goodsNo : chkBoxList) {
-			System.out.println(goodsNo);
+	public String deleteGoods(@RequestParam List<String> goods_no){
+		
+		for (String goodsNo:goods_no) {
+			//imgService.dropOne(Integer.parseInt(goodsNo));
+			goodsService.dropOne(Integer.parseInt(goodsNo));
 		}
-		return "delete success";
+		
+		return "success";
 	}
+	
 	
 	
 	// 상품 디테일 페이지 이동
@@ -86,11 +113,13 @@ public class GoodsController {
 	}
 	
 	
+	
 	@GetMapping("/admin/goodswrite")
 	public String writeForm() {
 		return "/admin/productRegister";
 	}
 
+	
 	@PostMapping("/admin/goodswrite")
 	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
 		goodsService.insertOne(dto);
