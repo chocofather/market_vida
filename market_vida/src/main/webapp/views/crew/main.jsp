@@ -10,8 +10,8 @@
 <body>
 	<h1>main.jsp</h1>
 	
-	<c:if test="${id !=null }">
-		<h2>${id} 님 환영합니다</h2>
+	<c:if test="${crew_id !=null }">
+		<h2>${crew_id} 님 환영합니다</h2>
 		<a href="logout.do">로그아웃</a>
 	</c:if>
 	<c:if test="${ empty id }">

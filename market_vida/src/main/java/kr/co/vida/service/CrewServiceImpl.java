@@ -31,4 +31,9 @@ public class CrewServiceImpl implements CrewService{
 	public void logout(HttpSession session) {
 		session.invalidate();		
 	}
+
+	@Override
+	public void register(CrewDTO crdto) {
+		crdao.register(crdto);
+	}
 }
