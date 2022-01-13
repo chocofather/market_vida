@@ -20,4 +20,6 @@ public class OrdersDTO {
 	private int crew_no;
 	private int address_no;
 	private int order_qty;
+	private String goods_name;
+	private String img_name;
 }
