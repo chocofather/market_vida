@@ -1,22 +1,28 @@
 package kr.co.vida.control;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.vida.dto.GoodsDTO;
+import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.ImgListImple;
 import kr.co.vida.service.SubCatImple;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Slf4j
 @Controller
@@ -34,28 +40,46 @@ public class GoodsController {
 	
 
 	@GetMapping("/goodsList")
-	public String goodsList(Model model) {
+	public String goodsList(@RequestParam("cat_code")int cat_code, Model model) {
 	//	public String goodsList(Model model, @RequestParam("main_cat_code")int main_cat_code) {
 	//	메인과 결합 후 사용
+		log.info("subCode=====>"+cat_code);
 		
-		model.addAttribute("subDto", subService.getListAll(100));
-		model.addAttribute("imgDto", imgService.selectAllList(100));
-	
+		// 메인 코드 1개만 구하기
+		int forMainCode;	
+		if(cat_code%100==0) {
+			forMainCode = cat_code+1;
+		}else {
+			forMainCode = cat_code;
+		}
+		
+		// 카테고리 리스트 객체
+		SubCatDTO subDto = subService.selectOne(forMainCode);
+		model.addAttribute("mainCode", subDto);
+		model.addAttribute("subDtoList", subService.getListAll(subDto.getMain_cat_code()));
+		
+		// 상품 리스트 객체
+		if (cat_code %100==0) {
+			model.addAttribute("imgDto", imgService.selectAllList(cat_code));
+		}else {
+			model.addAttribute("imgDto", imgService.getListBySubCode(cat_code));
+		}
+		
 		return "/goods/goodsList";
-
 	}
 	
-	@GetMapping(value = "/goodsListAjax", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping("/deleteGoods")
 	@ResponseBody
-	public Map<String, Object> subCatGoodsList(@RequestParam("subCode")int subCode) {
-		log.info("subCode=====>"+subCode);
-		
-		HashMap<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("imgBySubCode", imgService.getListBySubCode(subCode));
-		
-		return dataMap;
+	public String deleteGoods(HttpServletRequest req){
+		String []chkBoxList = req.getParameterValues("deletecb");
+		for (String goodsNo : chkBoxList) {
+			System.out.println(goodsNo);
+		}
+		return "delete success";
 	}
 	
+	
+	// 상품 디테일 페이지 이동
 	@GetMapping("/goodsDetail")
 	public String goodsDetail(@RequestParam("goods_no")int goods_no, Model model) {
 		

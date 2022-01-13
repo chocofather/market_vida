@@ -23,7 +23,7 @@ public class GoodsDAO implements Dao<GoodsDTO> {
 
 	@Override
 	public GoodsDTO getOne(int no) {
-		return ss.selectOne("kr.co.vida.getOne", no);
+		return ss.selectOne("kr.co.vida.goods.getOne", no);
 	}
 
 	@Override
