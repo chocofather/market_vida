@@ -27,8 +27,7 @@ public class GoodsImple implements VidaService<GoodsDTO> {
 
 	@Override
 	public void insertOne(GoodsDTO dto) {
-		// TODO Auto-generated method stub
-		
+		dao.addOne(dto);
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class GoodsDAO implements Dao<GoodsDTO> {
 
 	@Override
 	public void addOne(GoodsDTO dto) {
-		// TODO Auto-generated method stub
+		ss.insert("kr.co.vida.insertOne", dto);
 		
 	}
 

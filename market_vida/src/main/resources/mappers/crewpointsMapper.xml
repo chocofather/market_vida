@@ -4,17 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.co.vida.crewpoint">
-	<select id="selectPoint" parameterType="int" resultType="cpdto">
+
+	<select id="selectPoint" parameterType="cse" resultType="cpdto">
+  		SELECT point_no , accumulate_date , point_detail , ex_period , accumulate_point , crew_no , crew_point , point_status
+		FROM (SELECT ROWNUM rn , point_no , TO_CHAR(accumulate_date, 'YYYY.MM.DD') accumulate_date , point_detail ,TO_CHAR(ex_period, 'YYYY.MM.DD') ex_period , accumulate_point , crew_no , crew_point , point_status
+				FROM(SELECT point_no , accumulate_date , point_detail , ex_period , accumulate_point , crew_no , crew_point , point_status
+  						FROM crew_points
+  						WHERE crew_no = #{crew_no}
+  					ORDER BY point_no desc)
+				WHERE ROWNUM &lt;=#{endNo} )
+		WHERE RN &gt;=#{startNo}
+  		</select>
+
+	<!-- <select id="selectPoint" parameterType="int" resultType="cpdto">
 		SELECT point_no , TO_CHAR(accumulate_date, 'YYYY.MM.DD') accumulate_date , point_detail ,TO_CHAR(ex_period, 'YYYY.MM.DD') ex_period , accumulate_point , crew_no , crew_point , point_stauts
 		FROM crew_points
 		WHERE crew_no = #{crew_no}
 		AND ex_period >= SYSDATE
-	</select>
+	</select> -->
 	
 	<update id="updateOne" parameterType="cpdto">
 		UPDATE crew_points
 		SET crew_point = #{crew_point}
 		WHERE crew_no = #{crew_no}
 	</update>
+	
+	<select id="getTotal" resultType="int">
+  		SELECT COUNT(*) total
+  		FROM crew_points
+  	</select>
 	
 </mapper>
