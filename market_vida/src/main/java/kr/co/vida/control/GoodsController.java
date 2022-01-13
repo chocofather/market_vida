@@ -8,10 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.ModelAttribute;
->>>>>>> refs/heads/main
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.vida.dto.GoodsDTO;
@@ -24,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("goods")
 public class GoodsController {
 	
 	@Autowired
@@ -35,15 +31,9 @@ public class GoodsController {
 	
 	@Autowired
 	GoodsImple goodsService;
-<<<<<<< HEAD
-	
-
-	@GetMapping("/goodsList")
-=======
 
 
 	@GetMapping("/goods/goodsList")
->>>>>>> refs/heads/main
 	public String goodsList(@RequestParam("cat_code")int cat_code, Model model) {
 	//	public String goodsList(Model model, @RequestParam("main_cat_code")int main_cat_code) {
 	//	메인과 결합 후 사용
@@ -72,11 +62,7 @@ public class GoodsController {
 		return "/goods/goodsList";
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping("/deleteGoods")
-=======
 	@RequestMapping("/goods/deleteGoods")
->>>>>>> refs/heads/main
 	@ResponseBody
 	public String deleteGoods(HttpServletRequest req){
 		String []chkBoxList = req.getParameterValues("deletecb");
@@ -88,11 +74,7 @@ public class GoodsController {
 	
 	
 	// 상품 디테일 페이지 이동
-<<<<<<< HEAD
-	@GetMapping("/goodsDetail")
-=======
 	@GetMapping("/goods/goodsDetail")
->>>>>>> refs/heads/main
 	public String goodsDetail(@RequestParam("goods_no")int goods_no, Model model) {
 		
 		GoodsDTO goodsDto = goodsService.selectOne(goods_no);
@@ -104,5 +86,18 @@ public class GoodsController {
 	}
 	
 	
+	@GetMapping("/admin/goodswrite")
+	public String writeForm() {
+		return "/admin/productRegister";
+	}
+
+	@PostMapping("/admin/goodswrite")
+	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
+		goodsService.insertOne(dto);
+		return "redirect:/main";
+	}
 
 }
+		
+
+

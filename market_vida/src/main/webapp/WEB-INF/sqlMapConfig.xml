@@ -14,6 +14,7 @@
   		<typeAlias type="kr.co.vida.dto.ImgDTO" alias="imgDto"/>
   		<typeAlias type="kr.co.vida.dto.GoodsDTO" alias="goodsDto"/>
   		<typeAlias type="kr.co.vida.dto.SubCatDTO" alias="subDto"/>
+  		<typeAlias type="kr.co.vida.dto.MainCatDTO" alias="mainCatDto"/>
   		<typeAlias type="kr.co.vida.dto.GoodsQnaDTO" alias="gQnaDto"/>
   		<typeAlias type="kr.co.vida.dto.ReviewBoardDTO" alias="rbdto"/>
   		<typeAlias type="kr.co.vida.dto.OrdersDTO" alias="orderdto"/>
