@@ -38,8 +38,8 @@
 				<a href="./qna">목록으로</a>
 			</td>
 			<td>
-				<a href="./modify?qna_no=${dto.qna_no }">수정</a>
-				<a href="./delete?qna_no=${dto.qna_no }">삭제</a>
+				<a href="./modifyQna?qna_no=${dto.qna_no }">수정</a>
+				<a href="./deleteQna?qna_no=${dto.qna_no }">삭제</a>
 			</td>
 		</tr>
 	</table>

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.dto.QnaBoardDTO;
 import kr.co.vida.service.QnaBoardImple;
@@ -43,20 +42,20 @@ public class QnaBoardController {
 		return "board/qnaBoardDetail";
 	}
 	
-	@GetMapping("/modify")
+	@GetMapping("/modifyQna")
 	public String modifyForm(@RequestParam("qna_no")int qna_no, Model model) {
 		QnaBoardDTO dto =  service.selectOne(qna_no);
 		model.addAttribute("dto", dto);
 		return "board/qnaModifyForm";
 	}
 	
-	@PostMapping("/modify")
+	@PostMapping("/modifyQna")
 	public String modifyQna(@ModelAttribute("dto")QnaBoardDTO dto) {
 		service.updateOne(dto);
 		return "redirect:/board/qna";
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/deleteQna")
 	public String deleteQna(@RequestParam("qna_no")int qna_no) {
 		service.dropOne(qna_no);
 		return "redirect:/board/qna";
