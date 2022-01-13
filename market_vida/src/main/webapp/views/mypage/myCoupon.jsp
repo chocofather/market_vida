@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 .container {
 	width: 900px;
 	margin-left: 800px;
@@ -45,7 +44,6 @@ table.type10 td {
 	vertical-align: top;
 	border-bottom: 1px solid;
 }
-
 </style>
 </head>
 <body>
@@ -62,14 +60,34 @@ table.type10 td {
 			</thead>
 			<tbody>
 				<c:forEach var="dto" items="${list }">
-				<tr>
-					<td>${dto.coupon_name }</td>
-					<td>${dto.coupon_code }</td>
-					<td>${dto.coupon_dc }</td>
-					<td>${dto.coupon_detail }</td>
-					<td>${dto.coupon_period }</td>
-				</tr>
+					<tr>
+						<td>${dto.coupon_name }</td>
+						<td>${dto.coupon_code }</td>
+						<td>${dto.coupon_dc }</td>
+						<td>${dto.coupon_detail }</td>
+						<td>${dto.coupon_period }</td>
+					</tr>
 				</c:forEach>
+				<tr>
+					<td colspan="5">
+						<nav>
+							<ul id="page-ul">
+								<c:if test="${map.prev}">
+									<li class="page-item">
+										<a href="myCoupon?currentPage=${map.currentPage-10}">Previous</a></li>
+								</c:if>
+								<c:forEach var="i" begin="${map.startPageNo}"
+									end="${map.endPageNo}">
+									<li><a href="myCoupon?currentPage=${i}">${i}</a></li>
+								</c:forEach>
+								<c:if test="${map.next}">
+									<li class="page-item">
+										<a href="myCoupon?currentPage=${map.currentPage+10}">Next</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 

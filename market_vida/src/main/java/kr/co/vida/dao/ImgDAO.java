@@ -37,12 +37,12 @@ public class ImgDAO implements Dao<ImgDTO> {
 
 	@Override
 	public ImgDTO getOne(int no) {
-		return null;
+		return ss.selectOne("kr.co.vida.img.getMainImgOne" , no);
 	}
 
 	@Override
 	public void addOne(ImgDTO dto) {
-		
+		ss.insert("kr.co.vida.insertImgOne" , dto);
 	}
 
 	@Override

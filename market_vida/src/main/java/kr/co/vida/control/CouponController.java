@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/admin")
 public class CouponController {
-
+	
 	@Autowired
 	@Qualifier("CouponService")
 	VidaService<CouponDTO> service;
@@ -71,5 +71,4 @@ public class CouponController {
 		service.dropOne(coupon_no);
 		return "redirect:/admin/couponList";
 	}
-	
 }

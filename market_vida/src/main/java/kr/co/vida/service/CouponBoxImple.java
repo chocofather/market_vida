@@ -46,8 +46,13 @@ public class CouponBoxImple implements VidaService<CouponBoxDTO> {
 		
 	}
 
-	public List<CouponBoxDTO> selectAllList(int no) {
-		return dao.getListAll(no);
+	public List<CouponBoxDTO> selectAllList(int no , int startNo , int endNo ) {
+		return dao.getListAll(no, startNo, endNo);
+	}
+	
+	public int getTotal() {
+		return dao.getTotal();
+		
 	}
 
 }

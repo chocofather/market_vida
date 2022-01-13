@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.CrewPointsDTO;
+import kr.co.vida.dto.CrewStartEnd;
 
 @Repository
 public class CrewPointsDAO implements Dao<CrewPointsDTO> {
@@ -45,8 +46,12 @@ public class CrewPointsDAO implements Dao<CrewPointsDTO> {
 		
 	}
 
-	public List<CrewPointsDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.crewpoint.selectPoint" , no);
+	public List<CrewPointsDTO> getListAll(int no , int startNo , int endNo) {
+		CrewStartEnd cse = new CrewStartEnd(no, startNo, endNo);
+		return ss.selectList("kr.co.vida.crewpoint.selectPoint" , cse);
 	}
-
+	
+	public int getTotal() {
+		return ss.selectOne("kr.co.vida.crewpoint.getTotal");
+	}
 }
