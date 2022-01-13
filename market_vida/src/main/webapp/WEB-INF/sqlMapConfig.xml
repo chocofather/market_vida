@@ -18,6 +18,5 @@
   		<typeAlias type="kr.co.vida.dto.ReviewBoardDTO" alias="rbdto"/>
   		<typeAlias type="kr.co.vida.dto.OrdersDTO" alias="orderdto"/>
   		<typeAlias type="kr.co.vida.dto.QnaBoardDTO" alias="qbdto"/>
-
   	</typeAliases>
   </configuration>

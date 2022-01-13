@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-	<form action="./modify" method="post">
+	<form action="./modifyQna" method="post">
 		<h2>qnaModifyForm.jsp</h2>
 		<table>
 			<tr>
