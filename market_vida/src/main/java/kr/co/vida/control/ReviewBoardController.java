@@ -45,12 +45,12 @@ public class ReviewBoardController {
 		return new ModelAndView("/mypage/myReviewAfter", "list", service.selectAllList(no, startNo, endNo));
 	}
 	
-	@GetMapping("/reviewWrite")
+	@GetMapping("/mypage/reviewWrite")
 	public String writeForm() {
 		return "/mypage/reviewWriteForm";
 	}
 
-	@PostMapping("/reviewWrite")
+	@PostMapping("/mypage/reviewWrite")
 	public String writeFormOk(@ModelAttribute("dto") ReviewBoardDTO dto, HttpServletRequest req) {
 		service.insertOne(dto);
 		return "redirect:/mypage/myReviewAfter";
@@ -70,13 +70,13 @@ public class ReviewBoardController {
 		return "/mypage/reviewModifyForm";
 	}
 
-	@PostMapping("/reviewModify")
+	@PostMapping("/mypage/reviewModify")
 	public String modifyOk(@ModelAttribute("dto") ReviewBoardDTO dto) {
 		service.updateOne(dto);
 		return "redirect:/mypage/myReviewAfter";
 	}
 	
-	@GetMapping("/reviewDelete")
+	@GetMapping("/mypage/reviewDelete")
 	public String deleteOne(@RequestParam("review_no") int review_no) {
 		service.dropOne(review_no);
 		return "redirect:/mypage/myReviewAfter";
