@@ -26,12 +26,12 @@ public class CrewController {
 	CRDao crdao;
 	CrewServiceImpl crewservice;
 	// 로그인
-	@RequestMapping("login.do")
+	@RequestMapping("/login.do")
 	public String login() {
-		return "crew/login";
+		return "login";
 	}
 	
-	@RequestMapping("logincheck.do")
+	@RequestMapping("/logincheck.do")
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto,
 			HttpSession session) {
 		int crew_no = crewservice.loginCheck(crdto,session);

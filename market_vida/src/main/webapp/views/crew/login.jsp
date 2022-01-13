@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/login.css?v=1" rel="stylesheet"  type="text/css">
+<link href="${path}/resources/css/login.css?v=1.1" rel="stylesheet"  type="text/css">
 <script>
 
 	$(function() {
@@ -34,7 +34,7 @@
 </head>
 <body>
 <div id="container">
-	<form name="login_form" id="login_form">
+	<form name="login_form" id="login_form" action="logincheck.do" method="post">
 		<h2>로그인</h2>
 		<input type="text" placeholder="아이디를 입력해주세요" class="crew_id"  name="crew_id" size=20 tabindex="2">
 		<input type="password" placeholder="비밀번호를 입력해주세요" class="crew_pw" name="crew_pw">
@@ -43,7 +43,7 @@
 			<span class="bar"></span>
 			<a class="link" href="">비밀번호 찾기</a>
 		</div>
-		<button type="submit" class="loginBtn" onclick="location.href='crew/'">
+		<button type="submit" class="loginBtn" >
 			<span class="loginBtn_txt">로그인</span>		
 		</button>				
 	</form>
