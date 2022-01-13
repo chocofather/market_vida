@@ -34,4 +34,8 @@
 						FROM goods g
 						WHERE sub_cat_code = #{g.sub_cat_code, jdbcType=VARCHAR})
   	</select>
+  	<insert id="insertImgOne" parameterType="imgDto">
+  		INSERT INTO image VALUES (img_no_seq.nextval , #{goods_no} , #{img_name} , #{img_status} )
+  	</insert>
+  	
   </mapper>

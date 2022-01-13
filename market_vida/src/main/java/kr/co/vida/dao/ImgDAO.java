@@ -42,7 +42,7 @@ public class ImgDAO implements Dao<ImgDTO> {
 
 	@Override
 	public void addOne(ImgDTO dto) {
-		
+		ss.insert("kr.co.vida.insertImgOne" , dto);
 	}
 
 	@Override

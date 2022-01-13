@@ -3,12 +3,15 @@ package kr.co.vida.control;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("goods")
 public class GoodsController {
 	
 	@Autowired
@@ -31,12 +33,22 @@ public class GoodsController {
 	
 	@Autowired
 	GoodsImple goodsService;
+
+
+	@GetMapping("/goods/goodsList")
+	public String test(Model model) {
+	//	public String test(Model model, @RequestParam("main_cat_code")int main_cat_code) {
+	//	ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
+		
+		
+		return null;
+	}
 	
 
 	@GetMapping("/goodsList")
 	public String goodsList(Model model) {
 	//	public String goodsList(Model model, @RequestParam("main_cat_code")int main_cat_code) {
-	//	¸ÞÀÎ°ú °áÇÕ ÈÄ »ç¿ë
+	//	ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		
 		model.addAttribute("subDto", subService.getListAll(100));
 		model.addAttribute("imgDto", imgService.selectAllList(100));
@@ -45,9 +57,20 @@ public class GoodsController {
 
 	}
 	
+	@PostMapping("/goods/goodsListAjax")
+	public @ResponseBody Map<String, Object> subCatGoodsList(@RequestParam("subCode")int subCode, Model model) {
+//		model.addAttribute("imgBySubCod", imgDao.getListBySubCode(subCode));
+		HashMap<String, Object> dataMap = new HashMap<String, Object>();
+		HashMap<String, Object> data = new HashMap<String, Object>();
+//		mav.addObject("imgBySubCod", imgDao.getListBySubCode(subCode));
+		dataMap.put("imgBySubCod", data);
+		return dataMap;
+	}
+	
 	@GetMapping(value = "/goodsListAjax", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Map<String, Object> subCatGoodsList(@RequestParam("subCode")int subCode) {
+
 		log.info("subCode=====>"+subCode);
 		
 		HashMap<String, Object> dataMap = new HashMap<String, Object>();
@@ -68,5 +91,15 @@ public class GoodsController {
 	}
 	
 	
+	@GetMapping("/admin/goodswrite")
+	public String writeForm() {
+		return "/admin/productRegister";
+	}
+
+	@PostMapping("/admin/goodswrite")
+	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
+		goodsService.insertOne(dto);
+		return "redirect:/main";
+	}
 
 }

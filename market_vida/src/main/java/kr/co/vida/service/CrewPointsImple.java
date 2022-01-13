@@ -46,9 +46,13 @@ public class CrewPointsImple implements VidaService<CrewPointsDTO> {
 		
 	}
 
-	public List<CrewPointsDTO> selectAllList(int no) {
-		return dao.getListAll(no);
+	public List<CrewPointsDTO> selectAllList(int no , int startNo , int endNo ) {
+		return dao.getListAll(no, startNo, endNo);
 	}
-
+	
+	public int getTotal() {
+		return dao.getTotal();
+		
+	}
 
 }
