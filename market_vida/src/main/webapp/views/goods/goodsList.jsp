@@ -129,7 +129,22 @@
   		deleteGoods();
   		checkAllGoods();
   		updateGoods();
+  		pagenation();
 	});
+  	
+  	/* 페이징 처리 */
+  	function pagenation(){
+  		var pageNo = $('.page-item');
+  				console.log($('.page-item'));
+  			
+  		pageNo.on('click', function(){
+ 			pageNo.each(function(i){
+  				console.log($(this));
+  				 location.href = location.href+'&currentPage='+$(this)[0].outerText;
+  			});
+  				
+  		})
+  	}
   	
   	/* 전체상품 체크 */
   	function checkAllGoods(){
@@ -204,6 +219,7 @@
     </script>
   </head>
   <body>
+  
     <div class="goodsBody">
         
       <!-- 카테고리 박스 -->
@@ -224,7 +240,9 @@
       <!-- 상품 정렬 -->
       <div class="sortGoods">
         <div class="countGoods">
+       <!--  <form action="goodsList" method="post" id="goodsCnt"> -->
           <p>총 ${fn:length(imgDto) }개 상품</p>
+      <!--   </form> -->
           <input type="checkbox" name="" id="checkAll" />
         </div>
         <div class="sortBy">
@@ -265,6 +283,20 @@
         </c:forEach>	
       </ul>
     </div>
+    
+   	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:if test="${map.prev}">
+				<li class="page-item1"><a class="page-link" href="list?currentPage=${map.currentPage-5 }">Previous</a></li>
+			</c:if>
+			<c:forEach var="no" begin="${map.startPageNo }" end="${map.endPageNo }">
+				<li class="page-item" >${no }</li>
+			</c:forEach>
+			<c:if test="${map.next}">
+						<li class="page-item3"><a class="page-link" href="list?currentPage=${map.currentPage+5 }">Next</a></li>
+			</c:if>
+		</ul>
+	</nav>
 
     
   	<jsp:include page="../main/footer.jsp"/>  

@@ -9,9 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.service.MainCatImple;
 import kr.co.vida.service.OrdersImple;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/main")
+@Slf4j
 public class MainController {
 	
 	@Autowired
@@ -24,6 +26,7 @@ public class MainController {
 	public String orderList(Model model) {
 		model.addAttribute("orderlist", service.selectAllList(1));
 		model.addAttribute("mainCode", mainCodesvc.selectAllList());
+		log.info("mainCode========>"+mainCodesvc.selectAllList());
 		return "/main/main";
 	}
 	
@@ -33,9 +36,9 @@ public class MainController {
 	}
 	
 	@RequestMapping("../goods/goodsList")
-	public ModelAndView goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
+	public String goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
 		
-		return null;
+		return "../goods/goodsList";
 	}
 	
 }

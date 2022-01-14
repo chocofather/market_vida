@@ -15,6 +15,11 @@
 		--font-color: dimgray;
 	}
 	
+	body {
+		width:100%;
+		height:100vh;
+	}
+	
 	*{
 		margin: 0;
 		padding: 0;
@@ -205,9 +210,132 @@
 		font-size: medium;
 	}
 	
+	.goodsQna_info {
+		margin: 0 auto;
+    	padding: 0 50px;
+    	text-align: left;
+	}
+	
+	.qnaTable {
+	    width: 100%;
+   		margin: 50px auto;
+	}
+	
+	.qnaBottom {
+		text-align: end;
+   		padding: 40px;
+	}
+	
+	#writeGoodsQna {
+	    width: 150px;
+	    height: 50px;
+	    color: white;
+	    background-color: var(--my-color);
+	    border: none;
+	    border-radius: 3px;
+	    font-size: medium;
+	    font-weight: bold;
+	    cursor: grabbing;
+	}
+	
+	.quaModal {
+		position: fixed;
+		top: 0; 
+		left: 0; 
+		width: 100%; 
+		height: 100%;
+		display: none;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	
+	.quaModal.show {
+		display: block;
+	}
+	
+	.modalBody {
+	    position: relative;
+	    margin: 5vh auto;
+		width: 800px;
+		height: 600px;
+		background-color: white; 
+		border-radius: 10px; 
+		box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+		padding: 25px 40px;
+	}
+	
+	.goodsInfoQna {
+		display: flex;
+    	margin: 10px 0;
+	    padding: 15px 0;
+	    border-top: 2px solid var(--base-color);
+	    border-bottom: 1px solid var(--base-color);
+	}
+	
+	.goodsInfoQna strong {
+		align-self: center;
+	}
+	
+	.goodsInfoQna img {
+		 width: 70px;
+   		 height: 70px;
+   		 border-radius: 3px;
+    	 margin-right: 50px;
+	}
+	
+	.goodsQnaTnC {
+	    padding: 20px 0;  
+	    border-bottom: 1px solid var(--base-color)
+	}
+	
+	.qnaTitle input[type="text"] {
+		width: 90%;
+	    padding: 7px;
+	    margin: 0 10px;
+	    border: 1.5px solid silver;
+	    border-radius: 3px;
+	}
+	
+	.qnaContents textarea {
+		width: 90%;
+	    padding: 7px;
+	    margin: 20px 10px;
+	    align-self: flex-end;
+	    border: 1.5px solid silver;
+	    border-radius: 3px;
+	    display: inline-table;
+	    height: 220px;
+	}
 	
 	
+	.secretYN {
+		padding: 0 50px;
+	}
 	
+	.secretYN p {
+		display: contents;
+	}
+	
+	.modalButton {
+		margin: 20px 0;
+  		text-align: center;
+	}
+	
+	.modalButton input[type="button"], input[type="submit"] {
+		width: 150px;
+	    height: 50px;
+	    border: 1px solid var(--my-color);
+	    border-radius: 5px;
+	    background-color: white;
+	    font-size: large;
+	    font-weight: bold;
+	    color: var(--my-color);
+	    margin: 0 20px;
+	}
+	
+	.modalButton input[type="button"]:hover, input[type="submit"]:hover {
+	    color: white;
+	    background-color: var(--my-color);
+	}
 
 	
 </style>
@@ -219,8 +347,25 @@
 		adjustQty();
 		addMyfavorite();	
 		chooseTab();
-		
+		writeGoodsQna();
 	});
+	
+	
+	/* 문의 모달창 */
+	function writeGoodsQna(){
+		$('#writeGoodsQna').on('click', function(){
+			console.dir($('.quaModal'))
+			$('.quaModal')[0].classList.toggle('show');
+			$('body')[0].style.overflow = 'hidden';
+		});
+		
+		$('#modalBackButton').on('click', function(){
+			console.dir($('#modalBackButton'));
+			$('.quaModal')[0].classList.toggle('show');
+			$('body')[0].style.overflow = 'auto';
+		})
+		
+	}
 	
 	
 	/* 가격 계산 */
@@ -279,6 +424,7 @@
 	}
 	
 	
+	/* 상품 상세 정보 탭 */
 	function chooseTab(){
 		var tabs = document.querySelectorAll('[data-tab-target]');
 		var tabItems = document.querySelectorAll('[data-tab-content]');
@@ -296,8 +442,7 @@
 					});
 					
 				});
-					/* console.dir(tab);
-					console.dir(target.id); */
+			
 				tab.className='tab active';
 				target.classList.add('active');	
 			});
@@ -319,6 +464,7 @@
 			<c:forEach var="detailImgDto" items="${ detailImgDto}" varStatus="status">
 				<c:if test="${status.first==true}">
 					<img src="${detailImgDto.img_name }" alt="${detailImgDto.img_name }" />
+					<c:set var="mainGoodsImg" value="${detailImgDto.img_name }"></c:set>
 				</c:if>
 			</c:forEach>
 			</div>
@@ -427,13 +573,81 @@
 				</div>
 			<!-- 문의 -->
 				<div id="tab4" data-tab-content class="items">
-					<p>문의블라</p>
+					<div class="goodsQna_info">
+						<ul>
+							<li>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
+							<li>배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이비다 내 <a href="./board/qnaboard">1:1문의</a>에 남겨주세요.</li>
+						</ul>
+					</div>
+					
+					<div class="quaList">
+						<table class="qnaTable">
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+							</tr>
+							<c:forEach var="goodsQnaDto" items="${goodsQnaDto }">
+							<tr>
+									<td>${goodsQnaDto.goods_qna_no }</td>
+									<td>${goodsQnaDto.goods_qna_title }</td>
+									<td>${goodsQnaDto.crew_id }</td>
+									<td>${goodsQnaDto.goods_qna_date }</td>
+							</tr>
+							</c:forEach>
+						</table>
+					</div>
+					<div class="qnaBottom">
+						<input type="button" value="문의하기" id="writeGoodsQna"/>
+					</div>
+					
 				</div>
-			</div>
 			
+			</div>
 		</div>
 	</div>
 	
 	<jsp:include page="../main/footer.jsp"/>
+	
+	<!-- 모달창 -->
+	<div class="quaModal">
+	<form action="writeGoodsQna" method="post">
+		<div class="modalBody">
+			<div>
+				<h3>상품 문의하기</h3>
+			</div>
+			<div class="goodsInfoQna">
+				<img src="${mainGoodsImg }" alt="${goodsDto.goods_name }" />
+				<strong>${goodsDto.goods_name }</strong>
+			</div>
+			<div class="goodsQnaTnC">
+				<div class="qnaTitle">
+					<strong>제목</strong> 
+					<input type="text" name="goods_qna_title" id="" placeholder="제목을 입력해주세요" /> 
+					<input type="hidden" name="goods_no" value="${goodsDto.goods_no }" />
+
+				</div>
+				<div class="qnaContents">
+				<strong>내용</strong> 
+				<textarea name="goods_qna_contents" maxlength="3000"
+					placeholder="상품문의 작성 전 확인해 주세요
+								해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.
+								배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이비다 내 1:1 문의에 남겨주세요.">
+				</textarea>
+				</div>	
+				<div class="secretYN">
+					<input type="checkbox" name="secretYN" id="" />
+					<p>비밀글로 문의하기</p>
+				</div>
+			</div>
+			<div class="modalButton">
+				<input type="button" value="취소" id="modalBackButton" />
+				<input type="submit" value="등록" />
+			</div>
+		</div>
+		</form>
+	</div>
+	
 </body>
 </html>

@@ -14,9 +14,8 @@ public class GoodsQnaDTO {
 	private String goods_qna_date;
 	private int goods_no;
 	private String crew_id;
-	private String goods_qna_img;
 	private int crew_no;
-	private String qna_password;
+	private int qna_lock;
 	private int qna_status;
 
 	
