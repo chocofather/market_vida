@@ -145,12 +145,16 @@
 	.tab {
 		background-color: var(--base-color);
 	    color: var(--font-color);
-	
+		
 	}
 	
 	.tab.active {
 		color: var(--my-color);
 		background-color: white;
+		border-top: 2px solid var(--my-color);
+		border-left: 2px solid var(--my-color);
+		border-right: 2px solid var(--my-color);
+		border-bottom: none;
 	}
 	
 	
@@ -165,6 +169,7 @@
 	    align-items: center;
 	    color: var(--font-color);
 	    border: 1.5px solid white;
+	    border-bottom: 2px solid var(--my-color);
 	}
 	
 	
@@ -280,11 +285,15 @@
 		
 		tabs.forEach((tab) => {
 			tab.addEventListener('click', () => {
-				tab.className='tab';
 				
 				var target = document.querySelector(tab.dataset.tabTarget);
 				tabItems.forEach((items)=>{
 					items.classList.remove('active');
+					
+					tabs.forEach((tab2) =>{
+						tab2.className='tab';
+						
+					});
 					
 				});
 					/* console.dir(tab);

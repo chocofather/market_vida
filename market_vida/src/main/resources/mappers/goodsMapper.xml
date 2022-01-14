@@ -16,5 +16,22 @@
   		#{goods_price} , #{discount_rate} , #{stock} , #{package_type} , 
   		#{origin} , #{goods_info} , #{sub_cat_code} , #{project_status} , 0 )
   	</insert>
+  	
+  	<delete id="deleteOne" parameterType="int">
+  		DELETE goods
+  		WHERE goods_no = #{goods_no}
+  	</delete>
+  	<select id="getTotal" parameterType="int" resultType="int">
+  		SELECT count(*)
+  		FROM goods
+  		<where>
+  			<if test="main_cat_code != null">
+		  		main_cat_code = #{main_cat_code}
+  			</if>
+  			<if test="sub_cat_code !=null">
+  				sub_cat_code = #{sub_cat_code}
+  			</if>
+  		</where>
+  	</select>
 
   </mapper>
