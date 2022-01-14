@@ -40,8 +40,7 @@ public class ImgListImple implements VidaService<ImgDTO>{
 
 	@Override
 	public void insertOne(ImgDTO dto) {
-		// TODO Auto-generated method stub
-		
+		dao.addOne(dto);
 	}
 
 	@Override
@@ -52,8 +51,7 @@ public class ImgListImple implements VidaService<ImgDTO>{
 
 	@Override
 	public void dropOne(int no) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteOne(no);
 	}
 
 

@@ -47,12 +47,12 @@
 	}
 	
 	.dlList {
-		padding-bottom: 15px;
+		padding: 20px 0;
 	}
 	
 	.goodsDesc dl {
 		display: flex;
-		padding: 5px 0;
+		padding: 10px 0;
 	}
 	
 	.goodsDesc dt {
@@ -128,11 +128,35 @@
 		cursor: grabbing;
 	}
 	
+	.subInfo {
+		margin: 80px 0;
+	}
+	
+	.tabsItems>img {
+		text-align: center;
+	}
+	
 	.tabs {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 	}
+	
+	.tab {
+		background-color: var(--base-color);
+	    color: var(--font-color);
+		
+	}
+	
+	.tab.active {
+		color: var(--my-color);
+		background-color: white;
+		border-top: 2px solid var(--my-color);
+		border-left: 2px solid var(--my-color);
+		border-right: 2px solid var(--my-color);
+		border-bottom: none;
+	}
+	
 	
 	.tabs div {
 		width: 100%;
@@ -145,16 +169,40 @@
 	    align-items: center;
 	    color: var(--font-color);
 	    border: 1.5px solid white;
+	    border-bottom: 2px solid var(--my-color);
 	}
+	
 	
 	.items {
 		width: 100%;
-		padding: 50px;
 		display: none;
+		text-align: center;
+		margin: 70px 0;
 	}
 	
 	.items.active {
 		display: inline-block;
+	}
+	
+	.desciption {
+		width: 80%;
+		margin: 100px auto;
+		border: 1.5px solid var(--base-color);
+		border-collapse: collapse;
+	}
+	
+	.desciption th {
+		background-color: var(--base-color);
+		color: var(--font-color);
+		width: 130px;
+		
+	}
+	
+	.desciption tr,td {
+		height: 40px;
+		border: 1.5px solid var(--base-color);
+		color: var(--font-color);
+		font-size: medium;
 	}
 	
 	
@@ -170,6 +218,8 @@
 		calculateAmount();
 		adjustQty();
 		addMyfavorite();	
+		chooseTab();
+		
 	});
 	
 	
@@ -227,6 +277,36 @@
 	function addCart(){
 		
 	}
+	
+	
+	function chooseTab(){
+		var tabs = document.querySelectorAll('[data-tab-target]');
+		var tabItems = document.querySelectorAll('[data-tab-content]');
+		
+		tabs.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				
+				var target = document.querySelector(tab.dataset.tabTarget);
+				tabItems.forEach((items)=>{
+					items.classList.remove('active');
+					
+					tabs.forEach((tab2) =>{
+						tab2.className='tab';
+						
+					});
+					
+				});
+					/* console.dir(tab);
+					console.dir(target.id); */
+				tab.className='tab active';
+				target.classList.add('active');	
+			});
+			
+			});
+			
+		}
+		
+	
 		
 
 </script>
@@ -289,35 +369,71 @@
 		
 			<!-- 탭으로 상품 상세페이지 구현 -->
 			<div class="tabs">
-				<div class="tab1">
+				<div class="tab active" data-tab-target="#tab1">
 					<h3>상품설명</h3>
 				</div>
-				<div class="tab2">
+				<div class="tab" data-tab-target="#tab2">
 					<h3>상세정보</h3>
 				</div>
-				<div class="tab3">
+				<div class="tab" data-tab-target="#tab3">
 					<h3>후기</h3>
 				</div>
-				<div class="tab4">
+				<div class="tab" data-tab-target="#tab4">
 					<h3>문의</h3>
 				</div>
 			</div>
-			<div class="goondsContents">
-				<div id="tab11" class="items active">
-					<p>설명블라</p>
+			<div class="tabsItems">
+			<!-- 상품설명 -->
+				<div id="tab1" data-tab-content class="items active">
+				<c:forEach var="detailImgDto" items="${ detailImgDto}" varStatus="status">
+					<c:if test="${status.first==false}">
+						<img src="${detailImgDto.img_name }" alt="${detailImgDto.img_name }" />
+					</c:if>
+				</c:forEach>
 				</div>
-				<div id="tab12" class="items">
-					<p>정보블라</p>
+			<!-- 상세정보 -->
+				<div id="tab2" data-tab-content class="items">
+					<table class="desciption">
+						<tr>
+							<th>상품 ID</th>
+							<td>${goodsDto.goods_no }</td>
+							<th>규격</th>
+							<td>${goodsDto.qty }</td>
+						</tr>
+						<tr>
+							<th>원산지</th>
+							<td>${goodsDto.origin }</td>
+							<th>재고수량</th>
+							<td>${goodsDto.stock }</td>
+						</tr>
+						<tr>
+							<th>상세정보</th>
+							<td>${goodsDto.goods_info }</td>
+							<th>보관방법</th>
+							<td>${goodsDto.package_type } 보관</td>
+						</tr>
+						<tr>
+							<th>영양성분</th>
+							<td>상품설명 및 상품이미지 참조</td>
+							<th>섭취 주의사항</th>
+							<td>상품설명 및 상품이미지 참조</td>
+						</tr>
+						
+					</table>
 				</div>
-				<div id="tab13" class="items">
+			<!-- 후기 -->
+				<div id="tab3" data-tab-content class="items">
 					<p>후기블라</p>
 				</div>
-				<div id="tab14" class="items">
+			<!-- 문의 -->
+				<div id="tab4" data-tab-content class="items">
 					<p>문의블라</p>
 				</div>
 			</div>
 			
 		</div>
 	</div>
+	
+	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

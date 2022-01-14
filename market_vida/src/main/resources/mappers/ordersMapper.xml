@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.vida.orders">
+	<select id="selectOrderAll" resultType="orderdto" parameterType="int">
+		SELECT order_no , goods_no , order_price , delivery , payment_date , order_status , card_no , crew_no , address_no , order_qty , goods_name , img_name
+		FROM orders
+		WHERE crew_no = #{crew_no}
+	</select>
+	
+	<select id="selectOrderOne" parameterType="int" resultType="orderdto">
+		SELECT order_no , goods_no , order_price , delivery , TO_CHAR( payment_date, 'YYYY.MM.DD' ) payment_date , order_status , card_no , crew_no , address_no , order_qty , goods_name , img_name
+		FROM orders
+		WHERE crew_no = #{crew_no}
+		AND payment_date BETWEEN payment_date and TO_CHAR(ADD_MONTHS(payment_date, 1))
+	</select>
+</mapper>

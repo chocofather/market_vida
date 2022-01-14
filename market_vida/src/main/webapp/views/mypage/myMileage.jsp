@@ -66,6 +66,27 @@ table.type10 td {
 						<td>${dto.accumulate_point }</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<td colspan="5">
+						<nav>
+							<ul id="page-ul">
+								<c:if test="${map.prev}">
+									<li class="page-item">
+										<a href="myMileage?currentPage=${map.currentPage-10}">Previous</a></li>
+								</c:if>
+								<c:forEach var="i" begin="${map.startPageNo}"
+									end="${map.endPageNo}">
+									<li><a href="myMileage?currentPage=${i}">${i}</a></li>
+								</c:forEach>
+								<c:if test="${map.next}">
+									<li class="page-item">
+										<a href="myMileage?currentPage=${map.currentPage+10}">Next</a></li>
+								</c:if>
+							</ul>
+						</nav>
+					</td>
+				</tr>
+				
 			</tbody>
 		</table>
 

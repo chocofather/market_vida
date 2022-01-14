@@ -24,5 +24,6 @@ public class ImgDTO {
 	private int goods_no;
 	private String img_name;
 	private int img_status;
+	private String orderbyType;
 
 }

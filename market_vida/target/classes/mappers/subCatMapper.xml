@@ -3,10 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="kr.co.vida">
+  <mapper namespace="kr.co.vida.subCat">
   	<select id="getListAll" resultType="subDto" parameterType="int">
   		SELECT sub_cat_code, sub_cat_name, main_cat_code
   		FROM sub_category
   		WHERE main_cat_code = #{main_cat_code}
+  	</select>
+  	<select id="getOne" resultType="subDto" parameterType="int">
+  		SELECT sub_cat_code, sub_cat_name, main_cat_code
+  		FROM sub_category
+  		WHERE sub_cat_code = #{sub_cat_code}
   	</select>
   </mapper>

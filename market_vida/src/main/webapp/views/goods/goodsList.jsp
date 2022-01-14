@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,6 +8,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <title>Insert title here</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
+    
+    :root {
+		--my-color: #006F00;
+		--base-color: #EFEFEF;
+		--font-color: dimgray;
+	}
+    
       .goodsBody {
         width: 1000px;
         margin: 0 auto;
@@ -49,10 +56,33 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       .sortBy li:not(:last-child) {
         border-right: 1.5px solid silver;
       }
+      
+      .adminSection {
+      	margin-top: 30px;
+      }
+      
+      .adminSection input[type='button']{
+      	width: 100px;
+      	height: 50px;
+      	border: 2px solid var(--base-color);
+      	border-radius: 5px;
+      	background-color: white;
+      	color: var(--my-color);
+      	font-weight: bold;		
+      }
+      
+      .adminSection input[type='button']:hover{
+      	background-color: var(--my-color);
+    	color: white;
+      }
+      
+      .countGoods p {
+        display: contents;
+      }
 
       .imgBox {
         padding: 0;
-        margin: 0;
+        margin: 20px 0;
         width: 100%;
         list-style: none;
         display: flex;
@@ -62,6 +92,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
       .imgBox_list {
         margin-bottom: 80px;
+        display: grid;
       }
 
       .imgBox_list a {
@@ -91,75 +122,85 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         font-weight: bold;
         color: red;
       }
-    </style>
-    <script type="text/javascript">
-      $(function () {
-        $("#subCatGoodsList").on("click", function () {
-          debugger;
-          $.ajax({
-            url: "goodsListAjax?",
-            type: "GET",
-            dataType: "json", //  ajax 통신으로 받는 타입
-            contentType: "application/json", // ajax 통신으로 보내는 타입
-            data: { subCode: $("#sub_cat_code")[0].value },
-            // ajax 통신 성공 시 로직 수행
-            success: function (result) {
-              console.log(result.imgBySubCode);
-              console.log(result.imgBySubCode[0].img_name);
-              //var imgBySubCode = JSON.stringify(result.imgBySubCode);
-              $(".imgBox_list").empty();
 
-              var imgList = result.imgBySubCode;
-              for (var i = 0; i < imgList.length; i++) {
-                //console.log(imgList[i].img_name);
-
-                var html = "";
-                /*    		$(".imgBox").append(html += '<li class=imgBox_list><a href="goodsDetail?goods_no='+imgList[i].goods_no+'>'
-            							html += '<img src='+imgList[i].img_name+'alt='+imgList[i].img_name+' />'
-            							html += '<span name="goods_name">'+imgList[i].goods_nam+'</span>'
-            							html += '<c:choose><c:when test="'+imgList[i].discount_rate+'>0"  >'
-            							html += '<span><span id="discount_rate">'+imgList[i].discount_rate+'% &nbsp; </span>'+Math.round(imgList[i].goods_price-(imgList[i].goods_price*(imgList[i].discount_rate/100)))+'원 </span>'
-            							html += '<span id="goods_price">'+imgList[i].goods_price +' </span>'
-            							html += '</c:when><c:when test="'+imgList[i].discount_rate+'==0" >'
-            							html += '<span id="goods_price_woDC">'+imgList[i].goods_price+'원 </span></c:when></c:choose></a></li>'); */
-              }
-            },
-
-            error: function () {
-              console.log("error");
-            },
-          });
-        });
-      });
-
-      /* 	
-	function getSortingImg(result){
-		var goodsList = $('.imgBox_list');
-		console.dir("imgBySubCode");
-		goodsList.empty();
-		
-		for (var i = 0; i < result.length; i++) {
-			var contents = `<a href="goodsDetail?goods_no=${result[i].goods_no}"> 
-								<img src="${result[i].img_name }" alt="${result[i].img_name }" />
-								<span name="goods_name">${result[i].goods_name }</span>
+</style>
+<script type="text/javascript">
+  	$(function() {
+  		deleteGoods();
+  		checkAllGoods();
+  		updateGoods();
+	});
+  	
+  	/* 전체상품 체크 */
+  	function checkAllGoods(){
+  		$('#checkAll').on('click', function(){
+  			$('.goodsChkbox').each(function(i){
+  				$(this)[0].checked = $('#checkAll')[0].checked;
+  			
+  			})
+  		})	
+  	
+  	}
+  	
+  	/* 상품 수정 */
+  	function updateGoods(){
+  		$('#updateGoods').on('click', function(){
+	  		if ($('.goodsChkbox:checked').length==0){
+	  			alert("선택된 상품이 없습니다.")
+	  		}else if($('.goodsChkbox:checked').length>1){
+	  			alert("상품 수정은 1개 상품씩 가능합니다.")
+	  		}else{
+	  			location.href="./updateGoods";
+	  		}
+  		})
+  	}
+  	
+  	
+  	/* 상품 삭제 */
+  	function deleteGoods(){
+		$('#deleteGoods').on('click', function(){
+	  		var checkedList = [];
+	  		
+	  		if ($('.goodsChkbox:checked').length==0){
+	  			alert("선택된 상품이 없습니다.")
+	  		}else{
+	  			
+	  			if(confirm("정말 삭제하시겠습니까?") == true){
 				
-									<c:choose>
-										<c:when test="${result[i].discount_rate>0 }">
-											<span><span id="discount_rate">${result[i].discount_rate }% &nbsp; </span> ${Math.round(result[i].goods_price-(result[i].goods_price*(result[i].discount_rate/100))) }원 </span>
-											<span id="goods_price">${result[i].goods_price } </span>
-											
-										</c:when>
-										<c:when test="${result[i].discount_rate==0 }">
-											<span id="goods_price_woDC">${result[i].goods_price }원 </span>
-										</c:when>
-									</c:choose>
-							</a>`
-							
-			goodsList[i].innerHTML = contents;	
-		} 
-	}
-	
- */
+	  				$('.goodsChkbox:checked').each(function(i){
+	  					checkedList.push($(this).val()); 
+	  					console.log($(this).val());
+	  					console.log(checkedList);
+	  				});
+	  		
+	  		
+			$.ajax({
+				url: './deleteGoods',
+				type: 'GET',
+				traditional: true,
+				data: {goods_no:checkedList},
+				dataType:"text",
+				success: function(result){
+					if(result=="success"){
+						alert("삭제 완료");
+						location.reload();
+						console.log(result);
+					}
+				},
+				error: function(xhr){
+						console.log(xhr.status);
+				}
+			}); 
+				
+			}else{
+				return;
+			}
+	  		}
+			
+		});
+  	}
+
+
     </script>
   </head>
   <body>
@@ -168,20 +209,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <!-- 카테고리 박스 -->
       <div class="categoryBox">
         <ul class="categoryList">
-          <li><a href="#" id="totalGoodsList">전체보기</a></li>
-          <c:forEach var="subDto" items="${subDto }">
-            <input type="hidden" id="sub_cat_code" value="${subDto.sub_cat_code}" />
+          <li><a href="goodsList?cat_code=${mainCode.main_cat_code }" id="totalGoodsList">전체보기</a></li>
+          <c:forEach var="subDto" items="${subDtoList }">
             <li>
-              <a href="#" id="subCatGoodsList">${subDto.sub_cat_name }</a>
+              <a href="goodsList?cat_code=${subDto.sub_cat_code}" class="subCatGoodsList">${subDto.sub_cat_name }</a>
             </li>
           </c:forEach>
         </ul>
       </div>
-
+	  <div class="adminSection">	
+      	<input type="button" value="삭제" id="deleteGoods"/>
+      	<input type="button" value="수정" id="updateGoods"/>
+      </div>
       <!-- 상품 정렬 -->
       <div class="sortGoods">
         <div class="countGoods">
-          <p>총${count }개</p>
+          <p>총 ${fn:length(imgDto) }개 상품</p>
+          <input type="checkbox" name="" id="checkAll" />
         </div>
         <div class="sortBy">
           <ul>
@@ -199,9 +243,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <ul class="imgBox">
         <c:forEach var="imgDto" items="${imgDto }">
           <li class="imgBox_list">
+			<input type="checkbox" class="goodsChkbox" value="${imgDto.goods_no }" />        
             <a href="goodsDetail?goods_no=${imgDto.goods_no }">
               <img src="${imgDto.img_name }" alt="${imgDto.img_name }" />
-              <span name="goods_name">${imgDto.goods_name }</span>
+              <span>${imgDto.goods_name }</span>
 
               <c:choose>
                 <c:when test="${imgDto.discount_rate>0 }">
@@ -217,8 +262,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               </c:choose>
             </a>
           </li>
-        </c:forEach>
+        </c:forEach>	
       </ul>
     </div>
+
+    
+  	<jsp:include page="../main/footer.jsp"/>  
   </body>
 </html>
