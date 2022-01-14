@@ -6,6 +6,7 @@ import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,6 @@ import kr.co.vida.dto.CrewDTO;
 import kr.co.vida.service.CrewService;
 import kr.co.vida.service.CrewServiceImpl;
 
-@RequestMapping("/crew")
 @Controller
 public class CrewController {
 
@@ -27,12 +27,12 @@ public class CrewController {
 	CrewServiceImpl crewservice;
 	
 	// 로그인
-	@RequestMapping("/login")
+	@RequestMapping("/crew/login")
 	public String loginPage() {
-		return "/login";
+		return "/crew/login";
 	}
 	
-	@RequestMapping(value= "login", method = RequestMethod.POST)
+	@PostMapping("/crew/login")
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto,
 			HttpSession session) {
 		int crew_no = crewservice.loginCheck(crdto,session);
@@ -46,7 +46,7 @@ public class CrewController {
 		}
 		return mv;
 	}
-	@RequestMapping(value ="/logout", method = RequestMethod.GET)
+	@GetMapping("crew/login")
 	public ModelAndView logout(HttpSession session, ModelAndView mv) {
 		crewservice.logout(session);
 		mv.setViewName("crew/login");
