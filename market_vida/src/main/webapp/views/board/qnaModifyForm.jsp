@@ -6,14 +6,86 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	table,th,td{
-		border:1px solid black;
-	}
+	* {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        table {
+            margin-top: 30px;
+            width: 1000px;
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        .title {
+            border-bottom: 2px solid #4c4c4c;
+            margin-bottom: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+            color: black;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+        .link{
+            height: 40px;
+            width: 80px;
+            border-radius: 5px;
+            background-color: #006f00;
+            color: #fff;
+            line-height: 40px;
+            text-align: center;
+            margin-top: 30px;
+            margin-left: 100px;
+            font-weight: 600;
+        }
+        .link:active{
+        	border: 1px solid #fff; 
+        	background-color: #359F35;
+        }
+        .link:hover{
+        	opacity: 0.8;
+        }
+		input{
+			border: 0;
+		}
+		textarea{
+			resize: none;
+			outline: none;
+			border: none;
+			width: 100%;
+		}
+		th{
+			background-color: #BCDDBC;
+			height: 50px;
+			width: 10%;	
+		}
+        td {
+            height: 30px;
+            width: 90%;
+            border-collapse: collapse;
+            border: 1px solid #d9d9d9;
+            text-align: left;
+            padding-left: 5px;
+        }
+        input[type=text]{
+        	width:100%;
+        	height: 100%;
+        	outline: none;
+        }
 </style>
 </head>
 <body>
+<div class="container">
 	<form action="./modifyQna" method="post">
-		<h2>qnaModifyForm.jsp</h2>
+		<div class="title">1:1문의 수정</div>
 		<table>
 			<tr>
 				<th>질문번호</th>
@@ -41,18 +113,15 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="qna_title" value="${dto.qna_title }"/> </td>
+				<td><input type="text" name="qna_title" value="${dto.qna_title }" placeholder="제목 수정"/> </td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="qna_content" id="" cols="30" rows="10">${dto.qna_content }</textarea></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="submit" value="수정" />
-				</td>
+				<td><textarea name="qna_content" cols="80" rows="16" placeholder="내용 수정">${dto.qna_content }</textarea></td>
 			</tr>
 		</table>
+			<input type="submit" value="수정" class="link"/>
 	</form>
+	</div>
 </body>
 </html>
