@@ -14,12 +14,27 @@
   		SELECT i.img_no, i.goods_no, i.img_name, i.img_status, g.qty,
   				g.goods_name, g.goods_price, g.discount_rate, 
   				g.stock, g.package_type, g.origin, g.goods_info, 
-  				g.sub_cat_code, g.project_status
+  				g.sub_cat_code, g.project_status, g.sales_amt
   		FROM image i, goods g, sub_category s
   		WHERE i.goods_no = g.goods_no
   		AND g.sub_cat_code = s.sub_cat_code
   		AND i.img_status = 0
   		AND s.main_cat_code = #{main_cat_code}
+   		<if test="orderbyType != null and orderbyType =='date'">
+  			ORDER BY add_data desc
+  		</if>
+  		<if test="orderbyType != null and orderbyType =='hi_price'">
+  			ORDER BY g.goods_price-(g.discount_rate/100*g.goods_price) desc
+  		</if>
+  		<if test="orderbyType != null and orderbyType =='low_price'">
+  			ORDER BY g.goods_price-(g.discount_rate/100*g.goods_price) asc
+  		</if>
+  		<if test="orderbyType != null and orderbyType =='review'">
+  			ORDER BY goods_no asc
+  		</if>
+  		<if test="orderbyType != null and orderbyType =='sales'">
+  			ORDER BY g.sales_amt desc
+  		</if> 
   	
   	</select>
   	<select id="getMainImgBySubCode" parameterType="int" resultType="imgDto" >
@@ -44,5 +59,9 @@
   		WHERE goods_no = #{goods_no}
   		AND img_status = 1
   	</select>
+  	<delete id="deleteOne" parameterType="int">
+  		DELETE image
+  		WHERE img_no = #{img_no}
+  	</delete>
   	
   </mapper>

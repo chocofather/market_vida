@@ -15,6 +15,7 @@ public class GoodsDAO implements Dao<GoodsDTO> {
 	
 	@Autowired
 	private SqlSession ss;
+	
 
 	@Override
 	public List<GoodsDTO> getListAll() {
@@ -28,7 +29,7 @@ public class GoodsDAO implements Dao<GoodsDTO> {
 
 	@Override
 	public void addOne(GoodsDTO dto) {
-		ss.insert("kr.co.vida.insertOne", dto);
+		ss.insert("kr.co.vida.goods.insertOne", dto);
 		
 	}
 
@@ -40,8 +41,12 @@ public class GoodsDAO implements Dao<GoodsDTO> {
 
 	@Override
 	public void deleteOne(int no) {
-		// TODO Auto-generated method stub
+		ss.delete("kr.co.vida.goods.deleteOne", no);
 		
+	}
+	
+	public int getTotal(int no) {
+		return ss.selectOne("kr.co.vida.goods.getTotal", no);
 	}
 
 
