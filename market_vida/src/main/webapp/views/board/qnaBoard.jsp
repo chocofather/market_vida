@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script src="${path}/resources/js/header.js"></script>
 <style>
-	 * {
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
+main div {
+	text-align: center;
+	flex-grow: 1;
+}
 
         table {
             margin-top: 30px;
@@ -33,13 +33,16 @@
 
         .title {
             border-bottom: 2px solid #4c4c4c;
+            margin: 0 auto;
             margin-bottom: 50px;
+            margin-top: 50px;
+            width: 1000px;
+            text-align: left;
         }
 
         .title a {
             height: 50px;
             display: block;
-            margin: 0 auto;
             color: black;
             font-size: 24px;
         }
@@ -53,7 +56,7 @@
             line-height: 40px;
             text-align: center;
             margin-top: 30px;
-            margin-left: 100px;
+            margin-right: 890px; 
         }
         .link:active{
         	border: 1px solid #fff; 
@@ -101,8 +104,10 @@
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="title"><a href="./qna">1:1문의 게시판</a></div>
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
+	<main>
+		<div>
+			<div class="title"><a href="./qna">1:1문의 게시판</a></div>
 		<table>
 			<tr>
 				<th>번호</th>
@@ -121,9 +126,10 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="./writeQna" class="link">
-            1:1문의 등록
-        </a>
-	</div>
+		<a href="./writeQna" class="link">1:1문의 등록</a>
+		</div>
+	</main>
+	<jsp:include page="../main/sidebar.jsp"></jsp:include>
+	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

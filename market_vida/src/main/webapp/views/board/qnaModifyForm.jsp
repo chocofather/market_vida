@@ -80,6 +80,11 @@
         	height: 100%;
         	outline: none;
         }
+        select{
+        	width: 150px;
+        	height: 30px;
+        	outline: none;
+        }
 </style>
 </head>
 <body>
