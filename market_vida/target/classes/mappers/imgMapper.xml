@@ -20,7 +20,7 @@
   		AND g.sub_cat_code = s.sub_cat_code
   		AND i.img_status = 0
   		AND s.main_cat_code = #{main_cat_code}
-   		<if test="orderbyType != null and orderbyType =='date'">
+<!--    		<if test="orderbyType != null and orderbyType =='date'">
   			ORDER BY add_data desc
   		</if>
   		<if test="orderbyType != null and orderbyType =='hi_price'">
@@ -34,7 +34,7 @@
   		</if>
   		<if test="orderbyType != null and orderbyType =='sales'">
   			ORDER BY g.sales_amt desc
-  		</if> 
+  		</if>  -->
   	
   	</select>
   	<select id="getMainImgBySubCode" parameterType="int" resultType="imgDto" >
