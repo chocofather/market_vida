@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script src="${path}/resources/js/header.js"></script>
 <style>
-	* {
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        table {
+main div {
+	text-align: center;
+	flex-grow: 1;
+}
+table {
             margin-top: 30px;
             width: 1000px;
             border-spacing: 0;
@@ -33,6 +32,9 @@
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 50px;
+            margin-top:50px;
+            text-align: left;
+            width: 1000px;
         }
         .link{
             height: 40px;
@@ -43,7 +45,7 @@
             line-height: 40px;
             text-align: center;
             margin-top: 30px;
-            margin-left: 100px;
+            margin-right: 920px;
             font-weight: 600;
         }
         .link:active{
@@ -75,10 +77,14 @@
             text-align: left;
             padding-left: 5px;
         }
-        input[type=text]{
-        	width:100%;
+        #qna_title{
+        	width: 100%;
         	height: 100%;
         	outline: none;
+        	border: none;
+        	background-color: #fff;
+        	color: #333;
+        	padding: 0;
         }
         select{
         	width: 150px;
@@ -88,7 +94,9 @@
 </style>
 </head>
 <body>
-<div class="container">
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
+	<main>
+		<div class="container">
 	<form action="./modifyQna" method="post">
 		<div class="title">1:1문의 수정</div>
 		<table>
@@ -118,7 +126,7 @@
 			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="qna_title" value="${dto.qna_title }" placeholder="제목 수정"/> </td>
+				<td><input type="text" id="qna_title" name="qna_title" value="${dto.qna_title }" placeholder="제목 수정"/> </td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -128,5 +136,8 @@
 			<input type="submit" value="수정" class="link"/>
 	</form>
 	</div>
+	</main>
+	<jsp:include page="../main/sidebar.jsp"></jsp:include>
+	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>
