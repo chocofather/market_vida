@@ -11,8 +11,15 @@
 	
 </script>
 <body>
-	<ul>
-		<li><a href="crew/login">로그인</a></li>
-	</ul>
+	<c:if test="${crew_id !=null }">
+		<h2>${crew_id} 님 환영합니다.</h2>
+		<a href="logout">로그아웃</a>
+	</c:if>	
+	<c:if test="${empty id }">
+	<ol>
+		<li><a href="login">로그인</a></li>
+		<li><a href="join">회원가입</a></li>
+	</ol>
+	</c:if>	
 </body>
 </html>

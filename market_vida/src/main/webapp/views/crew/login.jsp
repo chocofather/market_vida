@@ -34,7 +34,7 @@
 </head>
 <body>
 <div id="container">
-	<form name="login_form" id="login_form" action="/crew/login" method="post">
+	<form name="login_form" id="login_form" action="login" method="post">
 		<h2>로그인</h2>
 		<input type="text" placeholder="아이디를 입력해주세요" class="crew_id"  name="crew_id" size=20 tabindex="2">
 		<input type="password" placeholder="비밀번호를 입력해주세요" class="crew_pw" name="crew_pw">
@@ -43,10 +43,12 @@
 			<span class="bar"></span>
 			<a class="link" href="">비밀번호 찾기</a>
 		</div>
-		<button type="submit" class="loginBtn" >
+		<button type="submit" class="loginBtn" name="loginBtn">
 			<span class="loginBtn_txt">로그인</span>		
-		</button>				
+		</button>
+			
 	</form>
+
 	<button type="button" class="joinBtn">
 		<span class="joinBtn_txt">회원가입</span>	
 	</button>	

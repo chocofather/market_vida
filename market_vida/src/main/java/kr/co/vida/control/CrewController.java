@@ -1,5 +1,6 @@
 package kr.co.vida.control;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.logging.Logger;
@@ -23,22 +24,25 @@ public class CrewController {
 
 	@Autowired
 	CRDao crdao;
+	
 	@Autowired
 	CrewServiceImpl crewservice;
 	
+	
 	// 로그인
-	@RequestMapping("/crew/login")
-	public String loginPage() {
-		return "/crew/login";
+	@GetMapping("crew/login")
+	public ModelAndView loginPage() {
+		ModelAndView mv = new ModelAndView("crew/login");
+		return mv;
 	}
 	
-	@PostMapping("/crew/login")
+	@PostMapping("crew/login")
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto,
 			HttpSession session) {
 		int crew_no = crewservice.loginCheck(crdto,session);
 		ModelAndView mv = new ModelAndView();	
 		if(crew_no > 0) {
-			mv.setViewName("crew/main");
+			mv.setViewName("crew/testmain");
 			mv.addObject("msg","success");
 		}else {
 			mv.setViewName("crew/login");
@@ -46,13 +50,7 @@ public class CrewController {
 		}
 		return mv;
 	}
-	@GetMapping("crew/login")
-	public ModelAndView logout(HttpSession session, ModelAndView mv) {
-		crewservice.logout(session);
-		mv.setViewName("crew/login");
-		mv.addObject("msg","logout");
-		return mv;
-	}
+
 	/*
 	// 회원가입
 	@RequestMapping(value="/register", method = RequestMethod.GET)
