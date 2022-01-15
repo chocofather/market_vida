@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/login.css" rel="stylesheet"  type="text/css">
+<link href="${path}/resources/css/login.css?v=1.1" rel="stylesheet"
+	type="text/css">
 <script>
-
 	$(function() {
 		$(".loginBtn").click(function() {
 			var crew_id = $(".crew_id").val();
@@ -29,29 +29,33 @@
 			//document.login_form.submit(); //제출
 		});
 	});
-	
 </script>
 </head>
 <body>
-<div id="container">
-	<form name="login_form" id="login_form" action="login" method="post">
-		<h2>로그인</h2>
-		<input type="text" placeholder="아이디를 입력해주세요" class="crew_id"  name="crew_id" size=20 tabindex="2">
-		<input type="password" placeholder="비밀번호를 입력해주세요" class="crew_pw" name="crew_pw">
-		<div class="login_search">
-			<a class="link" href="">아이디 찾기</a>
-			<span class="bar"></span>
-			<a class="link" href="">비밀번호 찾기</a>
-		</div>
-		<button type="submit" class="loginBtn" name="loginBtn">
-			<span class="loginBtn_txt">로그인</span>		
-		</button>
+	<div id="container">
+		<form name="login_form" id="login_form" action="login" method="post">
+			<h2>로그인</h2>
+			<input type="text" placeholder="아이디를 입력해주세요" class="crew_id"
+				name="crew_id" size=20 tabindex="2"> <input type="password"
+				placeholder="비밀번호를 입력해주세요" class="crew_pw" name="crew_pw">
 			
-	</form>
+			<c:if test="${message == 'error'}">
+			<div class="login_error">아이디 또는 비밀번호가 일치하지 않습니다.</div>
+			</c:if>
 
-	<button type="button" class="joinBtn">
-		<span class="joinBtn_txt">회원가입</span>	
-	</button>	
-</div>
+			<div class="login_search">
+				<a class="link" href="">아이디 찾기</a> <span class="bar"></span> <a
+					class="link" href="">비밀번호 찾기</a>
+			</div>
+			<button type="submit" class="loginBtn" name="loginBtn">
+				<span class="loginBtn_txt">로그인</span>
+			</button>
+
+		</form>
+
+		<button type="button" class="joinBtn">
+			<span class="joinBtn_txt">회원가입</span>
+		</button>
+	</div>
 </body>
 </html>

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.vida.dto.CrewDTO;
 
 @Repository
-public class CrewDAO implements CRDao{
+public class LoginDAO implements LDao{
 
 	@Autowired
 	private SqlSession ss;
@@ -24,7 +24,7 @@ public class CrewDAO implements CRDao{
 	}
 
 	@Override
-	public int loginCheck(CrewDTO crdto) {
+	public int loginCheck(CrewDTO crdto) { 
 		return ss.selectOne("kr.co.vida.crew.logincheck", crdto);
 	}
 

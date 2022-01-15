@@ -9,24 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import kr.co.vida.dao.CrewDAO;
+import kr.co.vida.dao.LoginDAO;
 import kr.co.vida.dto.CrewDTO;
 
 @Service("crewservice")
-public class CrewServiceImpl implements CrewService{
+public class LoginServiceImpl implements LoginService{
 
 	
 	@Autowired
-	CrewDAO crdao;
+	LoginDAO crdao;
 
 	@Override
 	public int loginCheck(CrewDTO crdto, HttpSession session) {
-		int crew_no = crdao.loginCheck(crdto);
-		if(crew_no > 0) {
+		int crew_count = crdao.loginCheck(crdto) ;
+		if(crew_count > 0) {
 			session.setAttribute("crew_id", crdto.getCrew_id());
 			session.setAttribute("crew_pw", crdto.getCrew_pw());
 		}
-		return crew_no;
+		return crew_count;
 	}
 
 	@Override

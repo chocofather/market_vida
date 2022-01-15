@@ -1,5 +1,6 @@
 package kr.co.vida.control;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,13 @@ public class TestMainController {
 	public String main() {
 		return "crew/testmain";
 	}
+	
 	@RequestMapping("crew/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		
+		if(session !=null) session.invalidate();
+		
 		return "redirect:testmain";
 	}
 }

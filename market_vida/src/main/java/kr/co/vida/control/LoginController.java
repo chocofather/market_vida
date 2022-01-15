@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.vida.dao.CRDao;
+import kr.co.vida.dao.LDao;
 import kr.co.vida.dto.CrewDTO;
-import kr.co.vida.service.CrewService;
-import kr.co.vida.service.CrewServiceImpl;
+import kr.co.vida.service.LoginService;
+import kr.co.vida.service.LoginServiceImpl;
 
 @Controller
-public class CrewController {
+public class LoginController {
 
 	@Autowired
-	CRDao crdao;
+	LDao crdao;
 	
 	@Autowired
-	CrewServiceImpl crewservice;
+	LoginServiceImpl crewservice;
 	
 	
 	// 로그인
@@ -39,18 +39,34 @@ public class CrewController {
 	@PostMapping("crew/login")
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto,
 			HttpSession session) {
-		int crew_no = crewservice.loginCheck(crdto,session);
+		int crew_count = crewservice.loginCheck(crdto,session);
 		ModelAndView mv = new ModelAndView();	
-		if(crew_no > 0) {
+		if(crew_count > 0) {
 			mv.setViewName("crew/testmain");
-			mv.addObject("msg","success");
+			session.setAttribute("crew_id", crdto.getCrew_id());
+			session.setAttribute("crew_no", crdto.getCrew_no());
+			session.setAttribute("crew_name", crdto.getCrew_name());
+			mv = new ModelAndView("redirect:testmain");
+			mv.addObject("CREW",crdto);
+			
+			session.getMaxInactiveInterval();
 		}else {
 			mv.setViewName("crew/login");
-			mv.addObject("msg","failure");
+			mv.addObject("message","error");
 		}
 		return mv;
 	}
-
+	/*
+	// 로그아웃
+	@PostMapping("crew/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		
+		if(session !=null) session.invalidate();
+		
+		return "redirect:crew/login";
+	}
+	*/
 	/*
 	// 회원가입
 	@RequestMapping(value="/register", method = RequestMethod.GET)

@@ -105,4 +105,10 @@ a:link, a:visited{
     line-height: 51px;
     text-align: center;
 }
+.login_error{
+	font-size : 12px;
+	color : red;
+	transform: translate(-40px, 8px);
+	margin-bottom : 5px;
+}
 
