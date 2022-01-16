@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="kr.co.vida.couponbox">
+ 
+ 		<select id="selectBoxAll" parameterType="cse" resultType="cbdto">
+  		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no , coupon_name , coupon_dc ,coupon_period , coupon_detail
+		FROM (SELECT ROWNUM rn , couponbox_no , crew_no , coupon_code , status , coupon_no , coupon_name , coupon_dc , TO_CHAR(coupon_period, 'YYYY.MM.DD') coupon_period , coupon_detail
+				FROM(SELECT couponbox_no , crew_no , coupon_code , status , coupon_no , coupon_name , coupon_dc , coupon_period , coupon_detail
+  						FROM coupon_box
+  						WHERE crew_no = #{crew_no}
+  					ORDER BY couponbox_no desc)
+				WHERE ROWNUM &lt;=#{endNo} )
+		WHERE RN &gt;=#{startNo}
+  		</select>
+ 
+ 	<!-- <select id="selectBoxAll" resultType="cbdto" parameterType="int" >
+ 		SELECT couponbox_no , crew_no , coupon_code , status , coupon_no , coupon_name , coupon_dc , TO_CHAR(coupon_period, 'YYYY.MM.DD') coupon_period , coupon_detail
+ 		FROM coupon_box
+ 		WHERE crew_no = #{crew_no}
+ 	</select> -->
+ 	
+ 	<insert id="insertOne" parameterType="cbdto">
+ 		INSERT INTO coupon_box
+ 		VALUES (couponbox_no_seq.nextval, #{crew_no} , #{coupon_code} , 1 , #{coupon_no} , #{coupon_name} , #{coupon_dc} , #{coupon_period} , #{coupon_detail} )
+ 		WHERE crew_no = #{crew_no}
+ 	</insert>
+ 	
+ 	<update id="modifyOne" parameterType="cbdto">
+ 		UPDATE coupon_box
+ 		SET status = 0
+ 	</update>
+ 	
+ 	<select id="getTotal" resultType="int">
+  		SELECT COUNT(*) total
+  		FROM coupon_box
+  	</select>
+ 	
+ </mapper>

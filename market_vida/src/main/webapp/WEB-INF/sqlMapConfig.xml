@@ -5,10 +5,9 @@
   
   <configuration>
   	<typeAliases>
-  	<!--  
+  
   		<typeAlias type="kr.co.vida.dto.CouponDTO" alias="cdto"/>
   		<typeAlias type="kr.co.vida.dto.CouponBoxDTO" alias="cbdto"/>
-<<<<<<< HEAD
   		<typeAlias type="kr.co.vida.dto.CrewPointsDTO" alias="cpdto"/>
   		<typeAlias type="kr.co.vida.dto.NoticeDTO" alias="ndto"/>
   		<typeAlias type="kr.co.vida.dto.StartEnd" alias="se" />
@@ -22,9 +21,6 @@
   		<typeAlias type="kr.co.vida.dto.OrdersDTO" alias="orderdto"/>
   		<typeAlias type="kr.co.vida.dto.QnaBoardDTO" alias="qbdto"/>
   		<typeAlias type="kr.co.vida.dto.FriendsBenefitDTO" alias="fbdto"/>
-=======
-  	-->
   		<typeAlias type="kr.co.vida.dto.CrewDTO" alias="crdto"/>
->>>>>>> refs/remotes/origin/jongdae
   	</typeAliases>
   </configuration>
