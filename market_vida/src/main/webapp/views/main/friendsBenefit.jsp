@@ -18,7 +18,7 @@
             <hr>
         </div>
         <div class="ratio">
-            <div><a href="">나무7%</a></div>
+            <div><a href=""></a></div>
             <div><a href="">가지5%</a></div>
             <div><a href="">잎새3%</a></div>
             <div><a href="">새싹1%</a></div>

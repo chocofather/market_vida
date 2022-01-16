@@ -19,5 +19,6 @@
   		<typeAlias type="kr.co.vida.dto.ReviewBoardDTO" alias="rbdto"/>
   		<typeAlias type="kr.co.vida.dto.OrdersDTO" alias="orderdto"/>
   		<typeAlias type="kr.co.vida.dto.QnaBoardDTO" alias="qbdto"/>
+  		<typeAlias type="kr.co.vida.dto.FriendsBenefitDTO" alias="fbdto"/>
   	</typeAliases>
   </configuration>
