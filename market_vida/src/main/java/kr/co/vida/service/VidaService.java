@@ -8,5 +8,8 @@ public interface VidaService<T> {
 	public void insertOne(T dto);
 	public void updateOne(T dto);
 	public void dropOne(int no);
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/jongdae
 }
