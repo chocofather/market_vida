@@ -4,7 +4,7 @@ body{
     margin: 0 auto;
 }
 #container {
-    margin: 100px auto;
+    margin: 600px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,10 +12,25 @@ body{
     top: 30%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 640px;
+    width: 695px;
+}
+.icon_txt{
+    padding-bottom: 4px;
+    font-size: 12px;
+    color: #666;
+    line-height: 8px;
+    text-align: right;
+}
+.icon{
+    padding-right: 4px;
+    color: #ee6a7b;
+    font-size: 18px;
+    vertical-align: -1px;
 }
 .join_form{
     font-weight: bold;
+    letter-spacing: 0;
+    font-weight: 400;
     letter-spacing: 0;
 }
 .join_table{
@@ -28,7 +43,7 @@ body{
     width: 159px;
     padding: 20px 0 0 20px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
     line-height: 20px;
     vertical-align: top;
@@ -41,7 +56,9 @@ body{
     vertical-align: top;
     text-align: left;
 }
+
 .join_table input[type=text]{
+    width: 332px;
     height: 44px;
     padding: 0 14px;
     border: 1px solid #ccc;
@@ -53,10 +70,14 @@ body{
     outline: none;
     vertical-align: top;
 }
+.join_table input:focus{
+    outline: 2px solid #1b1a1a;
+}
+
 .join_table .btn_check {
     display: inline-block;
-    width: 120px;
-    margin-left: 5px;
+    width: 130px;
+    margin-left: 12px;
     vertical-align: top;
     border: 1px solid #006f00;
     background-color: #fff;
@@ -64,26 +85,76 @@ body{
     height: 44px;
     border-radius: 3px;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 40px;
+    font-size: 15px;
+    line-height: 43px;
     text-align: center;
     outline: none;
 }
 a{
     text-decoration: none;
 }
+.addr_search{
+    display: block;
+    overflow: hidden;
+    width: 360px;
+    height: 44px;
+    border: 1px solid #006f00;
+    border-radius: 3px;
+    text-align: center;
+}
+.addr_search_txt{
+    display: inline-block;
+    height: 100%;
+    margin-left: -14px;
+    padding-left: 24px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #006f00;
+    line-height: 43px;
+    background-size: 25px 24px;
+    vertical-align: top;
+}
+.gender_label{
+    display: inline-block;
+    padding: 10px 52px 10px 0;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 22px;
+}
+.gender_input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.gender_input:checked+.gender {
+    border: 1px solid #006f00;
+    background-color: #006f00;
+}
+.gender_input:checked+.gender:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    border-radius: 100%;
+    background-color: #fff;
+}
+.gender{
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 100%;
+    vertical-align: -7px;
+}
 #join_submit{
     margin-top: 20px;
     text-align: center;
-}
-.joinBtn{
-    width: 240px;
-    height: 56px;
-    font-size: 16px;
-    line-height: 54px;
-    border: 1px solid #006f00;
-    background-color: #006f00;
-    color: #fff;
 }
 .screen_out{
     display: block;
@@ -95,4 +166,267 @@ a{
     font-size: 0;
     line-height: 0;
     text-indent: -9999px;
+}
+.birth_day{
+    display: block;
+    overflow: hidden;
+    width: 350px;
+    padding-left: 18px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.birth_day input[type=text] {
+    float: left;
+    width: 70px;
+    height: 40px;
+    border: 0;
+    text-align: center;
+}
+.birth_day input[type=text]:focus{
+    outline: none;
+}
+.bar{
+    float: left;
+}
+.bar::after{
+    content: "/";
+    float: left;
+    width: 22px;
+    height: 100%;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 42px;
+    text-align: center;
+}
+.agree_table{
+    border-top: 1px solid #5f995f;
+}
+.check{
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    padding: 0 0 10px;
+}
+.check_all{
+    padding: 12px 0 4px;
+    font-weight: 700;
+    font-size: 18px;
+}
+.join_table input[type=checkbox] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.check span:hover {
+    cursor: pointer;
+}
+.check02 span:hover {
+    cursor: pointer;
+}
+.join_table input[type=checkbox]+.icon {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    border: 0;
+    background: url(https://res.kurly.com/pc/service/common/2006/ico_checkbox.svg) no-repeat 50% 50%;
+    background-size: 24px 24px;
+    vertical-align: -7px;
+}
+.join_table input[type=checkbox] {
+    box-sizing: border-box;
+    padding: 0;
+}
+.join_table input[type=checkbox]:checked+.icon {
+    background: url(https://res.kurly.com/pc/service/common/2006/ico_checkbox_checked.svg) no-repeat 50% 50%;
+    background-size: 24px 24px;
+}   
+.sub{
+    color: #999;
+}
+.all_check_txt{
+    padding-left: 36px;
+    font-size: 12px;
+    color: #666;
+    line-height: 17px;
+}
+.check02{
+    position: relative;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.link_agreement{
+    position: absolute;
+    right: 22px;
+    top: 0;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #5f0080;
+    line-height: 18px;
+    letter-spacing: 0;
+}
+.joinBtn{
+    width: 300px;
+    height: 65px;
+    font-size: 20px;
+    line-height: 54px;
+    border: 1px solid #006f00;
+    background-color: #006f00;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 200px;
+}
+.joinBtn:hover{
+    cursor: pointer;
+}
+#modal{
+    display:none;
+    position:fixed; 
+    width:100%; height:100%;
+    top:0; left:0; 
+    background:rgba(0,0,0,0.3);   
+}
+
+.modal1{
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 600px;
+    min-height: 50%;
+    background:#fff;
+    border-radius: 20px;
+    padding: 30px;
+  }
+  .modal2{
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 600px;
+    min-height: 50%;
+    background:#fff;
+    border-radius: 20px;
+    padding: 30px;
+  }
+  .modal3{
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 600px;
+    min-height: 50%;
+    background:#fff;
+    border-radius: 20px;
+    padding: 30px;
+  }
+.close{
+    display:block;
+    position:absolute;
+    width:40px; height:40px;
+    border-radius:50%; 
+    text-align:center; line-height: 30px;
+    text-decoration:none;
+    color:#666; font-size:26px; font-weight: bold;
+    right:20px; top:20px;
+  }
+.modal_header > h2{
+    font-weight: 600;
+}
+.modal_content > p{
+    font-size: 14px;
+    color: #666;
+}
+.modal_content{
+    width: 500px;
+    height: 500px;
+    min-height: 50%;
+    overflow-y: scroll;
+}
+.modal_content::-webkit-scrollbar{
+    width: 5px;
+}
+.modal_content::-webkit-scrollbar-thumb{
+    height: 10%;
+    background-color: rgb(146, 146, 146);
+    border-radius: 10px;    
+}
+
+.modal_content::-webkit-scrollbar-track{
+    background-color: rgba(0,0,0,0);
+}
+.icon2{
+    color: #999;
+}
+.modal_footer{
+    position: fixed;
+    bottom: 0;
+    width: 90%;
+    text-align: center;
+}
+.modal_footer > button{
+    display: block;
+    width: 100%;
+    height: 57px;
+    border: 0;
+    border-top: 1px solid #f7f7f7;
+    border-radius: 6px;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    color: #006f00;
+    line-height: 32px;
+    letter-spacing: 0;
+}
+.modal_confirm:hover{
+    cursor: pointer;
+}
+.box_tbl{
+    margin-top: 19px;
+    padding: 0 30px;
+    font-size: 14px;
+    color: #333;
+}
+#member_post{
+    display: none;
+}
+#member_addr{
+    margin-top: 5px;
+    display: none;
+}
+#detail_addr{
+    margin-top: 5px;
+    display: none;
+}
+#research_addr{
+    display: none;
+    width: 120px;
+    margin-left: 12px;
+    vertical-align: top;
+    border: 1px solid #006f00;
+    background-color: #fff;
+    color: #006f00;
+    height: 45px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 42px;
+    text-align: center;
+    outline: none;
+}
+#research_addr:hover{
+    cursor: pointer;
+}
+.alert_container{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+.alert01{
+    color: #666;
 }

@@ -32,6 +32,28 @@ public class LoginDAO implements LDao{
 	public void register(CrewDTO crdto) {	
 		ss.insert("kr.co.vida.crew.insertcrew",crdto);
 	}
+
+	@Override
+	public String findId(CrewDTO crdto) {
+		return ss.selectOne("kr.co.vida.crew.findid", crdto);
+	}
+
+	@Override
+	public int idcheck(String crew_id) {
+		return ss.selectOne("kr.co.vida.crew.idcheck",crew_id);
+	}
+
+	@Override
+	public CrewDTO selectAll_id(String crew_id) {
+		
+		return ss.selectOne("kr.co.vida.crew.selectAll_id",crew_id);
+	}
+
+	@Override
+	public String findname(String crew_id) {
+		
+		return ss.selectOne("kr.co.vida.crew.selectName",crew_id);
+	}
 	
 
 }

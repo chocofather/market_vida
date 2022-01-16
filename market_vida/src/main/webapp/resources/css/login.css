@@ -23,6 +23,7 @@ body{
     line-height: 20px;
     text-align: center;
     margin-left: 33px;
+    margin-top : 10px;
 }
 .crew_id, .crew_pw{
     width: 100%;

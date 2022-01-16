@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 import kr.co.vida.dao.LoginDAO;
 import kr.co.vida.dto.CrewDTO;
 
-@Service("crewservice")
+@Service("loginservice")
 public class LoginServiceImpl implements LoginService{
 
 	
 	@Autowired
-	LoginDAO crdao;
+	LoginDAO ldao;
 
 	@Override
 	public int loginCheck(CrewDTO crdto, HttpSession session) {
-		int crew_count = crdao.loginCheck(crdto) ;
+		int crew_count = ldao.loginCheck(crdto) ;
 		if(crew_count > 0) {
 			session.setAttribute("crew_id", crdto.getCrew_id());
 			session.setAttribute("crew_pw", crdto.getCrew_pw());
@@ -35,7 +35,20 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public void register(CrewDTO crdto) {
-		crdao.register(crdto);
+	public String findid(CrewDTO crdto) {
+		String crew_id = ldao.findId(crdto);
+		return crew_id;
 	}
+
+	@Override
+	public CrewDTO selectAll_id(String crew_id) {
+		return ldao.selectAll_id(crew_id);
+	}
+
+	@Override
+	public String findname(String crew_id) {
+		return ldao.findname(crew_id);
+	}
+
+
 }
