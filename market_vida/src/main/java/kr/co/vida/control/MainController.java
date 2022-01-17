@@ -14,7 +14,6 @@ import kr.co.vida.service.MainCatImple;
 import kr.co.vida.service.OrdersImple;
 
 @Controller
-@RequestMapping("/main")
 public class MainController {
 	
 	@Autowired

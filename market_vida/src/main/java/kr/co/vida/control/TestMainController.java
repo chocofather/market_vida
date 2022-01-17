@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TestMainController {
-	@RequestMapping(value= {"/","crew/testmain"})
+	@RequestMapping(value= {"crew/testmain"})
 	public String main() {
 		return "crew/testmain";
 	}

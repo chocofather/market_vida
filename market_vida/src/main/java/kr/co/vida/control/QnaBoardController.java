@@ -13,51 +13,55 @@ import kr.co.vida.dto.QnaBoardDTO;
 import kr.co.vida.service.QnaBoardImple;
 
 @Controller
-@RequestMapping("/board")
 public class QnaBoardController {
 	@Autowired
 	QnaBoardImple service;
 	
-	@RequestMapping("/qna")
+	@RequestMapping("/board/qna")
 	public String qna(Model model) {
 		model.addAttribute("list",service.selectAllList());
 		return "board/qnaBoard";
 	}
 	
-	@GetMapping("/writeQna")
+	@GetMapping("board/writeQna")
 	public String writeQnaForm() {
 		return "board/writeQnaForm";
 	}
 	
-	@PostMapping("/writeQna")
+	@PostMapping("board/writeQna")
 	public String writeQna(@ModelAttribute("dto")QnaBoardDTO dto) {
 		service.insertOne(dto);
 		return "redirect:/board/qna";
 	}
 	
-	@GetMapping("/detail")
+	@GetMapping("board/detail")
 	public String detailQna(@RequestParam("qna_no")int qna_no, Model model) {
 		QnaBoardDTO dto =  service.selectOne(qna_no);
 		model.addAttribute("dto", dto);
 		return "board/qnaBoardDetail";
 	}
 	
-	@GetMapping("/modifyQna")
+	@GetMapping("board/modifyQna")
 	public String modifyForm(@RequestParam("qna_no")int qna_no, Model model) {
 		QnaBoardDTO dto =  service.selectOne(qna_no);
 		model.addAttribute("dto", dto);
 		return "board/qnaModifyForm";
 	}
 	
-	@PostMapping("/modifyQna")
+	@PostMapping("board/modifyQna")
 	public String modifyQna(@ModelAttribute("dto")QnaBoardDTO dto) {
 		service.updateOne(dto);
 		return "redirect:/board/qna";
 	}
 	
-	@GetMapping("/deleteQna")
+	@GetMapping("board/deleteQna")
 	public String deleteQna(@RequestParam("qna_no")int qna_no) {
 		service.dropOne(qna_no);
 		return "redirect:/board/qna";
+	}
+	
+	@GetMapping("board/main")
+	public String main() {
+		return "redirect:/main";
 	}
 }
