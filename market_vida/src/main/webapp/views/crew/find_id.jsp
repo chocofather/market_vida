@@ -63,8 +63,10 @@ $(".findidBtn").click(function(){
 	$.ajax({
         
         type:"GET",
-        url:"mailCheck?email=" + email
-                
+        url:"mailCheck?crew_email=" + email
+        success:function(data){
+        	
+        }
     });
 });
 </script>

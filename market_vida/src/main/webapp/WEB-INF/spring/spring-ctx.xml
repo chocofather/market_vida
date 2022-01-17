@@ -35,11 +35,11 @@
 		<mvc:jsp prefix="/views/" suffix=".jsp"/>
 	</mvc:view-resolvers>
 	<!-- navermail설정 -->
-	<!-- 
+	
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
      <property name="host" value="smtp.naver.com"/> 
      <property name="port" value="465"/> 
-     <property name="username" value="your_email"/> <
+     <property name="username" value="your_email"/> 
      <property name="password" value="your_password"/> 
       
      <property name="javaMailProperties">
@@ -53,5 +53,5 @@
       </props>
      </property>
     </bean>
-	 -->
+	
 </beans>

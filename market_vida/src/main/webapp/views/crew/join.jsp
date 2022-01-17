@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/join.css" rel="stylesheet"
+<link href="${path}/resources/css/join.css?v=1.1" rel="stylesheet"
 	type="text/css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,19 +21,18 @@
 			<p class="icon_txt">
 				<span class="icon">*</span>필수입력사항
 			</p>
-			<form class="join_form" action="join.do" method="post">
+			<form class="join_form" method="post">
 				<table class="join_table">
 					<tbody>
 						<tr>
 							<th>아이디 <span class="icon"> * <span
 									class="screen_out">필수항목</span>
 							</span>
-							</th>	
-							<td><input type="text" class="crew_id" name="crew_id" 
+							</th>
+							<td><input type="text" class="crew_id" name="crew_id"
 								maxlength="16" label="아이디" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
-								<input type="hidden" name="check_id"> 
-								<button type="button"
-								class="btn_check" onclick="id_check();">중복확인</button>
+								<input type="hidden" name="check_id">
+								<button type="button" class="btn_check" onclick="id_check();">중복확인</button>
 								<div class="alert_container">
 									<span class="alert_point01">·</span> <span class="alert01">6자
 										이상의 영문 혹은 영문과 숫자를 조합</span> <br> <span class="alert_point02">·</span>
@@ -105,8 +104,8 @@
 									<span class="addr_search_txt"> 주소 검색 </span>
 							</a> <input id="crew_post" type="text" placeholder="우편번호" readonly>
 								<input id="research_addr" type="button" value="재검색"
-								onclick="findAddr()"> <input id="crew_addr"
-								type="text" placeholder="주소" readonly> <br> <input
+								onclick="findAddr()"> <input id="crew_addr" type="text"
+								placeholder="주소" readonly> <br> <input
 								id="detail_addr" type="text" placeholder="상세주소를 입력해주세요">
 							</td>
 						</tr>
@@ -114,9 +113,9 @@
 							<th>성별</th>
 
 							<td><label class="gender_label"> <input
-									class="gender_input" type="radio" name="gender" value="m">
+									class="crew_gender" type="radio" name="gender" value="m">
 									<span class="gender"></span> 남자
-							</label> <label class="gender_label"> <input class="gender_input"
+							</label> <label class="gender_label"> <input class="crew_gender"
 									type="radio" name="gender" value="w"> <span
 									class="gender"></span> 여자
 							</label></td>
@@ -196,7 +195,7 @@
 				</table>
 
 				<div id="join_submit">
-					<button type="button" class="joinBtn">가입하기</button>
+					<input type="button" class="joinBtn" value="가입하기">
 				</div>
 			</form>
 		</div>
@@ -281,7 +280,7 @@
 							<td>이용자 식별 및 본인여부</td>
 							<td rowspan="4">이름, 아이디, 비밀번호, 휴대폰번호, 이메일, 주소</td>
 							<td rowspan="4" class="emph">회원 탈퇴 <br>즉시 파기 <br>
-							<br>부정이용 방지를 위하여 30일 동안 보관 (아이디, 휴대폰 번호) 후 파기
+								<br>부정이용 방지를 위하여 30일 동안 보관 (아이디, 휴대폰 번호) 후 파기
 							</td>
 						</tr>
 						<tr>
@@ -343,63 +342,88 @@
 		</div>
 	</div>
 	<script>
-	$(document).ready(function() {
-		$("joinBtn").unbind("click").click(function(e) {
-			e.preventDefault();
-			$('.join_form').submit();
-			signUp();
+	 /* 유효성 검사 통과유무 변수 */
+	 var idCheck = false;			// 아이디
+	 var idckCheck = false;			// 아이디 중복 검사
+	 var pwCheck = false;			// 비번
+	 var pwckCheck = false;			// 비번 확인
+	 var pwckcorCheck = false;		// 비번 확인 일치 확인
+	 var nameCheck = false;			// 이름
+	 var mailCheck = false;			// 이메일
+	 var phoneCheck = false;
+	 var mailnumCheck = false;		// 이메일 인증번호 확인
+	 var addressCheck = false 		// 주소
+	$(document).ready(function(){
+		//회원가입 버튼(회원가입 기능 작동)
+		$(".joinBtn").click(function(){
+			
+			/* 입력값 변수 */
+			var id = $('.crew_id').val(); 				// id 입력란
+			var pw = $('.crew_pw').val();				// 비밀번호 입력란
+			var pwck = $('.crew_pw_check').val();			// 비밀번호 확인 입력란
+			var name = $('.crew_name').val();			// 이름 입력란
+			var mail = $('.crew_email').val();			// 이메일 입력란
+			var phone = $('.crew_phone').val();
+			var addr = $('#detail_addr').val();
+			
+			/* 아이디 유효성검사 */
+			if(id == ""){
+				idCheck = false;
+			}else {		
+				idCheck = true;
+			}		
+			/* 비밀번호 유효성 검사 */
+			if(pw == ""){	
+				pwCheck = false;
+			}else{
+				pwCheck = true;
+			}
+			
+			/* 비밀번호 확인 유효성 검사 */
+			if(pwck == ""){	
+				pwckCheck = false;
+			}else{
+				pwckCheck = true;
+			}
+			/* 이름 유효성 검사 */
+			if(name == ""){
+				nameCheck = false;
+			}else{
+				
+				nameCheck = true;
+			}		
+			
+			/* 이메일 유효성 검사 */
+			if(mail == ""){
+				mailCheck = false;
+			}else{
+				
+				mailCheck = true;
+			}		
+			if(phone == ""){
+				
+				phoneCheck = false;
+			}else{
+				phoneCheck = true;
+			}	
+			/* 주소 유효성 검사 */
+			if(addr == ""){		
+				addressCheck = false;
+			}else{
+				addressCheck = true;
+			}		
+			
+			/* 최종 유효성 검사 */
+			if(idCheck&&pwCheck&&nameCheck&&mailCheck&&addressCheck&&phoneCheck ){
+				console.log("test");
+				$(".join_form").attr("action", "join");
+				$(".join_form").submit();			
+				
+			}		
+			
+			return false;
 		});
-	});   
-	function signup(){
-		if ($(".crew_id").val().length < 1) {
-			alert("아이디를 입력해주세요.");
-			$(".crew_id").focus();
-		} else if ($(".crew_name").val().length < 1) {
-			alert("이름을 입력해주세요.");
-			$(".crew_name").focus();
-		} else if ($(".crew_pw").val().length < 1) {
-			alert("사용하실 비밀번호를 입력해주세요.");
-			$(".crew_pw").focus();
-		} else if ($(".crew_pw").val().length < 1) {
-			alert("사용하실 비밀번호를 입력해주세요.");
-			$(".crew_pw").focus();
-		} else if ($(".crew_pw_check").val() != '1') {
-			alert("비밀번호를 확인해주세요.");
-			$(".crew_pw_check").focus();
-		} else if (($("#crew_addr").val().length < 1)
-				|| ($("#detail_addr").val().length < 1)) {
-			alert("주소를 입력해주세요.");
-			$("#MEMBER_ADDR2").focus();
-		} else if (($("#MEMBER_BIRTH option:selected").val().length < 1)
-				|| ($("#MEMBER_BIRTH2 option:selected").val().length < 1)
-				|| ($("#MEMBER_BIRTH3 option:selected").val().length < 1)) {
-			alert("출생년도를 확인해주세요.");
-			$("#MEMBER_BIRTH").focus();
-		} else if ($(".crew_phone").val().length < 1) {
-			alert("전화번호를 입력해주세요.");
-			$(".crew_phone").focus();
-		} else if ($(".crew_email").val().length < 1) {
-			alert("이메일을 입력해주세요.");
-			$(".crew_email").focus();
-		} else if ($("#isCheck").val() != '1') {
-			alert("사용 불가능한 아이디 입니다.");
-			$("#MEMBER_ID").focus();
-		} else if ($("#isEmailAuth").val() != '1') {
-			alert("이메일 인증을 해주세요.");
-			$("#isCheck_Email").focus();
-		} else if (!$("#check1").is(":checked")) {
-			alert("서비스 이용약관에 동의 해주세요.");
-			$("#check1").focus();
-		} else if (!$("#check2").is(":checked")) {
-			alert("개인정보 수집에 동의 해주세요.");
-			$("#check2").focus();
-		} else if (!$("#check3").is(":checked")) {
-			alert("만 14세 이상 여부에 동의 해주세요.");
-			$("#check3").focus();
-		} else {
-			$('.join_form').submit();
-		}
-	}
+	});
 	
 	function id_check(){
 			id = $(".crew_id").val();
@@ -432,18 +456,21 @@
                 $('.alert01').css("color","red"); 
                 return false;
             }
-            if (id.search(/₩s/) != -1) {
+            else if (id.search(/₩s/) != -1) {
                 $('.alert01').css("color","red");   
                 return false;
             }
             
-            if (spe > 0 || korean > 0) {
+            else if (spe > 0 || korean > 0) {
                 $('.alert01').css("color","red");
                 return false;    
             }
-                $('.alert01').css("color","blue");
+            else{
+            	$('.alert01').css("color","blue");
+            	 return false;
+            }
             
-            return false;
+      
 		});
     });
     

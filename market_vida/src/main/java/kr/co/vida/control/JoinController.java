@@ -21,7 +21,7 @@ public class JoinController {
 	@Autowired
 	JoinServiceImpl joinservice;
 	
-	// 회원가입
+	// 회원가입 페이지 이동
 	@GetMapping("crew/join")
 	public ModelAndView joinPage() {
 		ModelAndView mv = new ModelAndView("crew/join");
@@ -43,8 +43,7 @@ public class JoinController {
 		 private String crew_birth;
 		 */
 		joinservice.register(crdto);
-		mv.setViewName("crew/join.do");
-		mv.addObject("crew_name", crdto.getCrew_name());
+		mv.setViewName("/main/main");
 		return mv;
 		
 	}
