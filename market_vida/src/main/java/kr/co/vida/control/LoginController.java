@@ -42,7 +42,7 @@ public class LoginController {
 			session.setAttribute("crew_id", crdto.getCrew_id());
 			session.setAttribute("crew_no", crdto.getCrew_no());
 			session.setAttribute("crew_name", crdto.getCrew_name());
-			mv = new ModelAndView("redirect:testmain");
+			mv = new ModelAndView("redirect:/main/main");
 			mv.addObject("CREW",crdto);
 			
 			session.getMaxInactiveInterval();
@@ -79,7 +79,7 @@ public class LoginController {
 			session.setAttribute("crew_id", crdto.getCrew_id());
 			session.setAttribute("crew_no", crdto.getCrew_no());
 			session.setAttribute("crew_name", crdto.getCrew_name());
-			mv = new ModelAndView("redirect:testmain");
+			mv = new ModelAndView("redirect:/main/main");
 			mv.addObject("CREW",crdto);
 			
 			session.getMaxInactiveInterval();
@@ -96,17 +96,18 @@ public class LoginController {
 	}
 
 	
+	
 	/*
-	// 로그아웃
-	@PostMapping("crew/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		
-		if(session !=null) session.invalidate();
-		
-		return "redirect:crew/login";
-	}
-	*/
+	 * // 로그아웃
+	 * 
+	 * @PostMapping("crew/logout") public String logout(HttpServletRequest request)
+	 * { HttpSession session = request.getSession(false);
+	 * 
+	 * if(session !=null) session.invalidate();
+	 * 
+	 * return "redirect:/main/main"; }
+	 */
+	
 	/*
 	// 회원가입
 	@RequestMapping(value="/register", method = RequestMethod.GET)
