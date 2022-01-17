@@ -39,11 +39,19 @@ public class LoginController {
 		int crew_count = crewservice.loginCheck(crdto,session);
 		ModelAndView mv = new ModelAndView();	
 		if(crew_count > 0) {
-			mv.setViewName("crew/testmain");
+			mv.setViewName("main/main");
+			crdto = crewservice.selectAll_id(crdto.getCrew_id());
+			
 			session.setAttribute("crew_id", crdto.getCrew_id());
-			session.setAttribute("crew_no", crdto.getCrew_no());
 			session.setAttribute("crew_name", crdto.getCrew_name());
-			mv = new ModelAndView("redirect:/main/main");
+			session.setAttribute("crew_no", crdto.getCrew_no());
+			session.setAttribute("crew_email", crdto.getCrew_email());
+			session.setAttribute("crew_phone", crdto.getCrew_name());
+			session.setAttribute("grade", crdto.getGrade());
+			session.setAttribute("crew_gender", crdto.getCrew_gender());
+			session.setAttribute("crew_birth", crdto.getCrew_birth());
+			
+			mv = new ModelAndView("redirect:main/main");
 			mv.addObject("CREW",crdto);
 			
 			session.getMaxInactiveInterval();
@@ -107,7 +115,7 @@ public class LoginController {
 			session.setAttribute("crew_id", crdto.getCrew_id());
 			session.setAttribute("crew_no", crdto.getCrew_no());
 			session.setAttribute("crew_name", crdto.getCrew_name());
-			mv = new ModelAndView("redirect:testmain");
+			mv = new ModelAndView("redirect:/main/main");
 			mv.addObject("CREW",crdto);
 			
 			session.getMaxInactiveInterval();
@@ -124,17 +132,18 @@ public class LoginController {
 	}
 
 	
+	
 	/*
-	// 로그아웃
-	@PostMapping("crew/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		
-		if(session !=null) session.invalidate();
-		
-		return "redirect:crew/login";
-	}
-	*/
+	 * // 로그아웃
+	 * 
+	 * @PostMapping("crew/logout") public String logout(HttpServletRequest request)
+	 * { HttpSession session = request.getSession(false);
+	 * 
+	 * if(session !=null) session.invalidate();
+	 * 
+	 * return "redirect:/main/main"; }
+	 */
+	
 	/*
 	// 회원가입
 	@RequestMapping(value="/register", method = RequestMethod.GET)

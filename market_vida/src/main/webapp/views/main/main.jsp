@@ -14,16 +14,27 @@
 <body>
 <div class="container">
         <header>
+        <c:if test="${crew_id !=null }">
             <ul>
                 <li><a href="#">고객센터</a></li>
-                <li><a href="./crew/login">로그인</a></li>
+                <li><a href="../crew/logout">로그아웃</a></li>
+                <li><a href="../mypage/main">${crew_id}님 환영합니다</a></li>
+            </ul>
+            </c:if>
+            <c:if test="${empty crew_id }">
+           	<ul>
+                <li><a href="#">고객센터</a></li>
+                <li><a href="../crew/login">로그인</a></li>
                 <li><a href="#">회원가입</a></li>
             </ul>
+            </c:if>
+            <c:if test="${crew_id !=null }">
             <ul>
             	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
             	<li><a href="../mypage/myMileage">적립금</a></li>  	
             	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li>
             </ul>
+            </c:if>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
         </header>
         <nav>
