@@ -35,6 +35,14 @@ public class ImgDAO implements Dao<ImgDTO> {
 		return ss.selectList("kr.co.vida.img.getGoodsImgs", no);
 	}
 	
+	public int getTotalbyMainCode(int no) {
+		return ss.selectOne("kr.co.vida.img.getTotalbyMainCode", no);
+	}
+	
+	public int getTotalbySubCode(int no) {
+		return ss.selectOne("kr.co.vida.img.getTotalbySubCode", no );
+	}
+	
 	@Override
 	public List<ImgDTO> getListAll() {
 		return null;

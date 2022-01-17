@@ -28,7 +28,7 @@ public class PageUtil {
 		// 다음
 		boolean next = currentPage+5 >= totalPage ? false:true;
 		
-		// 맵객체에 담기
+		// 맵객체에 담기  
 		map.put("totalPage" , totalPage);
 		map.put("startNo" , startNo);
 		map.put("endNo" , endNo);
