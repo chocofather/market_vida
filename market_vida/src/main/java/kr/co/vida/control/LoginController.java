@@ -39,14 +39,11 @@ public class LoginController {
 		int crew_count = crewservice.loginCheck(crdto,session);
 		ModelAndView mv = new ModelAndView();	
 		if(crew_count > 0) {
-			mv.setViewName("main/main");
+			mv.setViewName("crew/testmain");
 			session.setAttribute("crew_id", crdto.getCrew_id());
-			crewservice.selectAll_id(crdto.getCrew_id());
-			
-			
 			session.setAttribute("crew_no", crdto.getCrew_no());
 			session.setAttribute("crew_name", crdto.getCrew_name());
-			mv = new ModelAndView("redirect:main/main");
+			mv = new ModelAndView("redirect:/main/main");
 			mv.addObject("CREW",crdto);
 			
 			session.getMaxInactiveInterval();
@@ -57,6 +54,7 @@ public class LoginController {
 		return mv;
 	}
 	
+
 	// 로그아웃
 	@RequestMapping("crew/logout")
 	public String logout(HttpServletRequest request) {
