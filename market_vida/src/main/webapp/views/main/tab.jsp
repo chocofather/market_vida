@@ -50,17 +50,12 @@
 </style>
 <script>
 $(document).ready(function () {
-    $('.tab_title li').removeClass('on');
-    $('.tab_title li').first().addClass('on');
-
     var $tablink = $('.tab_title li').click(function () {
         var idx = $tablink.index(this);
         $('.tab_title li').removeClass('on');
         $('.tab_title li').eq(idx).addClass('on');
         $('.tab_content > div').hide();
         $('.tab_content > div').eq(idx).show();
-        
-        
     	})
     })
     

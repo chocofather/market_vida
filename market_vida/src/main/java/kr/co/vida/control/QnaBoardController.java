@@ -62,6 +62,6 @@ public class QnaBoardController {
 	
 	@GetMapping("board/main")
 	public String main() {
-		return "redirect:/main";
+		return "redirect:/main/main";
 	}
 }

@@ -14,6 +14,7 @@ import kr.co.vida.service.MainCatImple;
 import kr.co.vida.service.OrdersImple;
 
 @Controller
+@RequestMapping("/main")
 public class MainController {
 	
 	
@@ -32,7 +33,7 @@ public class MainController {
 	@RequestMapping("/benefit")
 	public String benefit(Model model) {
 		model.addAttribute("list",fbService.selectAllList());
-		return "/main/tab";
+		return "/main/friendsBenefit";
 	}
 	
 	@GetMapping("/detail")
