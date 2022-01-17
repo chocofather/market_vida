@@ -24,7 +24,9 @@ public class LoginController {
 
 	@Autowired
 	LoginServiceImpl crewservice;
-
+	
+	// MailSendService mss;
+	
 	// 로그인
 	@GetMapping("crew/login")
 	public ModelAndView loginPage() {
@@ -60,6 +62,25 @@ public class LoginController {
 
 		return mv;
 	}
+	// 이메일 인증
+	@RequestMapping("crew/signUp")
+	public void signUp(@ModelAttribute CrewDTO crdto){
+	        // DB에 기본정보 insert
+	       // crewservice.signUp(crdto);
+
+	        //임의의 authKey 생성 & 이메일 발송
+	       // String authKey = mss.sendAuthMail(crdto.getEmail());
+	        //memberDTO.setAuthKey(authKey);
+
+	        //Map<String, String> map = new HashMap<String, String>();
+	       // map.put("email", memberDTO.getEmail());
+	       // map.put("authKey", memberDTO.getAuthKey());
+	        System.out.println(map);
+
+	      //DB에 authKey 업데이트
+	      //memberService.updateAuthKey(map);
+
+	  	}
 	
 	// 소셜로그인
 	@PostMapping("crew/kakao_login_form")

@@ -347,7 +347,7 @@
 		$("joinBtn").unbind("click").click(function(e) {
 			e.preventDefault();
 			$('.join_form').submit();
-			//signUp();
+			signUp();
 		});
 	});   
 	function signup(){
