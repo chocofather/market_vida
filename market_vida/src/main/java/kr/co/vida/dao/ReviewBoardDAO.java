@@ -1,6 +1,7 @@
 package kr.co.vida.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,10 @@ public class ReviewBoardDAO implements Dao<ReviewBoardDTO> {
 	
 	public int getTotal() {
 		return ss.selectOne("kr.co.vida.reviewBoard.getTotal");
+	}
+	
+	public ReviewBoardDTO reviewOne(int no) {
+		return ss.selectOne("kr.co.vida.reviewBoard.selectReview", no);
 	}
 
 }

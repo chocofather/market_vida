@@ -48,6 +48,9 @@ public class JoinController {
 		return mv;
 		
 	}
+	
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "crew/idcheck", method = RequestMethod.POST)
 	public int idCheck(String crew_id) {
