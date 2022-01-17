@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MailAuthConfiguration {
+	/*
 	@Bean(name="mailSender")
 	public JavaMailSender getJavaMailSender() {
 		Properties properties = new Properties(); 
@@ -25,4 +26,5 @@ public class MailAuthConfiguration {
 		return mailSender;
 		
 	}
+	*/
 }

@@ -34,14 +34,14 @@
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/views/" suffix=".jsp"/>
 	</mvc:view-resolvers>
-	
 	<!-- navermail설정 -->
+	<!-- 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
-     <property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
-     <property name="port" value="465"/> <!-- 메이서버 포트번호 -->
-     <property name="username" value="your_email"/> <!-- 자신의 이메일 아이디 -->
-     <property name="password" value="your_password"/> <!-- 자신의 비밀번호 -->
-       <!-- 보안연결 SSL과 관련된 설정 -->
+     <property name="host" value="smtp.naver.com"/> 
+     <property name="port" value="465"/> 
+     <property name="username" value="your_email"/> <
+     <property name="password" value="your_password"/> 
+      
      <property name="javaMailProperties">
       <props>
       <prop key="mail.smtp.auth">true</prop>
@@ -53,5 +53,5 @@
       </props>
      </property>
     </bean>
-
+	 -->
 </beans>
