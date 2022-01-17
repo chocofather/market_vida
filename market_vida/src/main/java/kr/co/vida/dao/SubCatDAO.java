@@ -15,7 +15,7 @@ public class SubCatDAO implements Dao<SubCatDTO> {
 	SqlSession ss;
 	
 	public List<SubCatDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.getListAll", no);
+		return ss.selectList("kr.co.vida.subCat.getListAll", no);
 	}
 
 	@Override
@@ -26,8 +26,7 @@ public class SubCatDAO implements Dao<SubCatDTO> {
 
 	@Override
 	public SubCatDTO getOne(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("kr.co.vida.subCat.getOne", no);
 	}
 
 	@Override

@@ -21,6 +21,7 @@ public class GoodsDTO {
 	private int sub_cat_code;
 	private int project_status;
 	private int sales_amt;
+	private String add_date;
 	
 	
 

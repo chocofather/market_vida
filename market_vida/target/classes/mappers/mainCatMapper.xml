@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="kr.co.vida.mainCatcode">
+  	<select id="selectAll" resultType="mainCatDto">
+  		SELECT main_cat_code, main_cat_name
+  		FROM main_category
+  		ORDER BY main_cat_code asc
+  	</select>
+  	<select id="selectOne" resultType="mainCatDto" parameterType="int">
+  		SELECT main_cat_code, main_cat_name
+  		FROM main_category
+  		WHERE main_cat_code = #{main_cat_code}
+  	</select>
+  
+  </mapper>

@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="kr.co.vida">
+  <mapper namespace="kr.co.vida.goods">
   	<select id="getOne" parameterType="int" resultType="goodsDto">
   		SELECT goods_no, goods_name, qty, goods_price, discount_rate, stock, package_type,
-  				origin, goods_info, sub_cat_code, project_status, sales_amt
+  				origin, goods_info, sub_cat_code, project_status, sales_amt, add_date
   		FROM goods
   		WHERE goods_no = #{goods_no}
   	</select>
@@ -14,7 +14,24 @@
   	<insert id="insertOne" parameterType="goodsDto">
   		INSERT INTO goods VALUES (goods_no_seq.nextval , #{goods_name} , #{qty} , 
   		#{goods_price} , #{discount_rate} , #{stock} , #{package_type} , 
-  		#{origin} , #{goods_info} , #{sub_cat_code} , #{project_status} , 0 )
+  		#{origin} , #{goods_info} , #{sub_cat_code} , #{project_status} , 0 ,sysdate)
   	</insert>
+  	
+  	<delete id="deleteOne" parameterType="int">
+  		DELETE goods
+  		WHERE goods_no = #{goods_no}
+  	</delete>
+  	<select id="getTotal" parameterType="int" resultType="int">
+  		SELECT count(*)
+  		FROM goods
+  		<where>
+  			<if test="cat_code != null and (cat_code/100) ==0 ">
+		  		main_cat_code = #{main_cat_code}
+  			</if>
+  			<if test="cat_code !=null and (cat_code/100) !=0">
+  				sub_cat_code = #{sub_cat_code}
+  			</if>
+  		</where>
+  	</select>
 
   </mapper>

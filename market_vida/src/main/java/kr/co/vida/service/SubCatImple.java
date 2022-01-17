@@ -30,7 +30,7 @@ public class SubCatImple implements VidaService<SubCatDTO>{
 	@Override
 	public SubCatDTO selectOne(int no) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getOne(no);
 	}
 
 	@Override

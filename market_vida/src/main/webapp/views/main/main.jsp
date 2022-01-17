@@ -21,10 +21,8 @@
             </ul>
             <ul>
             	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
-            	<li><a href="../mypage/myMileage">적립금</a></li>
-            	<c:forEach var="dto" end="0" items="${orderlist}">
-            	<li><a href="../mypage/reviewDetail?crew_no=${dto.crew_no}">후기</a></li>
-            	</c:forEach>
+            	<li><a href="../mypage/myMileage">적립금</a></li>  	
+            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li>
             </ul>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
         </header>
@@ -49,17 +47,9 @@
         </nav>
         <div class="sub_menu">
             <ul class="inner">
-                <li><a href="#">채소</a></li>
-                <li><a href="#">과일&middot;견과&middot;쌀</a></li>
-                <li><a href="#">수산&middot;해산&middot;건어물</a></li>
-                <li><a href="#">정육&middot;계란</a></li>
-                <li><a href="#">국&middot;반찬&middot;메인요리</a></li>
-                <li><a href="#">샐러드&middot;간편식</a></li>
-                <li><a href="#">면&middot;양념&middot;오일</a></li>
-                <li><a href="#">생수&middot;음료&middot;우유</a></li>
-                <li><a href="#">간식&middot;과자&middot;떡</a></li>
-                <li><a href="#">베이커리&middot;치즈&middot;델리</a></li>
-                <li><a href="#">비건</a></li>
+            <c:forEach var="mainCode" items="${mainCode }">
+                <li><a href="../goods/goodsList?cat_code=${ mainCode.main_cat_code}">${mainCode.main_cat_name }</a></li>
+            </c:forEach>
             </ul>
         </div>
         <div class="slide">

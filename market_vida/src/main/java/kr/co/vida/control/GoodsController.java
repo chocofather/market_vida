@@ -1,25 +1,28 @@
 package kr.co.vida.control;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.vida.dto.GoodsDTO;
+import kr.co.vida.dto.PageUtil;
+import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.ImgListImple;
 import kr.co.vida.service.SubCatImple;
 import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @Controller
@@ -36,50 +39,67 @@ public class GoodsController {
 
 
 	@GetMapping("/goods/goodsList")
-	public String test(Model model) {
-	//	public String test(Model model, @RequestParam("main_cat_code")int main_cat_code) {
-	//	���ΰ� ���� �� ���
+	public String goodsList(@RequestParam("cat_code")int cat_code, 
+							@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
+							Model model) {
+		
+		// 총 게시물 수
+		int totalNumber = goodsService.getTotal(cat_code);
+		System.out.println(totalNumber);
+		
+		// 현재 페이지의 게시물 수 : 18
+		int countPerPage=18;
+		
+		Map<String, Object> map = PageUtil.getPageData(totalNumber, countPerPage, currentPage);
+		
+		model.addAttribute("map", map);
 		
 		
-		return null;
-	}
-	
-
-	@GetMapping("/goodsList")
-	public String goodsList(Model model) {
-	//	public String goodsList(Model model, @RequestParam("main_cat_code")int main_cat_code) {
-	//	���ΰ� ���� �� ���
 		
-		model.addAttribute("subDto", subService.getListAll(100));
-		model.addAttribute("imgDto", imgService.selectAllList(100));
-	
+		
+		log.info("subCode=====>"+cat_code);
+		
+		// 메인 코드 1개만 구하기
+		int forMainCode;	
+		if(cat_code%100==0) {
+			forMainCode = cat_code+1;
+		}else {
+			forMainCode = cat_code;
+		}
+		
+		// 카테고리 리스트 객체
+		SubCatDTO subDto = subService.selectOne(forMainCode);
+		model.addAttribute("mainCode", subDto);
+		model.addAttribute("subDtoList", subService.getListAll(subDto.getMain_cat_code()));
+		
+		// 상품 리스트 객체
+		if (cat_code %100==0) {
+			model.addAttribute("imgDto", imgService.selectAllList(cat_code));
+		}else {
+			model.addAttribute("imgDto", imgService.getListBySubCode(cat_code));
+		}
+		
 		return "/goods/goodsList";
-
 	}
 	
-	@PostMapping("/goods/goodsListAjax")
-	public @ResponseBody Map<String, Object> subCatGoodsList(@RequestParam("subCode")int subCode, Model model) {
-//		model.addAttribute("imgBySubCod", imgDao.getListBySubCode(subCode));
-		HashMap<String, Object> dataMap = new HashMap<String, Object>();
-		HashMap<String, Object> data = new HashMap<String, Object>();
-//		mav.addObject("imgBySubCod", imgDao.getListBySubCode(subCode));
-		dataMap.put("imgBySubCod", data);
-		return dataMap;
-	}
 	
-	@GetMapping(value = "/goodsListAjax", produces = MediaType.APPLICATION_JSON_VALUE)
+	// 상품 삭제
+	@RequestMapping("/goods/deleteGoods")
 	@ResponseBody
-	public Map<String, Object> subCatGoodsList(@RequestParam("subCode")int subCode) {
-
-		log.info("subCode=====>"+subCode);
+	public String deleteGoods(@RequestParam List<String> goods_no){
 		
-		HashMap<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("imgBySubCode", imgService.getListBySubCode(subCode));
+		for (String goodsNo:goods_no) {
+			//imgService.dropOne(Integer.parseInt(goodsNo));
+			goodsService.dropOne(Integer.parseInt(goodsNo));
+		}
 		
-		return dataMap;
+		return "success";
 	}
 	
-	@GetMapping("/goodsDetail")
+	
+	
+	// 상품 디테일 페이지 이동
+	@GetMapping("/goods/goodsDetail")
 	public String goodsDetail(@RequestParam("goods_no")int goods_no, Model model) {
 		
 		GoodsDTO goodsDto = goodsService.selectOne(goods_no);
@@ -91,11 +111,13 @@ public class GoodsController {
 	}
 	
 	
+	
 	@GetMapping("/admin/goodswrite")
 	public String writeForm() {
 		return "/admin/productRegister";
 	}
 
+	
 	@PostMapping("/admin/goodswrite")
 	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
 		goodsService.insertOne(dto);
@@ -103,3 +125,6 @@ public class GoodsController {
 	}
 
 }
+		
+
+

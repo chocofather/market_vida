@@ -28,8 +28,8 @@
   	</update>
   	
   	<insert id="insertOne" parameterType="rbdto">
-  		INSERT INTO review_board
-  		VALUES ( review_no_seq.nextval , #{review_title} , #{review_contents} , sysdate , #{goods_no} , #{crew_id} , 0 , #{review_img} , #{crew_no}, #{order_no})
+  		INSERT INTO review_board (review_no , review_title , review_contents , review_date , goods_no , review_liked , review_img , crew_no , order_no )
+  		VALUES ( review_no_seq.nextval , #{review_title} , #{review_contents} , sysdate , #{goods_no} , 0 , #{review_img} , #{crew_no}, #{order_no})
   	</insert>
   
   	<delete id="deleteOne" parameterType="int">
@@ -41,5 +41,17 @@
   		SELECT COUNT(*) total
   		FROM review_board
   	</select>
-  
+  	
+  	<select id="selectReviewMap" parameterType="int" resultType="map">
+  		SELECT review_no , review_title , review_contents , review_date , goods_no , crew_id , review_liked , review_img , crew_no , order_no
+  		FROM review_board
+  		WHERE crew_no = #{crew_no}
+  	</select>
+  	
+  	<select id="selectReview" parameterType="int" resultType="rbdto">
+  		SELECT review_no , review_title , review_contents , TO_CHAR( review_date , 'YYYY.MM.DD') review_date , goods_no , crew_id , review_liked , review_img , crew_no , order_no
+  		FROM review_board
+  		WHERE review_no = #{review_no}
+  	</select>
+  	
 </mapper>
