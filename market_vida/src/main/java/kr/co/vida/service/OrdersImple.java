@@ -25,7 +25,7 @@ public class OrdersImple implements VidaService<OrdersDTO>{
 
 	@Override
 	public OrdersDTO selectOne(int no) {
-		return null;
+		return dao.getOne(no);
 	}
 
 	@Override
@@ -50,5 +50,8 @@ public class OrdersImple implements VidaService<OrdersDTO>{
 		return dao.getListAll(no);
 	}
 
+	public OrdersDTO selectAllList(int crew_no , int goods_no , int order_no ) {
+		return dao.getDetail(crew_no, goods_no, order_no);
+	}
 	
 }

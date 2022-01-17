@@ -1,0 +1,92 @@
+@charset "UTF-8";
+body{
+    margin: 0 auto;
+}
+#container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 640px;
+    padding: 0 10px 6px 10px;
+}
+#find_id_form{
+    letter-spacing: 0;
+    width: 400px;
+}
+#find_id_form > h1{
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 36px;
+}
+#find_id_form > h2{
+    text-align: center;
+    font-size: 20px;
+    color: #006f00;
+    font-weight: 400;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.find_container{
+    display: flex;
+    flex-direction: column;
+    font-weight: 800;
+    font-size: 18px;
+}
+.find_container > label{
+    padding: 18px 2px;
+}
+
+.find_id_border{
+    position: relative;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.find_id_border > input{
+    width: 90%;
+    height: 46px;
+    padding: 0 11px 1px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+}
+.find_id_border > input::placeholder{
+    color:#ddd
+}
+.findidBtn{
+    margin-top: 30px;
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 58px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #006f00;
+    border: 0 none;
+    font-size: 16px;
+}
+.findidBtn[disabled] {
+    cursor: default;
+    background-color: #8bbb8b;
+}
+.find_id_border > input:focus{
+    outline: 2px solid #1b1a1a;
+}
+.findidBtn:hover{
+    cursor: pointer;
+}
+.findidBtn[disabled]:hover{
+    cursor: default;
+}
+

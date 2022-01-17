@@ -16,15 +16,13 @@
         <header>
             <ul>
                 <li><a href="#">고객센터</a></li>
-                <li><a href="#">로그인</a></li>
+                <li><a href="./crew/login">로그인</a></li>
                 <li><a href="#">회원가입</a></li>
             </ul>
             <ul>
-            	<li><a href="./mypage/myCoupon">쿠폰함</a></li>
-            	<li><a href="./mypage/myMileage">적립금</a></li>
-            	<c:forEach var="dto" end="0" items="${orderlist}">
-            	<li><a href="./mypage/reviewDetail?crew_no=${dto.crew_no}">후기</a></li>
-            	</c:forEach>
+            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
+            	<li><a href="../mypage/myMileage">적립금</a></li>  	
+            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li>
             </ul>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
         </header>
