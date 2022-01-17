@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,9 +48,21 @@ public class JoinController {
 		return mv;
 		
 	}
-	@ResponseBody
+	// 아이디 중복 검사
 	@RequestMapping(value = "crew/idcheck", method = RequestMethod.POST)
-	public int idCheck(String crew_id) {
-		return joinservice.idcheck(crew_id);
-	}
+	@ResponseBody
+	public int crewIdcheck(String crew_id) throws Exception{			
+		int result = joinservice.idcheck(crew_id);
+		System.out.println(result);
+			return result;			
+	} 
+	
+	// 이메일 중복 검사
+	@RequestMapping(value = "crew/emailcheck", method = RequestMethod.POST)
+	@ResponseBody
+	public int crewEmailcheck(String crew_email) throws Exception{			
+			int result = joinservice.emailcheck(crew_email);
+			return result;			
+	} 
+	
 }
