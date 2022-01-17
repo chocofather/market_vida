@@ -2,6 +2,7 @@ package kr.co.vida.dao;
 
 import java.util.List;
 
+
 public interface Dao<T> {
 	public List<T> getListAll();
 	public T getOne(int no);
