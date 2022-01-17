@@ -25,3 +25,5 @@
 	</table>
 </div>
 
+<input type="button" value="문의하기" />
+
