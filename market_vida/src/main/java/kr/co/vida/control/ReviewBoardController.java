@@ -14,21 +14,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.vida.dto.CouponDTO;
 import kr.co.vida.dto.PageUtil;
 import kr.co.vida.dto.ReviewBoardDTO;
+import kr.co.vida.service.OrdersImple;
 import kr.co.vida.service.ReviewBoardImple;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("/mypage")
 public class ReviewBoardController {
 	
 	@Autowired
 	ReviewBoardImple service;
 	
-	@RequestMapping("/mypage/myReviewAfter")
-	public ModelAndView list(Model model, @RequestParam(name = "currentPage", defaultValue = "1") int currentPage) {
+	@Autowired
+	OrdersImple ordersservice;
+	
+	@RequestMapping("/myReviewAfter")
+	public ModelAndView list(Model model, @RequestParam(name = "currentPage", defaultValue = "1") int currentPage, @RequestParam("crew_no") int crew_no) {
 
 		int totalNumber = service.getTotal();
 	
@@ -42,41 +46,47 @@ public class ReviewBoardController {
 		int startNo = (int) map.get("startNo");
 		int endNo = (int) map.get("endNo");	
 		
-		return new ModelAndView("/mypage/myReviewAfter", "list", service.selectAllList(no, startNo, endNo));
+		ReviewBoardDTO dto = service.selectOne(crew_no);
+		
+		model.addAttribute("dto", dto);
+		
+		return new ModelAndView("/mypage/myReviewAfter", "reviewlist", service.selectAllList(no, startNo, endNo));
 	}
 	
-	@GetMapping("/mypage/reviewWrite")
-	public String writeForm() {
+	@GetMapping("/reviewWrite")
+	public String writeForm(@RequestParam("crew_no")int crew_no , Model model , HttpServletRequest req) {
+		
+		String goods = req.getParameter("goods_no");
+		String order = req.getParameter("order_no");
+		
+		int goods_no = Integer.parseInt(goods);
+		int order_no = Integer.parseInt(order);
+
+		model.addAttribute("dto",ordersservice.selectAllList(crew_no, goods_no, order_no));
+		
 		return "/mypage/reviewWriteForm";
 	}
 
-	@PostMapping("/mypage/reviewWrite")
+	@PostMapping("/reviewWrite")
 	public String writeFormOk(@ModelAttribute("dto") ReviewBoardDTO dto, HttpServletRequest req) {
 		service.insertOne(dto);
 		return "redirect:/mypage/myReviewAfter";
 	}
 	
-	@RequestMapping("/reviewDetail")
-	public String detail(@RequestParam("crew_no") int crew_no, Model model) {
-		ReviewBoardDTO dto = service.selectOne(crew_no);
-		model.addAttribute("dto", dto);
-		return "/mypage/reviewDetail";
-	}
-	
 	@GetMapping("/reviewModify")
 	public String modifyFrom(@RequestParam("review_no") int review_no, Model model) {
-		ReviewBoardDTO dto = service.selectOne(review_no);
+		ReviewBoardDTO dto = service.review(review_no);
 		model.addAttribute("dto", dto);
 		return "/mypage/reviewModifyForm";
 	}
 
-	@PostMapping("/mypage/reviewModify")
+	@PostMapping("/reviewModify")
 	public String modifyOk(@ModelAttribute("dto") ReviewBoardDTO dto) {
 		service.updateOne(dto);
 		return "redirect:/mypage/myReviewAfter";
 	}
 	
-	@GetMapping("/mypage/reviewDelete")
+	@GetMapping("/reviewDelete")
 	public String deleteOne(@RequestParam("review_no") int review_no) {
 		service.dropOne(review_no);
 		return "redirect:/mypage/myReviewAfter";

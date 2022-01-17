@@ -5,7 +5,7 @@
   
 <mapper namespace="kr.co.vida.orders">
 	<select id="selectOrderAll" resultType="orderdto" parameterType="int">
-		SELECT order_no , goods_no , order_price , delivery , payment_date , order_status , card_no , crew_no , address_no , order_qty , goods_name , img_name
+		SELECT order_no , goods_no , order_price , delivery , TO_CHAR( payment_date , 'YYYY.MM.DD' ) payment_date , order_status , card_no , crew_no , address_no , order_qty , goods_name , img_name
 		FROM orders
 		WHERE crew_no = #{crew_no}
 	</select>
@@ -16,4 +16,13 @@
 		WHERE crew_no = #{crew_no}
 		AND payment_date BETWEEN payment_date and TO_CHAR(ADD_MONTHS(payment_date, 1))
 	</select>
+	
+	<select id="selectOrderDetail" resultType="orderdto" parameterType="int">
+		SELECT order_no , goods_no , order_price , delivery , TO_CHAR( payment_date , 'YYYY.MM.DD' ) payment_date , order_status , card_no , crew_no , address_no , order_qty , goods_name , img_name
+		FROM orders
+		WHERE crew_no = #{crew_no}
+		AND goods_no = #{goods_no}
+		AND order_no = #{order_no}
+	</select>
+	
 </mapper>

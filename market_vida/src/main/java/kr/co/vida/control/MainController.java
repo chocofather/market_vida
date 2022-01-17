@@ -17,8 +17,6 @@ import kr.co.vida.service.OrdersImple;
 @RequestMapping("/main")
 public class MainController {
 	
-	@Autowired
-	OrdersImple service;
 	
 	@Autowired
 	MainCatImple mainCodesvc;
@@ -28,7 +26,6 @@ public class MainController {
 	
 	@RequestMapping(value = {"/","/main"})
 	public String orderList(Model model) {
-		model.addAttribute("orderlist", service.selectAllList(1));
 		model.addAttribute("mainCode", mainCodesvc.selectAllList());
 		return "/main/main";
 	}

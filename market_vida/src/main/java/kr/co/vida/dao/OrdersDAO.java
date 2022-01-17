@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.CouponBoxDTO;
 import kr.co.vida.dto.CrewStartEnd;
+import kr.co.vida.dto.GoodsList;
 import kr.co.vida.dto.OrdersDTO;
 
 @Repository
@@ -27,7 +28,7 @@ public class OrdersDAO implements Dao<OrdersDTO> {
 
 	@Override
 	public OrdersDTO getOne(int no) {
-		return null;
+		return ss.selectOne("kr.co.vida.orders.selectOrderOne" , no);
 	}
 
 	@Override
@@ -49,8 +50,15 @@ public class OrdersDAO implements Dao<OrdersDTO> {
 	}
 	
 	public List<OrdersDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.orders.selectOrderOne" , no);
+		return ss.selectList("kr.co.vida.orders.selectOrderAll" , no);
 	}
 	
+	public OrdersDTO getDetail(int crew_no , int goods_no , int order_no) {
+		
+		GoodsList list = new GoodsList(crew_no, goods_no, order_no);
+		
+		return ss.selectOne("kr.co.vida.orders.selectOrderDetail", list);
+		
+	}
 
 }
