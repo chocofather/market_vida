@@ -6,20 +6,20 @@
  <mapper namespace="kr.co.vida.goodsQna">
  	<select id="getAll" resultType="gQnaDto">
  		SELECT goods_qna_no, goods_qna_title, goods_qna_contents, to_char(goods_qna_date, 'YYYY-MM-DD') goods_qna_date, goods_no,
- 				crew_id, crew_no, qna_lock, qna_status
+ 				crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
  		FROM goods_qna_board
  		ORDER BY goods_qna_date
  	</select>
  	<select id="getOne" resultType="gQnaDto" parameterType="int">
  		SELECT goods_qna_no, goods_qna_title, goods_qna_contents, goods_qna_date, goods_no,
- 				crew_id, crew_no, qna_lock, qna_status
+ 				crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
  		FROM goods_qna_board
  		WHERE goods_qna_no = #{goods_qna_no}
  	</select>
  	<insert id="insertOne" parameterType="gQnaDto">
  		INSERT INTO goods_qna_board
  		VALUES (goods_qna_no_seq.nextval, #{goods_qna_title}, #{goods_qna_contents}, sysdate, #{goods_no}, 
- 				#{crew_id}, #{crew_no}, #{qna_lock}, #{qna_status})
+ 				#{crew_id}, #{crew_no}, #{qna_lock}, #{qna_status}, null )
  	</insert>
  	<update id="updateOne" parameterType="gQnaDto">
  		UPDATE goods_qna_board

@@ -141,6 +141,10 @@
 		text-align: center;
 	}
 	
+	.tabsItems {
+		color: var(--font-color);
+	}
+	
 	.tabs {
 		display: flex;
 		flex-direction: row;
@@ -203,7 +207,7 @@
 		
 	}
 	
-	.desciption tr,td {
+	.desciption tr {
 		height: 40px;
 		border: 1.5px solid var(--base-color);
 		color: var(--font-color);
@@ -219,7 +223,38 @@
 	.qnaTable {
 	    width: 100%;
    		margin: 50px auto;
+   		border-collapse: collapse;
+	    border-left: hidden;
+	    border-right: hidden;
 	}
+	
+	.qnaTable tr th {
+	    height: 50px;
+	    border-top: 2px solid var(--font-color);
+	    border-bottom: 1px solid var(--font-color);
+	}
+	
+	.qnaTable .qna_row td {
+	    border-right: hidden;
+  		border-left: hidden;
+  		height: 45px;
+    	border-bottom: 1px solid var(--base-color);
+	}
+	
+	.qnaTable .goods_qna_contents {
+		display: none;
+	}
+	
+	.qnaTable .goods_qna_contents.active {
+		display: block;
+		border-bottom: hidden;
+	}
+	
+	.goods_qna_contents .question {
+		text-align: left;
+   		padding: 30px;
+	}
+
 	
 	.qnaBottom {
 		text-align: end;
@@ -348,7 +383,35 @@
 		addMyfavorite();	
 		chooseTab();
 		writeGoodsQna();
+		showQnaDetail();
+		
 	});
+	
+	
+	/* 문의 상세보기 */
+	function showQnaDetail(){
+		var qna_row = document.querySelectorAll('.qna_row');
+		var goods_qna_contents = document.querySelectorAll('.goods_qna_contents');
+		
+		console.dir(qna_row);
+		console.dir(goods_qna_contents);
+		
+		qna_row.forEach((row) => {
+			row.addEventListener('click', () =>{
+				
+				var qnaDetail = row.rowIndex+1;
+				goods_qna_contents.forEach((cont)=>{
+					if(cont.rowIndex==qnaDetail){
+							cont.className = 'goods_qna_contents active';
+					}else{
+							cont.className = 'goods_qna_contents';
+					}
+				});
+
+			});
+		});
+
+	}
 	
 	
 	/* 문의 모달창 */
@@ -582,21 +645,47 @@
 					
 					<div class="quaList">
 						<table class="qnaTable">
+							<colgroup>
+								<col style='width:60%'/>
+								<col style='width:15%'/>
+								<col style='width:15%'/>
+								<col style='width:10%'/>
+							</colgroup>
 							<tr>
-								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
+								<th>답변상태</th>
 							</tr>
 							<c:forEach var="goodsQnaDto" items="${goodsQnaDto }">
-							<tr>
-									<td>${goodsQnaDto.goods_qna_no }</td>
+							<tr class="qna_row">
 									<td>${goodsQnaDto.goods_qna_title }</td>
 									<td>${goodsQnaDto.crew_id }</td>
 									<td>${goodsQnaDto.goods_qna_date }</td>
+									<td>${goodsQnaDto.qna_status }</td>
+							</tr>
+							<tr class="goods_qna_contents" >
+								<td colspan="4">
+									<div class="question">${goodsQnaDto.goods_qna_contents }</div>
+									<c:choose>
+										<c:when test="${goodsQnaDto.goods_qna_answer != null }">
+											<div class="answer">${goodsQnaDto.goods_qna_answer }</div>
+											<input type="button" value="수정" />
+											<input type="button" value="답변 삭제" />
+										</c:when>
+										<c:when test="${goodsQnaDto.goods_qna_answer == null }">
+											<div class="answer">
+												<textarea name="goods_qna_answer" id="goods_qna_answer" cols="30" rows="10"></textarea>
+												<input type="button" value="지우기" />
+												<input type="button" value="답변등록" />
+											</div>
+										</c:when>
+									</c:choose>
+								</td>
 							</tr>
 							</c:forEach>
 						</table>
+				
 					</div>
 					<div class="qnaBottom">
 						<input type="button" value="문의하기" id="writeGoodsQna"/>

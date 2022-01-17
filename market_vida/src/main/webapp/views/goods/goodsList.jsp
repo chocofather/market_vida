@@ -171,6 +171,7 @@
   	}
   	
   	
+  	
   	/* 상품 삭제 */
   	function deleteGoods(){
 		$('#deleteGoods').on('click', function(){
