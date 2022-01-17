@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.vida.dto.OrdersDTO;
 import kr.co.vida.dto.PageUtil;
 import kr.co.vida.dto.ReviewBoardDTO;
 import kr.co.vida.service.OrdersImple;
