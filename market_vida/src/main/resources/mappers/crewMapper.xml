@@ -46,9 +46,9 @@
 		grade,crew_gender,crew_point
 		)
 		values (
-		crew_no_seq,#{crew_id},#{crew_pw},
+		crew_no_seq.nextval ,#{crew_id},#{crew_pw},
 		#{crew_name},#{crew_email},#{crew_phone},
-		#{grade},#{crew_gender},#{crew_point}
+		'새싹','남자',0
 		)
 	</insert>
 	

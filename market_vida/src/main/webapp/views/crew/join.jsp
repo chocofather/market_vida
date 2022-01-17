@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/join.css" rel="stylesheet"
+<link href="${path}/resources/css/join.css?v=1.4" rel="stylesheet"
 	type="text/css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,19 +21,18 @@
 			<p class="icon_txt">
 				<span class="icon">*</span>필수입력사항
 			</p>
-			<form class="join_form" action="join.do" method="post">
+			<form class="join_form" method="post">
 				<table class="join_table">
 					<tbody>
 						<tr>
 							<th>아이디 <span class="icon"> * <span
 									class="screen_out">필수항목</span>
 							</span>
-							</th>	
-							<td><input type="text" class="crew_id" name="crew_id" 
+							</th>
+							<td><input type="text" class="crew_id" name="crew_id"
 								maxlength="16" label="아이디" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
-								<input type="hidden" name="check_id"> 
-								<button type="button"
-								class="btn_check" onclick="id_check();">중복확인</button>
+								<input type="hidden" name="check_id">
+								<button type="button" class="id_check" >중복확인</button>
 								<div class="alert_container">
 									<span class="alert_point01">·</span> <span class="alert01">6자
 										이상의 영문 혹은 영문과 숫자를 조합</span> <br> <span class="alert_point02">·</span>
@@ -46,14 +45,13 @@
 							</span>
 							</th>
 
-							<td><input type="text" class="crew_pw" name="crew_pw"
+							<td><input type="password" class="crew_pw" name="crew_pw"
 								maxlength="16" label="비밀번호" placeholder="비밀번호를 입력해주세요">
 								<div class="alert_container">
 									<span class="alert_point03">·</span> <span class="alert03">10자
 										이상 입력</span> <br> <span class="alert_point04">·</span> <span
 										class="alert04">영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합</span> <br>
-									<span class="alert_point05">·</span> <span class="alert05">동일한
-										숫자 3개 이상 연속 사용 불가</span>
+									
 								</div></td>
 
 						</tr>
@@ -63,9 +61,13 @@
 							</span>
 							</th>
 
-							<td><input type="text" class="crew_pw_check"
+							<td><input type="password" class="crew_pw_check"
 								name="crew_pw_check" maxlength="16" label="비밀번호"
-								placeholder="비밀번호를 한번 더 입력해주세요"></td>
+								placeholder="비밀번호를 한번 더 입력해주세요">
+								<div class="alert_container">
+								<span class="alert06">비밀번호가 일치하지 않습니다.</span>	
+								</div>
+							</td>	
 						</tr>
 						</tr>
 						<tr>
@@ -84,7 +86,8 @@
 
 							<td><input type="text" class="crew_email" name="crew_email"
 								value data-email size="30" label="이메일" placeholder="이메일을 입력해주세요">
-								<a class="btn_check" href="">중복확인</a></td>
+								<button type="button" class="email_check" >중복확인</button>
+							</td>
 						</tr>
 						<tr>
 							<th>휴대폰 <span class="icon"> * <span
@@ -105,8 +108,8 @@
 									<span class="addr_search_txt"> 주소 검색 </span>
 							</a> <input id="crew_post" type="text" placeholder="우편번호" readonly>
 								<input id="research_addr" type="button" value="재검색"
-								onclick="findAddr()"> <input id="crew_addr"
-								type="text" placeholder="주소" readonly> <br> <input
+								onclick="findAddr()"> <input id="crew_addr" type="text"
+								placeholder="주소" readonly> <br> <input
 								id="detail_addr" type="text" placeholder="상세주소를 입력해주세요">
 							</td>
 						</tr>
@@ -114,9 +117,9 @@
 							<th>성별</th>
 
 							<td><label class="gender_label"> <input
-									class="gender_input" type="radio" name="gender" value="m">
+									class="crew_gender" type="radio" name="gender" value="m">
 									<span class="gender"></span> 남자
-							</label> <label class="gender_label"> <input class="gender_input"
+							</label> <label class="gender_label"> <input class="crew_gender"
 									type="radio" name="gender" value="w"> <span
 									class="gender"></span> 여자
 							</label></td>
@@ -196,7 +199,7 @@
 				</table>
 
 				<div id="join_submit">
-					<button type="button" class="joinBtn">가입하기</button>
+					<input type="button" class="joinBtn" value="가입하기">
 				</div>
 			</form>
 		</div>
@@ -281,7 +284,7 @@
 							<td>이용자 식별 및 본인여부</td>
 							<td rowspan="4">이름, 아이디, 비밀번호, 휴대폰번호, 이메일, 주소</td>
 							<td rowspan="4" class="emph">회원 탈퇴 <br>즉시 파기 <br>
-							<br>부정이용 방지를 위하여 30일 동안 보관 (아이디, 휴대폰 번호) 후 파기
+								<br>부정이용 방지를 위하여 30일 동안 보관 (아이디, 휴대폰 번호) 후 파기
 							</td>
 						</tr>
 						<tr>
@@ -343,116 +346,135 @@
 		</div>
 	</div>
 	<script>
-	$(document).ready(function() {
-		$("joinBtn").unbind("click").click(function(e) {
-			e.preventDefault();
-			$('.join_form').submit();
-			//signUp();
-		});
-	});   
-	function signup(){
-		if ($(".crew_id").val().length < 1) {
-			alert("아이디를 입력해주세요.");
-			$(".crew_id").focus();
-		} else if ($(".crew_name").val().length < 1) {
-			alert("이름을 입력해주세요.");
-			$(".crew_name").focus();
-		} else if ($(".crew_pw").val().length < 1) {
-			alert("사용하실 비밀번호를 입력해주세요.");
-			$(".crew_pw").focus();
-		} else if ($(".crew_pw").val().length < 1) {
-			alert("사용하실 비밀번호를 입력해주세요.");
-			$(".crew_pw").focus();
-		} else if ($(".crew_pw_check").val() != '1') {
-			alert("비밀번호를 확인해주세요.");
-			$(".crew_pw_check").focus();
-		} else if (($("#crew_addr").val().length < 1)
-				|| ($("#detail_addr").val().length < 1)) {
-			alert("주소를 입력해주세요.");
-			$("#MEMBER_ADDR2").focus();
-		} else if (($("#MEMBER_BIRTH option:selected").val().length < 1)
-				|| ($("#MEMBER_BIRTH2 option:selected").val().length < 1)
-				|| ($("#MEMBER_BIRTH3 option:selected").val().length < 1)) {
-			alert("출생년도를 확인해주세요.");
-			$("#MEMBER_BIRTH").focus();
-		} else if ($(".crew_phone").val().length < 1) {
-			alert("전화번호를 입력해주세요.");
-			$(".crew_phone").focus();
-		} else if ($(".crew_email").val().length < 1) {
-			alert("이메일을 입력해주세요.");
-			$(".crew_email").focus();
-		} else if ($("#isCheck").val() != '1') {
-			alert("사용 불가능한 아이디 입니다.");
-			$("#MEMBER_ID").focus();
-		} else if ($("#isEmailAuth").val() != '1') {
-			alert("이메일 인증을 해주세요.");
-			$("#isCheck_Email").focus();
-		} else if (!$("#check1").is(":checked")) {
-			alert("서비스 이용약관에 동의 해주세요.");
-			$("#check1").focus();
-		} else if (!$("#check2").is(":checked")) {
-			alert("개인정보 수집에 동의 해주세요.");
-			$("#check2").focus();
-		} else if (!$("#check3").is(":checked")) {
-			alert("만 14세 이상 여부에 동의 해주세요.");
-			$("#check3").focus();
-		} else {
-			$('.join_form').submit();
-		}
-	}
-	
-	function id_check(){
-			id = $(".crew_id").val();
-			$.ajax({
-				url : "crew/idcheck",
+  	 /* 유효성 검사 통과유무 변수 */
+  	 var idCheck = false;			// 아이디
+  	 var idckCheck = false;			// 아이디 중복 검사
+  	 var pwCheck = false;			// 비번
+  	 var pwckCheck = false;			// 비번 확인
+  	 var pwckcorCheck = false;		// 비번 확인 일치 확인
+  	 var nameCheck = false;			// 이름
+  	 var mailCheck = false;			// 이메일
+  	 var mailckCheck = false;	
+  	 var phoneCheck = false;
+  	 var mailnumCheck = false;		// 이메일 인증번호 확인
+  	 var addressCheck = false 		// 주소
+  	 
+	// 아이디 중복검사
+	$(".id_check").click(function(){
+			var crew_id = $(".crew_id").val();
+		
+			 $.ajax({
+				url : "idcheck",
 				type : "post",
 				dataType : "json",
 				data : {"crew_id" : $(".crew_id").val()},
 				success : function(data){
 					if(data == 1){
-						alert("중복된 아이디입니다.");
+						alert("중복되는 아이디 입니다.");
 					}else if(data == 0){
 						alert("사용가능한 아이디입니다.");
+						$('.alert02').css("color","blue"); 
+						idckCheck = true;
 					}
-				}
+				},
+				error: function(){ /* 404, 415, 400등 이런 에러 발생 시 실행 */
+	                console.log("checkDuplicating error!");
+	            }
 			})
-		}
+		})
+	// 이메일 중복검사
+	$(".email_check").click(function(){
+			var crew_email = $(".crew_email").val();
+		
+			 $.ajax({
+				url : "emailcheck",
+				type : "post",
+				dataType : "json",
+				data : {"crew_email" : $(".crew_email").val()},
+				success : function(data){
+					if(data == 1){
+						alert("이미 존재하는 이메일 입니다.");
+					}else if(data == 0){
+						alert("사용가능한 이메일 입니다.");
+						mailckCheck = true;
+					}
+				},
+				error: function(){ 
+	                console.log("checkDuplicating error!");
+	            }
+			})
+		}) 
 	
-        //비동기식 유효성 검증
+    //비동기식 유효성 검증
 	$(document).ready(function(){
-        var id =  $('.crew_id').val();
-         //특수문자가 있는지 확인
-        var spe = id.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-         // 한글이 있는지 확인
-        var korean = id.search(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi); 
-
-		$('.crew_id').on('propertychange change keyup paste input',function(){	
-            
-            if ((id.length < 6) || (id.length > 20)) {
-                $('.alert01').css("color","red"); 
-                return false;
-            }
-            if (id.search(/₩s/) != -1) {
+        // 아이디 유효성 검사
+        var re = /^[a-zA-Z0-9]{6,12}$/;   
+		var num = /[0-9]/g;
+		var eng = /[a-z]/g;
+		var spe = /[!~@#$%^&*()?+=\/]/g;
+		
+		$('.crew_id').on('propertychange change keyup paste input',function(){	                 
+            if (!re.test($('.crew_id').val())) {
                 $('.alert01').css("color","red");   
                 return false;
             }
-            
-            if (spe > 0 || korean > 0) {
-                $('.alert01').css("color","red");
-                return false;    
-            }
-                $('.alert01').css("color","blue");
-            
-            return false;
+            else{
+            	$('.alert01').css("color","blue");
+            	 return false;
+            }     
 		});
+		$('.crew_pw').on('propertychange change keyup paste input',function(){	                 
+			
+			if($('.crew_pw').val().length < 10 || $('.crew_pw').val().length > 20){
+				 $('.alert03').css("color","red");    
+				 if(!num.test($('.crew_pw').val()){
+			           $('.alert04').css("color","red");   
+			           return false;
+			     }else if(!eng.test($('.crew_pw').val()){
+			    	 $('.alert04').css("color","red");   
+			           return false;
+			     }else if(!spe.test($('.crew_pw').val()){
+			    	 $('.alert04').css("color","red");   
+			           return false;
+			     }
+				 else{
+			            $('.alert04').css("color","blue");
+			            return false;
+			     }  
+				 return false;
+				 
+			}else{
+				$('.alert03').css("color","blue");
+				 return false;
+			}
+			    
+			
+			});
+		$('.crew_pw_check').on('propertychange change keyup paste input',function(){	             
+    	
+    		if($('.crew_pw_check').val() == ''){
+    			$('.alert06').css("display","none");
+    			$('.alert06').css("color","red");
+    			$('.alert06').text("비밀번호가 일치하지 않습니다.");
+    		}		
+			else if($('.crew_pw').val() != $('.crew_pw_check').val()){
+    			$('.alert06').css("display","block");
+    			$('.alert06').css("color","red");
+    			$('.alert06').text("비밀번호가 일치하지 않습니다.");
+    		}
+    		else if($('.crew_pw').val() == $('.crew_pw_check').val()){
+    			$('.alert06').css("display","block");
+    			$('.alert06').css("color","blue");
+    			$('.alert06').text("비밀번호 일치");
+    		}else{
+    			$('.alert06').css("display","none");
+    			$('.alert06').css("color","red");
+    			$('.alert06').text("비밀번호가 일치하지 않습니다.");
+    		}
+    	});
     });
-    
+    	
 
-   
-
-
-    </script>
-	<script>
         function selectAll(checkAll)  {
             const checkboxes 
                 = document.getElementsByName('agree');
@@ -480,8 +502,7 @@
             $(".modal2").fadeOut(300);
             $(".modal3").fadeOut(300);
         })
-    </script>
-	<script>
+   
         function findAddr(){
             new daum.Postcode({
                 oncomplete: function(data) {                                
@@ -503,7 +524,102 @@
             $('#crew_addr').show();
             $('#detail_addr').show();                  
         }
-        
+
+   	$(document).ready(function(){
+   		//회원가입 버튼(회원가입 기능 작동)
+   		$(".joinBtn").click(function(){
+   			
+   			/* 입력값 변수 */
+   			var id = $('.crew_id').val(); 				// id 입력란
+   			var pw = $('.crew_pw').val();				// 비밀번호 입력란
+   			var pwck = $('.crew_pw_check').val();			// 비밀번호 확인 입력란
+   			var name = $('.crew_name').val();			// 이름 입력란
+   			var mail = $('.crew_email').val();			// 이메일 입력란
+   			var phone = $('.crew_phone').val();
+   			var addr = $('#detail_addr').val();
+   			
+   			/* 아이디 유효성검사 */
+   			if(id == ""){
+   				alert("아이디를 적어주세요");
+   				$('.crew_id').focus();
+   				idCheck = false;
+   			}else {		
+   				idCheck = true;
+   			}		
+   			/* 비밀번호 유효성 검사 */
+   			if(pw == ""){
+   				if(id != ''){
+   					alert("비밀번호를 적어주세요");
+   					$('.crew_pw').focus();
+   				}
+   				pwCheck = false;
+   			}else{
+   				pwCheck = true;
+   			}
+   			
+   			/* 비밀번호 확인 유효성 검사 */
+   			if(pwck == ""){
+   				if(id != "" && pw != ""){
+   					alert("비밀번호가 일치하지 않습니다.");
+   					$('.crew_pw_check').focus();
+   				}
+   				pwckCheck = false;
+   			}else{
+   				pwckCheck = true;
+   			}
+   			/* 이름 유효성 검사 */
+   			if(name == ""){
+   				if(id != "" && pw != "" && pwck != ""){
+   					alert("이름을 적어주세요.");
+   					$('.crew_name').focus();
+   				}
+   				nameCheck = false;
+   			}else{
+   				
+   				nameCheck = true;
+   			}		
+   			
+   			/* 이메일 유효성 검사 */
+   			if(mail == ""){
+   				if(id != "" && pw != "" && pwck != "" && name !=""){
+   					alert("이메일을 적어주세요.");
+   					$('.crew_email').focus();
+   				}
+   				mailCheck = false;
+   			}else{
+   				
+   				mailCheck = true;
+   			}		
+   			if(phone == ""){
+   				if(id != "" && pw != "" && pwck != "" && name !="" && mail !=""){
+   					alert("휴대폰 정보를 적어주세요.");
+   					$('.crew_phone').focus();
+   				}	
+   				phoneCheck = false;
+   			}else{
+   				phoneCheck = true;
+   			}	
+   			/* 주소 유효성 검사 */
+   			if(addr == ""){	
+   				if(id != "" && pw != "" && pwck != "" && name !="" && mail !="" && phone !=""){
+   					alert("주소를 입력해 주세요");
+   					$('.detail_addr').focus();
+   				}	
+   				addressCheck = false;
+   			}else{
+   				addressCheck = true;
+   			}		
+   			
+   			/* 최종 유효성 검사 */
+   			if(idCheck&&pwCheck&&nameCheck&&mailCheck&&addressCheck&&phoneCheck&&mailckCheck&&idckCheck){
+   				console.log("test");
+   				$(".join_form").attr("action", "join");
+   				$(".join_form").submit();			
+   				
+   			}		
+   			return false;
+   		});
+   	});    
     </script>
 </body>
 </html>
