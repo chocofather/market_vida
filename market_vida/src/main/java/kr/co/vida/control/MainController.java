@@ -30,16 +30,11 @@ public class MainController {
 		return "/main/main";
 	}
 	
-	@RequestMapping("/benefit")
+	@GetMapping("/benefit")
 	public String benefit(Model model) {
-		model.addAttribute("list",fbService.selectAllList());
+		model.addAttribute("grade", fbService.getListGrade());
+		model.addAttribute("benefit", fbService.selectAllList());
 		return "/main/friendsBenefit";
-	}
-	
-	@GetMapping("/detail")
-	public String benefitDetail(@RequestParam("grade")String grade,Model model) {
-		model.addAttribute("dto", fbService.selectOne(grade));
-		return "/main/tab";
 	}
 	
 	@RequestMapping("../goods/goodsList")

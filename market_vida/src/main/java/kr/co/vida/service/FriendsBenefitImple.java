@@ -22,6 +22,10 @@ public class FriendsBenefitImple implements VidaService<FriendsBenefitDTO>{
 	public List<FriendsBenefitDTO> selectAllList() {
 		return dao.getListAll();
 	}
+	
+	public List<FriendsBenefitDTO> getListGrade() {
+		return dao.getListGrade();
+	}
 
 	@Override
 	public FriendsBenefitDTO selectOne(int no) {

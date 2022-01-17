@@ -146,8 +146,11 @@ main div {
 </style>
 <script>
 $(document).ready(function(){
+	$('.grade ul li').first().addClass('on');
+    $('.membership .detail > div').first().addClass('on');
+	
     $('.grade ul li').click(function(){
-        var idx = $(this).index();
+	    var idx = $(this).index();
         $('.grade ul li').removeClass('on');
         $('.grade ul li').eq(idx).addClass('on');
         $('.membership .detail > div').removeClass('on');
@@ -163,41 +166,24 @@ $(document).ready(function(){
         <div class="title">
                 <span>Vida 프렌즈 혜택</span>
                 <span>매월 실적에 따라 달라지는 다양한 혜택을 누려보세요</span>
+                <span>(각 등급을 눌러 혜택을 확인해보세요)</span>
         </div>
             <hr>
         <div class="grade">
             <ul>
-            	<li class="on">나무</li>
-            	<li>가지</li>
-            	<li>잎새</li>
-            	<li>새싹</li>
-            	<li>씨앗</li>
+        <c:forEach var="dto" items="${grade }">
+            	<li>${dto.grade }</li>
+            </c:forEach>
             </ul>
         </div>
         <div class="detail">
-        	<div class="on">
-        		<span>나무 : 전월 실적 100만원 이상</span>
-        		<span>적립7%</span>
-        		<span>최대 2만원 추가혜택(깜짝 쿠폰, 적립 이벤트 등)</span>
-        	</div>
+        <c:forEach var="dto" items="${benefit }">
         	<div>
-        		<span>가지 : 전월 실적 50만원 이상</span>
-        		<span>적립5%</span>
-        		<span>최대 1만원 추가혜택(깜짝 쿠폰, 적립 이벤트 등)</span>
+        		<span>${dto.grade } : 전월 실적 ${dto.pay}만원 이상</span>
+        		<span>적립 : ${dto.accual_rate}%</span>
+        		<span>${dto.remark}</span>
         	</div>
-        	<div>
-        		<span>잎새 : 전월 실적 30만원 이상</span>
-        		<span>적립3%</span>
-        		<span>최대 5천원 추가혜택(깜짝 쿠폰, 적립 이벤트 등)</span>
-        	</div>
-        	<div>
-        		<span>새싹 : 전월 실적 15만원 이상</span>
-        		<span>적립1%</span>
-        	</div>
-        	<div>
-        		<span>씨앗 : 전월 실적 15만원 미만</span>
-        		<span>적립0.5%</span>
-        	</div>
+        	</c:forEach>
         </div>
     </div>
 	</main>

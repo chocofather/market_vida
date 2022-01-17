@@ -12,5 +12,11 @@
   	<select id="selectAll" resultType="fbdto">
   		SELECT *
   		FROM membership
+  		ORDER BY pay DESC
+  	</select>
+  	<select id="selectGrade" resultType="fbdto">
+  		SELECT grade
+  		FROM membership
+  		ORDER BY pay DESC
   	</select>
   </mapper>
