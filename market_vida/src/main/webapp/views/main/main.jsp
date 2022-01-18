@@ -55,6 +55,9 @@
             <div class="cart">
                 <a href="#"><i class="xi xi-cart-o xi-2x"></i></a>
             </div>
+            <div class="wishList">
+            	<a href="#"><i class="xi-heart-o xi-2x"></i></a>
+            </div>
         </nav>
         <div class="sub_menu">
             <ul class="inner">
