@@ -648,18 +648,22 @@
 	
 	/* 찜하기 */
 	function addMyfavorite(){
-		var index = 0;
-		$('#toMyfavorite').on('click', function(){
-			index ++;
-			if (index%2!=0){
-				$('#toMyfavorite')[0].style.backgroundImage='url("../resources/img/filledheart.png")'; 
-			}else {
-				$('#toMyfavorite')[0].style.backgroundImage='url("../resources/img/heart.png")';
-			}
-			if (index>=10) index = 0;
-		})
+		var goodsNo = document.getElementById("goodsNo").innerText;
+		// 버튼클릭하면 상품번호보내기
+		$('#toMyfavorite').on('click', function() {
+			$('#toMyfavorite')[0].style.backgroundImage='url("../resources/img/filledheart.png")';
+			$.ajax({
+				url : "/market_vida/mypage/myFavoriteList",
+				type : 'POST',
+				data: JSON.stringify(goodsNo),
+				contentType: "application/json; charset=utf-8",
+				dataType: 'json',
+				success: function (data) {
+				}
+			});
+			alert("찜 목록에 추가됐습니다.");
+		});
 	}
-	
 	
 	/* 장바구니 */
 	function addCart(){
@@ -785,7 +789,7 @@
 					<table class="desciption">
 						<tr>
 							<th>상품 ID</th>
-							<td>${goodsDto.goods_no }</td>
+							<td id="goodsNo">${goodsDto.goods_no }</td>
 							<th>규격</th>
 							<td>${goodsDto.qty }</td>
 						</tr>
