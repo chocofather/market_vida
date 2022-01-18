@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/css/join.css?v=1.4" rel="stylesheet"
+<link href="${path}/resources/css/join.css?v=1.6" rel="stylesheet"
 	type="text/css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -94,7 +94,7 @@
 							</th>
 
 							<td><input type="text" class="crew_phone" name="crew_phone"
-								value pattern="[0-9]*" label="휴대폰" placeholder="숫자만 입력해주세요">
+								value pattern="[0-9]*" label="휴대폰" placeholder="휴대폰 번호('-'없이 번호만 입력해주세요)">
 							</td>
 						</tr>
 						<tr>
@@ -115,10 +115,10 @@
 							<th>성별</th>
 
 							<td><label class="gender_label"> <input
-									class="crew_gender" type="radio" name="gender" value="m">
+									class="crew_gender" type="radio" name="crew_gender" value="man">
 									<span class="gender"></span> 남자
 							</label> <label class="gender_label"> <input class="crew_gender"
-									type="radio" name="gender" value="w"> <span
+									type="radio" name="crew_gender" value="girl"> <span
 									class="gender"></span> 여자
 							</label></td>
 						</tr>
@@ -127,13 +127,13 @@
 
 							<td>
 								<div class="birth_day">
-									<input type="text" name="birth_year" id="birth_year"
+									<input type="text" name="crew_birth" id="birth_year"
 										pattern="[0-9]*" value label="생년월일" size="4" maxlength="4"
 										placeholder="YYYY"> <span class="bar"></span> <input
-										type="text" name="birth_month" id="birth_month"
+										type="text" name="crew_birth" id="birth_month"
 										pattern="[0-9]*" value label="생년월일" size="2" maxlength="2"
 										placeholder="MM"> <span class="bar"></span> <input
-										type="text" name="birth_day" id="birth_day" pattern="[0-9]*"
+										type="text" name="crew_birth" id="birth_day" pattern="[0-9]*"
 										value label="생년월일" size="2" maxlength="2" placeholder="DD">
 								</div>
 							</td>
@@ -145,8 +145,8 @@
 							</th>
 							<td>
 								<div class="check">
-									<label class="check_all"> <input type="checkbox"
-										name="agree" value="checkAll" onclick="selectAll(this)">
+									<label class="check_all"> <input class = "check_all" type="checkbox"
+										name="agree" value="checkAll" >
 										<span class="icon"></span> 전체 동의합니다
 									</label>
 									<p class="all_check_txt">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를
@@ -154,14 +154,14 @@
 
 								</div>
 								<div class="check02">
-									<label class="check_agree"> <input type="checkbox"
+									<label class="check_agree"> <input class= "agree1" type="checkbox"
 										name="agree" value="n" required label="이용약관"> <span
 										class="icon"></span> 이용약관 동의 <span class="sub">(필수)</span>
 									</label> <a href="javascript:openModal('modal1');"
 										class="link_agreement">약관보기></a>
 								</div>
 								<div class="check02">
-									<label class="check_agree"> <input id="private1"
+									<label class="check_agree"> <input class= "agree2" id="private1"
 										type="checkbox" name="agree" value="n" required
 										label="개인정보 수집·이용"> <span class="icon"></span> 개인정보
 										수집·이용 동의 <span class="sub">(필수)</span>
@@ -184,7 +184,7 @@
 									</label>
 								</div>
 								<div class="check02">
-									<label class="check_agree"> <input id="fourteen_check"
+									<label class="check_agree"> <input class="agree3"
 										type="checkbox" name="agree" value="n" required
 										label="개인정보 수집·이용"> <span class="icon"></span> 본인은 만
 										14세 이상입니다. <span class="sub">(필수)</span>
@@ -352,10 +352,54 @@
   	 var pwckcorCheck = false;		// 비번 확인 일치 확인
   	 var nameCheck = false;			// 이름
   	 var mailCheck = false;			// 이메일
-  	 var mailckCheck = false;	
+  	 var mailvaliCheck = false;		// 이메일 유효성 검사
+  	 var mailckCheck = false;	    // 이메일 중복검사
   	 var phoneCheck = false;
-  	 var mailnumCheck = false;		// 이메일 인증번호 확인
-  	 var addressCheck = false 		// 주소
+  	 var addressCheck = false; 		// 주소
+  	 var agreement = false;
+  	
+  	 
+  	 // 이용약관 동의
+  	 /*
+  	 function agreeCheck(){
+  		console.log($(".check_all").is(':checked'));
+  		 console.log($(".agree1").is(':checked'));
+  		 console.log($(".agree2").is(':checked'));
+  		 console.log($(".agree3").is(':checked'));
+  		 if($(".agree1").is(':checked') && $(".agree2").is(':checked') && $(".agree3").is(':checked')){
+  	  		agreement == true;
+  	  	 	return false;
+  	  	 }else if($('.check_all').is(':checked')){
+  	  		agreement == true;
+  	  	 	return false;
+  	  	 }else{
+  	  		agreement == false;
+  	  		return false;
+  	  	 }
+  		
+  	 }
+  */
+  
+  	 // 이메일 유효성 검사
+  	 
+  	function checkEmail(){
+ 		var email = $('.crew_email').val();
+ 		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+ 			if(exptext.test(email)==false){
+
+ 			//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우			
+
+ 			alert("이메일형식이 올바르지 않습니다.");
+
+ 			$('crew_email').focus();
+ 			return false;
+ 			}else{
+ 				mailvaliCheck == true;
+ 				return false;
+ 			}
+ 		
+ 	} 
   	 
 	// 아이디 중복검사
 	$(".id_check").click(function(){
@@ -367,7 +411,10 @@
 				dataType : "json",
 				data : {"crew_id" : $(".crew_id").val()},
 				success : function(data){
-					if(data == 1){
+					if($(".crew_id").val() == '' || $('.alert01').css("color") == 'rgb(255,0,0)'){
+						alert("사용 불가능한 아이디 입니다.");
+					}
+					else if(data == 1){
 						alert("중복되는 아이디 입니다.");
 					}else if(data == 0){
 						alert("사용가능한 아이디입니다.");
@@ -390,6 +437,7 @@
 				dataType : "json",
 				data : {"crew_email" : $(".crew_email").val()},
 				success : function(data){
+					checkEmail();				
 					if(data == 1){
 						alert("이미 존재하는 이메일 입니다.");
 					}else if(data == 0){
@@ -410,6 +458,7 @@
 		var num = /[0-9]/g;
 		var eng = /[a-z]/g;
 		var spe = /[!~@#$%^&*()?+=\/]/g;
+		var pattern = /^(?!((?:[0-9]+)|(?:[a-zA-Z]+)|(?:[\[\]\^\$\.\|\?\*\+\(\)\\~`\!@#%&\-_+={}'""<>:;,\n]+))$)(.)*$/;
 		
 		$('.crew_id').on('propertychange change keyup paste input',function(){	                 
             if (!re.test($('.crew_id').val())) {
@@ -424,17 +473,23 @@
 		$('.crew_pw').on('propertychange change keyup paste input',function(){	                 
 			
 			if($('.crew_pw').val().length < 10 || $('.crew_pw').val().length > 20){
-				 $('.alert03').css("color","red");    
-				 if(!num.test($('.crew_pw').val())){
+				 $('.alert03').css("color","red");
+				if($('.crew_pw').val().length == 0){
+					$('.alert04').css("color","red");   
+			           return false;
+				} 
+				if(!pattern.test($('.crew_pw').val())){
 			           $('.alert04').css("color","red");   
 			           return false;
-			    }else if(!eng.test($('.crew_pw').val())){
+			    }
+				/*else if(!eng.test($('.crew_pw').val())){
 			    	 $('.alert04').css("color","red");   
 			           return false;
 			    }else if(!spe.test($('.crew_pw').val())){
 			    	 $('.alert04').css("color","red");   
 			           return false;
-			    }else{
+			    }*/
+			    else{
 			            $('.alert04').css("color","blue");
 			            return false;
 			    }  
@@ -471,7 +526,8 @@
     	});
     });
     	
-
+		// 이용약관동의 전체 동의
+		/*
         function selectAll(checkAll)  {
             const checkboxes 
                 = document.getElementsByName('agree');
@@ -479,7 +535,23 @@
             checkboxes.forEach((checkbox) => {
                 checkbox.checked = checkAll.checked;
             })
+            if()
         }
+		*/
+        $(document).ready(function() {
+        	$(".check_all").click(function() {
+        		if($(".check_all").is(":checked")) $("input[name=agree]").prop("checked", true);
+        		else $("input[name=agree]").prop("checked", false);
+        	});
+
+        	$("input[name=agree]").click(function() {
+        		var total = $("input[name=agree]").length;
+        		var checked = $("input[name=agree]:checked").length;
+
+        		if(total != checked) $(".check_all").prop("checked", false);
+        		else $(".check_all").prop("checked", true); 
+        	});
+        });
         function openModal(modalname){
             document.get
             $("#modal").fadeIn(300);
@@ -538,6 +610,10 @@
    			/* 아이디 유효성검사 */
    			if(id == ""){
    				alert("아이디를 적어주세요");
+   				if(idckCheck){
+						alert("아이디 중복검사를 해주세요.");
+						$('.crew_id').focus();
+					}
    				$('.crew_id').focus();
    				idCheck = false;
    			}else {		
@@ -580,6 +656,10 @@
    			if(mail == ""){
    				if(id != "" && pw != "" && pwck != "" && name !=""){
    					alert("이메일을 적어주세요.");
+   					if(!mailckCheck){
+   						alert("이메일 중복검사를 해주세요.");
+   						$('.crew_email').focus();
+   					}
    					$('.crew_email').focus();
    				}
    				mailCheck = false;
@@ -595,7 +675,7 @@
    				phoneCheck = false;
    			}else{
    				phoneCheck = true;
-   			}	
+   			}
    			/* 주소 유효성 검사 */
    			if(addr == ""){	
    				if(id != "" && pw != "" && pwck != "" && name !="" && mail !="" && phone !=""){
@@ -607,8 +687,24 @@
    				addressCheck = true;
    			}		
    			
+   			if($(".agree1").is(':checked') && $(".agree2").is(':checked') && $(".agree3").is(':checked')){
+   	  	  		agreement = true;
+   	  	  	 	
+   	  	  	}else if($('.check_all').is(':checked')){
+   	  	  		agreement = true;
+   	  	  	 	
+   	  	  	}else{
+   	  	  		agreement = false;
+   	 
+   	  	  	 }
+
+   			if(!agreement){	
+   				if(id != "" && pw != "" && pwck != "" && name !="" && mail !="" && phone !="" && addr != ""){
+   					alert("이용약관을 동의해주세요");
+   				}	
+   			}
    			/* 최종 유효성 검사 */
-   			if(idCheck&&pwCheck&&nameCheck&&mailCheck&&addressCheck&&phoneCheck&&mailckCheck&&idckCheck){
+   			if(idCheck&&pwCheck&&nameCheck&&mailCheck&&addressCheck&&phoneCheck&&mailckCheck&&idckCheck&&agreement){
    				console.log("test");
    				$(".join_form").attr("action", "join");
    				$(".join_form").submit();			

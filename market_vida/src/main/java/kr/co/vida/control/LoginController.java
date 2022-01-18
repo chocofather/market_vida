@@ -154,15 +154,5 @@ public class LoginController {
 	 * 
 	 * return "redirect:crew/login"; }
 	 */
-	/*
-	 * // 회원가입
-	 * 
-	 * @RequestMapping(value="/register", method = RequestMethod.GET) public void
-	 * getRegister() {
-	 * 
-	 * }
-	 * 
-	 * @RequestMapping(value="/register", method = RequestMethod.POST) public String
-	 * postRegister(CrewDTO crdto) { crewservice.register(crdto); return null; }
-	 */
+	
 }
