@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,11 +66,17 @@ public class LikeController {
 		
 		model.addAttribute("goodsImg", imgList);
 		model.addAttribute("list", service.getList(crewNo));
-//		model.addAttribute("goodsImg", imgService.selectOne(no));
+
 		
 		return "/mypage/myFavoriteList";
 	}
 	
+	@DeleteMapping("/mypage/myFavoriteList/delete")
+	public ResponseEntity delete(@RequestBody Integer[] ajaxMsg) {
+		for(int i=0; i<ajaxMsg.length; i++ ) {
+			service.dropOne(ajaxMsg[i]);
+		}
+		return ResponseEntity.ok().build();
+	}
 
-	
 }

@@ -1,15 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script src="${path}/resources/js/header.js"></script>
 <style>
+	main div {
+		text-align: center;
+		flex-grow: 1;
+	}
+
 	.container {
-		margin: 0px auto;
+		margin: 30px auto;
 		width : 60%;
 	}
 	table {
@@ -143,7 +151,9 @@
 </script>
 </head>
 <body>
-<%-- 	<h3>페이징 끝 페이지 번호: ${map.endPageNo}</h3>
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
+	<main>
+		<%-- 	<h3>페이징 끝 페이지 번호: ${map.endPageNo}</h3>
 	<h3>이전 : ${map.prev}</h3>
 	<h3>다음 : ${map.next}</h3> --%>
 	
@@ -201,5 +211,7 @@
 			</tr>
 		</table>
 	</div>
+	</main>
+	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>
