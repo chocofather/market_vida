@@ -23,7 +23,7 @@
  	</insert>
  	<update id="updateOne" parameterType="gQnaDto">
  		UPDATE goods_qna_board
- 		SET goods_qna_title = #{goods_qna_title}, goods_qna_contents = #{goods_qna_contents}, goods_qna_img=#{goods_qna_img}
+ 		SET goods_qna_title = #{goods_qna_title}, goods_qna_contents = #{goods_qna_contents}
  		WHERE goods_qna_no = #{goods_qna_no}
  	</update>
  	<delete id="deleteOne" parameterType="int">
