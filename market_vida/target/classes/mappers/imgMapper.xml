@@ -103,7 +103,7 @@
   		SELECT img_name
   		FROM image
   		WHERE goods_no = #{goods_no}
-  		AND img_status = 1
+  		AND img_status = 0
   	</select>
   	<delete id="deleteOne" parameterType="int">
   		DELETE image

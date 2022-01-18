@@ -21,13 +21,11 @@ public class NoticeDAO implements Dao<NoticeDTO>{
 	
 	@Override
 	public List<NoticeDTO> getListAll() {
-		System.out.println("ss : " + ss);
 		return ss.selectList("kr.co.vida.board.selectAll");
 	}
 
 	public List<NoticeDTO> getListAll(int startNo, int endNo) {
 		StartEnd se = new StartEnd(startNo, endNo);
-		System.out.println("ss : " + ss);
 		return ss.selectList("kr.co.vida.board.selectAll", se);
 	}
 
@@ -51,7 +49,10 @@ public class NoticeDAO implements Dao<NoticeDTO>{
 	@Override
 	public void deleteOne(int no) {
 		ss.delete("kr.co.vida.board.deleteOne" , no);
-		
+	}
+	
+	public void deleteOne(String no) {
+		ss.delete("kr.co.vida.board.deleteOne" , no);
 	}
 
 	public int getTotal() {
