@@ -60,11 +60,12 @@
 </style>
 </head>
 <body>
-	<form action="./reviewModify" method="post">
+	<form action="./reviewModify?crew_no=${dto.crew_no }" method="post">
 		<div id="accordion"
 			style="width: 1600px; margin-left: 500px; margin-top: 100px;">
-			<h3 class="top">제목 : <input type="text" name="review_title" id="review_title" value="${dto.review_title }"/></h3>
+			<h3 class="top">제목 수정은 아래쪽에 해주세요 </h3>
 			<div>
+			제목 <input type="text" name="review_title" id="review_title" value="${dto.review_title }"/>
 			<input type="hidden" name="review_no" value="${dto.review_no }" />
 				<p>
 				<input type="file" name="review_img" id="review_img" />

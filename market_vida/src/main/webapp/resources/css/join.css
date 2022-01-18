@@ -454,8 +454,19 @@ a{
     text-align: center;
     outline: none;
 }
+
 #research_addr:hover{
     cursor: pointer;
+}
+#crew_post{
+	 display: none;
+}
+#crew_addr{
+	margin-top : 5px;
+	display:none;
+}
+#detail_addr{
+	display:none;
 }
 .alert_container{
     margin-top: 10px;

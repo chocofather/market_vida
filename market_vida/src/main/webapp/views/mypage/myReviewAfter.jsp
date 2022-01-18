@@ -97,10 +97,12 @@
 </style>
 </head>
 <body>
+	<c:forEach var="dto" end="0" items="${relist}">
 	<div class="topmenu">
 			<a href="myReviewBefore?crew_no=${dto.crew_no }" class="topbtn" style="margin-left: 500px;">작성가능후기</a> 
 			<a href="" class="topbtn" style="border-left: 2px solid white;">작성완료후기</a>
 	</div>
+	</c:forEach>
 	<div id="accordion" style="width: 1600px; margin-left: 500px; margin-top: 30px;">
 		<c:forEach var="dto" items="${reviewlist}">
 		<h3 class="top">${dto.review_title }</h3>
@@ -111,8 +113,8 @@
 					<th class="text">${dto.review_contents}</th>
 					<th class="date">${dto.review_date} 작성</th>
 					<td colspan="2">
-						<a href="./reviewModify?review_no=${dto.review_no }" class="btn" style="color: white;">수정</a>
-						<a href="./reviewDelete?review_no=${dto.review_no }" class="btn" style="color: white;">삭제</a>
+						<a href="./reviewModify?review_no=${dto.review_no }&&crew_no=${dto.crew_no}" class="btn" style="color: white;">수정</a>
+						<a href="./reviewDelete?review_no=${dto.review_no }&&crew_no=${dto.crew_no}" class="btn" style="color: white;">삭제</a>
 					</td>
 				</tr>
 			</table>

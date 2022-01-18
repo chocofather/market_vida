@@ -105,7 +105,7 @@ table {
 			<tr>
 				<th>카테고리</th>
 				<td>
-					<input type="hidden" name="crew_no" value="2"/>
+					<input type="hidden" name="crew_no" value="${crew_no }"/>
 					<select name="qna_category" id="qna_category">
 						<option value="배송지연/불만">배송지연/불만</option>
 						<option value="배송문의">배송문의</option>

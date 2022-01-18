@@ -60,4 +60,8 @@ public class ReviewBoardDAO implements Dao<ReviewBoardDTO> {
 		return ss.selectOne("kr.co.vida.reviewBoard.selectReview", no);
 	}
 
+	public List<ReviewBoardDTO> getReviewList(int no){
+		return ss.selectList("kr.co.vida.reviewBoard.selectReviewList" , no);
+	}
+	
 }

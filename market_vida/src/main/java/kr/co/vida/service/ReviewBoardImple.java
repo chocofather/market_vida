@@ -55,4 +55,8 @@ public class ReviewBoardImple implements VidaService<ReviewBoardDTO>{
 		return dao.reviewOne(no);
 	}
 	
+	public List<ReviewBoardDTO> selectReview(int no){
+		return dao.getReviewList(no);
+	}
+	
 }

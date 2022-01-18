@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.vida.dto.PageUtil;
 import kr.co.vida.dto.ReviewBoardDTO;
@@ -46,9 +47,8 @@ public class ReviewBoardController {
 		int startNo = (int) map.get("startNo");
 		int endNo = (int) map.get("endNo");	
 		
-		ReviewBoardDTO dto = service.selectOne(crew_no);
 		
-		model.addAttribute("dto", dto);
+		model.addAttribute("relist", service.selectReview(crew_no));
 		
 		return new ModelAndView("/mypage/myReviewAfter", "reviewlist", service.selectAllList(no, startNo, endNo));
 	}
@@ -61,14 +61,17 @@ public class ReviewBoardController {
 		
 		int goods_no = Integer.parseInt(goods);
 		int order_no = Integer.parseInt(order);
-
+		
 		model.addAttribute("dto",ordersservice.selectAllList(crew_no, goods_no, order_no));
 		
 		return "/mypage/reviewWriteForm";
 	}
 
 	@PostMapping("/reviewWrite")
-	public String writeFormOk(@ModelAttribute("dto") ReviewBoardDTO dto, HttpServletRequest req) {
+	public String writeFormOk(@ModelAttribute("dto") ReviewBoardDTO dto, HttpServletRequest req , @RequestParam("crew_no")int crew_no , RedirectAttributes redirectAttributes) {
+		
+		redirectAttributes.addAttribute("crew_no", crew_no);
+		
 		service.insertOne(dto);
 		return "redirect:/mypage/myReviewAfter";
 	}
@@ -81,14 +84,21 @@ public class ReviewBoardController {
 	}
 
 	@PostMapping("/reviewModify")
-	public String modifyOk(@ModelAttribute("dto") ReviewBoardDTO dto) {
+	public String modifyOk(@ModelAttribute("dto") ReviewBoardDTO dto ,@RequestParam("crew_no")int crew_no ,RedirectAttributes redirectAttributes) {
 		service.updateOne(dto);
+		
+		redirectAttributes.addAttribute("crew_no", crew_no);
+		
 		return "redirect:/mypage/myReviewAfter";
 	}
 	
 	@GetMapping("/reviewDelete")
-	public String deleteOne(@RequestParam("review_no") int review_no) {
+	public String deleteOne(@RequestParam("review_no") int review_no ,@RequestParam("crew_no")int crew_no ,RedirectAttributes redirectAttributes) {
+		
 		service.dropOne(review_no);
+		
+		redirectAttributes.addAttribute("crew_no", crew_no);
+		
 		return "redirect:/mypage/myReviewAfter";
 	}
 	

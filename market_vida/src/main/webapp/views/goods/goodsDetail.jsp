@@ -239,6 +239,8 @@
   		border-left: hidden;
   		height: 45px;
     	border-bottom: 1px solid var(--base-color);
+    	text-align: left;
+    	padding-left: 60px;
 	}
 	
 	.qnaTable .goods_qna_contents {
@@ -246,13 +248,41 @@
 	}
 	
 	.qnaTable .goods_qna_contents.active {
-		display: block;
+		display: contents;
+ 	    width: 1000px;
 		border-bottom: hidden;
 	}
 	
 	.goods_qna_contents .question {
 		text-align: left;
    		padding: 30px;
+	}
+	
+	.goods_qna_contents .answer {
+	    margin: 30px;
+    	width: 80%;
+	}
+	
+	.qnaAmend {
+		text-align: right;
+	    padding: 20px;
+	    border-bottom: 1.5px solid var(--base-color);
+	}
+	
+	.qnaAmend input[type='button'] {
+	    width: 100px;
+	    height: 35px;
+	    border: 1.5px solid var(--my-color);
+	    color: var(--my-color);
+	    background-color: white;
+	    border-radius: 4px;
+	    font-weight: bold;
+	}
+	
+	.qnaAmend input[type='button']:hover {
+	    background-color: var(--my-color);
+	    color: white;
+		
 	}
 
 	
@@ -350,6 +380,11 @@
 		display: contents;
 	}
 	
+	.qna_row img {
+		width: 20px;
+		height: 20px;
+	}
+	
 	.modalButton {
 		margin: 20px 0;
   		text-align: center;
@@ -378,34 +413,133 @@
 <script type="text/javascript">
 	$(function(){
 		
+		
 		calculateAmount();
 		adjustQty();
 		addMyfavorite();	
 		chooseTab();
 		writeGoodsQna();
 		showQnaDetail();
-		
+		modifyQnaForm();
+		deleteQna();
 	});
+	
+	/* 문의상세보기 수정 */
+	function modifyQnaForm(){
+		var qnaModify = document.querySelectorAll('.qnaModify');
+
+		qnaModify.forEach((modify)=>{
+			modify.addEventListener('click', ()=>{
+				
+			var goods_qna_no = modify.previousElementSibling.value;
+			
+			$.ajax({
+				url:'./modifyGoodsQna',
+				type:'get',
+				traditional: true,
+				data:{'goods_qna_no':goods_qna_no},
+				dataType: 'json',
+				success: function(result){
+					console.dir(result);
+					console.log(result.goodsQnaDto.goods_qna_contents)
+					
+					$('#goods_qna_title')[0].value=result.goodsQnaDto.goods_qna_title;
+					$('#goods_qna_contents')[0].value=result.goodsQnaDto.goods_qna_contents;
+					$('.quaModal')[0].classList.toggle('show');
+					$('body')[0].style.overflow = 'hidden'; 
+					
+					/* 수정 버튼 클릭하면 ajax로 controller 정보전달 */
+					$('#modalWriteButton').on('click', function(){
+						
+						$.ajax({
+							url:'./modifyGoodsQnaOk',
+							type:'get',
+							traditional: true,
+							data:{
+								'goods_qna_no':goods_qna_no,
+								'goods_qna_title':$('#goods_qna_title')[0].value,
+								'goods_qna_contents':$('#goods_qna_contents')[0].value,
+							},
+							dataType: 'html',
+							success: function(result){
+								console.log(result);
+								location.reload();
+							},
+							error: function(xhr){
+								console.log(xhr.status);
+							}
+						})
+						
+					})
+				},
+				error: function(xhr){
+					console.log(xhr.status);
+				}
+				
+			})
+				
+			})
+			
+		}) 
+		
+	}
+		
+	
+	/* qna 삭제하기 */
+	function deleteQna(){
+		var qnaDelete = document.querySelectorAll('.qnaDelete');
+		qnaDelete.forEach((item)=>{
+			(item).addEventListener('click', ()=>{
+				
+				var goods_qna_no = item.parentElement.firstElementChild.value;
+				console.log(goods_qna_no);
+				
+				if(confirm("정말 삭제하시겠습니까?") == true){
+				
+				$.ajax({
+					url:'./deleteGoodsQna',
+					type:'get',
+					traditional: true,
+					data: {'goods_qna_no':goods_qna_no},
+					dataType: 'json',
+					success: function(result){
+						alert("삭제가 완료되었습니다")
+						location.reload();
+						console.log(result);
+					},
+					error: function(xhr){
+						console.log(xhr.status);
+					}
+				})
+				}else{
+					return;
+				}
+				
+				
+			})
+		})
+		
+	}	
+		
 	
 	
 	/* 문의 상세보기 */
 	function showQnaDetail(){
 		var qna_row = document.querySelectorAll('.qna_row');
 		var goods_qna_contents = document.querySelectorAll('.goods_qna_contents');
-		
-		console.dir(qna_row);
-		console.dir(goods_qna_contents);
-		
+
 		qna_row.forEach((row) => {
 			row.addEventListener('click', () =>{
 				
 				var qnaDetail = row.rowIndex+1;
 				goods_qna_contents.forEach((cont)=>{
 					if(cont.rowIndex==qnaDetail){
-							cont.className = 'goods_qna_contents active';
+						cont.className = 'goods_qna_contents active';
 					}else{
 							cont.className = 'goods_qna_contents';
 					}
+					
+				
 				});
 
 			});
@@ -416,12 +550,58 @@
 	
 	/* 문의 모달창 */
 	function writeGoodsQna(){
+		/* 문의하기 버튼 누르면 */
 		$('#writeGoodsQna').on('click', function(){
-			console.dir($('.quaModal'))
 			$('.quaModal')[0].classList.toggle('show');
 			$('body')[0].style.overflow = 'hidden';
+			
+			/* 등록버튼 누르면 */
+			$('#modalWriteButton').on('click', function(){
+					var qna_lock ;
+					if($('#secretYN')[0].checked==true){
+						qna_lock = 1;
+					}else if($('#secretYN')[0].checked==false){
+						qna_lock = 0;
+					}
+					
+			var goods_no=$('#goods_no').val();
+			var goods_title=$('#goods_qna_title').val();
+			var goods_contents=$('#goods_qna_contents').val();
+
+			
+				if($('#goods_qna_title')[0].value!=null && $('#goods_qna_contents')[0].value!=null){
+			
+		 			$.ajax({
+						url:'./writeGoodsQna',
+						type:'get',
+						traditional: true,
+						data:{
+							'goods_no':goods_no,
+							'goods_qna_title':goods_title,
+							'goods_qna_contents':goods_contents,
+							'qna_lock':qna_lock
+						},
+						dataType:"html",
+						success: function(result){
+							if(result=='writeSuccess'){
+								location.reload();
+								console.log(result);
+								location.reload();
+							}
+						},
+						error: function(xhr){
+							console.log(xhr.status)
+						}
+					}); 
+				}else{
+					alert("내용을 입력해주세요");
+				}
+				
+				
+			});
 		});
 		
+		/* 취소버튼 눌렀을 때 */
 		$('#modalBackButton').on('click', function(){
 			console.dir($('#modalBackButton'));
 			$('.quaModal')[0].classList.toggle('show');
@@ -433,7 +613,7 @@
 	
 	/* 가격 계산 */
 	function calculateAmount(){	
-		console.dir($('#goodsAmount'));
+		//console.dir($('#goodsAmount'));
 		$('#goodsAmount')[0].toLocaleString('ko-KR');
 		$('#goodsAmount')[0].innerText = $('#inputQty')[0].valueAsNumber*$('#discountPrice')[0].textContent;
 		$('#goodsAmount')[0].style.fontSize="xx-large";
@@ -663,7 +843,14 @@
 							</tr>
 							<c:forEach var="goodsQnaDto" items="${goodsQnaDto }">
 							<tr class="qna_row">
-									<td>${goodsQnaDto.goods_qna_title }</td>
+								<c:choose>
+									<c:when test="${goodsQnaDto.qna_lock==1 }">
+										<td>비밀글입니다 <img src="../resources/img/padlock.png" alt="padlock.png" /></td>
+									</c:when>
+									<c:when test="${goodsQnaDto.qna_lock==0 }">
+										<td class="goods_qna_title">${goodsQnaDto.goods_qna_title }</td>
+									</c:when>
+								</c:choose>
 									<td>${goodsQnaDto.crew_id }</td>
 									<td>${goodsQnaDto.goods_qna_date }</td>
 									<td>${goodsQnaDto.qna_status }</td>
@@ -671,20 +858,13 @@
 							<tr class="goods_qna_contents" >
 								<td colspan="4">
 									<div class="question">${goodsQnaDto.goods_qna_contents }</div>
-									<c:choose>
-										<c:when test="${goodsQnaDto.goods_qna_answer != null }">
-											<div class="answer">${goodsQnaDto.goods_qna_answer }</div>
-											<input type="button" value="수정" />
-											<input type="button" value="답변 삭제" />
-										</c:when>
-										<c:when test="${goodsQnaDto.goods_qna_answer == null }">
-											<div class="answer">
-												<textarea name="goods_qna_answer" id="goods_qna_answer" cols="30" rows="10"></textarea>
-												<input type="button" value="지우기" />
-												<input type="button" value="답변등록" />
-											</div>
-										</c:when>
-									</c:choose>
+										<div class="answer">${goodsQnaDto.goods_qna_answer }</div>
+										<div class="qnaAmend">
+											<input type="hidden" name="goods_qna_no" class="goods_qna_no" value="${goodsQnaDto.goods_qna_no }" />
+											<input type="button" value="수정" class="qnaModify"/>
+											<input type="button" value="문의 삭제" class="qnaDelete" />
+										</div>
+									
 								</td>
 							</tr>
 							</c:forEach>
@@ -705,8 +885,8 @@
 	
 	<!-- 모달창 -->
 	<div class="quaModal">
-	<form action="writeGoodsQna" method="post">
 		<div class="modalBody">
+			<form action="./writeGoodsQna" method="post" id="writeGoodsQnaForm">
 			<div>
 				<h3>상품 문의하기</h3>
 			</div>
@@ -717,29 +897,26 @@
 			<div class="goodsQnaTnC">
 				<div class="qnaTitle">
 					<strong>제목</strong> 
-					<input type="text" name="goods_qna_title" id="" placeholder="제목을 입력해주세요" /> 
-					<input type="hidden" name="goods_no" value="${goodsDto.goods_no }" />
+					<input type="text" name="goods_qna_title" id="goods_qna_title" placeholder="제목을 입력해주세요" /> 
+					<input type="hidden" name="goods_no" id="goods_no" value="${goodsDto.goods_no }" />
 
 				</div>
 				<div class="qnaContents">
 				<strong>내용</strong> 
-				<textarea name="goods_qna_contents" maxlength="3000"
-					placeholder="상품문의 작성 전 확인해 주세요
-								해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.
-								배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이비다 내 1:1 문의에 남겨주세요.">
+				<textarea name="goods_qna_contents" maxlength="3000" id="goods_qna_contents">
 				</textarea>
 				</div>	
 				<div class="secretYN">
-					<input type="checkbox" name="secretYN" id="" />
+					<input type="checkbox" name="secretYN" id="secretYN" />
 					<p>비밀글로 문의하기</p>
 				</div>
 			</div>
 			<div class="modalButton">
 				<input type="button" value="취소" id="modalBackButton" />
-				<input type="submit" value="등록" />
+				<input type="button" value="등록" id="modalWriteButton"/>
 			</div>
+			</form>
 		</div>
-		</form>
 	</div>
 	
 </body>

@@ -93,11 +93,13 @@ td {
 </head>
 <body>
 	<div class="container">
+		<c:forEach var="dto" end="0" items="${relist}">
 		<div class="topmenu">
 			<a href="" class="topbtn" style="margin-left: 30px;">작성가능후기</a> <a
 				href="myReviewAfter?crew_no=${dto.crew_no}" class="topbtn"
 				style="border-left: 2px solid white;">작성완료후기</a>
 		</div>
+		 </c:forEach>
 		<c:forEach var="dto" items="${list}">
 			<div class="review">
 				<table>

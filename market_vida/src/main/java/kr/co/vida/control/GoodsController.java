@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.springframework.web.servlet.ModelAndView;
-
-
 import kr.co.vida.dto.GoodsDTO;
 import kr.co.vida.dto.GoodsQnaDTO;
 import kr.co.vida.dto.PageUtil;
@@ -93,6 +90,7 @@ public class GoodsController {
 	}
 	
 	
+	
 	// 상품 삭제
 	@RequestMapping("/goods/deleteGoods")
 	@ResponseBody
@@ -121,18 +119,7 @@ public class GoodsController {
 		return "goods/goodsDetail";
 	}
 	
-	// 상품문의 쓰기
-	@RequestMapping("goods/writeGoodsQna")
-	public String writeGoodsQna(@ModelAttribute("goodsQnaDto")GoodsQnaDTO goodsQnaDto, 
-								@RequestParam("goods_no")int goods_no,
-								ModelAndView mav) {
-		
-		goodsQnaDto.setCrew_id("aaa");
-		goodsQnaDto.setCrew_no(14);
-		goodsQnaService.insertOne(goodsQnaDto);
-		
-		return "writeSuccess";
-	}
+	
 	
 	
 	@GetMapping("/admin/goodswrite")

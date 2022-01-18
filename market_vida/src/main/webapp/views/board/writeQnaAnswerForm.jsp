@@ -15,48 +15,38 @@ main div {
 	text-align: center;
 	flex-grow: 1;
 }
-
-        table {
+table {
             margin-top: 30px;
             width: 1000px;
             border-spacing: 0;
             border-collapse: collapse;
             margin: 0 auto;
         }
-
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
         .title {
             border-bottom: 2px solid #4c4c4c;
-            margin: 0 auto;
             margin-bottom: 50px;
-            margin-top: 50px;
-            width: 1000px;
-            text-align: left;
-        }
-
-        .title a {
             height: 50px;
             display: block;
+            margin: 0 auto;
             color: black;
             font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            margin-top:50px;
+            text-align: left;
+            width: 1000px;
         }
         .link{
-            display: inline-block;
             height: 40px;
-            width: 110px;
+            width: 80px;
             border-radius: 5px;
             background-color: #006f00;
             color: #fff;
             line-height: 40px;
             text-align: center;
             margin-top: 30px;
-            margin-right: 890px; 
+            margin-right: 920px;
+            font-weight: 600;
         }
         .link:active{
         	border: 1px solid #fff; 
@@ -65,75 +55,81 @@ main div {
         .link:hover{
         	opacity: 0.8;
         }
-        th,
-        td {
-            text-align: center;
-        }
+		input{
+			border: 0;
+		}
+		textarea{
+			resize: none;
+			outline: none;
+			border: none;
+			width: 100%;
+		}
 		th{
 			background-color: #BCDDBC;
-			height: 30px;
-			border: 1px solid #BDBDBD;
+			height: 50px;
+			width: 10%;	
 		}
         td {
             height: 30px;
+            width: 90%;
             border-collapse: collapse;
             border: 1px solid #d9d9d9;
-        }
-
-        td:nth-child(2) {
             text-align: left;
-            margin-left: 10px;
-            width: 50%;
+            padding-left: 5px;
         }
-        td:nth-child(3), td:nth-child(4), td:nth-child(5) {
-			width: 15%;
-        }
-        td a{
+        #qna_title{
         	width: 100%;
-        	height:100%;
-        	display: block;
-        	line-height: 30px;
+        	height: 100%;
+        	outline: none;
+        	border: none;
+        	background-color: #fff;
+        	color: #333;
+        	padding: 0;
         }
-        td a:hover {
-			color: #006f00;
-			background-color: #f7f7f7;
-		}
 </style>
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp"></jsp:include>
 	<main>
-		<div>
-			<div class="title"><a href="./qna">1:1문의 게시판</a></div>
+		<div class="container">
+	<form action="./writeQnaAnswer" method="post">
+		<div class="title">1:1문의 수정</div>
 		<table>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>카테고리</th>
-				<th>문의날짜</th>
-				<th>답변상태</th>
+				<th>질문번호</th>
+				<td>${dto.qna_no }</td>
 			</tr>
-			<c:forEach var="dto" items="${list}">
-				<tr>
-					<td>${dto.qna_no}</td>
-					<td>
-						<a href="./detail?qna_no=${dto.qna_no }">&nbsp;${dto.qna_title }</a>
-					</td>
-					<td>${dto.qna_category }</td>
-					<td>${dto.qna_date }</td>
-					<c:if test="${dto.qna_status eq 0}">
-					<td>답변대기</td>
-					</c:if>
-					<c:if test="${dto.qna_status eq 1}">
-					<td>답변완료</td>
-					</c:if>
-				</tr>
-			</c:forEach>
+			<tr>
+				<th>문의날짜</th>
+				<td>${dto.qna_date }</td>
+			</tr>
+			<tr>
+				<th>카테고리</th>
+				<td>
+					<input type="text" name="qna_category" value="${dto.qna_category }" readonly="readonly" />
+					<input type="hidden" name="qna_no" value="${dto.qna_no }" />
+				</td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td><input type="text" id="qna_title" name="qna_title" value="${dto.qna_title }" placeholder="제목 수정" readonly="readonly"/> </td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea name="qna_content" cols="80" rows="16" placeholder="내용 수정" readonly="readonly">${dto.qna_content }</textarea></td>
+			</tr>
 		</table>
-		<c:if test="${crew_id ne 'admin' }">
-			<a href="./writeQna" class="link">1:1문의 등록</a>
-		</c:if>
-		</div>
+		<table>
+			<tr>
+				<td>
+					<textarea name="qna_answer" id="qna_answer" cols="80" rows="16" placeholder="답변 입력">${dto.qna_answer}</textarea>
+					<input type="hidden" name="qna_status" value="1"/>
+				</td>
+			</tr>
+		</table>
+			<input type="submit" value="답변등록" class="link"/>
+	</form>
+	</div>
 	</main>
 	<jsp:include page="../main/sidebar.jsp"></jsp:include>
 	<jsp:include page="../main/footer.jsp"></jsp:include>

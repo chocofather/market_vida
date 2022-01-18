@@ -25,7 +25,7 @@
            	<ul>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="../crew/login">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="../crew/join">회원가입</a></li>
             </ul>
             </c:if>
             <c:if test="${crew_id !=null }">
@@ -55,6 +55,9 @@
             <div class="cart">
                 <a href="#"><i class="xi xi-cart-o xi-2x"></i></a>
             </div>
+            <div class="wishList">
+            	<a href="#"><i class="xi-heart-o xi-2x"></i></a>
+            </div>
         </nav>
         <div class="sub_menu">
             <ul class="inner">
@@ -71,15 +74,26 @@
               <li><a href=""><img src="${path}/resources/img/2022.png"></a></li>
             </ul>
         </div>
+            <c:if test="${crew_id == 'admin' }">
         <div class="sidebar">
             <div class="side_menu">
-                <a href="#">상품 등록</a>
+                <a href="../admin/goodswrite">상품 등록</a>
                 <a href="./benefit">등급별 혜택</a>
                 <a href="#">베스트 후기</a>
                 <a href="#">맨 위로</a>
             </div>
-            
         </div>
+                </c:if>
+                <c:if test="${crew_id != 'admin' || empty crew_id }">
+                <div class="sidebar">
+            <div class="side_menu">
+                <a href="./benefit">등급별 혜택</a>
+                <a href="#">베스트 후기</a>
+                <a href="#">맨 위로</a>
+            </div>
+        </div>
+                </c:if>
+            
         <main>
             <div class="post_item">
                 <div class="text">

@@ -41,7 +41,7 @@
 		<div class="top" style="width: 1180px;">
 			<h1>후기 작성</h1>
 		</div>
-		<form action="./reviewWrite" method="post">
+		<form action="./reviewWrite?crew_no=${dto.crew_no }" method="post">
 		<div class="header">
 		<input type="hidden" name="crew_no" value="${dto.crew_no }" />
 		<input type="hidden" name="goods_no" value="${dto.goods_no }" />

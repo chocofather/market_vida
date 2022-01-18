@@ -4,8 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="kr.co.vida.qna">
+  	<select id="selectList" resultType="qbdto" parameterType="int">
+  		SELECT qna_no, qna_title, qna_category, TO_CHAR(qna_date, 'YYYY/MM/DD') qna_date, qna_status, qna_answer
+  		FROM qna_board
+  		WHERE crew_no = #{crew_no}
+  		ORDER BY qna_no DESC 
+  	</select>
   	<select id="selectAll" resultType="qbdto">
-  		SELECT qna_no, qna_title, qna_category, TO_CHAR(qna_date, 'YYYY/MM/DD') qna_date
+  		SELECT qna_no, qna_title, qna_category, TO_CHAR(qna_date, 'YYYY/MM/DD') qna_date, qna_status
   		FROM qna_board
   		ORDER BY qna_no DESC 
   	</select>
@@ -14,7 +20,7 @@
   		VALUES (#{crew_no}, qna_no_seq.nextval, #{qna_category}, #{qna_title}, sysdate, #{qna_content},0)
   	</insert>
   	<select id="selectOne" parameterType="int" resultType="qbdto">
-  		SELECT qna_no, qna_title, qna_category, TO_CHAR(qna_date, 'YYYY/MM/DD') qna_date, qna_category, qna_content
+  		SELECT qna_no, qna_title, qna_category, TO_CHAR(qna_date, 'YYYY/MM/DD') qna_date, qna_category, qna_content, qna_answer
   		FROM qna_board
   		WHERE qna_no = #{qna_no}
   	</select>
@@ -27,4 +33,9 @@
   		DELETE qna_board
   		WHERE qna_no = #{qna_no}
   	</delete>
+  	<update id="updateAnswer" parameterType="qbdto">
+  		UPDATE qna_board
+  		SET qna_answer = #{qna_answer}, qna_status=#{qna_status}
+  		WHERE qna_no = #{qna_no}
+  	</update>
   </mapper>

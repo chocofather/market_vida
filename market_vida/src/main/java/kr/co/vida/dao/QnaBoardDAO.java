@@ -21,6 +21,10 @@ public class QnaBoardDAO implements Dao<QnaBoardDTO>{
 	public List<QnaBoardDTO> getListAll() {
 		return ss.selectList("kr.co.vida.qna.selectAll");
 	}
+	
+	public List<QnaBoardDTO> getListAll(int no) {
+		return ss.selectList("kr.co.vida.qna.selectList",no);
+	}
 
 	@Override
 	public QnaBoardDTO getOne(int no) {
@@ -40,6 +44,10 @@ public class QnaBoardDAO implements Dao<QnaBoardDTO>{
 	@Override
 	public void deleteOne(int no) {
 		ss.delete("kr.co.vida.qna.deleteOne", no);
+	}
+	
+	public void updateAnswer(QnaBoardDTO dto) {
+		ss.update("kr.co.vida.qna.updateAnswer", dto);
 	}
 
 }
