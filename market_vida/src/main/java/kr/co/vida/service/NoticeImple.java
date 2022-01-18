@@ -53,6 +53,10 @@ public class NoticeImple implements VidaService<NoticeDTO> {
 		dao.deleteOne(no);
 	}
 	
+	public void dropOne(String no) {
+		dao.deleteOne(no);
+	}
+	
 	public int getTotal() {
 		return dao.getTotal();
 		

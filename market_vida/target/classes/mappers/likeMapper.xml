@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.co.vida.like">
+
+	<insert id="insertOne" parameterType="likeDto">
+		INSERT INTO keep
+		values (keep_no_seq.nextval, #{crew_no} , #{goods_no} )
+	</insert>
+	
+	<!-- 찜목록 확인하기 -->
+	<select id="getListById" resultType="likeDto">
+		SELECT * FROM keep WHERE crew_no = #{crew_no}
+	</select>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="delete">
+		DELETE FROM keep 
+		WHERE crew_no = #{crew_no} AND goods_no = #{goods_no}
+	</delete>
+	
+	<!-- 이미 찜한상품인지 조회  -->
+ 	<select id="likeCheck" resultType="int">
+ 		SELECT count(*)
+ 		FROM keep
+ 		WHERE crew_no = #{crew_no} AND goods_no = #{goods_no}
+ 	</select>
+
+
+</mapper>

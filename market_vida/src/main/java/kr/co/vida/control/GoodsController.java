@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.vida.dto.GoodsDTO;
+import kr.co.vida.dto.GoodsQnaDTO;
 import kr.co.vida.dto.PageUtil;
 import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
+import kr.co.vida.service.GoodsQnaImple;
 import kr.co.vida.service.ImgListImple;
 import kr.co.vida.service.SubCatImple;
 import lombok.extern.slf4j.Slf4j;
@@ -36,17 +38,28 @@ public class GoodsController {
 	
 	@Autowired
 	GoodsImple goodsService;
+	
+	@Autowired
+	GoodsQnaImple goodsQnaService;
 
-
-	@GetMapping("/goods/goodsList")
+	// 상품 리스트 페이지
+	@RequestMapping("/goods/goodsList")
 	public String goodsList(@RequestParam("cat_code")int cat_code, 
 							@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
 							Model model) {
 		
-		// 총 게시물 수
-		int totalNumber = goodsService.getTotal(cat_code);
-		System.out.println(totalNumber);
+		int totalNumber = 0; // 총 게시물 수
+		int forMainCode = 0; // 메인인지 서브인지 코드 판단	
 		
+		if(cat_code%100==0) { // 메인코드
+			forMainCode = cat_code+1;
+			totalNumber = imgService.getTotalbyMainCode(cat_code);
+		}else if(cat_code%100!=0) { // 서브코드
+			forMainCode = cat_code;
+			totalNumber = imgService.getTotalbySubCode(cat_code);
+		}
+		
+		System.out.println(totalNumber);
 		// 현재 페이지의 게시물 수 : 18
 		int countPerPage=18;
 		
@@ -54,18 +67,12 @@ public class GoodsController {
 		
 		model.addAttribute("map", map);
 		
+		int startNo = (int) map.get("startNo");
+		int endNo = (int) map.get("endNo");
 		
-		
+		//model.addAttribute("paging", imgService.readAll(startNo, endNo));
 		
 		log.info("subCode=====>"+cat_code);
-		
-		// 메인 코드 1개만 구하기
-		int forMainCode;	
-		if(cat_code%100==0) {
-			forMainCode = cat_code+1;
-		}else {
-			forMainCode = cat_code;
-		}
 		
 		// 카테고리 리스트 객체
 		SubCatDTO subDto = subService.selectOne(forMainCode);
@@ -81,6 +88,7 @@ public class GoodsController {
 		
 		return "/goods/goodsList";
 	}
+	
 	
 	
 	// 상품 삭제
@@ -100,15 +108,17 @@ public class GoodsController {
 	
 	// 상품 디테일 페이지 이동
 	@GetMapping("/goods/goodsDetail")
-	public String goodsDetail(@RequestParam("goods_no")int goods_no, Model model) {
+	public String goodsDetail(@RequestParam("goods_no")int goods_no, Model model, GoodsQnaDTO goodsQnaDto) {
 		
 		GoodsDTO goodsDto = goodsService.selectOne(goods_no);
 		
 		model.addAttribute("goodsDto", goodsDto);
 		model.addAttribute("detailImgDto", imgService.getGoodsImgs(goodsDto.getGoods_no()));
-		
+		model.addAttribute("goodsQnaDto", goodsQnaService.selectAllList());
+		log.info("goodsqna======?"+goodsQnaDto);
 		return "goods/goodsDetail";
 	}
+	
 	
 	
 	
