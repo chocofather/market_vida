@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +22,7 @@ public class JoinController {
 	@Autowired
 	JoinServiceImpl joinservice;
 	
-	// 회원가입
+	// 회원가입 페이지 이동
 	@GetMapping("crew/join")
 	public ModelAndView joinPage() {
 		ModelAndView mv = new ModelAndView("crew/join");
@@ -31,26 +32,28 @@ public class JoinController {
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto,
 			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		/*
-		 private int crew_no;
-		 private String crew_id;
-		 private String crew_pw;
-		 private String crew_name;
-		 private String crew_email;
-		 private String crew_phone;
-		 private String grade;
-		 private String crew_gender;
-		 private String crew_birth;
-		 */
+
 		joinservice.register(crdto);
-		mv.setViewName("crew/join.do");
-		mv.addObject("crew_name", crdto.getCrew_name());
+		mv.setViewName("/main/main");
 		return mv;
 		
 	}
-	@ResponseBody
+
+	// 아이디 중복 검사
 	@RequestMapping(value = "crew/idcheck", method = RequestMethod.POST)
-	public int idCheck(String crew_id) {
-		return joinservice.idcheck(crew_id);
-	}
+	@ResponseBody
+	public int crewIdcheck(String crew_id) throws Exception{			
+		int result = joinservice.idcheck(crew_id);
+		System.out.println(result);
+			return result;			
+	} 
+	
+	// 이메일 중복 검사
+	@RequestMapping(value = "crew/emailcheck", method = RequestMethod.POST)
+	@ResponseBody
+	public int crewEmailcheck(String crew_email) throws Exception{			
+			int result = joinservice.emailcheck(crew_email);
+			return result;			
+	} 
+	
 }

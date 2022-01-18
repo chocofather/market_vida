@@ -11,5 +11,7 @@ public class FriendsBenefitDTO {
 	private String grade;
 	private int hiamount;
 	private int loamount;
-	private int accual_rate;
+	private float accual_rate;
+	private int pay;
+	private String remark;
 }

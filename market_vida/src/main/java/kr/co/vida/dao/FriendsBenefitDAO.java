@@ -22,6 +22,10 @@ public class FriendsBenefitDAO implements Dao<FriendsBenefitDTO>{
 	public List<FriendsBenefitDTO> getListAll() {
 		return ss.selectList("kr.co.vida.benefit.selectAll");
 	}
+	
+	public List<FriendsBenefitDTO> getListGrade() {
+		return ss.selectList("kr.co.vida.benefit.selectGrade");
+	}
 
 	@Override
 	public FriendsBenefitDTO getOne(int no) {

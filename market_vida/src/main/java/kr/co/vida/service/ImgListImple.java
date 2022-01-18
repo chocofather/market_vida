@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.vida.dao.ImgDAO;
 import kr.co.vida.dto.ImgDTO;
+import kr.co.vida.dto.StartEnd;
 
 @Service("ImgListImple")
 public class ImgListImple implements VidaService<ImgDTO>{
@@ -14,6 +15,9 @@ public class ImgListImple implements VidaService<ImgDTO>{
 	@Autowired
 	ImgDAO dao;
 	
+	public List<ImgDTO> readAll(int StartNo, int endNo){
+		return dao.readAll(StartNo, endNo);
+	}
 
 	public List<ImgDTO> selectAllList(int no) {
 		return dao.getListAll(no);
@@ -25,6 +29,14 @@ public class ImgListImple implements VidaService<ImgDTO>{
 	
 	public List<ImgDTO> getGoodsImgs(int no){
 		return dao.getAllImgbyGoods(no);
+	}
+	
+	public int getTotalbyMainCode(int no) {
+		return dao.getTotalbyMainCode(no);
+	}
+	
+	public int getTotalbySubCode(int no) {
+		return dao.getTotalbySubCode(no);
 	}
 	
 	@Override
@@ -53,6 +65,8 @@ public class ImgListImple implements VidaService<ImgDTO>{
 	public void dropOne(int no) {
 		dao.deleteOne(no);
 	}
+
+	
 
 
 }

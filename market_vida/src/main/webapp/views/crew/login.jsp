@@ -9,11 +9,12 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="${path}/resources/css/login.css?v=1.1" rel="stylesheet"
+<link href="${path}/resources/css/login.css?v=1.2" rel="stylesheet"
 	type="text/css">
 <script src="http://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
+      
 	<div id="container">
 		<form name="login_form" id="login_form" action="login" method="post">
 			<h2>로그인</h2>
@@ -93,5 +94,6 @@
 		      }
 		});
 	}
+	<%@ include file = "../main/footer.jsp" %>
 </script>
 </html>
