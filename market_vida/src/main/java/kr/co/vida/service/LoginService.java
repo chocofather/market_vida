@@ -11,7 +11,7 @@ import kr.co.vida.dto.CrewDTO;
 public interface LoginService {
 	public int loginCheck(CrewDTO crdto, HttpSession session);
 	public void logout(HttpSession session);
-	public String findid(CrewDTO crdto);
-	public String findname(String crew_id);
+	public String findid(CrewDTO crdto, HttpSession session);
+	public String findname(String crew_id );
 	public CrewDTO selectAll_id(String crew_id);
 }

@@ -553,7 +553,7 @@
         	});
         });
         function openModal(modalname){
-            document.get
+            
             $("#modal").fadeIn(300);
             $("."+modalname).fadeIn(300);
         }

@@ -77,18 +77,19 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView("crew/find_id");
 		return mv;
 	}
-
+	
 	@PostMapping(value = "crew/find_id")
-	public ModelAndView id_emailcheck(@ModelAttribute CrewDTO crdto, HttpSession session) {
+	public String id_emailcheck(@ModelAttribute CrewDTO crdto, HttpSession session) {
 		
-		String crew_id = crewservice.findid(crdto);
-		ModelAndView mv = new ModelAndView();
+		String crew_id = crewservice.findid(crdto, session);
+		
 		if(crew_id != null)
 		{
-			session.setAttribute("crew_id", crdto.getCrew_id());
-			mv = new ModelAndView("redirect:crew/find_id");
+			session.setAttribute("crew_id", crew_id);
+			session.setAttribute("crew_name", crdto.getCrew_name());
+			
 		}
-		return mv;
+		return crew_id;
 	}
 	
 	

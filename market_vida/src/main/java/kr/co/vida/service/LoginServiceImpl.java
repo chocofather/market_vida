@@ -35,8 +35,11 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public String findid(CrewDTO crdto) {
+	public String findid(CrewDTO crdto, HttpSession session) {
 		String crew_id = ldao.findId(crdto);
+		if(crew_id != null) {
+			session.setAttribute("crew_id", crdto.getCrew_id());
+		}
 		return crew_id;
 	}
 
