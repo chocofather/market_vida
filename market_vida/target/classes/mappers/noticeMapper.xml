@@ -17,7 +17,7 @@
   	</select>
   	
   	<select id="selectOne" parameterType="int" resultType="ndto">
-  		SELECT notice_no, notice_category, notice_title, crew_id, notice_date, notice_content, notice_hits, crew_no
+  		SELECT notice_no, notice_category, notice_title, crew_id, to_char(notice_date,'YYYY/MM/DD') notice_date, notice_content, notice_hits, crew_no
   		FROM notice_board 
   		WHERE notice_no =#{notice_no}
   	</select>
