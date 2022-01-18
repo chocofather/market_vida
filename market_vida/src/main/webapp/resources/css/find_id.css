@@ -89,4 +89,128 @@ body{
 .findidBtn[disabled]:hover{
     cursor: default;
 }
+.find_id__num_border{
+	display : flex;
+	width : 100%;
+    height: 48px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.find_id_num_input{
+	width: 85%;
+    height: 46px;
+    padding: 0 11px 1px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+}
+.find_id_num_label{
+	display : none;
+}
+.find_id_num_input{
+	display : none;
+}
+.find_id__num_border{
+	display : none;
+}	
+.find_id_num_button{
+	display : none;
+	width : 70px;
+	height : 46px;
+	color : #006f00;
+	border-radius: 14px;
+	font-weight : bold;
+	font-size: 20px;
+}
+.find_id_num_button:hover{
+	cursor:pointer;
+	color: white;
+	background-color : #8bbb8b;
+}
+#modal{
+    display:none;
+    position:fixed; 
+    width:100%; height:100%;
+    top:0; left:0; 
+    background:rgba(0,0,0,0.3);   
+}
 
+.modal1{
+	display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    background:#fff;
+    border-radius: 20px;
+    padding: 30px;
+  }
+.crew_id_show{
+	display : none;
+}
+.modal_content > h2{
+	text-align : center;
+}
+.modal_content{
+	display : flex;
+	flex-direction : column;
+}
+.close{
+    display:block;
+    position:absolute;
+    width:40px; height:40px;
+    border-radius:50%; 
+    text-align:center; line-height: 30px;
+    text-decoration:none;
+    color:#666; font-size:26px; font-weight: bold;
+    right:20px; top:20px;
+  }
+  .input_number{
+   	width: 80%;
+    height: 36px;
+    padding: 0 11px 1px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+  }
+  .crew_id_show{
+  	width: 80%;
+    height: 36px;
+    padding: 0 11px 1px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+  }
+  .modal_confirm{
+  	 display: block;
+    width: 100%;
+    height: 57px;
+    border: 0;
+    border-top: 1px solid #f7f7f7;
+    border-radius: 6px;
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    color: #006f00;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
+.modal_footer{
+	position: fixed;
+    bottom: 0;
+    width: 85%;
+    text-align: center;
+}

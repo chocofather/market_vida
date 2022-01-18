@@ -31,8 +31,10 @@ public class LoginController {
 	LoginServiceImpl crewservice;
 
 	// MailSendService mss;
-	JavaMailSender mailSender;
-
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	 
 	// 로그인
 	@GetMapping("crew/login")
 	public ModelAndView loginPage() {
@@ -69,24 +71,37 @@ public class LoginController {
 		return mv;
 	}
 
-	// 아이디 찾기
+	// 아이디 찾기 페이지 이동
 	@RequestMapping(value = "crew/find_id")
 	public ModelAndView findId() {
 		ModelAndView mv = new ModelAndView("crew/find_id");
-
 		return mv;
 	}
 
+	@PostMapping(value = "crew/find_id")
+	public ModelAndView id_emailcheck(@ModelAttribute CrewDTO crdto, HttpSession session) {
+		
+		String crew_id = crewservice.findid(crdto);
+		ModelAndView mv = new ModelAndView();
+		if(crew_id != null)
+		{
+			session.setAttribute("crew_id", crdto.getCrew_id());
+			mv = new ModelAndView("redirect:crew/find_id");
+		}
+		return mv;
+	}
+	
+	
 	// 이메일 인증
-	@RequestMapping(value = "crew/mailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "crew/idemailCheck", method = RequestMethod.GET)
 	@ResponseBody
-	public String mailCheckGET(String email) {
+	public String mailCheckGET(String crew_email) {
 		Random random = new Random();
 		int checkNum = random.nextInt(888888) + 111111;
-
+		
 		// 이메일 보내기
 		String setFrom = "jd0922@naver.com";
-		String toMail = email;
+		String toMail = crew_email;
 		String title = "vida market 이메일 인증 입니다.";
 		String content = "vida market 아이디 찾기 이메일 인증입니다." + "<br><br>" + "인증 번호는" + checkNum + "입니다."
 				+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
@@ -106,7 +121,6 @@ public class LoginController {
 		}
 
 		String num = Integer.toString(checkNum);
-
 		return num;
 
 	}

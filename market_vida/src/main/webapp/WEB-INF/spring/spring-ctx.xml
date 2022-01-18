@@ -12,6 +12,7 @@
 	<context:component-scan base-package="kr.co.vida.*" />
 	<mvc:annotation-driven />
 	
+
 	<mvc:default-servlet-handler/>
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -38,10 +39,9 @@
 	
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
      <property name="host" value="smtp.naver.com"/> 
-     <property name="port" value="465"/> 
-     <property name="username" value="your_email"/> 
-     <property name="password" value="your_password"/> 
-      
+     <property name="port" value="587"/> 
+     <property name="username" value="jd0922"/> 
+     <property name="password" value="whdeo08282@"/> 
      <property name="javaMailProperties">
       <props>
       <prop key="mail.smtp.auth">true</prop>
@@ -49,6 +49,7 @@
       <prop key="mail.smtps.checkserveridentity">true</prop>
       <prop key="mail.smtps.ssl.trust">*</prop>
       <prop key="mail.debug">true</prop>
+      <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
       <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
       </props>
      </property>
