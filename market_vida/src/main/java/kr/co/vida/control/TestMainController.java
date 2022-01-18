@@ -13,12 +13,12 @@ public class TestMainController {
 		return "crew/testmain";
 	}
 	
-	@RequestMapping("crew/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		
-		if(session !=null) session.invalidate();
-		
-		return "redirect:testmain";
-	}
+	/*
+	 * @RequestMapping("crew/logout") public String logout(HttpServletRequest
+	 * request) { HttpSession session = request.getSession(false);
+	 * 
+	 * if(session !=null) session.invalidate();
+	 * 
+	 * return "redirect:testmain"; }
+	 */
 }

@@ -40,7 +40,7 @@ public class LoginController {
 		return mv;
 	}
 
-			
+	@PostMapping("crew/login")
 	public ModelAndView logincheck(@ModelAttribute CrewDTO crdto, HttpSession session) {
 		int crew_count = crewservice.loginCheck(crdto, session);
 
