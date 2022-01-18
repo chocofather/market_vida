@@ -234,17 +234,23 @@
           </c:forEach>
         </ul>
       </div>
+      
+      <c:if test="${crew_id=='admin' }">
 	  <div class="adminSection">	
       	<input type="button" value="삭제" id="deleteGoods"/>
       	<input type="button" value="수정" id="updateGoods"/>
       </div>
+      </c:if>
+      
       <!-- 상품 정렬 -->
       <div class="sortGoods">
         <div class="countGoods">
-       <!--  <form action="goodsList" method="post" id="goodsCnt"> -->
           <p>총 ${fn:length(imgDto) }개 상품</p>
-      <!--   </form> -->
+     
+      	<c:if test="${crew_id=='admin' }">
           <input type="checkbox" name="" id="checkAll" />
+        </c:if>
+        
         </div>
         <div class="sortBy">
           <ul>
@@ -261,7 +267,11 @@
       <ul class="imgBox">
         <c:forEach var="imgDto" items="${imgDto }">
           <li class="imgBox_list">
+          
+          <c:if test="${crew_id=='admin' }">
 			<input type="checkbox" class="goodsChkbox" value="${imgDto.goods_no }" />        
+		  </c:if>
+		  
             <a href="goodsDetail?goods_no=${imgDto.goods_no }">
               <img src="${imgDto.img_name }" alt="${imgDto.img_name }" />
               <span>${imgDto.goods_name }</span>

@@ -220,7 +220,7 @@
     	text-align: left;
 	}
 	
-	.qnaTable {
+	.qnaTable, .reviewTable {
 	    width: 100%;
    		margin: 50px auto;
    		border-collapse: collapse;
@@ -228,13 +228,13 @@
 	    border-right: hidden;
 	}
 	
-	.qnaTable tr th {
+	.qnaTable tr th, .reviewTable tr th {
 	    height: 50px;
 	    border-top: 2px solid var(--font-color);
 	    border-bottom: 1px solid var(--font-color);
 	}
 	
-	.qnaTable .qna_row td {
+	.qnaTable .qna_row td, .reviewTable td {
 	    border-right: hidden;
   		border-left: hidden;
   		height: 45px;
@@ -243,24 +243,32 @@
     	padding-left: 60px;
 	}
 	
-	.qnaTable .goods_qna_contents {
+	.qnaTable .goods_qna_contents, .reviewTable .reviewContents {
 		display: none;
 	}
 	
-	.qnaTable .goods_qna_contents.active {
+	.qnaTable .goods_qna_contents.active, .reviewTable .reviewContents.active {
 		display: contents;
  	    width: 1000px;
 		border-bottom: hidden;
 	}
 	
-	.goods_qna_contents .question {
+	.goods_qna_contents .question, .reviewContents .reviews {
 		text-align: left;
    		padding: 30px;
+	}
+	
+	.goods_qna_contents img {
+		width: 30px;
+		height: 30px;
+		padding-right: 15px;
 	}
 	
 	.goods_qna_contents .answer {
 	    margin: 30px;
     	width: 80%;
+    	text-align: left;
+    	font-weight: bold;
 	}
 	
 	.qnaAmend {
@@ -270,6 +278,16 @@
 	}
 	
 	.qnaAmend input[type='button'] {
+	    width: 100px;
+	    height: 35px;
+	    border: 1.5px solid var(--my-color);
+	    color: var(--my-color);
+	    background-color: white;
+	    border-radius: 4px;
+	    font-weight: bold;
+	}
+	
+	.likeIt input[type='button'] {
 	    width: 100px;
 	    height: 35px;
 	    border: 1.5px solid var(--my-color);
@@ -413,7 +431,6 @@
 <script type="text/javascript">
 	$(function(){
 		
-		
 		calculateAmount();
 		adjustQty();
 		addMyfavorite();	
@@ -422,7 +439,11 @@
 		showQnaDetail();
 		modifyQnaForm();
 		deleteQna();
+		showReview();
+		
 	});
+	
+	
 	
 	/* 문의상세보기 수정 */
 	function modifyQnaForm(){
@@ -520,6 +541,27 @@
 		})
 		
 	}	
+	
+	
+	/* 리뷰 상세보기 */
+	function showReview(){
+		var review_row = document.querySelectorAll('.review_row');
+		var reviews_qna_contents = document.querySelectorAll('.reviewContents');
+		review_row.forEach((row)=>{
+			row.addEventListener('click', ()=>{
+				var reviewDetail = row.rowIndex+1;
+				reviews_qna_contents.forEach((cont)=>{
+					if(cont.rowIndex==reviewDetail){
+						cont.className = 'reviewContents active';
+					}else{
+						cont.className = 'reviewContents';
+					}
+					
+				})
+				
+			})
+		})
+	}
 		
 	
 	
@@ -530,23 +572,45 @@
 
 		qna_row.forEach((row) => {
 			row.addEventListener('click', () =>{
-				
-				var qnaDetail = row.rowIndex+1;
-				goods_qna_contents.forEach((cont)=>{
-					if(cont.rowIndex==qnaDetail){
-						cont.className = 'goods_qna_contents active';
-					}else{
-							cont.className = 'goods_qna_contents';
-					}
+				var crew_id = $('#crew_id').val();
+				var title = row.firstElementChild.innerText;
+				var rowId = row.cells[1].innerText;
+				//console.dir(row);
+				console.log(crew_id);
+				console.log(rowId); 
+				if (title!="비밀글입니다" ){
 					
+					var qnaDetail = row.rowIndex+1;
+					goods_qna_contents.forEach((cont)=>{
+						if(cont.rowIndex==qnaDetail){
+							cont.className = 'goods_qna_contents active';
+						}else{
+								cont.className = 'goods_qna_contents';
+						}
+					
+					});
+					
+			 	}else if (title=="비밀글입니다" && crew_id==rowId){
+					var qnaDetail = row.rowIndex+1;
+					goods_qna_contents.forEach((cont)=>{
+						if(cont.rowIndex==qnaDetail){
+							cont.className = 'goods_qna_contents active';
+						}else{
+								cont.className = 'goods_qna_contents';
+						}
+					
+					}); 
+				}else if(title=="비밀글입니다" && crew_id!=rowId){
+						alert("비밀글입니다");
+				}
 				
-				});
 
 			});
 		});
 
 	}
 	
+
 	
 	/* 문의 모달창 */
 	function writeGoodsQna(){
@@ -567,7 +631,9 @@
 			var goods_no=$('#goods_no').val();
 			var goods_title=$('#goods_qna_title').val();
 			var goods_contents=$('#goods_qna_contents').val();
-
+			var crew_id=$('#crew_id').val();
+			var crew_no=$('#crew_no').val();
+			
 			
 				if($('#goods_qna_title')[0].value!=null && $('#goods_qna_contents')[0].value!=null){
 			
@@ -579,7 +645,9 @@
 							'goods_no':goods_no,
 							'goods_qna_title':goods_title,
 							'goods_qna_contents':goods_contents,
-							'qna_lock':qna_lock
+							'qna_lock':qna_lock,
+							'crew_id':crew_id,
+							'crew_no':crew_no
 						},
 						dataType:"html",
 						success: function(result){
@@ -816,7 +884,40 @@
 				</div>
 			<!-- 후기 -->
 				<div id="tab3" data-tab-content class="items">
-					<p>후기블라</p>
+					<div class="reviewList">
+						<table class="reviewTable">
+							<colgroup>
+								<col style='width:5%'/>
+								<col style='width:60%'/>
+								<col style='width:15%'/>
+								<col style='width:15%'/>
+								<col style='width:5%'/>
+							</colgroup>
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>좋아요</th>
+							</tr>
+							<c:forEach var="reviewDto" items="${reviewDto }">
+							<tr class="review_row">
+								<td>${reviewDto.review_no }</td>
+								<td>${reviewDto.review_title }</td>
+								<td>${reviewDto.crew_id }</td>
+								<td>${reviewDto.review_date }</td>
+								<td>${reviewDto.review_liked }</td>
+							</tr>
+							<tr class="reviewContents">
+								<td colspan="5">
+									<span class="reviews">${reviewDto.review_contents }</span>
+									<span class="likeIt"><input type="button" value="도움돼요" id="likeIt"/></span>
+									
+								</td>
+							</tr>
+							</c:forEach>
+						</table>
+					</div>	
 				</div>
 			<!-- 문의 -->
 				<div id="tab4" data-tab-content class="items">
@@ -830,10 +931,10 @@
 					<div class="quaList">
 						<table class="qnaTable">
 							<colgroup>
-								<col style='width:60%'/>
+								<col style='width:55%'/>
 								<col style='width:15%'/>
 								<col style='width:15%'/>
-								<col style='width:10%'/>
+								<col style='width:15%'/>
 							</colgroup>
 							<tr>
 								<th>제목</th>
@@ -845,26 +946,29 @@
 							<tr class="qna_row">
 								<c:choose>
 									<c:when test="${goodsQnaDto.qna_lock==1 }">
-										<td>비밀글입니다 <img src="../resources/img/padlock.png" alt="padlock.png" /></td>
+										<td>비밀글입니다<img src="../resources/img/padlock.png" alt="padlock.png" /></td>
 									</c:when>
 									<c:when test="${goodsQnaDto.qna_lock==0 }">
 										<td class="goods_qna_title">${goodsQnaDto.goods_qna_title }</td>
 									</c:when>
 								</c:choose>
-									<td>${goodsQnaDto.crew_id }</td>
+									<td id="crewId">${goodsQnaDto.crew_id }</td>
 									<td>${goodsQnaDto.goods_qna_date }</td>
 									<td>${goodsQnaDto.qna_status }</td>
 							</tr>
 							<tr class="goods_qna_contents" >
 								<td colspan="4">
-									<div class="question">${goodsQnaDto.goods_qna_contents }</div>
-										<div class="answer">${goodsQnaDto.goods_qna_answer }</div>
+									<div class="question"><img src="../resources/img/question.png" alt="question.png" />${goodsQnaDto.goods_qna_contents }</div>
+										<div class="answer"><img src="../resources/img/answer.png" alt="answer.png" />${goodsQnaDto.goods_qna_answer }</div>
 										<div class="qnaAmend">
+											<input type="hidden" name="crew_id" id="crew_id" value="${crew_id}" />
+											<input type="hidden" name="crew_no" id="crew_no" value="${crew_no}" />
 											<input type="hidden" name="goods_qna_no" class="goods_qna_no" value="${goodsQnaDto.goods_qna_no }" />
+										<c:if test="${crew_id == goodsQnaDto.crew_id}">
 											<input type="button" value="수정" class="qnaModify"/>
 											<input type="button" value="문의 삭제" class="qnaDelete" />
+										</c:if>
 										</div>
-									
 								</td>
 							</tr>
 							</c:forEach>
@@ -876,6 +980,7 @@
 					</div>
 					
 				</div>
+			
 			
 			</div>
 		</div>

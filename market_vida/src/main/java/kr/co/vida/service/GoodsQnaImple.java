@@ -14,6 +14,18 @@ public class GoodsQnaImple implements VidaService<GoodsQnaDTO>{
 	@Autowired
 	GoodsQnaDAO dao;
 	
+	public List<GoodsQnaDTO> selectAllList(int startNo, int endNo) {
+		return dao.getListAll(startNo, endNo);
+	}
+	
+	public void updateAnswer(GoodsQnaDTO dto) {
+		dao.updateAnswer(dto);
+	}
+	
+	public List<GoodsQnaDTO> selectAllList(int no) {
+		return dao.getListAll(no);
+	}
+	
 	@Override
 	public List<GoodsQnaDTO> selectAllList() {
 		return dao.getListAll();
@@ -37,6 +49,10 @@ public class GoodsQnaImple implements VidaService<GoodsQnaDTO>{
 	@Override
 	public void dropOne(int no) {
 		dao.deleteOne(no);
+	}
+	
+	public int getTotal() {
+		return dao.getTotal();
 	}
 	
 
