@@ -1,0 +1,33 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+.sidebar{
+            width: 80px;
+            position: sticky;
+            top: 300px;
+            padding-top: 50px;
+            margin-left: 1200px;
+            font-size: 12px;
+            letter-spacing: -0.3px;
+            z-index: 100;
+            display: inline-block;
+        }
+        .sidebar .side_menu{
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-top: 0 none;
+        }
+        .sidebar .side_menu a{
+            display: block;
+            padding-top: 5px;
+            height: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            border-top: 1px solid #ddd;
+        }
+        .sidebar .side_menu a:hover{
+            color: #006f00;
+        }
