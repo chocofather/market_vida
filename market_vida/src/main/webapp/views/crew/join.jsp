@@ -31,7 +31,7 @@
 							<td><input type="text" class="crew_id" name="crew_id"
 								maxlength="16" label="아이디" placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합">
 								<input type="hidden" name="check_id">
-								<button type="button" class="id_check" >중복확인</button>
+								<button type="button" class="id_check">중복확인</button>
 								<div class="alert_container">
 									<span class="alert_point01">·</span> <span class="alert01">6자
 										이상의 영문 혹은 영문과 숫자를 조합</span> <br> <span class="alert_point02">·</span>
@@ -50,7 +50,7 @@
 									<span class="alert_point03">·</span> <span class="alert03">10자
 										이상 입력</span> <br> <span class="alert_point04">·</span> <span
 										class="alert04">영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합</span> <br>
-									
+
 								</div></td>
 
 						</tr>
@@ -64,9 +64,8 @@
 								name="crew_pw_check" maxlength="16" label="비밀번호"
 								placeholder="비밀번호를 한번 더 입력해주세요">
 								<div class="alert_container">
-								<span class="alert06">비밀번호가 일치하지 않습니다.</span>	
-								</div>
-							</td>	
+									<span class="alert06">비밀번호가 일치하지 않습니다.</span>
+								</div></td>
 						</tr>
 						</tr>
 						<tr>
@@ -85,8 +84,7 @@
 
 							<td><input type="text" class="crew_email" name="crew_email"
 								value data-email size="30" label="이메일" placeholder="이메일을 입력해주세요">
-								<button type="button" class="email_check" >중복확인</button>
-							</td>
+								<button type="button" class="email_check">중복확인</button></td>
 						</tr>
 						<tr>
 							<th>휴대폰 <span class="icon"> * <span
@@ -426,29 +424,28 @@
 			
 			if($('.crew_pw').val().length < 10 || $('.crew_pw').val().length > 20){
 				 $('.alert03').css("color","red");    
-				 if(!num.test($('.crew_pw').val()){
+				 if(!num.test($('.crew_pw').val())){
 			           $('.alert04').css("color","red");   
 			           return false;
-			     }else if(!eng.test($('.crew_pw').val()){
+			    }else if(!eng.test($('.crew_pw').val())){
 			    	 $('.alert04').css("color","red");   
 			           return false;
-			     }else if(!spe.test($('.crew_pw').val()){
+			    }else if(!spe.test($('.crew_pw').val())){
 			    	 $('.alert04').css("color","red");   
 			           return false;
-			     }
-				 else{
+			    }else{
 			            $('.alert04').css("color","blue");
 			            return false;
-			     }  
+			    }  
 				 return false;
 				 
 			}else{
 				$('.alert03').css("color","blue");
 				 return false;
 			}
-			    
 			
-			});
+			
+		});
 		$('.crew_pw_check').on('propertychange change keyup paste input',function(){	             
     	
     		if($('.crew_pw_check').val() == ''){
