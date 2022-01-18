@@ -22,10 +22,9 @@
 	
 	#col1 { width: 8%; }
 	#col2 { width: 15%; }
-	#col3 { width: 40%; }
-	#col4 { width: 15%; }
-	#col5 { width: 13%; }
-	#col6 { width: 9%; }
+	#col3 { width: 43%; }
+	#col4 { width: 18%; }
+	#col5 { width: 16%; }
 	
 	td {
 		text-align : center;
@@ -77,6 +76,7 @@
     	border: solid #006F00 1px;
 		background: #006F00;
 		color: white; 
+		margin-top: -11px;
 	}
 	
 	#button:hover {
@@ -143,9 +143,9 @@
 </script>
 </head>
 <body>
-	<h3>페이징 끝 페이지 번호: ${map.endPageNo}</h3>
+<%-- 	<h3>페이징 끝 페이지 번호: ${map.endPageNo}</h3>
 	<h3>이전 : ${map.prev}</h3>
-	<h3>다음 : ${map.next}</h3>
+	<h3>다음 : ${map.next}</h3> --%>
 	
 	<div class="container">
 	<div id ="title"><h2>공지사항</h2>&nbsp;&nbsp;&nbsp;<h5>비다의 새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</h5></div>
@@ -161,7 +161,6 @@
 				<th id="col3">제목</th>
 				<th id="col4">작성자</th>
 				<th id="col5">작성일</th>
-				<th id="col6">조회수</th>
 			</tr>
 			<c:forEach var="dto" items="${list}">
 				<tr>
@@ -175,7 +174,6 @@
 					<td id="col-title"><a href="noticeBoardDetail?notice_no=${dto.notice_no}">${dto.notice_title}</a></td>
 					<td>${dto.crew_id}</td>
 					<td>${dto.notice_date}</td>
-					<td>${dto.notice_hits}</td>
 				</tr>
 			</c:forEach>
 			<tr>

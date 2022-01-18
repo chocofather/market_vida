@@ -34,8 +34,8 @@
 	}
 	
 	#content-box {
-		width: 700px;
-		height: 500px;
+		width: 600px;
+		height: 400px;
 		font-size: 15px;
 	}
 	

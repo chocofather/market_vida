@@ -1,5 +1,8 @@
 package kr.co.vida.control;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.dto.LikeDTO;
+import kr.co.vida.service.GoodsImple;
+import kr.co.vida.service.ImgListImple;
 import kr.co.vida.service.LikeImple;
 
 @Controller
@@ -22,6 +27,13 @@ public class LikeController {
 	@Autowired
 	LikeImple service;
 	
+	@Autowired
+	ImgListImple imgService;
+	
+	@Autowired
+	GoodsImple goodsService;
+	
+	// 찜목록 db에 저장
 	@PostMapping("/mypage/myFavoriteList")
 	public void insert(@RequestBody int goodsNo, HttpServletRequest req ) {
 		
@@ -36,21 +48,27 @@ public class LikeController {
 		}
 	}
 	
+	// 찜목록 불러오기
 	@GetMapping("/mypage/myFavoriteList")
 	public String likeList(Model model, HttpServletRequest req) {
 		
 		HttpSession session = req.getSession(true);
 		int crewNo = (int)session.getAttribute("crew_no");
-				
+
+		List<LikeDTO> dtoList = service.getList(crewNo);
+		List<String> imgList = new ArrayList<>();
+		for(LikeDTO dto : dtoList) {
+			int goodsNo = dto.getGoods_no();
+			imgList.add(imgService.selectMainImage(goodsNo));
+		}
+		
+		model.addAttribute("goodsImg", imgList);
 		model.addAttribute("list", service.getList(crewNo));
+//		model.addAttribute("goodsImg", imgService.selectOne(no));
+		
 		return "/mypage/myFavoriteList";
 	}
 	
-//	@GetMapping("/mypage/myFavoriteList")
-//	public String likeListImg(Model model) {
-//						
-//		//model.addAttribute("goodsImg", service.getListImg(goodsNo));
-//		return "/mypage/myFavoriteList";
-//	}
+
 	
 }

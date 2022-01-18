@@ -39,8 +39,8 @@
 	}
 	
 	#content-box {
-		width: 700px;
-		height: 500px;
+		width: 600px;
+		height: 400px;
 		font-size: 15px;
 	}
 	
@@ -97,7 +97,7 @@
 <body>
 	<div class="container">
 		<div id="title"><h2>공지 수정</h2></div>
-		<form action="modify" method="post" id="frm">
+		<form action="modify" method="post">
 			<table>
 				<tr>
 					<th>제목</th>
@@ -126,11 +126,11 @@
 					<td colspan="3"><textarea id="content-box" name="notice_content" cols="80" rows="10">${dto.notice_content}</textarea></td>
 				</tr>
 			</table>
+			<div id="notice-button">
+				<button type="submit" class="button">수정</button>
+				<button id="cancel" class="button">취소</button>
+			</div>	
 		</form>
-		<div id="notice-button">
-			<button id="modi" class="button">수정</button>
-			<button id="cancel" class="button">취소</button>
-		</div>	
 	</div>	
 </body>
 </html>

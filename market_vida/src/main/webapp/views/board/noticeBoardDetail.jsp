@@ -24,8 +24,8 @@
 	}
 	
 	#content-td {
-		width: 1000px;
-		height: 600px;
+		width: 900px;
+		height: 400px;
 		border-bottom : solid #006F00 2px ;
 	}
 

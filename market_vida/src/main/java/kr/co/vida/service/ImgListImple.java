@@ -50,6 +50,10 @@ public class ImgListImple implements VidaService<ImgDTO>{
 		return dao.getOne(no);
 	}
 
+	public String selectMainImage(int no) {
+		return dao.getMainImage(no);
+	}
+	
 	@Override
 	public void insertOne(ImgDTO dto) {
 		dao.addOne(dto);
