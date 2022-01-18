@@ -45,5 +45,9 @@ public class QnaBoardDAO implements Dao<QnaBoardDTO>{
 	public void deleteOne(int no) {
 		ss.delete("kr.co.vida.qna.deleteOne", no);
 	}
+	
+	public void updateAnswer(QnaBoardDTO dto) {
+		ss.update("kr.co.vida.qna.updateAnswer", dto);
+	}
 
 }

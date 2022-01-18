@@ -1,6 +1,5 @@
 package kr.co.vida.control;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +22,6 @@ public class QnaBoardController {
 	@Autowired
 	MainCatImple mainCodesvc;
 	
-	HttpSession session;
-	
 	@RequestMapping("/board/qna")
 	public String qna(@RequestParam("crew_no")int crew_no ,Model model) {
 		model.addAttribute("mainCode", mainCodesvc.selectAllList());
@@ -39,15 +36,17 @@ public class QnaBoardController {
 		return "board/qnaBoard";
 	}
 	
-	@GetMapping("/writeQnaAnswer")
-	public String writeQnaAnswerForm() {
-		return "writeQnaAnswerForm";
+	@GetMapping("/board/writeQnaAnswer")
+	public String writeQnaAnswerForm(@RequestParam("qna_no")int qna_no, Model model) {
+		QnaBoardDTO dto =  service.selectOne(qna_no);
+		model.addAttribute("dto", dto);
+		return "board/writeQnaAnswerForm";
 	}
 	
-	@PostMapping("writeQnaAnswer")
+	@PostMapping("/board/writeQnaAnswer")
 	public String writeQnaAnswer(@ModelAttribute("dto")QnaBoardDTO dto) {
-		
-		return "redirect:/board/qna";
+		service.Answer(dto); 
+		return "redirect:/board/qnaAnswer";
 	}
 	
 	@GetMapping("board/writeQna")

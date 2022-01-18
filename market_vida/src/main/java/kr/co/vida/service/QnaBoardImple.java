@@ -51,5 +51,9 @@ public class QnaBoardImple implements VidaService<QnaBoardDTO>{
 	public void dropOne(int no) {
 		dao.deleteOne(no);
 	}
+	
+	public void Answer(QnaBoardDTO dto) {
+		dao.updateAnswer(dto);
+	}
 
 }

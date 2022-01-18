@@ -97,6 +97,11 @@ main div {
 			height: 200px;
 		}
 </style>
+<script>
+	$(function(){
+		
+	})
+</script>
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp"></jsp:include>
@@ -125,9 +130,15 @@ main div {
 			<td>${dto.qna_content }</td>
 		</tr>
 	</table>
+	<table>
+			<tr>
+				<th>답변내용</th>
+				<td>${dto.qna_answer }</td>
+			</tr>
+		</table>
 	<div class="link_div">
 	<c:if test="${crew_id eq 'admin' }">
-		<a href="./qna" class="link">목록으로</a>
+		<a href="./qnaAnswer" class="link">목록으로</a>
 		<a href="./writeQnaAnswer?qna_no=${dto.qna_no }" class="link">답변등록</a>
 		</c:if>
 		<c:if test="${crew_id ne 'admin' }">

@@ -92,7 +92,7 @@ table {
 	<jsp:include page="../main/banner_form.jsp"></jsp:include>
 	<main>
 		<div class="container">
-	<form action="./modifyQna" method="post">
+	<form action="./writeQnaAnswer" method="post">
 		<div class="title">1:1문의 수정</div>
 		<table>
 			<tr>
@@ -122,7 +122,8 @@ table {
 		<table>
 			<tr>
 				<td>
-					<textarea name="qna_answer" id="qna_answer" cols="80" rows="16" placeholder="답변 입력"></textarea>
+					<textarea name="qna_answer" id="qna_answer" cols="80" rows="16" placeholder="답변 입력">${dto.qna_answer}</textarea>
+					<input type="hidden" name="qna_status" value="1"/>
 				</td>
 			</tr>
 		</table>
