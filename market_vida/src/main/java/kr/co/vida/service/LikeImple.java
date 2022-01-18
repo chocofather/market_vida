@@ -14,13 +14,6 @@ public class LikeImple {
 	
 	@Autowired
 	LikeDAO dao;
-	
-	@Autowired
-	ImgDAO imgDao;
-	
-	public void setImgDao(ImgDAO imgDao) {
-		this.imgDao = imgDao;
-	}
 
 	public void setDao(LikeDAO dao) {
 		this.dao = dao;
@@ -34,6 +27,11 @@ public class LikeImple {
 	// 찜목록 불러오기
 	public List<LikeDTO> getList(int crewNo) {
 		return dao.getListById(crewNo);
+	}
+	
+	// 삭제하기
+	public void dropOne(int no) {
+		dao.delete(no);
 	}
 	
 	// 이미 있는 상품인지 중복체크

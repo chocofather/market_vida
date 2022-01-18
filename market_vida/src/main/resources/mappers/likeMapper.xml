@@ -17,7 +17,7 @@
 	</select>
 	
 	<!-- 게시물 삭제 -->
-	<delete id="delete">
+	<delete id="delete" parameterType="int">
 		DELETE FROM keep 
 		WHERE crew_no = #{crew_no} AND goods_no = #{goods_no}
 	</delete>

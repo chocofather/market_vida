@@ -1,27 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지 등록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script src="${path}/resources/js/header.js"></script>
 <style>
+	main div {
+		text-align: center;
+		flex-grow: 1;
+	}
+	
 	.container {
-		margin: 0px auto;
+		margin: 30px auto;
 		width: 800px; 
 	}
 	
 	#title {
 		border-bottom: solid #006F00 2px;
+		padding-bottom: 20px;
 	}
 	
 	table {
 		margin-top: 20px;
 		border-collapse: collapse;
+		margin: auto;
 	}
 	#category-box  {
 	    width: 200px;
 	    height: 30px;
+	    float: left;
 	}
 	#title-box {
 		width: 600px;
@@ -31,6 +44,7 @@
 	#writer-box {
 		width: 200px;
 	    height: 30px;
+	    float: left;
 	}
 	
 	#content-box {
@@ -94,7 +108,9 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
+	<main>
+			<div class="container">
 		<div id="title"><h2>공지 등록</h2></div>
 		<form action="writeNoticeForm" method="POST" id="frm">
 			<table>
@@ -132,5 +148,7 @@
 			<button id="cancel" class="button">취소</button>
 		</div>	
 	</div>	
+	</main>
+	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

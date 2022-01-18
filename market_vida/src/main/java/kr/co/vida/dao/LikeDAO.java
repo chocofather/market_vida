@@ -29,7 +29,7 @@ public class LikeDAO{
 		return ss.selectList("kr.co.vida.like.getListById", crew_no);
 	}
 
-	public void delete(String no) {
+	public void delete(int no) {
 		ss.delete("kr.co.vida.like.delete", no);
 	}
 

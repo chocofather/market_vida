@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지 등록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
@@ -15,6 +15,7 @@
 		text-align: center;
 		flex-grow: 1;
 	}
+	
 	.container {
 		margin: 30px auto;
 		width: 800px; 
@@ -22,23 +23,15 @@
 	
 	#title {
 		border-bottom: solid #006F00 2px;
-		padding-bottom: 20px;
 	}
 	
 	table {
 		margin-top: 20px;
 		border-collapse: collapse;
-		margin: auto;
 	}
-	
-	td {
-		padding: 9px;
-	}
-	
 	#category-box  {
 	    width: 200px;
 	    height: 30px;
-	    float: left;
 	}
 	#title-box {
 		width: 600px;
@@ -48,13 +41,16 @@
 	#writer-box {
 		width: 200px;
 	    height: 30px;
-	    float: left;
 	}
 	
 	#content-box {
 		width: 600px;
 		height: 400px;
 		font-size: 15px;
+	}
+	
+	td {
+		padding: 9px;
 	}
 	
 	.button {
@@ -88,7 +84,7 @@
 			}
 		}
 		
-/* 		var sub = document.getElementById("modi");
+		var sub = document.getElementById("sub");
 		sub.onclick = function(){
 			if(!document.getElementById("title-box").value != ''){
 				alert("제목을 입력하세요.");
@@ -104,23 +100,24 @@
 			}
 		}
 		
-	}) */
+	})
 </script>
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp"></jsp:include>
 	<main>
-		<div class="container">
-		<div id="title"><h2>공지 수정</h2></div>
-		<form action="modify" method="post">
+			<div class="container">
+		<div id="title"><h2>공지 등록</h2></div>
+		<form action="writeNoticeForm" method="POST" id="frm">
 			<table>
-				<tr>
+				<tr>	
 					<th>제목</th>
-					<td colspan="3"><input type="text" name="notice_title" id="title-box" value="${dto.notice_title}"/></td>
-				</tr>
+					<td>
+						<input type="text" name="notice_title" id="title-box" placeholder="제목을 입력하세요." />
+					</td>
+				</tr>	
 				<tr>
 					<th>구분</th>
-					<%-- <td><input type="text" name="notice_category" id="" value="${dto.notice_category}" /></td> --%>
 					<td>
 						<select name="notice_category" id="category-box">
 							<option value="공지" selected="selected">공지</option>
@@ -132,21 +129,21 @@
 						</select>
 					</td>
 				</tr>
-				<tr>	
+				<tr>
 					<th>작성자</th>
-					<td><input type="text" name="crew_id" id="writer-box" value="${dto.crew_id}" /></td>
+					<td><input type="text" name="crew_id" id="writer-box" placeholder="작성자" /></td>
 				</tr>
-				<tr>	
+				<tr>
 					<th>내용</th>
-					<td colspan="3"><textarea id="content-box" name="notice_content" cols="80" rows="10">${dto.notice_content}</textarea></td>
+					<td><textarea id="content-box" name="notice_content" row="3"></textarea></td>
 				</tr>
 			</table>
-			<div id="notice-button">
-				<button type="submit" class="button">수정</button>
-				<button id="cancel" class="button">취소</button>
-			</div>	
 		</form>
-	</div>
+		<div id="notice-button">
+			<button id="sub" class="button">등록</button>
+			<button id="cancel" class="button">취소</button>
+		</div>	
+	</div>	
 	</main>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
