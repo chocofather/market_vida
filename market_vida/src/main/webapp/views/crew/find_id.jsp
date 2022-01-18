@@ -28,6 +28,7 @@
                 $(".findidBtn").attr("disabled",false);
             })
         })
+ 
   
     </script>
 </head>
@@ -55,4 +56,18 @@
 		</form>
 	</div>
 </body>
+<script>
+$(".findidBtn").click(function(){
+	var email = $(".find_id_email_input").val();
+	
+	$.ajax({
+        
+        type:"GET",
+        url:"mailCheck?crew_email=" + email
+        success:function(data){
+        	
+        }
+    });
+});
+</script>
 </html>
