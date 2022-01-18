@@ -248,7 +248,6 @@
         </div>
         <div class="sortBy">
           <ul>
-            <li>추천순</li>
             <li>신상품순</li>
             <li>판매량순</li>
             <li>리뷰순</li>
