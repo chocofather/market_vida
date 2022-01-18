@@ -161,4 +161,18 @@ public class LoginController {
 		return mv;
 	}
 
+<<<<<<< HEAD
+=======
+	/*
+	 * // 로그아웃
+	 * 
+	 * @PostMapping("crew/logout") public String logout(HttpServletRequest request)
+	 * { HttpSession session = request.getSession(false);
+	 * 
+	 * if(session !=null) session.invalidate();
+	 * 
+	 * return "redirect:crew/login"; }
+	 */
+	
+>>>>>>> refs/heads/jongdae
 }
