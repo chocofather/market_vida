@@ -14,5 +14,7 @@ public class QnaBoardDTO {
 	private String qna_title;
 	private String qna_date;
 	private String qna_content;
-	private int status;
+	private int qna_status;
+	private String qna_answer;
+	
 }

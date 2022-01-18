@@ -2,6 +2,8 @@ package kr.co.vida.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +14,17 @@ import kr.co.vida.dto.QnaBoardDTO;
 @Service
 public class QnaBoardImple implements VidaService<QnaBoardDTO>{
 	
+	HttpSession session;
+	
 	@Autowired
 	QnaBoardDAO dao;
 	
 	public void setDao(QnaBoardDAO dao) {
 		this.dao = dao;
 	}
-	
+			
 	public List<QnaBoardDTO> getListAll(int no) {
-		return dao.getListAll(no);
+			return dao.getListAll(no);
 	}
 	
 	@Override

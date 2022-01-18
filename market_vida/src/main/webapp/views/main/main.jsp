@@ -71,15 +71,26 @@
               <li><a href=""><img src="${path}/resources/img/2022.png"></a></li>
             </ul>
         </div>
+            <c:if test="${crew_id == 'admin' }">
         <div class="sidebar">
             <div class="side_menu">
-                <a href="#">상품 등록</a>
+                <a href="../admin/goodswrite">상품 등록</a>
                 <a href="./benefit">등급별 혜택</a>
                 <a href="#">베스트 후기</a>
                 <a href="#">맨 위로</a>
             </div>
-            
         </div>
+                </c:if>
+                <c:if test="${crew_id != 'admin' || empty crew_id }">
+                <div class="sidebar">
+            <div class="side_menu">
+                <a href="./benefit">등급별 혜택</a>
+                <a href="#">베스트 후기</a>
+                <a href="#">맨 위로</a>
+            </div>
+        </div>
+                </c:if>
+            
         <main>
             <div class="post_item">
                 <div class="text">
