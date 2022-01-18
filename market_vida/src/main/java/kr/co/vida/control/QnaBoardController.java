@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kr.co.vida.dto.QnaBoardDTO;
 import kr.co.vida.service.MainCatImple;
 import kr.co.vida.service.QnaBoardImple;
 
 @Controller
+@SessionAttributes("crew_no")
 public class QnaBoardController {
 	@Autowired
 	QnaBoardImple service;

@@ -17,7 +17,7 @@
   	</select>
   	<insert id="insertOne" parameterType="qbdto">
   		INSERT INTO qna_board
-  		VALUES (#{crew_no}, qna_no_seq.nextval, #{qna_category}, #{qna_title}, sysdate, #{qna_content},0)
+  		VALUES (#{crew_no}, qna_no_seq.nextval, #{qna_category}, #{qna_title}, sysdate, #{qna_content},null,0)
   	</insert>
   	<select id="selectOne" parameterType="int" resultType="qbdto">
   		SELECT qna_no, qna_title, qna_category, TO_CHAR(qna_date, 'YYYY/MM/DD') qna_date, qna_category, qna_content, qna_answer
