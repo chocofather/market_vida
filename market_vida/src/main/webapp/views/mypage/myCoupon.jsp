@@ -44,7 +44,9 @@ table.type10 td {
 	vertical-align: top;
 	border-bottom: 1px solid;
 }
+
 </style>
+<link rel="stylesheet" href="../resources/css/paging.css" />
 </head>
 <body>
 	<div class="container">
@@ -71,20 +73,20 @@ table.type10 td {
 				<tr>
 					<td colspan="5">
 						<nav>
-							<ul id="page-ul">
-								<c:if test="${map.prev}">
-									<li class="page-item">
-										<a href="myCoupon?currentPage=${map.currentPage-10}">Previous</a></li>
-								</c:if>
+							<div class="page_wrap">
+								<div class="page_nation">
+									<c:if test="${map.prev}">
+									<a class="arrow prev" href="myCoupon?currentPage=${map.currentPage-10}"><</a>
+									</c:if>
 								<c:forEach var="i" begin="${map.startPageNo}"
 									end="${map.endPageNo}">
-									<li><a href="myCoupon?currentPage=${i}">${i}</a></li>
+									<a class="active" style="background: white; color: black;" href="myCoupon?currentPage=${i}">${i}</a>
 								</c:forEach>
 								<c:if test="${map.next}">
-									<li class="page-item">
-										<a href="myCoupon?currentPage=${map.currentPage+10}">Next</a></li>
+									<a class="arrow next" href="myCoupon?currentPage=${map.currentPage+10}">></a>
 								</c:if>
-							</ul>
+								</div>
+							</div>
 						</nav>
 					</td>
 				</tr>
