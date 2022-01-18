@@ -25,7 +25,7 @@
            	<ul>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="../crew/login">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="../crew/join">회원가입</a></li>
             </ul>
             </c:if>
             <c:if test="${crew_id !=null }">
