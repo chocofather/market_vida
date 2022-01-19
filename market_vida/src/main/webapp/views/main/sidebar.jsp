@@ -6,6 +6,8 @@
         <div class="sidebar">
             <div class="side_menu">
                 <a href="../admin/goodswrite">상품 등록</a>
+                <a href="../admin/imgwrite">이미지등록</a>
+                <a href="../admin/couponList">관리쿠폰</a>
                 <a href="../main/benefit">등급별 혜택</a>
                 <a href="#">베스트 후기</a>
                 <a href="#">맨 위로</a>
