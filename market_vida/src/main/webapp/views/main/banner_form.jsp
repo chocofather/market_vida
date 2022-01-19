@@ -3,7 +3,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/header?after.css" />
 <body>
-<<<<<<< HEAD
 <header>
 <c:if test="${crew_id !=null }">
             <ul>
@@ -33,7 +32,6 @@
 		<a href="./main">
 			<img src="${path}/resources/img/title.png" alt="타이틀">
 		</a>
-=======
 	<header>
 		<c:if test="${crew_id !=null }">
 			<ul>
@@ -108,6 +106,5 @@
 			<li><a href="../goods/goodsList?cat_code=1000">베이커리&middot;치즈&middot;델리</a></li>
 			<li><a href="../goods/goodsList?cat_code=1100">비건</a></li>
 		</ul>
->>>>>>> branch 'main' of https://github.com/chocofather/market_vida.git
 	</div>
 </body>
