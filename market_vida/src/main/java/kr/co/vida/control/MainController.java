@@ -27,11 +27,17 @@ public class MainController {
 		return "/main/main";
 	}
 
+	@RequestMapping("../goods/goodsList")
+	public String goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
+		
+		return "../goods/goodsList";
+	}
+	
 	@GetMapping("/benefit")
 	public String benefit(Model model) {
 		model.addAttribute("grade", fbService.getListGrade());
 		model.addAttribute("benefit", fbService.selectAllList());
 		return "/main/friendsBenefit";
 	}
-
+	
 }

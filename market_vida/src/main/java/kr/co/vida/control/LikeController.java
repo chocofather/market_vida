@@ -22,6 +22,7 @@ import kr.co.vida.dto.LikeDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.ImgListImple;
 import kr.co.vida.service.LikeImple;
+import kr.co.vida.service.MainCatImple;
 
 @Controller
 public class LikeController {
@@ -35,9 +36,12 @@ public class LikeController {
 	@Autowired
 	GoodsImple goodsService;
 	
+	@Autowired
+	MainCatImple mainCodesvc;
+	
 	// 찜목록 db에 저장
 	@PostMapping("/mypage/myFavoriteList")
-	public void insert(@RequestBody int goodsNo, HttpServletRequest req ) {
+	public void insert(@RequestBody int goodsNo, HttpServletRequest req) {
 		
 		HttpSession session = req.getSession(true);
 		int crewNo = (int)session.getAttribute("crew_no");
@@ -53,7 +57,7 @@ public class LikeController {
 	// 찜목록 불러오기
 	@GetMapping("/mypage/myFavoriteList")
 	public String likeList(Model model, HttpServletRequest req) {
-		
+		model.addAttribute("mainCode", mainCodesvc.selectAllList());
 		HttpSession session = req.getSession(true);
 		int crewNo = (int)session.getAttribute("crew_no");
 
