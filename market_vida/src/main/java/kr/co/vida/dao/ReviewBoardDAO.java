@@ -20,6 +20,10 @@ public class ReviewBoardDAO implements Dao<ReviewBoardDTO> {
 	public void setSs(SqlSession ss) {
 		this.ss = ss;
 	}
+	
+	public List<ReviewBoardDTO> getListAllByGoodsNo(int no){
+		return ss.selectList("kr.co.vida.reviewBoard.selectReviewAllByGoodsNo", no);
+	}
 
 	@Override
 	public List<ReviewBoardDTO> getListAll() {

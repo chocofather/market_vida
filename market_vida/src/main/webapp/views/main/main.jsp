@@ -28,13 +28,16 @@
                 <li><a href="../crew/join">회원가입</a></li>
             </ul>
             </c:if>
-            <c:if test="${crew_id !=null }">
             <ul>
-            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
-            	<li><a href="../mypage/myMileage">적립금</a></li>  	
-            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li>
+	            <c:if test="${crew_id !=null && crew_id=='admin' }">
+	            	<li><a href="../admin/goodsQnaAdmin">상품문의</a></li>
+	            </c:if>
+	            <c:if test="${crew_id !=null }">
+	            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
+	            	<li><a href="../mypage/myMileage">적립금</a></li>  	
+	            	<li><a href="../mypage/myReviewBefore?crew_no=${crew_no }">후기</a></li>
+	            </c:if>
             </ul>
-            </c:if>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
         </header>
         <nav>
@@ -59,11 +62,19 @@
             	<a href="../mypage/myFavoriteList"><i class="xi-heart-o xi-2x"></i></a>
             </div>
         </nav>
-        <div class="sub_menu">
+               <div class="sub_menu">
             <ul class="inner">
-            <c:forEach var="mainCode" items="${mainCode }">
-                <li><a href="../goods/goodsList?cat_code=${ mainCode.main_cat_code}">${mainCode.main_cat_name }</a></li>
-            </c:forEach>
+                <li><a href="../goods/goodsList?cat_code=100">채소</a></li>
+                <li><a href="../goods/goodsList?cat_code=200">과일&middot;견과&middot;쌀</a></li>
+                <li><a href="../goods/goodsList?cat_code=300">수산&middot;해산&middot;건어물</a></li>
+                <li><a href="../goods/goodsList?cat_code=400">정육&middot;계란</a></li>
+                <li><a href="../goods/goodsList?cat_code=500">국&middot;반찬&middot;메인요리</a></li>
+                <li><a href="../goods/goodsList?cat_code=600">샐러드&middot;간편식</a></li>
+                <li><a href="../goods/goodsList?cat_code=700">면&middot;양념&middot;오일</a></li>
+                <li><a href="../goods/goodsList?cat_code=800">생수&middot;음료&middot;우유</a></li>
+                <li><a href="../goods/goodsList?cat_code=900">간식&middot;과자&middot;떡</a></li>
+                <li><a href="../goods/goodsList?cat_code=1000">베이커리&middot;치즈&middot;델리</a></li>
+                <li><a href="../goods/goodsList?cat_code=1100">비건</a></li>
             </ul>
         </div>
         <div class="slide">
@@ -78,6 +89,8 @@
         <div class="sidebar">
             <div class="side_menu">
                 <a href="../admin/goodswrite">상품 등록</a>
+                <a href="../admin/imgwrite">이미지등록</a>
+                <a href="../admin/couponList">관리쿠폰</a>
                 <a href="./benefit">등급별 혜택</a>
                 <a href="#">베스트 후기</a>
                 <a href="#">맨 위로</a>
@@ -100,10 +113,10 @@
                     <a href="">신상품</a>
                 </div>
                 <div class="post_area">
-                    <div class="post"><a href="#"><img src="${path}/resources/img/apple.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/banana.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/carrot.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/cutting_pine.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=307"><img src="${path}/resources/img/apple.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=250"><img src="${path}/resources/img/banana.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=152"><img src="${path}/resources/img/carrot.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=254"><img src="${path}/resources/img/cutting_pine.jpg" alt=""></a></div>
                 </div>
                 <div class="item_area">
                 	<ul>
