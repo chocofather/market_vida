@@ -28,16 +28,16 @@
                 <li><a href="../crew/join">회원가입</a></li>
             </ul>
             </c:if>
-            <c:if test="${crew_id !=null }">
             <ul>
-            	<c:if test="${crew_id !=admin }">
-            	<li><a href="../admin/goodsQnaAdmin">상품문의</a></li>
-            	</c:if>
-            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
-            	<li><a href="../mypage/myMileage">적립금</a></li>  	
-            	<li><a href="../mypage/myReviewBefore?crew_no=${crew_no }">후기</a></li>
+	            <c:if test="${crew_id !=null && crew_id=='admin' }">
+	            	<li><a href="../admin/goodsQnaAdmin">상품문의</a></li>
+	            </c:if>
+	            <c:if test="${crew_id !=null }">
+	            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
+	            	<li><a href="../mypage/myMileage">적립금</a></li>  	
+	            	<li><a href="../mypage/myReviewBefore?crew_no=${crew_no }">후기</a></li>
+	            </c:if>
             </ul>
-            </c:if>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
         </header>
         <nav>

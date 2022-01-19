@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Sohyun909 
-chocofather
-/
-market_vida
-Private
-Code
-Issues
-Pull requests
-1
-Actions
-Projects
-Security
-Insights
-market_vida/market_vida/src/main/webapp/views/main/banner_form.jsp
-@Sohyun909
-Sohyun909 1/19 amend commit
-Latest commit 10d08e4 5 minutes ago
- History
- 2 contributors
-@jmis847@Sohyun909
-76 lines (76 sloc)  3.23 KB
-   
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>   
@@ -47,16 +18,16 @@ Latest commit 10d08e4 5 minutes ago
                 <li><a href="#">회원가입</a></li>
             </ul>
             </c:if>
-            <c:if test="${crew_id !=null }">
             <ul>
-            	<c:if test="${crew_id !=admin }">
-            		<li><a href="../admin/goodsQnaAdmin">상품문의</a></li>
-            	</c:if>	
-            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
-            	<li><a href="../mypage/myMileage">적립금</a></li> 
-            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li> 
+	            <c:if test="${crew_id !=null && crew_id=='admin' }">
+	            	<li><a href="../admin/goodsQnaAdmin">상품문의</a></li>
+	            </c:if>
+	            <c:if test="${crew_id !=null }">
+	            	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
+	            	<li><a href="../mypage/myMileage">적립금</a></li>  	
+	            	<li><a href="../mypage/myReviewBefore?crew_no=${crew_no }">후기</a></li>
+	            </c:if>
             </ul>
-            </c:if>
 	<div>
 		<a href="./main">
 			<img src="${path}/resources/img/title.png" alt="타이틀">
