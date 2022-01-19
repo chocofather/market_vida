@@ -29,8 +29,8 @@ public class LikeDAO{
 		return ss.selectList("kr.co.vida.like.getListById", crew_no);
 	}
 
-	public void delete(int no) {
-		ss.delete("kr.co.vida.like.delete", no);
+	public void delete(LikeDTO dto) {
+		ss.delete("kr.co.vida.like.delete", dto);
 	}
 
 	public int likeCheck(int crew_no, int goods_no) {
