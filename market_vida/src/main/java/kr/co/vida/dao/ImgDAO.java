@@ -52,6 +52,10 @@ public class ImgDAO implements Dao<ImgDTO> {
 	public ImgDTO getOne(int no) {
 		return ss.selectOne("kr.co.vida.img.getMainImgOne" , no);
 	}
+	
+	public String getMainImage(int no) {
+		return ss.selectOne("kr.co.vida.img.getMainImgOne" , no);
+	}
 
 	@Override
 	public void addOne(ImgDTO dto) {

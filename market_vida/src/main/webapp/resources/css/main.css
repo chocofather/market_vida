@@ -107,7 +107,8 @@
 
         .search,
         .location,
-        .cart {
+        .cart,
+        .wishList {
             padding-top: 10px;
         }
 
@@ -134,7 +135,7 @@
             height: 25px;
             position: absolute;
             top: 12px;
-            right: 270px;
+            right: 290px;
         }
 
         a,

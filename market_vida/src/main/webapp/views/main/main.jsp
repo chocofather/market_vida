@@ -25,14 +25,14 @@
            	<ul>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="../crew/login">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li><a href="../crew/join">회원가입</a></li>
             </ul>
             </c:if>
             <c:if test="${crew_id !=null }">
             <ul>
             	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
             	<li><a href="../mypage/myMileage">적립금</a></li>  	
-            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li>
+            	<li><a href="../mypage/myReviewBefore?crew_no=${crew_no }">후기</a></li>
             </ul>
             </c:if>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
@@ -54,6 +54,9 @@
             </div>
             <div class="cart">
                 <a href="#"><i class="xi xi-cart-o xi-2x"></i></a>
+            </div>
+            <div class="wishList">
+            	<a href="../mypage/myFavoriteList"><i class="xi-heart-o xi-2x"></i></a>
             </div>
         </nav>
                <div class="sub_menu">
@@ -79,15 +82,28 @@
               <li><a href=""><img src="${path}/resources/img/2022.png"></a></li>
             </ul>
         </div>
+            <c:if test="${crew_id == 'admin' }">
         <div class="sidebar">
             <div class="side_menu">
-                <a href="#">상품 등록</a>
+                <a href="../admin/goodswrite">상품 등록</a>
+                <a href="../admin/imgwrite">이미지등록</a>
+                <a href="../admin/couponList">관리쿠폰</a>
                 <a href="./benefit">등급별 혜택</a>
                 <a href="#">베스트 후기</a>
                 <a href="#">맨 위로</a>
             </div>
-            
         </div>
+                </c:if>
+                <c:if test="${crew_id != 'admin' || empty crew_id }">
+                <div class="sidebar">
+            <div class="side_menu">
+                <a href="./benefit">등급별 혜택</a>
+                <a href="#">베스트 후기</a>
+                <a href="#">맨 위로</a>
+            </div>
+        </div>
+                </c:if>
+            
         <main>
             <div class="post_item">
                 <div class="text">

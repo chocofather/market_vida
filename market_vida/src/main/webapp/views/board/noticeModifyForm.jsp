@@ -1,23 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지 수정</title>
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script src="${path}/resources/js/header.js"></script>
 <style>
+	main div {
+		text-align: center;
+		flex-grow: 1;
+	}
 	.container {
-		margin: 0px auto;
+		margin: 30px auto;
 		width: 800px; 
 	}
 	
 	#title {
 		border-bottom: solid #006F00 2px;
+		padding-bottom: 20px;
 	}
 	
 	table {
 		margin-top: 20px;
 		border-collapse: collapse;
+		margin: auto;
 	}
 	
 	td {
@@ -27,6 +38,7 @@
 	#category-box  {
 	    width: 200px;
 	    height: 30px;
+	    float: left;
 	}
 	#title-box {
 		width: 600px;
@@ -36,11 +48,12 @@
 	#writer-box {
 		width: 200px;
 	    height: 30px;
+	    float: left;
 	}
 	
 	#content-box {
-		width: 700px;
-		height: 500px;
+		width: 600px;
+		height: 400px;
 		font-size: 15px;
 	}
 	
@@ -95,9 +108,11 @@
 </script>
 </head>
 <body>
-	<div class="container">
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
+	<main>
+		<div class="container">
 		<div id="title"><h2>공지 수정</h2></div>
-		<form action="modify" method="post" id="frm">
+		<form action="modify" method="post">
 			<table>
 				<tr>
 					<th>제목</th>
@@ -126,11 +141,13 @@
 					<td colspan="3"><textarea id="content-box" name="notice_content" cols="80" rows="10">${dto.notice_content}</textarea></td>
 				</tr>
 			</table>
+			<div id="notice-button">
+				<button type="submit" class="button">수정</button>
+				<button id="cancel" class="button">취소</button>
+			</div>	
 		</form>
-		<div id="notice-button">
-			<button id="modi" class="button">수정</button>
-			<button id="cancel" class="button">취소</button>
-		</div>	
-	</div>	
+	</div>
+	</main>
+	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>

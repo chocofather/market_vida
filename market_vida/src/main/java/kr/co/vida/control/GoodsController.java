@@ -136,7 +136,7 @@ public class GoodsController {
 	@PostMapping("/admin/goodswrite")
 	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
 		goodsService.insertOne(dto);
-		return "redirect:/main";
+		return "redirect:/main/main";
 	}
 
 }
