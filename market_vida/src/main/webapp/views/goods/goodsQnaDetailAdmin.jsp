@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="${path}/resources/css/goodsQnaDetailAdmin.css" />
 <script src="${path}/resources/js/header.js"></script>
 <style>
-main div {
-
+main div { 
+ 
 	height: 800px;
 	flex-grow: 1;
 }
