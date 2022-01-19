@@ -9,19 +9,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
-<link rel="stylesheet" href="${path}/resources/css/goodsDetial.css" />
+<link rel="stylesheet" href="${path}/resources/css/goodsDetail.css?after" />
 <script src="${path}/resources/js/header.js"></script>
 <script src="${path}/resources/js/goodsDetail.js"></script>
 <style>
-main div {
-	height: 800px;
-	flex-grow: 1;
-}
+
 </style>
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp" />
-	<main>
 		<div class="goodsDetailBody">
 		<div class="goodsMainInfo">
 			<div class="mainImg">
@@ -272,6 +268,5 @@ main div {
 			</form>
 		</div>
 	</div>
-	</main>
 </body>
 </html>

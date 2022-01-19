@@ -20,6 +20,7 @@
 	.goodsDetailBody {
 		width: 1000px;
 		margin: 0 auto;
+		margin: 60px auto;
 	}
 	
 	.goodsMainInfo {
@@ -105,7 +106,7 @@
 	.getMine #toMyfavorite {
 		flex-grow: 1;
 		border: 2px solid var(--base-color);
-		background-image: url("../resources/img/heart.png");
+		background-image: url("../img/heart.png");
 		border-radius: 3px;
 		background-size: 30px;
 	    background-color: white;

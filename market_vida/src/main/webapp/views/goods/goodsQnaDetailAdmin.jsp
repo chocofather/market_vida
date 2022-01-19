@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
-<link rel="stylesheet" href="${path}/resources/css/goodsQnaDetialAdmin.css" />
+<link rel="stylesheet" href="${path}/resources/css/goodsQnaDetailAdmin.css" />
 <script src="${path}/resources/js/header.js"></script>
 <style>
 main div {
@@ -21,7 +21,7 @@ main div {
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp" />
-	<main>
+
 			<div class="goodsQnaDetailnBox">
 		<div class="pageTitle">
 			<h2>문의사항</h2>
@@ -69,6 +69,6 @@ main div {
 	
 	</div>
 	<jsp:include page="../main/footer.jsp" />
-	</main>
+
 </body>
 </html>

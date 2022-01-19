@@ -20,9 +20,12 @@
             </c:if>
             <c:if test="${crew_id !=null }">
             <ul>
+            	<c:if test="${crew_id !=admin }">
+            		<li><a href="../admin/goodsQnaAdmin">상품문의</a></li>
+            	</c:if>	
             	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
             	<li><a href="../mypage/myMileage">적립금</a></li> 
-            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li> 	
+            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li> 
             </ul>
             </c:if>
 	<div>
