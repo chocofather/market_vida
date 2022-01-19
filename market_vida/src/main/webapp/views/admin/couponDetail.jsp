@@ -23,7 +23,7 @@ main div {
 	<main>
 		<div class="container">
 		<table>
-			<caption style="font-size: 30px; margin-bottom: 10px;">CouponList</caption>
+			<caption style="font-size: 30px; margin-bottom: 10px;">쿠폰</caption>
 			<tr>
 				<th>쿠폰번호</th>
 				<td>${dto.coupon_no }</td>

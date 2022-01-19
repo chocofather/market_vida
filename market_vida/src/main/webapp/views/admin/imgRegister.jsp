@@ -57,7 +57,7 @@ table {
 	<jsp:include page="../main/banner_form.jsp"></jsp:include>
 	<main>
 		<div class="container">
-		<h1>couponWriteForm</h1>
+		<h1 style="margin-top: 30px;">상품이미지 등록</h1>
 		<form action="imgwrite" method="post">
 			<div>
 				<table class="divgoods">

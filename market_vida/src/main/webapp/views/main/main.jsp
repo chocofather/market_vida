@@ -32,7 +32,7 @@
             <ul>
             	<li><a href="../mypage/myCoupon">쿠폰함</a></li>
             	<li><a href="../mypage/myMileage">적립금</a></li>  	
-            	<li><a href="../mypage/myReviewBefore?crew_no=1">후기</a></li>
+            	<li><a href="../mypage/myReviewBefore?crew_no=${crew_no }">후기</a></li>
             </ul>
             </c:if>
             <div><a href="./main"><img src="${path}/resources/img/title.png" alt="타이틀"></a></div>
