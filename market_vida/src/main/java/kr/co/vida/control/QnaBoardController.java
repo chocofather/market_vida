@@ -1,5 +1,7 @@
 package kr.co.vida.control;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.vida.dto.QnaBoardDTO;
+import kr.co.vida.service.MainCatImple;
 import kr.co.vida.service.QnaBoardImple;
 
 @Controller
@@ -17,10 +20,34 @@ public class QnaBoardController {
 	@Autowired
 	QnaBoardImple service;
 	
+	@Autowired
+	MainCatImple mainCodesvc;
+	
+	HttpSession session;
+	
 	@RequestMapping("/board/qna")
+	public String qna(@RequestParam("crew_no")int crew_no ,Model model) {
+		model.addAttribute("mainCode", mainCodesvc.selectAllList());
+		model.addAttribute("list",service.getListAll(crew_no));
+		return "board/qnaBoard";
+	}
+	
+	@RequestMapping("/board/qnaAnswer")
 	public String qna(Model model) {
+		model.addAttribute("mainCode", mainCodesvc.selectAllList());
 		model.addAttribute("list",service.selectAllList());
 		return "board/qnaBoard";
+	}
+	
+	@GetMapping("/writeQnaAnswer")
+	public String writeQnaAnswerForm() {
+		return "writeQnaAnswerForm";
+	}
+	
+	@PostMapping("writeQnaAnswer")
+	public String writeQnaAnswer(@ModelAttribute("dto")QnaBoardDTO dto) {
+		
+		return "redirect:/board/qna";
 	}
 	
 	@GetMapping("board/writeQna")

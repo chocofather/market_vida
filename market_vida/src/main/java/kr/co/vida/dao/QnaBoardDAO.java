@@ -21,6 +21,10 @@ public class QnaBoardDAO implements Dao<QnaBoardDTO>{
 	public List<QnaBoardDTO> getListAll() {
 		return ss.selectList("kr.co.vida.qna.selectAll");
 	}
+	
+	public List<QnaBoardDTO> getListAll(int no) {
+		return ss.selectList("kr.co.vida.qna.selectList",no);
+	}
 
 	@Override
 	public QnaBoardDTO getOne(int no) {
