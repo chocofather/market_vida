@@ -40,6 +40,12 @@ public class MainController {
 		return new ModelAndView("/main/banner_form", "mainCode", mainCodesvc.selectAllList());
 	}
 	
+	@RequestMapping("../goods/goodsList")
+	public String goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
+		
+		return "../goods/goodsList";
+	}
+	
 	@GetMapping("/benefit")
 	public String benefit(Model model) {
 		model.addAttribute("mainCode", mainCodesvc.selectAllList());
@@ -48,9 +54,4 @@ public class MainController {
 		return "/main/friendsBenefit";
 	}
 	
-	@RequestMapping("../goods/goodsList")
-	public String goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
-		
-		return "../goods/goodsList";
-	}
 }
