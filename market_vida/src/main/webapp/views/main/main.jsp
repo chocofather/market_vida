@@ -16,14 +16,14 @@
         <header>
         <c:if test="${crew_id !=null }">
             <ul>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="../board/noticeBoard">고객센터</a></li>
                 <li><a href="../crew/logout">로그아웃</a></li>
                 <li><a href="../mypage/main">${crew_id}님 환영합니다</a></li>
             </ul>
             </c:if>
             <c:if test="${empty crew_id }">
            	<ul>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="../board/noticeBoard">고객센터</a></li>
                 <li><a href="../crew/login">로그인</a></li>
                 <li><a href="../crew/join">회원가입</a></li>
             </ul>
@@ -113,10 +113,10 @@
                     <a href="">신상품</a>
                 </div>
                 <div class="post_area">
-                    <div class="post"><a href="#"><img src="${path}/resources/img/apple.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/banana.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/carrot.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/cutting_pine.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=307"><img src="${path}/resources/img/apple.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=250"><img src="${path}/resources/img/banana.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=152"><img src="${path}/resources/img/carrot.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=254"><img src="${path}/resources/img/cutting_pine.jpg" alt=""></a></div>
                 </div>
                 <div class="item_area">
                 	<ul>
@@ -127,15 +127,15 @@
                 	</ul>
                 	<ul>
                 		<li><span>20%</span>5,900원</li>
-                		<li><span>20%</span>4,800원</li>
-                		<li><span>20%</span>3,840원</li>
+                		<li><span>30%</span>4,800원</li>
+                		<li><span>15%</span>3,840원</li>
                 		<li><span>20%</span>6,200원</li>
                 	</ul>
                 	<ul>
-                		<li>10,000원</li>
-                		<li>10,000원</li>
-                		<li>10,000원</li>
-                		<li>10,000원</li>
+                		<li>7,080원</li>
+                		<li>6,240원</li>
+                		<li>4,416원</li>
+                		<li>7,440원</li>
                 	</ul>
                 </div>
             </div>

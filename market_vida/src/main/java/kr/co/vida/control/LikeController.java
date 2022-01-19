@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.vida.dto.GoodsDTO;
 import kr.co.vida.dto.LikeDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.ImgListImple;
@@ -43,7 +44,7 @@ public class LikeController {
 		int crewNo = (int)session.getAttribute("crew_no");
 
 		int no = service.likeCheck(crewNo, goodsNo);
-		System.out.println(no);
+//		System.out.println(no);
 		if(no==0) {
 			LikeDTO dto = new LikeDTO(crewNo, goodsNo);
 			service.insert(dto);
@@ -59,12 +60,17 @@ public class LikeController {
 
 		List<LikeDTO> dtoList = service.getList(crewNo);
 		List<String> imgList = new ArrayList<>();
+		List<String> goodsNameList = new ArrayList<>();
+		
 		for(LikeDTO dto : dtoList) {
 			int goodsNo = dto.getGoods_no();
 			imgList.add(imgService.selectMainImage(goodsNo));
+			
+			goodsNameList.add(goodsService.selectOne(goodsNo).getGoods_name());
 		}
 		
 		model.addAttribute("goodsImg", imgList);
+		model.addAttribute("goodsName", goodsNameList);
 		model.addAttribute("list", service.getList(crewNo));
 
 		
@@ -72,9 +78,15 @@ public class LikeController {
 	}
 	
 	@DeleteMapping("/mypage/myFavoriteList/delete")
-	public ResponseEntity delete(@RequestBody Integer[] ajaxMsg) {
+	public ResponseEntity delete(@RequestBody Integer[] ajaxMsg, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession(true);
+		int crewNo = (int)session.getAttribute("crew_no");
+		
 		for(int i=0; i<ajaxMsg.length; i++ ) {
-			service.dropOne(ajaxMsg[i]);
+			LikeDTO dto = new LikeDTO(crewNo, ajaxMsg[i]);
+			service.dropOne(dto);
+			
 		}
 		return ResponseEntity.ok().build();
 	}

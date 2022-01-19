@@ -63,9 +63,12 @@
 	}
 	
 	span {
-		color: #006F00;
 		font-size: 18px;
 		float: left;
+	}
+	
+	p {
+		margin: 15px;
 	}
 
 </style>
@@ -88,8 +91,8 @@
 	});
 	
 	// 게시글 삭제
-	function deleteNotice() {
-		var url = "/market_vida/mypage/myFavoriteList";
+	function deleteGoods() {
+		var url = "/market_vida/mypage/myFavoriteList/delete";
 		var valueArr = new Array();
 		var list = $("input[name='chBox']");
 		for(var i = 0; i < list.length; i++){
@@ -126,21 +129,23 @@
 	<div class="container">
 		<div id ="title"><h2>나의 찜목록</h2></div> 
 		<ul id="goodsBox">
-			<c:forEach var="imgLink" items="${goodsImg}">
+			<c:forEach var="imgLink" items="${goodsImg}" varStatus="status">
 				<li class="goodsList">
-					<input type="checkbox" name="chBox" class="chBox" value="${imgLink}" />
+					<input type="checkbox" name="chBox" class="chBox" value="${list[status.index].goods_no}" />
 					<img src="${imgLink}" alt="${imgLink}" height="200" width="200"/>
+					<p>${goodsName[status.index]}</p>
 				</li>
 			</c:forEach>
 		</ul> 
 		
 		<div id="allCheck-div"><input type="checkbox" name="allCheck" id="allCheck" /><span>전체선택</span></div>
 		<div class="button-box">
-			<button id="button" onclick="deleteNotice();">삭제</button>
+			<button id="button" onclick="deleteGoods();">삭제</button>
 		</div>     
 
 	</div>
 	</main>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
+	<jsp:include page="../main/sidebar.jsp"></jsp:include>
 </body>
 </html>
