@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.vida.dto.GoodsDTO;
 import kr.co.vida.dto.GoodsQnaDTO;
@@ -22,6 +23,7 @@ import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.GoodsQnaImple;
 import kr.co.vida.service.ImgListImple;
+import kr.co.vida.service.MainCatImple;
 import kr.co.vida.service.SubCatImple;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,13 +43,16 @@ public class GoodsController {
 	
 	@Autowired
 	GoodsQnaImple goodsQnaService;
+	
+	@Autowired
+	MainCatImple mainCodesvc;
 
 	// 상품 리스트 페이지
 	@RequestMapping("/goods/goodsList")
-	public String goodsList(@RequestParam("cat_code")int cat_code, 
+	public ModelAndView goodsList(@RequestParam("cat_code")int cat_code, 
 							@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
+							@RequestParam("main_cat_code")int main_cat_code,
 							Model model) {
-		
 		int totalNumber = 0; // 총 게시물 수
 		int forMainCode = 0; // 메인인지 서브인지 코드 판단	
 		
@@ -85,8 +90,8 @@ public class GoodsController {
 		}else {
 			model.addAttribute("imgDto", imgService.getListBySubCode(cat_code));
 		}
-		
-		return "/goods/goodsList";
+		ModelAndView mv = new ModelAndView( "/goods/goodsList", "mainCode", mainCodesvc.selectAllList());
+		return mv;
 	}
 	
 	
