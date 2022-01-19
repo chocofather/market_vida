@@ -83,7 +83,7 @@
 			(item).addEventListener('click', ()=>{
 				
 				var goods_qna_no = item.parentElement.firstElementChild.value;
-				console.log(goods_qna_no);
+				console.log(item.parentElement.firstElementChild.value);
 				
 				if(confirm("정말 삭제하시겠습니까?") == true){
 				
@@ -92,7 +92,7 @@
 					type:'get',
 					traditional: true,
 					data: {'goods_qna_no':goods_qna_no},
-					dataType: 'json',
+					dataType: 'text',
 					success: function(result){
 						alert("삭제가 완료되었습니다")
 						location.reload();
