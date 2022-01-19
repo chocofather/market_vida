@@ -26,31 +26,18 @@ public class MainController {
 	public String orderList(Model model) {
 		return "/main/main";
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping("/cat/list")
-	public ModelAndView categoryList() {
-		return new ModelAndView("/main/banner_form", "mainCode", mainCodesvc.selectAllList());
-	}
-	
+
 	@RequestMapping("../goods/goodsList")
 	public String goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
 		
 		return "../goods/goodsList";
 	}
 	
-=======
-
->>>>>>> refs/heads/main
 	@GetMapping("/benefit")
 	public String benefit(Model model) {
 		model.addAttribute("grade", fbService.getListGrade());
 		model.addAttribute("benefit", fbService.selectAllList());
 		return "/main/friendsBenefit";
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> refs/heads/main
 }
