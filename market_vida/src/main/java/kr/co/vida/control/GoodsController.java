@@ -23,7 +23,11 @@ import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.GoodsQnaImple;
 import kr.co.vida.service.ImgListImple;
+<<<<<<< HEAD
 import kr.co.vida.service.MainCatImple;
+=======
+import kr.co.vida.service.ReviewBoardImple;
+>>>>>>> refs/heads/main
 import kr.co.vida.service.SubCatImple;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,7 +49,11 @@ public class GoodsController {
 	GoodsQnaImple goodsQnaService;
 	
 	@Autowired
+<<<<<<< HEAD
 	MainCatImple mainCodesvc;
+=======
+	ReviewBoardImple reviewService;
+>>>>>>> refs/heads/main
 
 	// 상품 리스트 페이지
 	@RequestMapping("/goods/goodsList")
@@ -94,7 +102,7 @@ public class GoodsController {
 		return mv;
 	}
 	
-	
+
 	
 	// 상품 삭제
 	@RequestMapping("/goods/deleteGoods")
@@ -119,7 +127,8 @@ public class GoodsController {
 		
 		model.addAttribute("goodsDto", goodsDto);
 		model.addAttribute("detailImgDto", imgService.getGoodsImgs(goodsDto.getGoods_no()));
-		model.addAttribute("goodsQnaDto", goodsQnaService.selectAllList());
+		model.addAttribute("goodsQnaDto", goodsQnaService.selectAllList(goods_no));
+		model.addAttribute("reviewDto", reviewService.getListAllByGoodsNo(goods_no));
 		log.info("goodsqna======?"+goodsQnaDto);
 		return "goods/goodsDetail";
 	}
@@ -136,7 +145,7 @@ public class GoodsController {
 	@PostMapping("/admin/goodswrite")
 	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
 		goodsService.insertOne(dto);
-		return "redirect:/main";
+		return "redirect:/main/main";
 	}
 
 }

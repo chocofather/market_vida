@@ -35,7 +35,7 @@ public class ImgController {
 	@PostMapping("/imgwrite")
 	public String writeFormOk(@ModelAttribute("dto") ImgDTO dto, HttpServletRequest req) {
 		service.insertOne(dto);
-		return "redirect:/main";
+		return "redirect:/main/main";
 	}
 	
 }

@@ -146,8 +146,12 @@
             width: 220px;
             display: none;
         }
+        
+        .sub_menu:hover {
+        	display: block;
+        }
 
-        .sub_menu ul li:hover a {
+        .sub_menu ul li:hover a  {
             color: #006f00;
             background-color: #f7f7f7;
         }
