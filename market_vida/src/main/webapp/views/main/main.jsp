@@ -127,15 +127,15 @@
                 	</ul>
                 	<ul>
                 		<li><span>20%</span>5,900원</li>
-                		<li><span>20%</span>4,800원</li>
-                		<li><span>20%</span>3,840원</li>
+                		<li><span>30%</span>4,800원</li>
+                		<li><span>15%</span>3,840원</li>
                 		<li><span>20%</span>6,200원</li>
                 	</ul>
                 	<ul>
-                		<li>10,000원</li>
-                		<li>10,000원</li>
-                		<li>10,000원</li>
-                		<li>10,000원</li>
+                		<li>7,080원</li>
+                		<li>6,240원</li>
+                		<li>4,416원</li>
+                		<li>7,440원</li>
                 	</ul>
                 </div>
             </div>
