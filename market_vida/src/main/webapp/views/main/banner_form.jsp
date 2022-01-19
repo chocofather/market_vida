@@ -29,7 +29,7 @@
 			</c:if>
 		</ul>
 		<div>
-			<a href="./main">
+			<a href="../main/main">
 				<img src="${path}/resources/img/title.png" alt="타이틀">
 			</a>
 		</div>
