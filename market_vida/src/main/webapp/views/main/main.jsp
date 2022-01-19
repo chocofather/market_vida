@@ -56,11 +56,19 @@
                 <a href="#"><i class="xi xi-cart-o xi-2x"></i></a>
             </div>
         </nav>
-        <div class="sub_menu">
+               <div class="sub_menu">
             <ul class="inner">
-            <c:forEach var="mainCode" items="${mainCode }">
-                <li><a href="../goods/goodsList?cat_code=${ mainCode.main_cat_code}">${mainCode.main_cat_name }</a></li>
-            </c:forEach>
+                <li><a href="../goods/goodsList?cat_code=100">채소</a></li>
+                <li><a href="../goods/goodsList?cat_code=200">과일&middot;견과&middot;쌀</a></li>
+                <li><a href="../goods/goodsList?cat_code=300">수산&middot;해산&middot;건어물</a></li>
+                <li><a href="../goods/goodsList?cat_code=400">정육&middot;계란</a></li>
+                <li><a href="../goods/goodsList?cat_code=500">국&middot;반찬&middot;메인요리</a></li>
+                <li><a href="../goods/goodsList?cat_code=600">샐러드&middot;간편식</a></li>
+                <li><a href="../goods/goodsList?cat_code=700">면&middot;양념&middot;오일</a></li>
+                <li><a href="../goods/goodsList?cat_code=800">생수&middot;음료&middot;우유</a></li>
+                <li><a href="../goods/goodsList?cat_code=900">간식&middot;과자&middot;떡</a></li>
+                <li><a href="../goods/goodsList?cat_code=1000">베이커리&middot;치즈&middot;델리</a></li>
+                <li><a href="../goods/goodsList?cat_code=1100">비건</a></li>
             </ul>
         </div>
         <div class="slide">

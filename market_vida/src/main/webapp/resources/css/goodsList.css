@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+    
+    :root {
+		--my-color: #006F00;
+		--base-color: #EFEFEF;
+		--font-color: dimgray;
+	}
+    
+      .goodsBody {
+        width: 1000px;
+        margin: 0 auto;
+      }
+
+      .categoryBox {
+        display: flex;
+        border: 1px solid silver;
+        padding: 20px;
+      }
+
+      .categoryList,
+      .categoryList a {
+        list-style: none;
+        text-decoration: none;
+        color: black;
+      }
+
+      .categoryList li {
+        float: left;
+        width: 200px;
+        padding: 10px;
+      }
+
+      .sortGoods {
+        width: 1000px;
+        margin-top: 35px;
+        display: flex;
+        justify-content: space-between;
+        font-size: small;
+      }
+
+      .sortBy li {
+        list-style: none;
+        float: left;
+        padding: 0 8px;
+      }
+
+      .sortBy li:not(:last-child) {
+        border-right: 1.5px solid silver;
+      }
+      
+      .adminSection {
+      	margin-top: 30px;
+      }
+      
+      .adminSection input[type='button']{
+      	width: 100px;
+      	height: 50px;
+      	border: 2px solid var(--base-color);
+      	border-radius: 5px;
+      	background-color: white;
+      	color: var(--my-color);
+      	font-weight: bold;		
+      }
+      
+      .adminSection input[type='button']:hover{
+      	background-color: var(--my-color);
+    	color: white;
+      }
+      
+      .countGoods p {
+        display: contents;
+      }
+
+      .imgBox {
+        padding: 0;
+        margin: 20px 0;
+        width: 100%;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .imgBox_list {
+        margin-bottom: 80px;
+        display: grid;
+      }
+
+      .imgBox_list a {
+        text-decoration: none;
+        color: black;
+      }
+
+      .imgBox_list img {
+        width: 320px;
+        height: 360px;
+      }
+
+      .imgBox_list span {
+        width: 300px;
+        overflow: hidden;
+        display: list-item;
+        padding: 3px 0;
+      }
+
+      .imgBox_list #goods_price {
+        text-decoration-line: line-through;
+        color: grey;
+      }
+
+      .imgBox_list #discount_rate {
+        display: contents;
+        font-weight: bold;
+        color: red;
+      }

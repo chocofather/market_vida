@@ -1,171 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품문의 admin</title>
+<title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style type="text/css">
-
-	:root {
-		--my-color: #006F00;
-		--base-color: #EFEFEF;
-		--font-color: dimgray;
-	}
-	
-	
-	*{
-		padding: 0;
-		margin: 0;
-	}
-	
-	.goodsQnaAdminBox {
-		width: 800px;
-		margin: 30px auto;
-	}
-	
-	.pageTitle {
-		padding: 30px;
-	}
-	
-	.qnaTableAdmin {
-		width: 100%;
-		border-collapse: collapse; 
-	}
-	
-	.qnaTableAdmin th {
-		border-top: 2px solid var(--font-color);
-		border-bottom: 2px solid var(--font-color);
-	}
-	
-	.qnaTableAdmin tr {
-		border: 1.5px solid var(--base-color);
-		border-left: none;
-		border-right: none;
-		height: 40px;
-	}
-	
-	.qnaTableAdmin td {
-		padding: 10px;
-		color: var(--font-color);
-	}
-	
-	.qna_row_list:nth-child(3), .qna_row_list:last-child {
-		text-align: center;
-	}
-	
-	.qna_row_list:nth-child(2) {
-		padding-left: 50px;
-	}
-	
-	.qna_row_list a {
-		color: var(--font-color);
-		text-decoration: none;
-	}
-	
-	.buttonSection {
-		padding: 50px;
-		text-align: end;
-	}
-	
-	.buttonSection input[type='button']{
-		width: 120px;
-		height: 50px;
-		background-color: var(--my-color);
-		color: white;
-		font-weight: bold;
-		border: none;
-		border-radius: 5px;
-	
-	}
-	
-	.pagination {
-		text-align: center;
-		padding: 30px;
-	}	
-	
-	.pagination a {
-		text-decoration: none;
-	    color: var(--my-color);
-	    font-size: large;
-	    font-weight: bold;
-	    padding: 10px;
-	}
-
-	
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<link rel="stylesheet" href="${path}/resources/css/goodsQnaAdmin.css" />
+<script src="${path}/resources/js/header.js"></script>
+<script src="${path}/resources/js/goodsQnaAdmin.js"></script>
+<style>
+main div {
+	height: 800px;
+	flex-grow: 1;
+}
 </style>
-<script type="text/javascript">
-
-	$(function() {
-		checkAllGoods();
-		deleteGoodsQna();
-	})
-	
-	/* 전체상품 체크 */
-  	function checkAllGoods(){
-  		$('#checkAll').on('click', function(){
-  			$('.qna_row_chckbox').each(function(i){
-  				console.dir($(this));
-  				$(this)[0].checked = $('#checkAll')[0].checked;
-  			
-  			})
-  		})	
-  	
-  	}
-	
-	
-	// 상품 삭제
-	function deleteGoodsQna() {
-		
-		$('#qnaDelete').on('click', function(){
-			var checkedList = [];
-			
-			if ($('.qna_row_chckbox:checked').length==0){
-	  			alert("선택된 상품이 없습니다.")
-	  		}else{
-	  			if(confirm("정말 삭제하시겠습니까?") == true){
-	  				
-	  				$('.qna_row_chckbox:checked').each(function(i){
-	  					checkedList.push($(this).val()); 
-	  					console.log($(this).val());
-	  					console.log(checkedList);
-	  				});
-	  				
-	  				
-	  				$.ajax({
-	  					url: './deleteGoodsQnaAjax',
-	  					type: 'GET',
-	  					traditional: true,
-	  					data: {goods_qna_no:checkedList},
-	  					dataType:"text",
-	  					success: function(result){
-	  						
-	  							alert("삭제 완료");
-	  							location.reload();
-	  							console.log(result);
-	  						
-	  					},
-	  					error: function(xhr){
-	  							console.log(xhr.status);
-	  					}
-	  				}); 
-	  					
-	  				}else{
-	  					return;
-	  				}
-	  		  		}
-	  				
-	  			});
-		
-	}
-	
-</script>
 </head>
 <body>
-	
-	<div class="goodsQnaAdminBox">
+	<jsp:include page="../main/banner_form.jsp" />
+	<main>
+		<div class="goodsQnaAdminBox">
 		<div class="pageTitle">
 			<h2>상품문의 게시판</h2>
 		</div>
@@ -217,5 +74,7 @@
 		</div>
 	</div>
 	<jsp:include page="../main/footer.jsp" />
+	
+	</main>
 </body>
 </html>

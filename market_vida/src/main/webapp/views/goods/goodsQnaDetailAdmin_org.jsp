@@ -1,28 +1,102 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link rel="stylesheet" href="${path}/resources/css/header.css" />
-<link rel="stylesheet" href="${path}/resources/css/goodsQnaDetialAdmin.css" />
-<script src="${path}/resources/js/header.js"></script>
-<style>
-main div {
+<style type="text/css">
 
-	height: 800px;
-	flex-grow: 1;
-}
+	:root {
+		--my-color: #006F00;
+		--base-color: #EFEFEF;
+		--font-color: dimgray;
+	}
+	
+	
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	
+	.goodsQnaDetailnBox {
+		width: 800px;
+		margin: 30px auto;
+	}
+	
+	.pageTitle {
+		padding: 30px;
+	}
+	
+	.qnaTableAdmin {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	.qnaTableAdmin th {
+		border-top: 2px solid var(--my-color);
+	    border-bottom: 2px solid var(--base-color);
+	    padding: 10px;	
+	}
+	
+	.qnaTableAdmin td {
+		text-align: center;
+	    padding: 10px;
+	    border-bottom: 1px solid var(--base-color);
+	}
+	
+	#goodsQnaTitle {
+		font-weight: bold;
+		text-align: left;
+		padding: 30px 10px;
+	}
+	
+	#goodsQnaContents {
+		text-align: left;
+		padding: 20px 10px;
+	}
+	
+	#goodsQnaTitle img{
+		width: 30px;
+		height: 30px;	
+		padding: 0 10px;
+	}
+	
+	.answer img {
+		width: 30px;
+		height: 30px;	
+		display: block;
+		padding: 30px;
+	}
+	
+	.answer textarea {
+		width: 100%;
+	}
+	
+	.buttonSection {
+		padding: 50px;
+		text-align: end;
+	}
+	
+	
+	.buttonSection input[type='button'], input[type='submit'] {
+		width: 120px;
+		height: 50px;
+		background-color: var(--my-color);
+		color: white;
+		font-weight: bold;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
 </style>
+
 </head>
 <body>
-	<jsp:include page="../main/banner_form.jsp" />
-	<main>
-			<div class="goodsQnaDetailnBox">
+	<div class="goodsQnaDetailnBox">
 		<div class="pageTitle">
 			<h2>문의사항</h2>
 		</div>
@@ -69,6 +143,5 @@ main div {
 	
 	</div>
 	<jsp:include page="../main/footer.jsp" />
-	</main>
 </body>
 </html>
