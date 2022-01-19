@@ -15,6 +15,13 @@ main div {
 	text-align: center;
 	flex-grow: 1;
 }
+
+/* .container {
+	width: 900px;
+	margin-left: 800px;
+	margin-top: 200px;
+} */
+
 table.type10 {
 	border-collapse: collapse;
 	text-align: left;
@@ -54,6 +61,7 @@ table.type10 td {
 	<jsp:include page="../main/banner_form.jsp"></jsp:include>
 	<main>
 		<div class="container">
+		<h2 style="margin-top: 30px;">쿠폰함</h2>
 		<table class="type10">
 			<thead>
 				<tr>

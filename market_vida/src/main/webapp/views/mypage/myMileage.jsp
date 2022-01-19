@@ -1,18 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<script src="${path}/resources/js/header.js"></script>
 <style>
-.container {
+main div {
+	text-align: center;
+	flex-grow: 1;
+}
+
+/* .container {
 	width: 900px;
 	margin-left: 800px;
 	margin-top: 200px;
 }
-
+ */
 table.type10 {
 	border-collapse: collapse;
 	text-align: left;
@@ -44,11 +53,15 @@ table.type10 td {
 	vertical-align: top;
 	border-bottom: 1px solid;
 }
+
 </style>
 <link rel="stylesheet" href="../resources/css/paging.css" />
 </head>
 <body>
-	<div class="container">
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
+	<main>
+		<div class="container">
+		<h2 style="margin-top: 30px;">적립금</h2>
 		<table class="type10">
 			<thead>
 				<tr>
@@ -91,5 +104,7 @@ table.type10 td {
 		</table>
 
 	</div>
+	</main>
+	<jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
 </html>
