@@ -113,10 +113,10 @@
                     <a href="">신상품</a>
                 </div>
                 <div class="post_area">
-                    <div class="post"><a href="#"><img src="${path}/resources/img/apple.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/banana.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/carrot.jpg" alt=""></a></div>
-                    <div class="post"><a href="#"><img src="${path}/resources/img/cutting_pine.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=307"><img src="${path}/resources/img/apple.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=250"><img src="${path}/resources/img/banana.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=152"><img src="${path}/resources/img/carrot.jpg" alt=""></a></div>
+                    <div class="post"><a href="../goods/goodsDetail?goods_no=254"><img src="${path}/resources/img/cutting_pine.jpg" alt=""></a></div>
                 </div>
                 <div class="item_area">
                 	<ul>
