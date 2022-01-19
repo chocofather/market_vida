@@ -16,14 +16,14 @@
         <header>
         <c:if test="${crew_id !=null }">
             <ul>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="../board/noticeBoard">고객센터</a></li>
                 <li><a href="../crew/logout">로그아웃</a></li>
                 <li><a href="../mypage/main">${crew_id}님 환영합니다</a></li>
             </ul>
             </c:if>
             <c:if test="${empty crew_id }">
            	<ul>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="../board/noticeBoard">고객센터</a></li>
                 <li><a href="../crew/login">로그인</a></li>
                 <li><a href="../crew/join">회원가입</a></li>
             </ul>

@@ -213,5 +213,6 @@
 	</div>
 	</main>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
+	<jsp:include page="../main/sidebar.jsp"></jsp:include>
 </body>
 </html>

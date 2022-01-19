@@ -30,8 +30,8 @@ public class LikeImple {
 	}
 	
 	// 삭제하기
-	public void dropOne(int no) {
-		dao.delete(no);
+	public void dropOne(LikeDTO dto) {
+		dao.delete(dto);
 	}
 	
 	// 이미 있는 상품인지 중복체크
