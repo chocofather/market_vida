@@ -1,6 +1,5 @@
 package kr.co.vida.control;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,29 +20,18 @@ public class MainController {
 	
 	
 	@Autowired
-	MainCatImple mainCodesvc;
-	
-	@Autowired
 	FriendsBenefitImple fbService;
 	
 	@RequestMapping(value = {"/","/main"})
 	public String orderList(Model model) {
-		model.addAttribute("mainCode", mainCodesvc.selectAllList());
-		log.info("mainCode========>"+mainCodesvc.selectAllList());
 		return "/main/main";
 	}
-	
+
 	@GetMapping("/benefit")
 	public String benefit(Model model) {
 		model.addAttribute("grade", fbService.getListGrade());
 		model.addAttribute("benefit", fbService.selectAllList());
 		return "/main/friendsBenefit";
 	}
-	
-	@RequestMapping("../goods/goodsList")
-	public String goMainCat(@RequestParam("main_cat_code")int main_cat_code) {
-		
-		return "../goods/goodsList";
-	}
-	
+
 }

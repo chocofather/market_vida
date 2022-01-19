@@ -99,11 +99,11 @@
   		INSERT INTO image VALUES (img_no_seq.nextval , #{goods_no} , #{img_name} , #{img_status} )
   	</insert>
   	
-  	<select id="getMainImgOne" parameterType="int" resultType="imgDto">
+  	<select id="getMainImgOne" parameterType="int" resultType="String">
   		SELECT img_name
   		FROM image
   		WHERE goods_no = #{goods_no}
-  		AND img_status = 1
+  		AND img_status = 0
   	</select>
   	<delete id="deleteOne" parameterType="int">
   		DELETE image

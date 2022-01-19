@@ -14,6 +14,12 @@
 				WHERE ROWNUM &lt;=#{endNo} )
 		WHERE RN &gt;=#{startNo}
   	</select>
+  	<select id="selectReviewAllByGoodsNo" parameterType="int" resultType="rbdto">
+  		SELECT review_no , review_title , crew_id, review_contents , TO_CHAR(review_date , 'YYYY-MM-DD') review_date , goods_no , review_liked , review_img , crew_no , order_no
+  		FROM review_board
+  		WHERE goods_no = #{goods_no}
+  		ORDER BY review_date desc
+  	</select>
   		
   	<select id="selectReviewOne" parameterType="int" resultType="rbdto">
   		SELECT review_no , review_title , review_contents , review_date , goods_no , crew_id , review_liked , review_img , crew_no , order_no
@@ -52,6 +58,12 @@
   		SELECT review_no , review_title , review_contents , TO_CHAR( review_date , 'YYYY.MM.DD') review_date , goods_no , crew_id , review_liked , review_img , crew_no , order_no
   		FROM review_board
   		WHERE review_no = #{review_no}
+  	</select>
+  	
+  	<select id="selectReviewList" parameterType="int" resultType="rbdto">
+  		SELECT review_no , review_title , review_contents , review_date , goods_no , crew_id , review_liked , review_img , crew_no , order_no
+  		FROM review_board
+  		WHERE crew_no = #{crew_no}
   	</select>
   	
 </mapper>

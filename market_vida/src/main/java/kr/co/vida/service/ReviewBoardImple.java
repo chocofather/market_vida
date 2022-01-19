@@ -16,6 +16,10 @@ public class ReviewBoardImple implements VidaService<ReviewBoardDTO>{
 	@Autowired
 	ReviewBoardDAO dao;
 	
+	public List<ReviewBoardDTO> getListAllByGoodsNo(int no){
+		return dao.getListAllByGoodsNo(no);
+	}
+	
 	@Override
 	public List<ReviewBoardDTO> selectAllList() {
 		// TODO Auto-generated method stub
@@ -53,6 +57,10 @@ public class ReviewBoardImple implements VidaService<ReviewBoardDTO>{
 	
 	public ReviewBoardDTO review(int no) {
 		return dao.reviewOne(no);
+	}
+	
+	public List<ReviewBoardDTO> selectReview(int no){
+		return dao.getReviewList(no);
 	}
 	
 }

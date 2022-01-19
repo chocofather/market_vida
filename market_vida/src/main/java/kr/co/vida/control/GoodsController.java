@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.springframework.web.servlet.ModelAndView;
-
-
 import kr.co.vida.dto.GoodsDTO;
 import kr.co.vida.dto.GoodsQnaDTO;
 import kr.co.vida.dto.PageUtil;
@@ -25,6 +22,7 @@ import kr.co.vida.dto.SubCatDTO;
 import kr.co.vida.service.GoodsImple;
 import kr.co.vida.service.GoodsQnaImple;
 import kr.co.vida.service.ImgListImple;
+import kr.co.vida.service.ReviewBoardImple;
 import kr.co.vida.service.SubCatImple;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,6 +42,9 @@ public class GoodsController {
 	
 	@Autowired
 	GoodsQnaImple goodsQnaService;
+	
+	@Autowired
+	ReviewBoardImple reviewService;
 
 	// 상품 리스트 페이지
 	@RequestMapping("/goods/goodsList")
@@ -92,6 +93,7 @@ public class GoodsController {
 		return "/goods/goodsList";
 	}
 	
+
 	
 	// 상품 삭제
 	@RequestMapping("/goods/deleteGoods")
@@ -116,23 +118,13 @@ public class GoodsController {
 		
 		model.addAttribute("goodsDto", goodsDto);
 		model.addAttribute("detailImgDto", imgService.getGoodsImgs(goodsDto.getGoods_no()));
-		model.addAttribute("goodsQnaDto", goodsQnaService.selectAllList());
+		model.addAttribute("goodsQnaDto", goodsQnaService.selectAllList(goods_no));
+		model.addAttribute("reviewDto", reviewService.getListAllByGoodsNo(goods_no));
 		log.info("goodsqna======?"+goodsQnaDto);
 		return "goods/goodsDetail";
 	}
 	
-	// 상품문의 쓰기
-	@RequestMapping("goods/writeGoodsQna")
-	public String writeGoodsQna(@ModelAttribute("goodsQnaDto")GoodsQnaDTO goodsQnaDto, 
-								@RequestParam("goods_no")int goods_no,
-								ModelAndView mav) {
-		
-		goodsQnaDto.setCrew_id("aaa");
-		goodsQnaDto.setCrew_no(14);
-		goodsQnaService.insertOne(goodsQnaDto);
-		
-		return "writeSuccess";
-	}
+	
 	
 	
 	@GetMapping("/admin/goodswrite")
@@ -144,7 +136,7 @@ public class GoodsController {
 	@PostMapping("/admin/goodswrite")
 	public String writeFormOk(@ModelAttribute("dto") GoodsDTO dto, HttpServletRequest req) {
 		goodsService.insertOne(dto);
-		return "redirect:/main";
+		return "redirect:/main/main";
 	}
 
 }

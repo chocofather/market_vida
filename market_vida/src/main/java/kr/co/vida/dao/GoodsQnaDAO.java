@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.GoodsQnaDTO;
+import kr.co.vida.dto.StartEnd;
 
 @Repository
 public class GoodsQnaDAO implements Dao<GoodsQnaDTO> {
@@ -14,9 +15,22 @@ public class GoodsQnaDAO implements Dao<GoodsQnaDTO> {
 	@Autowired
 	SqlSession ss;
 
+	public List<GoodsQnaDTO> getListAll(int startNo, int endNo) {
+		StartEnd se = new StartEnd(startNo, endNo);
+		return ss.selectList("kr.co.vida.goodsQna.getAllbyRownum", se);
+	}
+	
+	public void updateAnswer(GoodsQnaDTO dto) {
+		ss.update("kr.co.vida.goodsQna.updateAnswer", dto);
+	}
+	
+	public List<GoodsQnaDTO> getListAll(int no) {
+		return ss.selectList("kr.co.vida.goodsQna.getAll", no);
+	}
+	
 	@Override
 	public List<GoodsQnaDTO> getListAll() {
-		return ss.selectList("kr.co.vida.goodsQna.getAll");
+		return null;
 	}
 
 	@Override
@@ -37,6 +51,10 @@ public class GoodsQnaDAO implements Dao<GoodsQnaDTO> {
 	@Override
 	public void deleteOne(int no) {
 		ss.delete("kr.co.vida.goodsQna.deleteOne", no);
+	}
+	
+	public int getTotal() {
+		return ss.selectOne("kr.co.vida.goodsQna.getTotal");
 	}
 
 }

@@ -4,12 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="kr.co.vida.goodsQna">
- 	<select id="getAll" resultType="gQnaDto">
+ 	<select id="getAllbyRownum" resultType="gQnaDto" parameterType="se">
+ 		SELECT goods_qna_no, goods_qna_title, goods_qna_contents, goods_qna_date, goods_no,
+ 				crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
+ 		FROM (SELECT ROWNUM rn, goods_qna_no, goods_qna_title, goods_qna_contents, goods_qna_date, 
+ 					goods_no, crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
+ 			  FROM (SELECT goods_qna_no, goods_qna_title, goods_qna_contents, to_char(goods_qna_date, 'YYYY-MM-DD') goods_qna_date, goods_no,
+ 							crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
+ 					FROM goods_qna_board
+ 					ORDER BY goods_qna_no desc )		
+ 			WHERE ROWNUM &lt;=#{endNo})
+  		WHERE rn &gt;=#{startNo}
+ 	</select>
+ 	<select id="getAll" resultType="gQnaDto" parameterType="int">
  		SELECT goods_qna_no, goods_qna_title, goods_qna_contents, to_char(goods_qna_date, 'YYYY-MM-DD') goods_qna_date, goods_no,
  				crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
- 		FROM goods_qna_board
- 		ORDER BY goods_qna_date
+		FROM goods_qna_board
+		WHERE goods_no = #{goods_no, jdbcType=VARCHAR}
+		ORDER BY goods_qna_no desc 	
+ 
  	</select>
+ 	
  	<select id="getOne" resultType="gQnaDto" parameterType="int">
  		SELECT goods_qna_no, goods_qna_title, goods_qna_contents, goods_qna_date, goods_no,
  				crew_id, crew_no, qna_lock, qna_status, goods_qna_answer
@@ -23,11 +38,20 @@
  	</insert>
  	<update id="updateOne" parameterType="gQnaDto">
  		UPDATE goods_qna_board
- 		SET goods_qna_title = #{goods_qna_title}, goods_qna_contents = #{goods_qna_contents}, goods_qna_img=#{goods_qna_img}
+ 		SET goods_qna_title = #{goods_qna_title}, goods_qna_contents = #{goods_qna_contents}
+ 		WHERE goods_qna_no = #{goods_qna_no}
+ 	</update>
+ 	<update id="updateAnswer" parameterType="gQnaDto">
+ 		UPDATE goods_qna_board
+ 		SET goods_qna_answer = #{goods_qna_answer}, qna_status = 1
  		WHERE goods_qna_no = #{goods_qna_no}
  	</update>
  	<delete id="deleteOne" parameterType="int">
  		DELETE goods_qna_board
  		WHERE goods_qna_no = #{goods_qna_no}
  	</delete>
+ 	<select id="getTotal" resultType="int">
+ 		SELECT count(*)
+ 		FROM goods_qna_board
+ 	</select>
  </mapper>

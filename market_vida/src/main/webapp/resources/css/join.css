@@ -70,12 +70,47 @@ body{
     outline: none;
     vertical-align: top;
 }
+.join_table input[type=password]{
+	 width: 332px;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    line-height: 20px;
+    border-radius: 3px;
+    background: #fff;
+    outline: none;
+    vertical-align: top;
+}
 .join_table input:focus{
     outline: 2px solid #1b1a1a;
 }
 
-.join_table .btn_check {
+.join_table .id_check {
     display: inline-block;
+    width: 130px;
+    margin-left: 12px;
+    vertical-align: top;
+    border: 1px solid #006f00;
+    background-color: #fff;
+    color: #006f00;
+    height: 44px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 43px;
+    text-align: center;
+    outline: none;
+}
+.id_check:hover{
+	cursor : pointer;
+}
+.email_check:hover{
+	cursor : pointer;
+}
+.email_check{
+	 display: inline-block;
     width: 130px;
     margin-left: 12px;
     vertical-align: top;
@@ -121,16 +156,16 @@ a{
     font-size: 14px;
     line-height: 22px;
 }
-.gender_input {
+.crew_gender {
     position: absolute;
     z-index: -1;
     opacity: 0;
 }
-.gender_input:checked+.gender {
+.crew_gender:checked+.gender {
     border: 1px solid #006f00;
     background-color: #006f00;
 }
-.gender_input:checked+.gender:after {
+.crew_gender:checked+.gender:after {
     content: "";
     position: absolute;
     left: 50%;
@@ -419,8 +454,19 @@ a{
     text-align: center;
     outline: none;
 }
+
 #research_addr:hover{
     cursor: pointer;
+}
+#crew_post{
+	 display: none;
+}
+#crew_addr{
+	margin-top : 5px;
+	display:none;
+}
+#detail_addr{
+	display:none;
 }
 .alert_container{
     margin-top: 10px;
@@ -429,4 +475,8 @@ a{
 }
 .alert01{
     color: #666;
+}
+.alert06{
+	display : none;
+	color: red;
 }

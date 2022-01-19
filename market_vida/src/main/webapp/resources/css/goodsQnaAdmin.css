@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+	:root {
+		--my-color: #006F00;
+		--base-color: #EFEFEF;
+		--font-color: dimgray;
+	}
+	
+	
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	
+	.goodsQnaAdminBox {
+		width: 800px;
+		margin: 30px auto;
+	}
+	
+	.pageTitle {
+		padding: 30px;
+	}
+	
+	.qnaTableAdmin {
+		width: 100%;
+		border-collapse: collapse; 
+	}
+	
+	.qnaTableAdmin th {
+		border-top: 2px solid var(--font-color);
+		border-bottom: 2px solid var(--font-color);
+	}
+	
+	.qnaTableAdmin tr {
+		border: 1.5px solid var(--base-color);
+		border-left: none;
+		border-right: none;
+		height: 40px;
+	}
+	
+	.qnaTableAdmin td {
+		padding: 10px;
+		color: var(--font-color);
+	}
+	
+	.qna_row_list:nth-child(3), .qna_row_list:last-child {
+		text-align: center;
+	}
+	
+	.qna_row_list:nth-child(2) {
+		padding-left: 50px;
+	}
+	
+	.qna_row_list a {
+		color: var(--font-color);
+		text-decoration: none;
+	}
+	
+	.buttonSection {
+		padding: 50px;
+		text-align: end;
+	}
+	
+	.buttonSection input[type='button']{
+		width: 120px;
+		height: 50px;
+		background-color: var(--my-color);
+		color: white;
+		font-weight: bold;
+		border: none;
+		border-radius: 5px;
+	
+	}
+	
+	.pagination {
+		text-align: center;
+		padding: 30px;
+	}	
+	
+	.pagination a {
+		text-decoration: none;
+	    color: var(--my-color);
+	    font-size: large;
+	    font-weight: bold;
+	    padding: 10px;
+	}
