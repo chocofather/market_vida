@@ -13,7 +13,7 @@
             </c:if>
             <c:if test="${empty crew_id }">
            	<ul>
-                <li><a href="#">고객센터</a></li>
+                <li><a href="../board/noticeBoard">고객센터</a></li>
                 <li><a href="../crew/login">로그인</a></li>
                 <li><a href="#">회원가입</a></li>
             </ul>
