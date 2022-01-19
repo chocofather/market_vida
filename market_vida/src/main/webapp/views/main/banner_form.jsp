@@ -29,7 +29,7 @@
 	            </c:if>
             </ul>
 	<div>
-		<a href="./main">
+		<a href="../main/main">
 			<img src="${path}/resources/img/title.png" alt="타이틀">
 		</a>
 	</div>
@@ -57,6 +57,9 @@
 			<i class="xi xi-cart-o xi-2x"></i>
 		</a>
 	</div>
+	<div class="wishList">
+            	<a href="../mypage/myFavoriteList"><i class="xi-heart-o xi-2x"></i></a>
+            </div>
 </nav>
         <div class="sub_menu">
             <ul class="inner">
