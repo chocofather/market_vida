@@ -14,15 +14,12 @@
 <script src="${path}/resources/js/header.js"></script>
 <script src="${path}/resources/js/goodsList.js"></script>
 <style>
-main div {
-	height: 800px;
-	flex-grow: 1;
-}
+
 </style>
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp" />
-	<main>
+	
 		<div class="goodsBody">
         
       <!-- 카테고리 박스 -->
@@ -112,6 +109,6 @@ main div {
 
   	<jsp:include page="../main/footer.jsp"/>  
 
-	</main>
+
 </body>
 </html>

@@ -21,7 +21,7 @@ main div {
 </head>
 <body>
 	<jsp:include page="../main/banner_form.jsp" />
-	<main>
+
 		<div class="goodsQnaAdminBox">
 		<div class="pageTitle">
 			<h2>상품문의 게시판</h2>
@@ -75,6 +75,6 @@ main div {
 	</div>
 	<jsp:include page="../main/footer.jsp" />
 	
-	</main>
+
 </body>
 </html>
