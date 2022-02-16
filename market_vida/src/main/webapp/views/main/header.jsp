@@ -22,7 +22,7 @@ main div {
 </style>
 </head>
 <body>
-	<jsp:include page="./banner_form.jsp"></jsp:include>
+	<jsp:include page="../main/banner_form.jsp"></jsp:include>
 	<main>
 		<div>컨텐츠 입력란 (지우고 사용) - 이 부분 css는 바로 위에 있음</div>
 	</main>

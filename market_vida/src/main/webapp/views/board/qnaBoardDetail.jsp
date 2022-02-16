@@ -54,8 +54,13 @@
 		</c:if>
 		<c:if test="${crew_id ne 'admin' }">
 		<a href="./qna?crew_no=${crew_no }" class="link">목록으로</a>
+		<c:if test="${dto.qna_answer eq null }">
 		<a href="./modifyQna?qna_no=${dto.qna_no }" class="link">수정</a>
 		<a href="./deleteQna?qna_no=${dto.qna_no }" class="link">삭제</a>
+		</c:if>
+		<c:if test="${dto.qna_answer ne null }">
+		<a href="./deleteQna?qna_no=${dto.qna_no }" class="link">삭제</a>
+		</c:if>
 		</c:if>
 	</div>
 	</div>
