@@ -52,20 +52,12 @@ public class GoodsController {
 							@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
 							Model model) {
 		
-		int totalNumber = 0; // 총 게시물 수
-		int forMainCode = 0; // 메인인지 서브인지 코드 판단	
-		
-		if(cat_code%100==0) { // 메인코드
-			forMainCode = cat_code+1;
-			totalNumber = imgService.getTotalbyMainCode(cat_code);
-		}else if(cat_code%100!=0) { // 서브코드
-			forMainCode = cat_code;
-			totalNumber = imgService.getTotalbySubCode(cat_code);
-		}
-		
+		// 총 게시물 수
+		int totalNumber = imgService.getTotalbyCode(cat_code);
 		System.out.println(totalNumber);
-		// 현재 페이지의 게시물 수 : 18
-		int countPerPage=18;
+		
+		// 현재 페이지의 게시물 수 : 15
+		int countPerPage=15;
 		
 		Map<String, Object> map = PageUtil.getPageData(totalNumber, countPerPage, currentPage);
 		
@@ -74,21 +66,26 @@ public class GoodsController {
 		int startNo = (int) map.get("startNo");
 		int endNo = (int) map.get("endNo");
 		
-		//model.addAttribute("paging", imgService.readAll(startNo, endNo));
-		
+		// 상품 리스트 객체
+		model.addAttribute("imgDto", imgService.readAll(startNo, endNo, cat_code));
+		model.addAttribute("getTotal", imgService.getTotalbyCode(cat_code));
+		model.addAttribute("code", Integer.toString(cat_code));
 		log.info("subCode=====>"+cat_code);
+		
+		
+		int forMainCode = 0; // 메인인지 서브인지 코드 판단	
+		
+		if(cat_code%100==0) { // 메인코드
+			forMainCode = cat_code+1;
+		}else if(cat_code%100!=0) { // 서브코드
+			forMainCode = cat_code;
+		}
 		
 		// 카테고리 리스트 객체
 		SubCatDTO subDto = subService.selectOne(forMainCode);
 		model.addAttribute("mainCode", subDto);
 		model.addAttribute("subDtoList", subService.getListAll(subDto.getMain_cat_code()));
-		
-		// 상품 리스트 객체
-		if (cat_code %100==0) {
-			model.addAttribute("imgDto", imgService.selectAllList(cat_code));
-		}else {
-			model.addAttribute("imgDto", imgService.getListBySubCode(cat_code));
-		}
+
 		
 		return "/goods/goodsList";
 	}

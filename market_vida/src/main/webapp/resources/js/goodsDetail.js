@@ -79,11 +79,17 @@
 	/* qna 삭제하기 */
 	function deleteQna(){
 		var qnaDelete = document.querySelectorAll('.qnaDelete');
+		
 		qnaDelete.forEach((item)=>{
 			(item).addEventListener('click', ()=>{
 				
+<<<<<<< HEAD
 				var goods_qna_no = item.parentElement.firstElementChild.value;
 				console.log(item.parentElement.firstElementChild.value);
+=======
+				var goods_qna_no = item.parentElement.children.goods_qna_no.value;
+				console.log(goods_qna_no);
+>>>>>>> refs/heads/main
 				
 				if(confirm("정말 삭제하시겠습니까?") == true){
 				
@@ -92,9 +98,12 @@
 					type:'get',
 					traditional: true,
 					data: {'goods_qna_no':goods_qna_no},
+<<<<<<< HEAD
 					dataType: 'text',
+=======
+					dataType: 'html',
+>>>>>>> refs/heads/main
 					success: function(result){
-						alert("삭제가 완료되었습니다")
 						location.reload();
 						console.log(result);
 					},
@@ -146,8 +155,8 @@
 				var title = row.firstElementChild.innerText;
 				var rowId = row.cells[1].innerText;
 				//console.dir(row);
-				console.log(crew_id);
-				console.log(rowId); 
+				//console.log(crew_id);
+				//console.log(rowId); 
 				if (title!="비밀글입니다" ){
 					
 					var qnaDetail = row.rowIndex+1;

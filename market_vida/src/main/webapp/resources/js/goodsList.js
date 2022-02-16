@@ -3,22 +3,9 @@
   		deleteGoods();
   		checkAllGoods();
   		updateGoods();
-  		pagenation();
 	});
-  	
-  	/* 페이징 처리 */
-  	function pagenation(){
-  		var pageNo = $('.page-item');
-  				console.log($('.page-item'));
-  			
-  		pageNo.on('click', function(){
- 			pageNo.each(function(i){
-  				console.log($(this));
-  				 location.href = location.href+'&currentPage='+$(this)[0].outerText;
-  			});
-  				
-  		})
-  	}
+	
+
   	
   	/* 전체상품 체크 */
   	function checkAllGoods(){
