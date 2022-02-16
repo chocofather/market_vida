@@ -213,6 +213,7 @@
 											<input type="button" value="수정" class="qnaModify"/>
 											<input type="button" value="문의 삭제" class="qnaDelete" />
 										</c:if>
+										
 										</div>
 								</td>
 							</tr>
@@ -253,8 +254,7 @@
 				</div>
 				<div class="qnaContents">
 				<strong>내용</strong> 
-				<textarea name="goods_qna_contents" maxlength="3000" id="goods_qna_contents">
-				</textarea>
+				<textarea name="goods_qna_contents" maxlength="3000" id="goods_qna_contents"></textarea>
 				</div>	
 				<div class="secretYN">
 					<input type="checkbox" name="secretYN" id="secretYN" />

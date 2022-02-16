@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link rel="stylesheet" href="${path}/resources/css/header.css" />
-<link rel="stylesheet" href="${path}/resources/css/goodsList.css" />
+<link rel="stylesheet" href="${path}/resources/css/header.css?after" />
+<link rel="stylesheet" href="${path}/resources/css/goodsList.css?after" />
 <script src="${path}/resources/js/header.js"></script>
 <script src="${path}/resources/js/goodsList.js"></script>
 <style>
@@ -44,7 +44,7 @@
       <!-- 상품 정렬 -->
       <div class="sortGoods">
         <div class="countGoods">
-          <p>총 ${fn:length(imgDto) }개 상품</p>
+          <p>총 ${getTotal }개 상품</p>
      
       	<c:if test="${crew_id=='admin' }">
           <input type="checkbox" name="" id="checkAll" />
@@ -52,12 +52,12 @@
         
         </div>
         <div class="sortBy">
-          <ul>
-            <li>신상품순</li>
-            <li>판매량순</li>
-            <li>리뷰순</li>
-            <li>높은 가격순</li>
-            <li>낮은 가격순</li>
+          <ul class="sortByChoice">
+            <li><a href="">신상품순</a></li>
+            <li><a href="">판매량순</a></li>
+            <li><a href="">리뷰순</a></li>
+            <li><a href="">높은 가격순</a></li>
+            <li><a href="">낮은 가격순</a></li>
           </ul>
         </div>
       </div>
@@ -93,19 +93,21 @@
       </ul>
     </div>
     
-   	<nav aria-label="Page navigation example">
+   	<div class="pageArea">
 		<ul class="pagination">
+			<c:set var="page" value="${(empty param.currentPage)?1:param.currentPage }"></c:set>
+		
 			<c:if test="${map.prev}">
-				<li class="page-item1"><a class="page-link" href="list?currentPage=${map.currentPage-5 }">Previous</a></li>
+				<li class="page-item"><a href="goodsList?cat_code=${code }&currentPage=${map.currentPage-5 }">Previous</a></li>
 			</c:if>
 			<c:forEach var="no" begin="${map.startPageNo }" end="${map.endPageNo }">
-				<li class="page-item" >${no }</li>
+				<li class="page-item" ><a class="pageNo${(page==(no))?' active':'' }" href="goodsList?cat_code=${code }&currentPage=${no }">${no }</a></li>
 			</c:forEach>
 			<c:if test="${map.next}">
-						<li class="page-item3"><a class="page-link" href="list?currentPage=${map.currentPage+5 }">Next</a></li>
+				<li class="page-item"><a href="goodsList?cat_code=${code }&currentPage=${map.currentPage+5 }">Next</a></li>
 			</c:if>
 		</ul>
-	</nav>
+	</div>
 
   	<jsp:include page="../main/footer.jsp"/>  
 

@@ -15,29 +15,19 @@ public class ImgListImple implements VidaService<ImgDTO>{
 	@Autowired
 	ImgDAO dao;
 	
-	public List<ImgDTO> readAll(int StartNo, int endNo){
-		return dao.readAll(StartNo, endNo);
+	public List<ImgDTO> readAll(int StartNo, int endNo, int code){
+		return dao.readAll(StartNo, endNo, code);
 	}
 
-	public List<ImgDTO> selectAllList(int no) {
-		return dao.getListAll(no);
-	}
-	
-	public List<ImgDTO> getListBySubCode(int no) {
-		return dao.getListBySubCode(no);
-	}
 	
 	public List<ImgDTO> getGoodsImgs(int no){
 		return dao.getAllImgbyGoods(no);
 	}
 	
-	public int getTotalbyMainCode(int no) {
-		return dao.getTotalbyMainCode(no);
+	public int getTotalbyCode(int no) {
+		return dao.getTotalbyCode(no);
 	}
 	
-	public int getTotalbySubCode(int no) {
-		return dao.getTotalbySubCode(no);
-	}
 	
 	@Override
 	public List<ImgDTO> selectAllList() {
@@ -47,7 +37,7 @@ public class ImgListImple implements VidaService<ImgDTO>{
 
 	@Override
 	public ImgDTO selectOne(int no) {
-		return dao.getOne(no);
+		return null;
 	}
 
 	public String selectMainImage(int no) {

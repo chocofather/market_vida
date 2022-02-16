@@ -8,39 +8,28 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.vida.dto.ImgDTO;
 import kr.co.vida.dto.StartEnd;
+import kr.co.vida.dto.StartEndGoodsList;
 import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @Slf4j
 public class ImgDAO implements Dao<ImgDTO> {
 	
-	@Autowired
+	@Autowired 
 	private SqlSession ss;
 	
-	public List<ImgDTO> readAll(int StartNo, int endNo){
-		StartEnd se = new StartEnd(StartNo, endNo);
+	public List<ImgDTO> readAll(int StartNo, int endNo, int code){
+		StartEndGoodsList se = new StartEndGoodsList(StartNo, endNo, code);
 		return ss.selectList("kr.co.vida.img.readAll", se);
 	}
 
-	public List<ImgDTO> getListBySubCode(int no) {
-		//log.info("list====>"+ss.selectList("kr.co.vida.img.getMainImgBySubCode", no));
-		return ss.selectList("kr.co.vida.img.getMainImgBySubCode", no);
-	}
-	
-	public List<ImgDTO> getListAll(int no) {
-		return ss.selectList("kr.co.vida.img.getMainImg", no);
-	}
 	
 	public List<ImgDTO> getAllImgbyGoods(int no){
 		return ss.selectList("kr.co.vida.img.getGoodsImgs", no);
 	}
 	
-	public int getTotalbyMainCode(int no) {
-		return ss.selectOne("kr.co.vida.img.getTotalbyMainCode", no);
-	}
-	
-	public int getTotalbySubCode(int no) {
-		return ss.selectOne("kr.co.vida.img.getTotalbySubCode", no );
+	public int getTotalbyCode(int no) {
+		return ss.selectOne("kr.co.vida.img.getTotalbyCode", no);
 	}
 	
 	@Override
@@ -50,7 +39,7 @@ public class ImgDAO implements Dao<ImgDTO> {
 
 	@Override
 	public ImgDTO getOne(int no) {
-		return ss.selectOne("kr.co.vida.img.getMainImgOne" , no);
+		return null;
 	}
 	
 	public String getMainImage(int no) {
