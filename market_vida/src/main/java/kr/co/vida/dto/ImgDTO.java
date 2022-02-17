@@ -19,6 +19,7 @@ public class ImgDTO {
 	private String goods_info;
 	private int sub_cat_code;
 	private int project_status;
+	private String add_date;
 	
 	private int img_no;
 	private int goods_no;

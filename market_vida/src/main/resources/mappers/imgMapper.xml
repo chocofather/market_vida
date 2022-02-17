@@ -14,15 +14,15 @@
   	SELECT img_no, goods_no, img_name, img_status, qty,
   				goods_name, goods_price, discount_rate, 
   				stock, package_type, origin, goods_info, 
-  				sub_cat_code, project_status, sales_amt
+  				sub_cat_code, project_status, sales_amt, add_date
 	FROM (SELECT ROWNUM rn, img_no, goods_no, img_name, img_status, qty,
 			  				goods_name, goods_price, discount_rate, 
 			  				stock, package_type, origin, goods_info, 
-			  				sub_cat_code, project_status, sales_amt
+			  				sub_cat_code, project_status, sales_amt, add_date
 			FROM (SELECT i.img_no, i.goods_no, i.img_name, i.img_status, g.qty,
 			  				g.goods_name, g.goods_price, g.discount_rate, 
 			  				g.stock, g.package_type, g.origin, g.goods_info, 
-			  				g.sub_cat_code, g.project_status, g.sales_amt
+			  				g.sub_cat_code, g.project_status, g.sales_amt, g.add_date
 			  		FROM image i, goods g, sub_category s
 			  		WHERE i.goods_no = g.goods_no
 			  		AND g.sub_cat_code = s.sub_cat_code
