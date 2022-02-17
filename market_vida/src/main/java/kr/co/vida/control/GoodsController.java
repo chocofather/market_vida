@@ -98,7 +98,6 @@ public class GoodsController {
 	public String deleteGoods(@RequestParam List<String> goods_no){
 		
 		for (String goodsNo:goods_no) {
-			//imgService.dropOne(Integer.parseInt(goodsNo));
 			goodsService.dropOne(Integer.parseInt(goodsNo));
 		}
 		

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Market Vida_상품 페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css?after" />
@@ -52,12 +52,10 @@
         
         </div>
         <div class="sortBy">
-          <ul class="sortByChoice">
-            <li><a href="">신상품순</a></li>
-            <li><a href="">판매량순</a></li>
-            <li><a href="">리뷰순</a></li>
-            <li><a href="">높은 가격순</a></li>
-            <li><a href="">낮은 가격순</a></li>
+          <ul class="sortByObject">
+            <li>신상품순</li>
+            <li>판매량순</li>
+            <li>가격순</li>	
           </ul>
         </div>
       </div>

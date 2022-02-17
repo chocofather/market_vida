@@ -85,6 +85,7 @@
 				
 				var goods_qna_no = item.parentElement.children.goods_qna_no.value;
 				console.log(goods_qna_no);
+
 				
 				if(confirm("정말 삭제하시겠습니까?") == true){
 				
@@ -94,6 +95,7 @@
 					traditional: true,
 					data: {'goods_qna_no':goods_qna_no},
 					dataType: 'html',
+
 					success: function(result){
 						location.reload();
 						console.log(result);
