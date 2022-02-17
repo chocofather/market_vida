@@ -52,12 +52,10 @@
         
         </div>
         <div class="sortBy">
-          <ul class="sortByChoice">
-            <li><a href="">신상품순</a></li>
-            <li><a href="">판매량순</a></li>
-            <li><a href="">리뷰순</a></li>
-            <li><a href="">높은 가격순</a></li>
-            <li><a href="">낮은 가격순</a></li>
+          <ul class="sortByObject">
+            <li>신상품순</li>
+            <li>판매량순</li>
+            <li>가격순</li>	
           </ul>
         </div>
       </div>
