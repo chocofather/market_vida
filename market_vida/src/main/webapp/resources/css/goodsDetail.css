@@ -1,421 +1,416 @@
 @charset "UTF-8";
 
+:root {
+  --my-color: #006f00;
+  --base-color: #efefef;
+  --font-color: dimgray;
+}
 
-	:root {
-		--my-color: #006F00;
-		--base-color: #EFEFEF;
-		--font-color: dimgray;
-	}
-	
-	body {
-		width:100%;
-		height:100vh;
-	}
-	
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	
-	.goodsDetailBody {
-		width: 1000px;
-		margin: 0 auto;
-		margin: 60px auto;
-	}
-	
-	.goodsMainInfo {
-		display: flex;
-		gap: 0 70px;
-		flex-grow: 2;
-	}
-	
-	.goodsDesc {
-		flex-grow: 3;
-	}
-	
- 	.goodsDesc p span:not(#priceinKorean) {
-		font-size: x-large;
-		font-weight: bold;
-		padding-bottom: 20px;
-	} 
-	
-	.goodsDesc p:first-child {
-		font-weight: bold;
-		padding-bottom: 30px;
-	}
-	
-	.dlList {
-		padding: 20px 0;
-	}
-	
-	.goodsDesc dl {
-		display: flex;
-		padding: 10px 0;
-	}
-	
-	.goodsDesc dt {
-		width: 120px;
-	}
+body {
+  width: 100%;
+  height: 100vh;
+}
 
-	
-	input[type="number"]::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-	
-	.dlList input[type="button"], input[type="number"] {
-		background-color: white;
-	 	border: none; 
-		text-align: center;
-		
-	}
-	
-	.dlList input[type="button"] {
-		font-size: large;
-		padding: 0 5px;
-		width: 30px;
-		cursor: grabbing;
-	}
-	
-	.dlList input[type="number"] {
-		width: 20px;
-	}
-	
-	.dlList #spanQty {
-		border: 3px solid var(--base-color);
-   		border-radius: 5px;
-   		padding: 3px 0;
-   		font-weight: bold;
-	}
-	
-	
-	.showAmount {
-		text-align: right;
-		font-weight: bold;
-		border-top: 2px solid var(--base-color);
-		padding: 20px 0;
-	}
+* {
+  margin: 0;
+  padding: 0;
+}
 
-	.getMine {
-		display: flex;
-		gap: 0 30px;
-		height: 55px;
-		
-	}
-	
-	.getMine #toMyfavorite {
-		flex-grow: 1;
-		border: 2px solid var(--base-color);
-		background-image: url("../img/heart.png");
-		border-radius: 3px;
-		background-size: 30px;
-	    background-color: white;
-	    background-repeat: no-repeat;
-	    background-position: center;
-	    cursor: grabbing;
-	}
-	
-	.getMine #toCart {
-		border-radius: 3px;
-		flex-grow: 3;
-		border: none;
-		background-color: var(--my-color);
-		color: white;
-		font-weight: bold;
-		font-size: x-large;
-		cursor: grabbing;
-	}
-	
-	.subInfo {
-		margin: 80px 0;
-	}
-	
-	.tabsItems>img {
-		text-align: center;
-	}
-	
-	.tabsItems {
-		color: var(--font-color);
-	}
-	
-	.tabs {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-	}
-	
-	.tab {
-		background-color: var(--base-color);
-	    color: var(--font-color);
-		
-	}
-	
-	.tab.active {
-		color: var(--my-color);
-		background-color: white;
-		border-top: 2px solid var(--my-color);
-		border-left: 2px solid var(--my-color);
-		border-right: 2px solid var(--my-color);
-		border-bottom: none;
-	}
-	
-	
-	.tabs div {
-		width: 100%;
-		height: 70px;
-		cursor: grabbing;
-		background-color: var(--base-color);
-		text-align: center;
-		display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    color: var(--font-color);
-	    border: 1.5px solid white;
-	    border-bottom: 2px solid var(--my-color);
-	}
-	
-	
-	.items {
-		width: 100%;
-		display: none;
-		text-align: center;
-		margin: 70px 0;
-	}
-	
-	.items.active {
-		display: inline-block;
-	}
-	
-	.desciption {
-		width: 80%;
-		margin: 100px auto;
-		border: 1.5px solid var(--base-color);
-		border-collapse: collapse;
-	}
-	
-	.desciption th {
-		background-color: var(--base-color);
-		color: var(--font-color);
-		width: 130px;
-		
-	}
-	
-	.desciption tr {
-		height: 40px;
-		border: 1.5px solid var(--base-color);
-		color: var(--font-color);
-		font-size: medium;
-	}
-	
-	.goodsQna_info {
-		margin: 0 auto;
-    	padding: 0 50px;
-    	text-align: left;
-	}
-	
-	.qnaTable, .reviewTable {
-	    width: 100%;
-   		margin: 50px auto;
-   		border-collapse: collapse;
-	    border-left: hidden;
-	    border-right: hidden;
-	}
-	
-	.qnaTable tr th, .reviewTable tr th {
-	    height: 50px;
-	    border-top: 2px solid var(--font-color);
-	    border-bottom: 1px solid var(--font-color);
-	}
-	
-	.qnaTable .qna_row td, .reviewTable td {
-	    border-right: hidden;
-  		border-left: hidden;
-  		height: 45px;
-    	border-bottom: 1px solid var(--base-color);
-    	text-align: left;
-    	padding-left: 60px;
-	}
-	
-	.qnaTable .goods_qna_contents, .reviewTable .reviewContents {
-		display: none;
-	}
-	
-	.qnaTable .goods_qna_contents.active, .reviewTable .reviewContents.active {
-		display: contents;
- 	    width: 1000px;
-		border-bottom: hidden;
-	}
-	
-	.goods_qna_contents .question, .reviewContents .reviews {
-		text-align: left;
-   		padding: 30px;
-	}
-	
-	.goods_qna_contents img {
-		width: 30px;
-		height: 30px;
-		padding-right: 15px;
-	}
-	
-	.goods_qna_contents .answer {
-	    margin: 30px;
-    	width: 80%;
-    	text-align: left;
-    	font-weight: bold;
-	}
-	
-	.qnaAmend {
-		text-align: right;
-	    padding: 20px;
-	    border-bottom: 1.5px solid var(--base-color);
-	}
-	
-	.qnaAmend input[type='button'] {
-	    width: 100px;
-	    height: 35px;
-	    border: 1.5px solid var(--my-color);
-	    color: var(--my-color);
-	    background-color: white;
-	    border-radius: 4px;
-	    font-weight: bold;
-	}
-	
-	.likeIt input[type='button'] {
-	    width: 100px;
-	    height: 35px;
-	    border: 1.5px solid var(--my-color);
-	    color: var(--my-color);
-	    background-color: white;
-	    border-radius: 4px;
-	    font-weight: bold;
-	}
-	
-	.qnaAmend input[type='button']:hover {
-	    background-color: var(--my-color);
-	    color: white;
-		
-	}
+.goodsDetailBody {
+  width: 1000px;
+  margin: 0 auto;
+  margin: 60px auto;
+}
 
-	
-	.qnaBottom {
-		text-align: end;
-   		padding: 40px;
-	}
-	
-	#writeGoodsQna {
-	    width: 150px;
-	    height: 50px;
-	    color: white;
-	    background-color: var(--my-color);
-	    border: none;
-	    border-radius: 3px;
-	    font-size: medium;
-	    font-weight: bold;
-	    cursor: grabbing;
-	}
-	
-	.quaModal {
-		position: fixed;
-		top: 0; 
-		left: 0; 
-		width: 100%; 
-		height: 100%;
-		display: none;
-		background-color: rgba(0, 0, 0, 0.4);
-	}
-	
-	.quaModal.show {
-		display: block;
-	}
-	
-	.modalBody {
-	    position: relative;
-	    margin: 7vh auto;
-		width: 800px;
-		height: 600px;
-		background-color: white; 
-		border-radius: 10px; 
-		box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-		padding: 25px 40px;
-	}
-	
-	.goodsInfoQna {
-		display: flex;
-    	margin: 10px 0;
-	    padding: 15px 0;
-	    border-top: 2px solid var(--base-color);
-	    border-bottom: 1px solid var(--base-color);
-	}
-	
-	.goodsInfoQna strong {
-		align-self: center;
-	}
-	
-	.goodsInfoQna img {
-		 width: 70px;
-   		 height: 70px;
-   		 border-radius: 3px;
-    	 margin-right: 50px;
-	}
-	
-	.goodsQnaTnC {
-	    padding: 20px 0;  
-	    border-bottom: 1px solid var(--base-color)
-	}
-	
-	.qnaTitle input[type="text"] {
-		width: 90%;
-	    padding: 7px;
-	    margin: 0 10px;
-	    border: 1.5px solid silver;
-	    border-radius: 3px;
-	}
-	
-	.qnaContents textarea {
-		width: 90%;
-	    padding: 7px;
-	    margin: 20px 10px;
-	    align-self: flex-end;
-	    border: 1.5px solid silver;
-	    border-radius: 3px;
-	    display: inline-table;
-	    height: 220px;
-	}
-	
-	
-	.secretYN {
-		padding: 0 50px;
-	}
-	
-	.secretYN p {
-		display: contents;
-	}
-	
-	.qna_row img {
-		width: 20px;
-		height: 20px;
-	}
-	
-	.modalButton {
-		margin: 20px 0;
-  		text-align: center;
-	}
-	
-	.modalButton input[type="button"], input[type="submit"] {
-		width: 150px;
-	    height: 50px;
-	    border: 1px solid var(--my-color);
-	    border-radius: 5px;
-	    background-color: white;
-	    font-size: large;
-	    font-weight: bold;
-	    color: var(--my-color);
-	    margin: 0 20px;
-	}
-	
-	.modalButton input[type="button"]:hover, input[type="submit"]:hover {
-	    color: white;
-	    background-color: var(--my-color);
-	}
+.goodsMainInfo {
+  display: flex;
+  gap: 0 70px;
+  flex-grow: 2;
+}
 
-	
+.goodsDesc {
+  flex-grow: 3;
+}
+
+.goodsDesc p span:not(#priceinKorean) {
+  font-size: x-large;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.goodsDesc p:first-child {
+  font-weight: bold;
+  padding-bottom: 30px;
+}
+
+.dlList {
+  padding: 20px 0;
+}
+
+.goodsDesc dl {
+  display: flex;
+  padding: 10px 0;
+}
+
+.goodsDesc dt {
+  width: 120px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.dlList input[type="button"],
+input[type="number"] {
+  background-color: white;
+  border: none;
+  text-align: center;
+}
+
+.dlList input[type="button"] {
+  font-size: large;
+  padding: 0 5px;
+  width: 30px;
+  cursor: grabbing;
+}
+
+.dlList input[type="number"] {
+  width: 20px;
+}
+
+.dlList #spanQty {
+  border: 3px solid var(--base-color);
+  border-radius: 5px;
+  padding: 3px 0;
+  font-weight: bold;
+}
+
+.showAmount {
+  text-align: right;
+  font-weight: bold;
+  border-top: 2px solid var(--base-color);
+  padding: 20px 0;
+}
+
+.getMine {
+  display: flex;
+  gap: 0 30px;
+  height: 55px;
+}
+
+.getMine #toMyfavorite {
+  flex-grow: 1;
+  border: 2px solid var(--base-color);
+  background-image: url("../img/heart.png");
+  border-radius: 3px;
+  background-size: 30px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: grabbing;
+}
+
+.getMine #toCart {
+  border-radius: 3px;
+  flex-grow: 3;
+  border: none;
+  background-color: var(--my-color);
+  color: white;
+  font-weight: bold;
+  font-size: x-large;
+  cursor: grabbing;
+}
+
+.subInfo {
+  margin: 80px 0;
+}
+
+.tabsItems > img {
+  text-align: center;
+}
+
+.tabsItems {
+  color: var(--font-color);
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tab {
+  background-color: var(--base-color);
+  color: var(--font-color);
+}
+
+.tab.active {
+  color: var(--my-color);
+  background-color: white;
+  border-top: 2px solid var(--my-color);
+  border-left: 2px solid var(--my-color);
+  border-right: 2px solid var(--my-color);
+  border-bottom: none;
+}
+
+.tabs div {
+  width: 100%;
+  height: 70px;
+  cursor: grabbing;
+  background-color: var(--base-color);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+  border: 1.5px solid white;
+  border-bottom: 2px solid var(--my-color);
+}
+
+.items {
+  width: 100%;
+  display: none;
+  text-align: center;
+  margin: 70px 0;
+}
+
+.items.active {
+  display: inline-block;
+}
+
+.desciption {
+  width: 80%;
+  margin: 100px auto;
+  border: 1.5px solid var(--base-color);
+  border-collapse: collapse;
+}
+
+.desciption th {
+  background-color: var(--base-color);
+  color: var(--font-color);
+  width: 130px;
+}
+
+.desciption tr {
+  height: 40px;
+  border: 1.5px solid var(--base-color);
+  color: var(--font-color);
+  font-size: medium;
+}
+
+.goodsQna_info {
+  margin: 0 auto;
+  padding: 0 50px;
+  text-align: left;
+}
+
+.qnaTable,
+.reviewTable {
+  width: 100%;
+  margin: 50px auto;
+  border-collapse: collapse;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+.qnaTable tr th,
+.reviewTable tr th {
+  height: 50px;
+  border-top: 2px solid var(--font-color);
+  border-bottom: 1px solid var(--font-color);
+}
+
+.qnaTable .qna_row td,
+.reviewTable td {
+  border-right: hidden;
+  border-left: hidden;
+  height: 45px;
+  border-bottom: 1px solid var(--base-color);
+  text-align: left;
+  padding-left: 60px;
+}
+
+.qnaTable .goods_qna_contents,
+.reviewTable .reviewContents {
+  display: none;
+}
+
+.qnaTable .goods_qna_contents.active,
+.reviewTable .reviewContents.active {
+  display: contents;
+  width: 1000px;
+  border-bottom: hidden;
+}
+
+.goods_qna_contents .question,
+.reviewContents .reviews {
+  text-align: left;
+  padding: 30px;
+}
+
+.goods_qna_contents img {
+  width: 30px;
+  height: 30px;
+  padding-right: 15px;
+}
+
+.goods_qna_contents .answer {
+  margin: 30px;
+  width: 80%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.qnaAmend {
+  text-align: right;
+  padding: 20px;
+  border-bottom: 1.5px solid var(--base-color);
+}
+
+.qnaAmend input[type="button"] {
+  width: 100px;
+  height: 35px;
+  border: 1.5px solid var(--my-color);
+  color: var(--my-color);
+  background-color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.likeIt input[type="button"] {
+  width: 100px;
+  height: 35px;
+  border: 1.5px solid var(--my-color);
+  color: var(--my-color);
+  background-color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.qnaAmend input[type="button"]:hover {
+  background-color: var(--my-color);
+  color: white;
+}
+
+.qnaBottom {
+  text-align: end;
+  padding: 40px;
+}
+
+#writeGoodsQna {
+  width: 150px;
+  height: 50px;
+  color: white;
+  background-color: var(--my-color);
+  border: none;
+  border-radius: 3px;
+  font-size: medium;
+  font-weight: bold;
+  cursor: grabbing;
+}
+
+.quaModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.quaModal.show {
+  display: block;
+}
+
+.modalBody {
+  position: relative;
+  margin: 7vh auto;
+  width: 800px;
+  height: 600px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  padding: 25px 40px;
+}
+
+.goodsInfoQna {
+  display: flex;
+  margin: 10px 0;
+  padding: 15px 0;
+  border-top: 2px solid var(--base-color);
+  border-bottom: 1px solid var(--base-color);
+}
+
+.goodsInfoQna strong {
+  align-self: center;
+}
+
+.goodsInfoQna img {
+  width: 70px;
+  height: 70px;
+  border-radius: 3px;
+  margin-right: 50px;
+}
+
+.goodsQnaTnC {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--base-color);
+}
+
+.qnaTitle input[type="text"] {
+  width: 90%;
+  padding: 7px;
+  margin: 0 10px;
+  border: 1.5px solid silver;
+  border-radius: 3px;
+}
+
+.qnaContents textarea {
+  width: 90%;
+  padding: 7px;
+  margin: 20px 10px;
+  align-self: flex-end;
+  border: 1.5px solid silver;
+  border-radius: 3px;
+  display: inline-table;
+  height: 220px;
+}
+
+.secretYN {
+  padding: 0 50px;
+}
+
+.secretYN p {
+  display: contents;
+}
+
+.qna_row img {
+  width: 20px;
+  height: 20px;
+}
+
+.modalButton {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.modalButton input[type="button"],
+input[type="submit"] {
+  width: 150px;
+  height: 50px;
+  border: 1px solid var(--my-color);
+  border-radius: 5px;
+  background-color: white;
+  font-size: large;
+  font-weight: bold;
+  color: var(--my-color);
+  margin: 0 20px;
+}
+
+.modalButton input[type="button"]:hover,
+input[type="submit"]:hover {
+  color: white;
+  background-color: var(--my-color);
+}
