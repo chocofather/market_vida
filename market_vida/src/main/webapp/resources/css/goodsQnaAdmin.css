@@ -77,10 +77,17 @@
 		padding: 30px;
 	}	
 	
-	.pagination a {
+	.pageNo {
 		text-decoration: none;
 	    color: var(--my-color);
-	    font-size: large;
-	    font-weight: bold;
+	    font-size: medium;
 	    padding: 10px;
+	}
+	
+	.pageNo.active {
+		text-decoration: none;
+	    color: var(--my-color);
+	    font-size: medium;
+	    padding: 10px;
+		font-weight: bold;
 	}

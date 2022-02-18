@@ -3,10 +3,10 @@
   		deleteGoods();
   		checkAllGoods();
   		updateGoods();
+
 	});
 	
 
-  	
   	/* 전체상품 체크 */
   	function checkAllGoods(){
   		$('#checkAll').on('click', function(){

@@ -8,10 +8,10 @@
 <title>Market Vida_상품 안내</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link rel="stylesheet" href="${path}/resources/css/header.css" />
+<link rel="stylesheet" href="${path}/resources/css/header.css?after" />
 <link rel="stylesheet" href="${path}/resources/css/goodsDetail.css?after" />
-<script src="${path}/resources/js/header.js"></script>
-<script src="${path}/resources/js/goodsDetail.js"></script>
+<script src="${path}/resources/js/header.js?after"></script>
+<script src="${path}/resources/js/goodsDetail.js?after"></script>
 <style>
 
 </style>
