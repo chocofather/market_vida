@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css?after" />
 <link rel="stylesheet" href="${path}/resources/css/goodsDetail.css?after" />
-<script src="${path}/resources/js/header.js?after"></script>
+<script src="${path}/resources/js/header.js"></script>
 <script src="${path}/resources/js/goodsDetail.js?after"></script>
 <style>
 
@@ -206,8 +206,6 @@
 									<div class="question"><img src="../resources/img/question.png" alt="question.png" />${goodsQnaDto.goods_qna_contents }</div>
 										<div class="answer"><img src="../resources/img/answer.png" alt="answer.png" />${goodsQnaDto.goods_qna_answer }</div>
 										<div class="qnaAmend">
-											<input type="hidden" name="crew_id" id="crew_id" value="${crew_id}" />
-											<input type="hidden" name="crew_no" id="crew_no" value="${crew_no}" />
 											<input type="hidden" name="goods_qna_no" class="goods_qna_no" value="${goodsQnaDto.goods_qna_no }" />
 										<c:if test="${crew_id == goodsQnaDto.crew_id}">
 											<input type="button" value="수정" class="qnaModify"/>
@@ -250,6 +248,8 @@
 					<strong>제목</strong> 
 					<input type="text" name="goods_qna_title" id="goods_qna_title" placeholder="제목을 입력해주세요" /> 
 					<input type="hidden" name="goods_no" id="goods_no" value="${goodsDto.goods_no }" />
+					<input type="hidden" name="crew_id" id="crew_id" value="${crew_id }" />
+					<input type="hidden" name="crew_no" id="crew_no" value="${crew_no }" />
 
 				</div>
 				<div class="qnaContents">

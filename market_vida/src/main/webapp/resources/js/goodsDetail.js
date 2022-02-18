@@ -29,8 +29,7 @@ function modifyQnaForm() {
           console.log(result.goodsQnaDto.goods_qna_contents);
 
           $("#goods_qna_title")[0].value = result.goodsQnaDto.goods_qna_title;
-          $("#goods_qna_contents")[0].value =
-            result.goodsQnaDto.goods_qna_contents;
+          $("#goods_qna_contents")[0].value = result.goodsQnaDto.goods_qna_contents;
           $(".quaModal")[0].classList.toggle("show");
           $("body")[0].style.overflow = "hidden";
 
@@ -191,7 +190,7 @@ function writeGoodsQna() {
             goods_qna_contents: goods_contents,
             qna_lock: qna_lock,
             crew_id: crew_id,
-            crew_no: crew_no,
+            crew_no: crew_no
           },
           dataType: "html",
           success: function (result) {
