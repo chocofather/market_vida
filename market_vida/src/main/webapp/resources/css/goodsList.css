@@ -95,6 +95,10 @@
       .imgBox_list {
         margin-bottom: 80px;
       }
+      
+      .goodsChkbox {
+      	display: block;
+      }
 
       .imgBox_list a {
         text-decoration: none;

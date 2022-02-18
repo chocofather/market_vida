@@ -162,7 +162,7 @@
 					
 					});
 					
-			 	}else if (title=="비밀글입니다" && crew_id==rowId){
+			 	}else if (title=="비밀글입니다" && crew_id==rowId || crew_id=="admin"){
 					var qnaDetail = row.rowIndex+1;
 					goods_qna_contents.forEach((cont)=>{
 						if(cont.rowIndex==qnaDetail){

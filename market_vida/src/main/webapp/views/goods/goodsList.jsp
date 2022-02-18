@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css?after" />
 <link rel="stylesheet" href="${path}/resources/css/goodsList.css?after" />
-<script src="${path}/resources/js/header.js"></script>
+<script src="${path}/resources/js/header.js?after"></script>
 <script src="${path}/resources/js/goodsList.js?after"></script>
 <style>
 

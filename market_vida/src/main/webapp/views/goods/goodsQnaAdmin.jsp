@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/resources/css/header.css" />
-<link rel="stylesheet" href="${path}/resources/css/goodsQnaAdmin.css" />
+<link rel="stylesheet" href="${path}/resources/css/goodsQnaAdmin.css?after" />
 <script src="${path}/resources/js/header.js"></script>
 <script src="${path}/resources/js/goodsQnaAdmin.js"></script>
 <style>
@@ -55,11 +55,12 @@ main div {
 		
 		<div class="paging">
 			<ul class="pagination">
+				<c:set var="page" value="${(empty param.currentPage)?1:param.currentPage }"></c:set>
 				<c:if test="${map.prev}">
 					<a href="goodsQnaAdmin?currentPage=${map.currentPage-1 }">이전</a>
 				</c:if>
 				<c:forEach var="no" begin="${map.startPageNo }" end="${map.endPageNo }">
-					<a href="goodsQnaAdmin?currentPage=${no }">${no }</a>
+					<a class="pageNo${(page==(no))?' active':'' }" href="goodsQnaAdmin?currentPage=${no }">${no }</a>
 				</c:forEach>
 				<c:if test="${map.next}">
 					<a href="goodsQnaAdmin?currentPage=${map.currentPage+1 }">다음</a>
