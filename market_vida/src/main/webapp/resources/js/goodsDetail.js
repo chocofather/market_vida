@@ -158,17 +158,6 @@ function showQnaDetail() {
 function writeGoodsQna() {
   /* 문의하기 버튼 누르면 */
   $("#writeGoodsQna").on("click", function () {
-    $(".quaModal")[0].classList.toggle("show");
-    $("body")[0].style.overflow = "hidden";
-
-    /* 등록버튼 누르면 */
-    $("#modalWriteButton").on("click", function () {
-      var qna_lock;
-      if ($("#secretYN")[0].checked == true) {
-        qna_lock = 1;
-      } else if ($("#secretYN")[0].checked == false) {
-        qna_lock = 0;
-      }
 
       var goods_no = $("#goods_no").val();
       var goods_title = $("#goods_qna_title").val();
@@ -176,46 +165,66 @@ function writeGoodsQna() {
       var crew_id = $("#crew_id").val();
       var crew_no = $("#crew_no").val();
 
-      if (
-        $("#goods_qna_title")[0].value != null &&
-        $("#goods_qna_contents")[0].value != null
-      ) {
-        $.ajax({
-          url: "./writeGoodsQna",
-          type: "get",
-          traditional: true,
-          data: {
-            goods_no: goods_no,
-            goods_qna_title: goods_title,
-            goods_qna_contents: goods_contents,
-            qna_lock: qna_lock,
-            crew_id: crew_id,
-            crew_no: crew_no
-          },
-          dataType: "html",
-          success: function (result) {
-            if (result == "writeSuccess") {
-              location.reload();
-              console.log(result);
-              location.reload();
-            }
-          },
-          error: function (xhr) {
-            console.log(xhr.status);
-          },
-        });
-      } else {
-        alert("내용을 입력해주세요");
-      }
-    });
-  });
+	if (crew_id==""){
+		alert("상품문의는 로그인 후 가능합니다");
+		
+	}else{
+	
+	    $(".quaModal")[0].classList.toggle("show");
+	    $("body")[0].style.overflow = "hidden";
+	
+	    /* 등록버튼 누르면 */
+	    $("#modalWriteButton").on("click", function () {
+	      var qna_lock;
+	      if ($("#secretYN")[0].checked == true) {
+	        qna_lock = 1;
+	      } else if ($("#secretYN")[0].checked == false) {
+	        qna_lock = 0;
+	      }
+	
+	
+	      if (
+	        $("#goods_qna_title")[0].value != null &&
+	        $("#goods_qna_contents")[0].value != null
+	      ) {
+	        $.ajax({
+	          url: "./writeGoodsQna",
+	          type: "get",
+	          traditional: true,
+	          data: {
+	            goods_no: goods_no,
+	            goods_qna_title: goods_title,
+	            goods_qna_contents: goods_contents,
+	            qna_lock: qna_lock,
+	            crew_id: crew_id,
+	            crew_no: crew_no
+	          },
+	          dataType: "html",
+	          success: function (result) {
+	            if (result == "writeSuccess") {
+	              location.reload();
+	              console.log(result);
+	              location.reload();
+	            }
+	          },
+	          error: function (xhr) {
+	            console.log(xhr.status);
+	          },
+	        });
+	      } else {
+	        alert("내용을 입력해주세요");
+	      }
+	    });
+	}
+	});
+	
+	  /* 취소버튼 눌렀을 때 */
+	  $("#modalBackButton").on("click", function () {
+	    console.dir($("#modalBackButton"));
+	    $(".quaModal")[0].classList.toggle("show");
+	    $("body")[0].style.overflow = "auto";
+	  });
 
-  /* 취소버튼 눌렀을 때 */
-  $("#modalBackButton").on("click", function () {
-    console.dir($("#modalBackButton"));
-    $(".quaModal")[0].classList.toggle("show");
-    $("body")[0].style.overflow = "auto";
-  });
 }
 
 /* 가격 계산 */
