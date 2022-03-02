@@ -18,8 +18,8 @@ public class ImgDAO implements Dao<ImgDTO> {
 	@Autowired 
 	private SqlSession ss;
 	
-	public List<ImgDTO> readAll(int StartNo, int endNo, int code){
-		StartEndGoodsList se = new StartEndGoodsList(StartNo, endNo, code);
+	public List<ImgDTO> readAll(int StartNo, int endNo, int code, String orderBy){
+		StartEndGoodsList se = new StartEndGoodsList(StartNo, endNo, code, orderBy);
 		return ss.selectList("kr.co.vida.img.readAll", se);
 	}
 

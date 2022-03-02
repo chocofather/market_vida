@@ -12,4 +12,7 @@ public class StartEndGoodsList {
 	private int startNo;
 	private int endNo;
 	private int code;
+	private String orderBy;
+	
+	
 }

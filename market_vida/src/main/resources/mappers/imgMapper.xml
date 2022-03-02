@@ -29,12 +29,25 @@
 			  		AND i.img_status = 0
 			  		<choose>
 				  		<when test="code%100==0">
-					  		AND s.main_cat_code = #{code} )
+					  		AND s.main_cat_code = #{code} 
 					  	</when> 	
 				  		<when test="code%100!=0">
-					  		AND s.sub_cat_code = #{code} )
+					  		AND s.sub_cat_code = #{code} 
 				  		</when>
 	  				</choose>
+	  				<if test="orderBy =='date'">
+	  					ORDER BY g.add_date desc
+	  				</if>
+	  				<if test="orderBy =='sell'">
+	  					ORDER BY g.sales_amt desc
+	  				</if>
+	  				<if test="orderBy =='lowprice'">
+	  					ORDER BY g.goods_price*(1-g.discount_rate/100) asc
+	  				</if>
+	  				<if test="orderBy =='hiprice'">
+	  					ORDER BY g.goods_price*(1-g.discount_rate/100) desc
+	  				</if>
+	  				)
 			WHERE ROWNUM &lt;=#{endNo} )
 	WHERE rn &gt;=#{startNo}
   	</select>

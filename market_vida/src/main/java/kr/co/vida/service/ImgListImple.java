@@ -15,8 +15,8 @@ public class ImgListImple implements VidaService<ImgDTO>{
 	@Autowired
 	ImgDAO dao;
 	
-	public List<ImgDTO> readAll(int StartNo, int endNo, int code){
-		return dao.readAll(StartNo, endNo, code);
+	public List<ImgDTO> readAll(int StartNo, int endNo, int code, String orderBy){
+		return dao.readAll(StartNo, endNo, code, orderBy);
 	}
 
 	

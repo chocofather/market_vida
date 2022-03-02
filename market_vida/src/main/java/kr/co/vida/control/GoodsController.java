@@ -49,6 +49,7 @@ public class GoodsController {
 	// 상품 리스트 페이지
 	@RequestMapping("/goods/goodsList")
 	public String goodsList(@RequestParam("cat_code")int cat_code, 
+							@RequestParam(name = "orderby", defaultValue = "")String orderBy,
 							@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
 							Model model) {
 		
@@ -67,7 +68,13 @@ public class GoodsController {
 		int endNo = (int) map.get("endNo");
 		
 		// 상품 리스트 객체
-		model.addAttribute("imgDto", imgService.readAll(startNo, endNo, cat_code));
+		if (orderBy==null) {
+			model.addAttribute("imgDto", imgService.readAll(startNo, endNo, cat_code, null));
+			
+		} else {
+			model.addAttribute("imgDto", imgService.readAll(startNo, endNo, cat_code, orderBy));
+			
+		}
 		model.addAttribute("getTotal", imgService.getTotalbyCode(cat_code));
 		model.addAttribute("code", Integer.toString(cat_code));
 		log.info("subCode=====>"+cat_code);

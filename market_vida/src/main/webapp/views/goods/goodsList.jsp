@@ -53,9 +53,10 @@
         </div>
         <div class="sortBy">
           <ul class="sortByObject">
-            <li>신상품순</li>
-            <li>판매량순</li>
-            <li>가격순</li>	
+            <li><a href="./goodsList?cat_code=${code }&orderby=date">신상품순</a></li>
+            <li><a href="./goodsList?cat_code=${code }&orderby=sell">판매량순</a></li>
+            <li><a href="./goodsList?cat_code=${code }&orderby=hiprice">높은가격순</a></li>	
+            <li><a href="./goodsList?cat_code=${code }&orderby=lowprice">낮은가격순</a></li>	
           </ul>
         </div>
       </div>
